@@ -325,9 +325,26 @@ $$.fn.device
 
 `触摸事件` 对指定DOM元素的触摸事件返回相应的移动坐标数据，并提供回调。
 ```javascript
-$$.fn.touches(document.getElementById("about"),function(Touches){
+$$.fn.touches(document.getElementById("id"),function(Touches){
 		$$.fn.log($$().jsonView(Touches))
 	})
+```
+
+`验证` 提供常用的验证，包括手机、邮箱、电话、数字等。
+```javascript
+$$.validate('13123456789','mobile')
+```
+
+`分解url参数` 例如：http://www.kui.com/kui.html?id=1 
+```javascript
+var Url = $$.getUrlParams();
+alert(Url.id)
+```
+
+`动态加载` 动态加载JS（支持回调）和CSS
+```javascript
+$$.loadJC('app.css','css');
+$$.loadJC('app.css','js',function(){callback});
 ```
 
 
