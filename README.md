@@ -57,23 +57,23 @@ app.js: 初始化应用路由和配置
 ## KUI提供以下功能
 
 
->`grid(网格布局)` 提供了一套响应式、移动设备优先十分灵活的网格布局
+`grid(网格布局)` 提供了一套响应式、移动设备优先十分灵活的网格布局
 
-有间隔
+  有间隔
 ```html
 <div class="Row">
   <div class="Col50">.Col50</div>
   <div class="Col50">.Col50</div>
 </div>
 ```
-无间隔
+  无间隔
 ```html
 <div class="Row NoGutter">
   <div class="Col50">.Col50</div>
   <div class="Col50">.Col50</div>
 </div>
 ```
->`button(按钮)`   使用下面列出的类可以快速创建一个带有预定义样式的按钮
+`button(按钮)`   使用下面列出的类可以快速创建一个带有预定义样式的按钮
 
 ```html
 <ul class="ListBlock ListBase">
@@ -84,30 +84,30 @@ app.js: 初始化应用路由和配置
 	<li class="ListItem"><b class="Btn BtnDanger InkRipple">危险按钮</b></li>
 </ul>
 ```
-尺寸 : 需要让按钮具有不同尺寸吗？使用 `.BtnBig`、`.BtnSmall`就可以获得不同尺寸的按钮。
+  尺寸 : 需要让按钮具有不同尺寸吗？使用 `.BtnBig`、`.BtnSmall`就可以获得不同尺寸的按钮。
 ```html
 <button type="button" class="Btn BtnPrimary BtnBig">（大按钮）Large button</button>
 <button type="button" class="Btn BtnPrimary BtnSmall">（小按钮）Small button</button>
 ```
-通过给按钮添加 .BtnBlock 类可以将其拉伸至父元素100%的宽度，而且按钮也变为了块级（block）元素。
+  通过给按钮添加 .BtnBlock 类可以将其拉伸至父元素100%的宽度，而且按钮也变为了块级（block）元素。
 ```html
 <button type="button" class="Btn BtnPrimary BtnBlock">（块级元素）Block level button</button>
 ```
-无底色按钮（使用父元素的背景色）使用 `.BtnLine`
+  无底色按钮（使用父元素的背景色）使用 `.BtnLine`
 ```html
 <a href="javascript:;" class="Btn BtnLine">默认按钮</a>
 ```
-带图标/数字按钮
+  带图标/数字按钮
 ```html
 <a href="javascript:;" class="Btn"><img class="BtnIconL" src="images/svg/iconfont-dianhua.svg" alt="电话" width="16"/>默认按钮</a>
 <a href="javascript:;" class="Btn"><span class="Badge BadgeL">9</span>默认按钮</a>
 ```
-禁用状态
+  禁用状态
 ```html
 <button type="button" class="Btn" disabled="disabled">默认按钮</button>
 ```
 
->`floatbutton(浮动按钮)` 
+`floatbutton(浮动按钮)` 
 
 ```html
 <div class="SpeedDial">
@@ -126,7 +126,7 @@ $$.floatButton();
 </script>
 ```
 
->`short(短标)`
+`short(短标)`
 
 ```html
 <div class="Short"><div class="ShortLabel">例子短标</div></div>
@@ -153,7 +153,7 @@ $$.floatButton();
 </div>
 ```
 
->`numberbox(数字输入框)` 
+`numberbox(数字输入框)` 
 
 ```html
 <div class="NumBox">
@@ -162,7 +162,7 @@ $$.floatButton();
 	<button class="Btn NumBoxPlus" type="button">+</button>
 </div>
 ```
-限定最小值和最大值(1~9)
+  限定最小值和最大值(1~9)
 ```html
 <div class="NumBox" data-min="1" data-max="9">
 	<button class="Btn NumBoxMinus" type="button">-</button>
@@ -170,7 +170,7 @@ $$.floatButton();
 	<button class="Btn NumBoxPlus" type="button">+</button>
 </div>
 ```
-设定步长值(步长 10)
+  设定步长值(步长 10)
 ```html
 <div class="NumBox" data-step="10" data-min="10" data-max="90">
 	<button class="Btn NumBoxMinus" type="button">-</button>
@@ -179,7 +179,7 @@ $$.floatButton();
 </div>
 ```
 
->`form(表单)` 提供多种表单展示
+`form(表单)` 提供多种表单展示
 
 ```html
 <ul class="ListBlock">
@@ -200,7 +200,7 @@ $$.floatButton();
 </ul>
 ```
 
->`checkbox  radio(多选和单选)` 
+`checkbox  radio(多选和单选)` 
 
 复选框组  `.LabelCheckbox`
 ```html
@@ -233,16 +233,16 @@ $$.floatButton();
 </ul>
 ```
 
->`switch(开关)` 
+`switch(开关)` 
 
 ```html
 <div class="checkbox"></div>
 <div class="checkbox"><span></span></div>
 ```
 
->`icon(图标)` 提供常用的图标集合（格式.svg）
-=====
->`list(列表)` 提供多种列表展示方式
+`icon(图标)` 提供常用的图标集合（格式.svg）
+
+`list(列表)` 提供多种列表展示方式
 
 ```html
 <ul class="ListBlock">
@@ -265,10 +265,10 @@ $$.floatButton();
 ```
 
  
->`text(文本)`  对常用的文本标题进行设置
-=====
+`text(文本)`  对常用的文本标题进行设置
 
->`box(盒)` 提供多种展示卡片形式
+
+`box(盒)` 提供多种展示卡片形式
 
 ```html
 <div class="Box">
@@ -281,26 +281,24 @@ $$.floatButton();
 ```
 
 
->`tab(选项卡)` 结合 angular 提供简单的Tab选项卡功能
-=====
+`tab(选项卡)` 结合 angular 提供简单的Tab选项卡功能
 
->`loading(加载)` 定义基本的加载图标
+
+`loading(加载)` 定义基本的加载图标
 
 ```htnl
 <span class="Loading LoadingWhite"></span>
 ```
 
->`stylebox(九宫格)`   提供九宫格展示方式，方便操作的界面集合
-
-
+`stylebox(九宫格)`   提供九宫格展示方式，方便操作的界面集合
 
 ### 扩展功能
 
->`chart(EChart图表)` 这是KMUI集成百度ECharts的图表示例，ECharts的详细用法及 API 请参考其官方网站: [http://echarts.baidu.com](http://echarts.baidu.com)
-=====
->`timeline(时间轴)` 
-=====
->`slide(轮播图)` 
+`chart(EChart图表)` 这是KMUI集成百度ECharts的图表示例，ECharts的详细用法及 API 请参考其官方网站: [http://echarts.baidu.com](http://echarts.baidu.com)
+
+`timeline(时间轴)` 
+
+`slide(轮播图)` 
 
 
 
