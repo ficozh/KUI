@@ -74,6 +74,7 @@ app.js: 初始化应用路由和配置
 </div>
 ```
 >`button(按钮)`   使用下面列出的类可以快速创建一个带有预定义样式的按钮
+
 ```html
 <ul class="ListBlock ListBase">
 	<li class="ListItem"><a href="javascript:;" class="Btn InkRipple">默认按钮</a></li>
@@ -107,7 +108,9 @@ app.js: 初始化应用路由和配置
 ```html
 <button type="button" class="Btn" disabled="disabled">默认按钮</button>
 ```
+
 >`floatbutton(浮动按钮)` 
+
 ```html
 <div class="SpeedDial">
 	<a href="javascript:;" class="FloatingButton">
@@ -125,6 +128,24 @@ $$.floatButton();
 </script>
 ```
 >`short(短标)`
+```html
+<div class="Short">
+	<div class="ShortLabel">例子短标</div>
+</div>
+<div class="Short">
+	<div class="ShortMedia BBlue">
+		<i class="Icon IconCalendar"></i>
+	</div>
+	<div class="ShortLabel">日期</div>
+</div>
+<div class="Short">
+	<div class="ShortMedia BPurple">
+		<i class="Icon IconEmail"></i>
+	</div>
+	<div class="ShortLabel">邮箱</div>
+	<a href="javascript:;" class="ShortDel"></a>
+</div>
+```
  
 >`badge(数字角标)` 
 >`numberbox(数字输入框)` 
