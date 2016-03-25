@@ -153,9 +153,97 @@ $$.floatButton();
 ```
 
 >`numberbox(数字输入框)` 
->`form(表单)` 
+
+```html
+<div class="NumBox">
+	<button class="Btn NumBoxMinus" type="button">-</button>
+	<input class="NumBoxInput" type="number" value="0"/>
+	<button class="Btn NumBoxPlus" type="button">+</button>
+</div>
+```
+限定最小值和最大值(1~9)
+```html
+<div class="NumBox" data-min="1" data-max="9">
+	<button class="Btn NumBoxMinus" type="button">-</button>
+	<input class="NumBoxInput" type="number" value="5">
+	<button class="Btn NumBoxPlus" type="button">+</button>
+</div>
+```
+设定步长值(步长 10)
+```html
+<div class="NumBox" data-step="10" data-min="10" data-max="90">
+	<button class="Btn NumBoxMinus" type="button">-</button>
+	<input class="NumBoxInput" type="number" value="10">
+	<button class="Btn NumBoxPlus" type="button">+</button>
+</div>
+```
+
+>`form(表单)` 提供多种表单展示
+
+```html
+<ul class="ListBlock">
+	<li class="ListItem">
+		<div class="ItemCon">
+			<div class="ItemMedia">
+				<img class="Icon" src="images/svg/iconfont-user.svg" alt="用户">
+			</div>
+			<div class="ItemInner">
+				<div class="ItemTitle Label">姓名</div>
+				<div class="ItemInput">
+					<input class="InputContr" type="text" placeholder="您的姓名">
+				</div>
+			</div>
+		</div>
+	</li>
+	...
+</ul>
+```
+
 >`checkbox  radio(多选和单选)` 
+
+复选框组  `.LabelCheckbox`
+```html
+<ul class="ListBlock">
+	<li class="ListItem">
+		<label class="ItemCon LabelCheckbox">
+			<input type="checkbox" name="mycheckbox" value="Books">
+			<div class="ItemMedia"><i class="Icon IconCheckbox"></i></div>
+			<div class="ItemInner">
+				<div class="ItemTitle">Books</div>
+			</div>
+		</label>
+	</li>
+	...
+</ul>
+```
+
+单选框组  `.LabelRadio`
+```html
+<ul class="ListBlock">
+	<li class="ListItem">
+		<label class="ItemCon LabelRadio">
+			<input type="radio" name="myradio" value="Books">
+			<div class="ItemInner">
+				<div class="ItemTitle">Books</div>
+			</div>
+		</label>
+	</li>
+	...
+</ul>
+```
+
 >`switch(开关)` 
+
+```html
+<div class="MTB MR">
+	<span class="Badge">1</span>
+	<span class="Badge BadgePrimary">123</span>
+	<span class="Badge BadgeSuccess">3</span>
+	<span class="Badge BadgeWarning">41</span>
+	<span class="Badge BadgeDanger">99+</span>
+</div>
+```
+
 >`icon(图标)` 
 >`dialog(消息框)` 
 >`notify(通知)` 
