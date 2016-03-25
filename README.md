@@ -235,30 +235,70 @@ $$.floatButton();
 >`switch(开关)` 
 
 ```html
-<div class="MTB MR">
-	<span class="Badge">1</span>
-	<span class="Badge BadgePrimary">123</span>
-	<span class="Badge BadgeSuccess">3</span>
-	<span class="Badge BadgeWarning">41</span>
-	<span class="Badge BadgeDanger">99+</span>
+<div class="checkbox"></div>
+<div class="checkbox"><span></span></div>
+```
+
+>`icon(图标)` 提供常用的图标集合（格式.svg）
+
+>`list(列表)` 提供多种列表展示方式
+
+```html
+<ul class="ListBlock">
+	<li class="ListItem">
+		<div class="ItemCon InkRipple">
+			<div class="ItemMedia">
+				<img class="Icon" src="images/svg/iconfont-user.svg" alt="用户">
+			</div>
+			<div class="ItemInner">
+				<div class="ItemTitle">
+				Ivan Petrov
+				</div>
+				<div class="ItemAfter">
+				CEO
+				</div>
+			</div>
+		</div>
+	</li>
+</ul>
+```
+
+ 
+>`text(文本)`  对常用的文本标题进行设置
+
+
+>`box(盒)` 提供多种展示卡片形式
+
+```html
+<div class="Box">
+	<div class="BoxHeader">...</div>
+	<div class="BoxContent">
+		<div class="BoxContentInner">...</div>
+	</div>
+	<div class="BoxFooter">...</div>
 </div>
 ```
 
->`icon(图标)` 
->`dialog(消息框)` 
->`notify(通知)` 
->`list(列表)` 
->`mediaLists(媒体列表)` 
->`text(文本)` 
->`box(盒)` 
->`tab(选项卡)` 
->`loading(加载)` 
->`stylebox(九宫格)` 
+
+>`tab(选项卡)` 结合 angular 提供简单的Tab选项卡功能
+
+
+>`loading(加载)` 定义基本的加载图标
+
+```htnl
+<span class="Loading LoadingWhite"></span>
+```
+
+>`stylebox(九宫格)`   提供九宫格展示方式，方便操作的界面集合
+
+
 
 ### 扩展功能
 
->`chart(EChart图表)` 
+>`chart(EChart图表)` 这是KMUI集成百度ECharts的图表示例，ECharts的详细用法及 API 请参考其官方网站: [http://echarts.baidu.com](http://echarts.baidu.com)
+
 >`timeline(时间轴)` 
+
 >`slide(轮播图)` 
 
 
