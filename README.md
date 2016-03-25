@@ -141,7 +141,7 @@ $$.floatButton();
 </div>
 ```
  
->`badge(数字角标)` 
+>**`badge(数字角标)`** 
 ```html
 <div class="MTB MR">
 	<span class="Badge">1</span>
