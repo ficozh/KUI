@@ -240,7 +240,7 @@ $$.floatButton();
 ```
 
 >`icon(图标)` 提供常用的图标集合（格式.svg）
-
+<br><br>
 >`list(列表)` 提供多种列表展示方式
 
 ```html
@@ -265,7 +265,7 @@ $$.floatButton();
 
  
 >`text(文本)`  对常用的文本标题进行设置
-
+<br><br>
 
 >`box(盒)` 提供多种展示卡片形式
 
@@ -281,7 +281,7 @@ $$.floatButton();
 
 
 >`tab(选项卡)` 结合 angular 提供简单的Tab选项卡功能
-
+<br><br>
 
 >`loading(加载)` 定义基本的加载图标
 
@@ -296,9 +296,9 @@ $$.floatButton();
 ### 扩展功能
 
 >`chart(EChart图表)` 这是KMUI集成百度ECharts的图表示例，ECharts的详细用法及 API 请参考其官方网站: [http://echarts.baidu.com](http://echarts.baidu.com)
-
+<br><br>
 >`timeline(时间轴)` 
-
+<br><br>
 >`slide(轮播图)` 
 
 
