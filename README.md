@@ -57,23 +57,23 @@ app.js: 初始化应用路由和配置
 ## KUI提供以下功能
 
 
->`grid(网格布局)` 提供了一套响应式、移动设备优先十分灵活的网格布局
+>1. `grid(网格布局)` 提供了一套响应式、移动设备优先十分灵活的网格布局
 
-有间隔
++ 有间隔
 ```html
 <div class="Row">
   <div class="Col50">.Col50</div>
   <div class="Col50">.Col50</div>
 </div>
 ```
-无间隔
++ 无间隔
 ```html
 <div class="Row NoGutter">
   <div class="Col50">.Col50</div>
   <div class="Col50">.Col50</div>
 </div>
 ```
->`button(按钮)`   使用下面列出的类可以快速创建一个带有预定义样式的按钮
+>2. `button(按钮)`   使用下面列出的类可以快速创建一个带有预定义样式的按钮
 
 ```html
 <ul class="ListBlock ListBase">
@@ -109,9 +109,9 @@ app.js: 初始化应用路由和配置
 <button type="button" class="Btn" disabled="disabled">默认按钮</button>
 ```
 
->`floatbutton(浮动按钮)` 
+>3. `floatbutton(浮动按钮)` 
 
-```html
++ ```html
 <div class="SpeedDial">
 	<a href="javascript:;" class="FloatingButton">
 		<i class="Icon IconPlus"></i>
@@ -127,21 +127,15 @@ app.js: 初始化应用路由和配置
 $$.floatButton();
 </script>
 ```
->`short(短标)`
-```html
+>4. `short(短标)`
++ ```html
+<div class="Short"><div class="ShortLabel">例子短标</div></div>
 <div class="Short">
-	<div class="ShortLabel">例子短标</div>
-</div>
-<div class="Short">
-	<div class="ShortMedia BBlue">
-		<i class="Icon IconCalendar"></i>
-	</div>
+	<div class="ShortMedia BBlue"><i class="Icon IconCalendar"></i></div>
 	<div class="ShortLabel">日期</div>
 </div>
 <div class="Short">
-	<div class="ShortMedia BPurple">
-		<i class="Icon IconEmail"></i>
-	</div>
+	<div class="ShortMedia BPurple"><i class="Icon IconEmail"></i></div>
 	<div class="ShortLabel">邮箱</div>
 	<a href="javascript:;" class="ShortDel"></a>
 </div>
