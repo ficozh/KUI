@@ -4,6 +4,7 @@
 - jQuery v2.2.1
 - AngularJS v1.5.0
 - RequireJS 2.1.15
+- kelat 1.0.0
 
 ### H5框架需要以下的特点
 
