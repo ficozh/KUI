@@ -1,14 +1,12 @@
 # KUI
 =====
 ### 已集成库
-=====
 - jQuery v2.2.1
 - AngularJS v1.5.0
 - RequireJS 2.1.15
 - kelat 1.0.0
 
 ### H5框架需要以下的特点
-=====
 - 为提高团队协作效率, 便于后台人员添加功能及前端后期优化维护。
 - 输出高质量的文档,减少编写应用的代码冗余。
 - 编写符合web标准, 语义化html。
@@ -17,7 +15,6 @@
 - 移动端的响应速度要求更快。
 
 ### 框架功能
-=====
 - 可实现单页应用。
 - 无刷新式页面变化。
 - 每个页面包含不同数据，数据隔离。
@@ -31,7 +28,6 @@
 - 模板功能强大丰富，并且是声明式的，自带了丰富的Angular指令。
 
 ### 文件结构
-=====
 >`images`  为 图片资源 文件夹，存放项目中使用的各类图片文件。
 >
 >`pages` 为 页面文件夹，项目页面文件分类存放在这个文件夹(包括对应的样式、脚本、图片资源)。
@@ -41,7 +37,6 @@
 >`style` 为 样式文件夹，存放页面展示UI样式文件。
 
 # 使用
-=====
 HTML:
 
 ```html
@@ -147,6 +142,8 @@ return  angular.module('myApp', ['ngIOS9UIWebViewPatch']).config(['$stateProvide
 ## KUI提供以下功能
 =====
 `grid(网格布局)` 提供了一套响应式、移动设备优先十分灵活的网格布局
+
+
 有间隔
 ```html
 <div class="Row">
@@ -171,14 +168,33 @@ return  angular.module('myApp', ['ngIOS9UIWebViewPatch']).config(['$stateProvide
 	<li class="ListItem"><b class="Btn BtnDanger InkRipple">危险按钮</b></li>
 </ul>
 ```
-
-
-
-
-
-
-
-
+尺寸 : 需要让按钮具有不同尺寸吗？使用 `.BtnBig`、`.BtnSmall`就可以获得不同尺寸的按钮。
+```html
+//大按钮
+<button type="button" class="Btn BtnPrimary BtnBig">（大按钮）Large button</button>
+//小按钮
+<button type="button" class="Btn BtnPrimary BtnSmall">（小按钮）Small button</button>
+```
+通过给按钮添加 .BtnBlock 类可以将其拉伸至父元素100%的宽度，而且按钮也变为了块级（block）元素。
+```html
+<button type="button" class="Btn BtnPrimary BtnBlock">（块级元素）Block level button</button>
+```
+无底色按钮（使用父元素的背景色）使用 `.BtnLine`
+```html
+<a href="javascript:;" class="Btn BtnLine">默认按钮</a>
+```
+带图标按钮 `.BtnLine`
+```html
+<a href="javascript:;" class="Btn">
+<img class="BtnIconL" src="images/svg/iconfont-dianhua.svg" alt="电话" width="16">
+默认按钮</a>
+//带数字的按钮
+<a href="javascript:;" class="Btn"><span class="Badge BadgeL">9</span>默认按钮</a>
+```
+禁用状态
+```html
+<button type="button" class="Btn" disabled="disabled">默认按钮</button>
+```
 
 
 
