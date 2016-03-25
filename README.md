@@ -57,23 +57,23 @@ app.js: 初始化应用路由和配置
 ## KUI提供以下功能
 
 
->1. `grid(网格布局)` 提供了一套响应式、移动设备优先十分灵活的网格布局
+>`grid(网格布局)` 提供了一套响应式、移动设备优先十分灵活的网格布局
 
-+ 有间隔
+有间隔
 ```html
 <div class="Row">
   <div class="Col50">.Col50</div>
   <div class="Col50">.Col50</div>
 </div>
 ```
-+ 无间隔
+无间隔
 ```html
 <div class="Row NoGutter">
   <div class="Col50">.Col50</div>
   <div class="Col50">.Col50</div>
 </div>
 ```
->2. `button(按钮)`   使用下面列出的类可以快速创建一个带有预定义样式的按钮
+>`button(按钮)`   使用下面列出的类可以快速创建一个带有预定义样式的按钮
 
 ```html
 <ul class="ListBlock ListBase">
@@ -86,9 +86,7 @@ app.js: 初始化应用路由和配置
 ```
 尺寸 : 需要让按钮具有不同尺寸吗？使用 `.BtnBig`、`.BtnSmall`就可以获得不同尺寸的按钮。
 ```html
-//大按钮
 <button type="button" class="Btn BtnPrimary BtnBig">（大按钮）Large button</button>
-//小按钮
 <button type="button" class="Btn BtnPrimary BtnSmall">（小按钮）Small button</button>
 ```
 通过给按钮添加 .BtnBlock 类可以将其拉伸至父元素100%的宽度，而且按钮也变为了块级（block）元素。
@@ -109,9 +107,9 @@ app.js: 初始化应用路由和配置
 <button type="button" class="Btn" disabled="disabled">默认按钮</button>
 ```
 
->3. `floatbutton(浮动按钮)` 
+>`floatbutton(浮动按钮)` 
 
-+ ```html
+```html
 <div class="SpeedDial">
 	<a href="javascript:;" class="FloatingButton">
 		<i class="Icon IconPlus"></i>
@@ -127,8 +125,10 @@ app.js: 初始化应用路由和配置
 $$.floatButton();
 </script>
 ```
->4. `short(短标)`
-+ ```html
+
+>`short(短标)`
+
+```html
 <div class="Short"><div class="ShortLabel">例子短标</div></div>
 <div class="Short">
 	<div class="ShortMedia BBlue"><i class="Icon IconCalendar"></i></div>
@@ -142,6 +142,16 @@ $$.floatButton();
 ```
  
 >`badge(数字角标)` 
+```html
+<div class="MTB MR">
+	<span class="Badge">1</span>
+	<span class="Badge BadgePrimary">123</span>
+	<span class="Badge BadgeSuccess">3</span>
+	<span class="Badge BadgeWarning">41</span>
+	<span class="Badge BadgeDanger">99+</span>
+</div>
+```
+
 >`numberbox(数字输入框)` 
 >`form(表单)` 
 >`checkbox  radio(多选和单选)` 
