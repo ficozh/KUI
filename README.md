@@ -1,13 +1,14 @@
 #KUI
-
+----
 ### 已集成库
+----
 - jQuery v2.2.1
 - AngularJS v1.5.0
 - RequireJS 2.1.15
 - kelat 1.0.0
 
 ### H5框架需要以下的特点
-
+----
 - 为提高团队协作效率, 便于后台人员添加功能及前端后期优化维护。
 - 输出高质量的文档,减少编写应用的代码冗余。
 - 编写符合web标准, 语义化html。
@@ -16,7 +17,7 @@
 - 移动端的响应速度要求更快。
 
 ### 框架功能
-
+----
 - 可实现单页应用。
 - 无刷新式页面变化。
 - 每个页面包含不同数据，数据隔离。
@@ -30,17 +31,17 @@
 - 模板功能强大丰富，并且是声明式的，自带了丰富的Angular指令。
 
 ### 文件结构
-
-`images`  为 图片资源 文件夹，存放项目中使用的各类图片文件。
-
-`pages` 为 页面文件夹，项目页面文件分类存放在这个文件夹(包括对应的样式、脚本、图片资源)。
-
-`script` 为 脚本文件夹，存放js库、扩展插件和执行脚本(包括路由配置、页面所需库文件)。	
-
-`style` 为 样式文件夹，存放页面展示UI样式文件。
+----
+>`images`  为 图片资源 文件夹，存放项目中使用的各类图片文件。
+>
+>`pages` 为 页面文件夹，项目页面文件分类存放在这个文件夹(包括对应的样式、脚本、图片资源)。
+>
+>`script` 为 脚本文件夹，存放js库、扩展插件和执行脚本(包括路由配置、页面所需库文件)。	
+>
+>`style` 为 样式文件夹，存放页面展示UI样式文件。
 
 # 使用
-
+----
 HTML:
 
 ```html
@@ -55,7 +56,7 @@ HTML:
 </body>
 ```
 main.js:
-```js
+```javascript
 require.config({
 	//默认情况下模块所在目录为
 	baseUrl: 'script',
@@ -103,7 +104,7 @@ require([
 });
 ```
 app.js:
-```js
+```javascript
 define([
 'angular','uiRouter','angularIOS'
 ],function(angular){
@@ -143,5 +144,57 @@ return  angular.module('myApp', ['ngIOS9UIWebViewPatch']).config(['$stateProvide
 	}]);
 });
 ```
+# KUI提供以下功能
+----
+`grid(网格布局)` 提供了一套响应式、移动设备优先十分灵活的网格布局
+有间隔
+```html
+<div class="Row">
+  <div class="Col50">.Col50</div>
+  <div class="Col50">.Col50</div>
+</div>
+```
+无间隔
+```html
+<div class="Row NoGutter">
+  <div class="Col50">.Col50</div>
+  <div class="Col50">.Col50</div>
+</div>
+```
+`button(按钮)`   提供了、移动设备优先十分灵活的网格布局
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
