@@ -1,6 +1,6 @@
 #KUI
 
-#### 已集成组件
+### 已集成库
 - jQuery v2.2.1
 - AngularJS v1.5.0
 - RequireJS 2.1.15
@@ -29,3 +29,28 @@
 - 依赖注入，将这种后端语言的设计模式赋予前端代码，这意味着前端的代码可以提高重用性和灵活性，未来的模式可能将大量操作放在客户端，服务端只提供数据来源和其他客户端无法完成的操作。
 - 模板功能强大丰富，并且是声明式的，自带了丰富的Angular指令。
 
+### 文件结构
+
+`images`  为 图片资源 文件夹，存放项目中使用的各类图片文件。
+
+`pages` 为 页面文件夹，项目页面文件分类存放在这个文件夹(包括对应的样式、脚本、图片资源)。
+
+`script` 为 脚本文件夹，存放js库、扩展插件和执行脚本(包括路由配置、页面所需库文件)。	
+
+`style` 为 样式文件夹，存放页面展示UI样式文件。
+
+# 使用
+
+HTML:
+
+```html
+<head>
+...
+<link rel="stylesheet" href="style/kelat.css" media="all"/>
+...
+</head>
+<body>
+...
+<script src="script/_lib/requireJS/require.js" data-main="script/main" defer async="true" ></script>
+</body>
+```
