@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN" class="Mobile">
+<head>
+<meta charset="UTF-8">
+<!-- AngularJS中的友好URL：移除URL中的# -->
+<!--base href="file:///E:/项目/框架/WEBAll1/pages/home"-->
+<meta name="viewport" content="width=device-width,height=device-height,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,minimal-ui">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<title></title>
+<!-- KUI -->
+<link rel="stylesheet" href="style/kelat.css" media="all"/>
+<!-- 扩展样式 -->
+<link rel="stylesheet" href="style/theme.css" media="all"/>
+
+</head>
+<body>
+    <!-- 状态栏覆盖全屏幕模式 (PhoneGap) -->
+    <div class="StatusbarOverlay"></div>
+    <!-- 面板覆盖 -->
+    <div class="PanelOverlay"></div>
+    <!-- 左侧面板 -->
+    <div class="Panel PanelLeft PanelCover" ui-view="PanelLeftView"></div>
+    <!-- 右侧面板 -->
+    <div class="Panel PanelRight PanelCover" ui-view="PanelRightView"></div>
+
+	<div class="Wrapper">
+		<div class="WrapBox" id="WrapperArea">
+			<!--Header-->
+			<header class="WrapHeader" ui-view="Header"></header>
+			<!--Header end-->
+
+			<!--PageBody-->
+			<div class="WrapContent" ui-view="WrapContent"></div>
+			
+			<!--PageBody end-->
+		</div>
+	</div>
+<script src="script/_lib/requireJS/require.js" data-main="script/main" defer async="true" ></script>
+
+</body>
+</html>

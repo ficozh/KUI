@@ -1,0 +1,88 @@
+﻿@charset "utf-8";
+/* ////////////////////////////////////// */
+/* theme                                  */
+/* by：fico                               */
+/* email : ficozh@163.com                 */
+/* ////////////////////////////////////// */
+
+/* ===== 全局颜色 ===== */
+body{color:#222;background-color:#eee}
+.Mobile body{background-color:#eee}
+
+/*区域范围*/
+.Mobile .WAll{height:inherit}
+.PC .WAll{width:1200px;height:inherit}
+
+/*隐藏滚动条*/
+.OVBody{overflow:hidden!important}
+
+/* ===== 定义字体 ===== */
+body,
+td,
+input,
+textarea,
+select,
+button{font-size:14px;line-height:1.42857143;font-family:"\5FAE\8F6F\96C5\9ED1","\9ED1\4F53",Tahoma,"STHeiti","Microsoft YaHei",sans-serif}
+
+/* ===== 连接颜色 ===== */
+a{-webkit-transition-duration:300ms;
+		transition-duration:300ms;}
+
+/* ===== 动画时间 ===== */
+.Transi{
+-webkit-transition:all 150ms ease-out;
+   -moz-transition:all 150ms ease-out;
+	 -o-transition:all 150ms ease-out;
+		transition:all 150ms ease-out;
+}
+
+/* ===== 字体 ===== */
+.FF{font-family:"\5FAE\8F6F\96C5\9ED1","\9ED1\4F53",Tahoma,"STHeiti","Microsoft YaHei"}
+.FFG{font-family:Georgia}
+.F12{font-size:12px}
+.F13{font-size:13px}
+.F14{font-size:14px}
+.F16{font-size:16px}
+.F18{font-size:18px}
+.F20{font-size:20px}
+.F22{font-size:22px}
+.F24{font-size:24px}
+.F28{font-size:28px}
+
+
+/*图标*/
+.I{position:relative;display:inline-block;background-image:url(../images/icons.png);background-repeat:no-repeat;background-size:120px;width:24px;height:24px;vertical-align:middle}
+
+
+/*空内容*/
+.BlankCon{text-align:center;padding:10px 0;color:#888;}
+/*没内容*/
+.NoContent{padding:120px 0;color:#a6a6a6;font-size:16px;text-align:center;}
+
+
+
+/*模糊* /
+.Blur{
+-webkit-filter: blur(3px);
+   -moz-filter: blur(3px);
+    -ms-filter: blur(3px);    
+        filter: blur(3px);
+}
+/*/
+
+
+
+
+/* ===== 响应设计 ===== */
+/* 超小屏幕（手机，大于等于 320px） */
+@media (min-width:320px){
+}
+
+/* 超小屏幕（手机，大于等于 480px） */
+@media (min-width:480px){
+}
+
+/* 超小屏幕（手机，大于等于 640px） */
+@media (min-width:640px){
+}
+

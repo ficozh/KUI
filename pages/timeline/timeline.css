@@ -1,0 +1,21 @@
+﻿@charset "utf-8";
+
+/* ===== 时间轴 ===== */
+.TimeLine{position:relative;background-color:#fff;padding-left:44px;border-top:1px solid #ddd;border-bottom:1px solid #ddd;overflow:hidden;margin-bottom:12px}
+.TimeLine:before{position:absolute;left:24px;top:21px;bottom:21px;width:1px;background:#ddd;content:"";z-index:1}
+.TimeLine .TimeLineItem{position:relative;padding:10px 0;border-bottom:1px solid #ddd;margin-bottom:-1px;color:#999}
+.TimeLine .TimeLineItem.active{color:#10A9DC}
+.TimeLine .TimeLineItem:before{position:absolute;left:-24px;top:20px;width:9px;height:9px;border-radius:30px;background:#ddd;content:"";z-index:1}
+.TimeLine .TimeLineItem.active:before{left:-27px;background-color:#10A9DC;width:15px;height:15px;border:3px solid rgba(255,255,255,0.75)}
+.TimeLine .TimeLineItem:last-child:before{top:auto;bottom:20px}
+.TimeLine .TimeLineItem .Info{font-size:14px}
+.TimeLine .TimeLineItem .Info{font-size:14px}
+
+
+
+.TimeLine .ListBlock{margin:-1px 0;}
+.TimeLine .ListBlock .ItemCon{padding-left:0}
+.TimeLine .ListBlock .ListItem:before{position:absolute;left:-24px;top:20px;width:9px;height:9px;border-radius:30px;background:#ddd;content:"";z-index:1}
+.TimeLine .ListBlock .ListItem.active:before{left:-27px;background-color:#01bffd;width:15px;height:15px;border:3px solid rgba(255,255,255,0.75)}
+.TimeLine .ListBlock .ListItem:last-child:before{top:auto;bottom:20px}
+

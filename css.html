@@ -1,0 +1,1634 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width,height=device-height,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<title>全局 CSS 样式</title>
+<link rel="stylesheet" type="text/css" href="style/public.css" media="all"/>
+<link rel="stylesheet" type="text/css" href="style/theme.css" media="all"/>
+<style>
+body {
+  font-family: "Helvetica Neue", Helvetica, Microsoft Yahei, Hiragino Sans GB, WenQuanYi Micro Hei, sans-serif;
+}
+h1,.h1{font-size:24px;}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
+  font-family: inherit;
+  font-weight: 500;
+  line-height: 1.1;
+  color: inherit;
+}
+
+
+.IndexPage{font-size:13px}
+
+.IndexPage .Ti{padding-bottom:9px;margin:40px 0 20px;border-bottom:1px solid #eee;}
+.IndexPage .indexHeader {
+position:relative;
+padding:30px 15px;
+color:#cdbfe3;
+text-align:center;
+text-shadow:0 1px 0 rgba(0,0,0,.1);
+background-color: #6f5499;
+}
+.IndexPage .indexHeader h1{font-size:48px;color:#fff;}
+.IndexPage code {padding:2px 4px;color:#c7254e;background-color:#f9f2f4;border-radius:4px;}
+.IndexPage .Code {padding:9px 14px;margin-bottom:14px;background-color:#f7f7f9;border:1px solid #e1e1e8;border-radius:4px;}
+.IndexPage .indexList li > p{font-size:16px;margin-bottom:1em}
+
+.IndexPage .GridShow [class^=Col]{padding:10px;background-color:#eee;border:1px solid #ddd;}
+.IndexPage .IndexBox{padding:10px;background-color:#f5f5f5;border:1px solid #ddd;}
+
+
+.WAll{max-width:1200px}
+</style>
+</head>
+<body style="background-color:#eee;">
+
+<div id="Wrapper" class="IndexPage">
+	<div id="WrapBox">
+	<div class="indexHeader" >
+      <div class="container">
+        <h1>全局 CSS 样式</h1>
+        <p>设置全局 CSS 样式；基本的 HTML 元素均可以通过 class 设置样式并得到增强效果；还有先进的栅格系统。</p>
+      </div>
+    </div>
+	<!--PageBody-->
+	<div>
+		<div id="PageBody">
+			<div class="WAll">
+				<ul class="indexList">
+					<li>
+						<h1 class="Ti">HTML5 文档类型</h1>
+						<p>使用到的某些 HTML 元素和 CSS 属性需要将页面设置为 HTML5 文档类型。在你项目中的每个页面都要参照下面的格式进行设置。</p>
+						<div class="highlight">
+							<pre><code>&lt;!DOCTYPE html>
+&lt;html lang="zh-CN">
+...
+&lt;/html></code></pre>
+						</div>
+					</li>
+					<li>
+						<h1 class="Ti">移动设备优先</h1>
+						<p>为了确保适当的绘制和触屏缩放，需要在 <code>&lt;head&gt;</code> 之中添加 viewport 元数据标签。</p>
+						<div class="Code">
+							<pre><code>&lt;meta name="viewport" content="width=device-width, initial-scale=1"></code></pre>
+						</div>
+						<p>在移动设备浏览器上，通过为视口（viewport）设置 meta 属性为 <code>user-scalable=no</code>  可以禁用其缩放（zooming）功能。这样禁用缩放功能后，用户只能滚动屏幕，就能让你的网站看上去更像原生应用的感觉。注意，这种方式我们并不推荐所有网站使用，还是要看你自己的情况而定！</p>
+						<div class="Code">
+							<pre><code>&lt;meta name="viewport" content="width=device-width,height=device-height,initial-scale=1,minimum-scale=1,
+maximum-scale=1,user-scalable=no"></code></pre>
+						</div>
+					</li>
+					<li>
+						<h1 class="Ti">布局容器</h1>
+						<p>我们需要为页面内容和栅格系统包裹一个 <code>.WAll</code> 容器。我们提供了两个作此用处的类。注意，由于 padding 等属性的原因，这两种 容器类不能互相嵌套。</p>
+						<p><code>.WAll</code> 类用于固定宽度并支持响应式布局的容器。</p>
+						<div class="Code">
+							<pre><code>&lt;div class="WAll">
+...
+&lt;/div></code></pre>
+						</div>
+						<p><code>.WAllFluid</code> 类用于固定宽度并支持响应式布局的容器。</p>
+						<div class="Code">
+							<pre><code>&lt;div class="WAllFluid">
+...
+&lt;/div></code></pre>
+						</div>
+					</li>
+					<li>
+						<h1 class="Ti">栅格系统</h1>
+						<p>提供了一套响应式、移动设备优先的流式栅格系统，随着屏幕或视口（viewport）尺寸的增加，系统会自动分为最多12列</p>
+						<p>栅格系统用于通过一系列的行（Row）与列（Col）的组合来创建页面布局，你的内容就可以放入这些创建好的布局中。</p>
+						<div class="Code">
+							<pre><code>&lt;div class="Row">
+	&lt;div class="Col1">.Col1&lt;/div>
+	&lt;div class="Col1">.Col1&lt;/div>
+	&lt;div class="Col1">.Col1&lt;/div>
+	&lt;div class="Col1">.Col1&lt;/div>
+	&lt;div class="Col1">.Col1&lt;/div>
+	&lt;div class="Col1">.Col1&lt;/div>
+	&lt;div class="Col1">.Col1&lt;/div>
+	&lt;div class="Col1">.Col1&lt;/div>
+&lt;/div>
+&lt;div class="Row">
+	&lt;div class="Col8">.Col8&lt;/div>
+	&lt;div class="Col4">.Col4&lt;/div>
+&lt;/div>
+&lt;div class="Row">
+	&lt;div class="Col4">.Col4&lt;/div>
+	&lt;div class="Col4">.Col4&lt;/div>
+	&lt;div class="Col4">.Col4&lt;/div>
+&lt;/div>
+&lt;div class="Row">
+	&lt;div class="Col6">.Col6&lt;/div>
+	&lt;div class="Col6">.Col6&lt;/div>
+&lt;/div></code></pre>
+						</div>
+						<div class="Row GridShow MB">
+  <div class="Col1">.Col1</div>
+  <div class="Col1">.Col1</div>
+  <div class="Col1">.Col1</div>
+  <div class="Col1">.Col1</div>
+  <div class="Col1">.Col1</div>
+  <div class="Col1">.Col1</div>
+  <div class="Col1">.Col1</div>
+  <div class="Col1">.Col1</div>
+  <div class="Col1">.Col1</div>
+  <div class="Col1">.Col1</div>
+  <div class="Col1">.Col1</div>
+  <div class="Col1">.Col1</div>
+</div>
+<div class="Row GridShow MB">
+  <div class="Col8">.Col8</div>
+  <div class="Col4">.Col4</div>
+</div>
+<div class="Row GridShow MB">
+  <div class="Col4">.Col4</div>
+  <div class="Col4">.Col4</div>
+  <div class="Col4">.Col4</div>
+</div>
+<div class="Row GridShow MB">
+  <div class="Col6">.Col6</div>
+  <div class="Col6">.Col6</div>
+</div>
+						<p>栅格系统适用于任何设备展示。</p>
+						<p>如果在一个 <code>.Row</code> 内包含的列（column）大于12个，包含多余列（column）的元素将作为一个整体单元被另起一行排列。</p>
+					</li>
+					<li>
+						<h1 class="Ti">媒体查询</h1>
+						<p>我们通过媒体查询来实现响应式网站布局。我们在样式表中使用以下媒体查询（media query）来创建关键的分界点阈值。</p>
+						<div class="Code">
+							<pre><code><span class="CA">/* 超小屏幕（手机，小于 768px） */</span>
+
+<span class="CA">/* 小屏幕（手机，大于等于 320px） */</span>
+@media (min-width: 320px) { ... }
+
+<span class="CA">/* 小屏幕（手机，大于等于 480px） */</span>
+@media (min-width: 480px) { ... }
+
+<span class="CA">/* 小屏幕（手机，大于等于 640px） */</span>
+@media (min-width: 640px) { ... }
+
+<span class="CA">/* 小屏幕（平板，大于等于 768px） */</span>
+@media (min-width: 768px) { ... }
+
+<span class="CA">/* 中等屏幕（桌面显示器，大于等于 992px） */</span>
+@media (min-width: 992px) { ... }
+
+<span class="CA">/* 大屏幕（大桌面显示器，大于等于 1200px） */</span>
+@media (min-width: 1200px) { ... }</code></pre>
+						</div>
+						<p>我们偶尔也会在媒体查询代码中包含 <code>max-width</code>  从而将 CSS 的影响限制在更小范围的屏幕大小之内。</p>
+						<div class="Code">
+							<pre><code>@media (max-width: max) { ... }
+@media (min-width: min) and (max-width: max) { ... }
+@media (min-width: min) and (max-width: max) { ... }
+@media (min-width: min) { ... }</code></pre>
+						</div>
+					</li>
+					<li>
+						<h1 class="Ti">对齐</h1>
+						<p>通过文本对齐类，可以简单方便的将文字重新对齐。</p>
+						<div class="IndexBox MB">
+							<p class="TL">Left aligned text.</p>
+							<p class="TC">Center aligned text.</p>
+							<p class="TR">Right aligned text.</p>
+						</div>
+						<div class="Code">
+							<pre><code>&lt;p class="TL">Left aligned text.&lt;/p>
+&lt;p class="TC">Center aligned text.&lt;/p>
+&lt;p class="TR">Right aligned text.&lt;/p>
+</code></pre>
+						</div>
+						<p>我们偶尔也会在媒体查询代码中包含 <code>max-width</code>  从而将 CSS 的影响限制在更小范围的屏幕大小之内。</p>
+						<div class="Code">
+							<pre><code>@media (max-width: max) { ... }
+@media (min-width: min) and (max-width: max) { ... }
+@media (min-width: min) and (max-width: max) { ... }
+@media (min-width: min) { ... }</code></pre>
+						</div>
+					</li>
+					<ol class="ListBlock ListCard">
+					<li class="ListItem GroupTitle">使用下面列出的类可以快速创建一个带有预定义样式的按钮。。</li>
+    <li class="ListItem">
+        <a href="javascript:;" class=" ItemCon">
+           
+            <div class="ItemInner">
+                <div class="ItemTitle">
+                使用下面列出的类可以快速创建一个带有预定义样式的按钮。。
+                </div>
+                <div class="ItemAfter">
+                <label class="LabelSwitch">
+    <input type="checkbox"/>
+    <div class="checkbox"></div>
+</label>
+                </div>
+            </div>
+        </a>
+    </li> <li class="ListItem">
+        <a href="javascript:;" class="ItemLink ItemCon InkRipple">
+            <div class="ItemMedia">
+                <i class="I IUser"></i>
+            </div>
+            <div class="ItemInner">
+                <div class="ItemTitle">
+                按钮
+                </div>
+                <div class="ItemAfter">
+                使用下面列出的类可以快速创建一个带有预定义样式的按钮。。
+                </div>
+            </div>
+        </a>
+    </li>
+</ol><ol class="ListBlock ListCard">
+					<li class="ListItem GroupTitle">使用下面列出的类可以快速创建一个带有预定义样式的按钮。。</li>
+    <li class="ListItem">
+        <a href="javascript:;" class=" ItemCon">
+           
+            <div class="ItemInner">
+                <div class="ItemTitle Label">
+                使用下面列出的类可以快速创建一个带有预定义样式的按钮。。
+                </div>
+                <div class="ItemInput">
+					<input class="InputContr" type="text" placeholder="Your name">
+				</div>
+
+            </div>
+        </a>
+    </li> <li class="ListItem">
+        <a href="javascript:;" class="ItemCon InkRipple">
+            <div class="ItemMedia">
+                <i class="I IUser"></i>
+            </div>
+            <div class="ItemInner">
+                <div class="ItemInput">
+                <div class="RangeSlider">
+<input type="range" min="0" max="100" value="150" step="0.1">
+</div>
+                </div>
+            </div>
+        </a>
+    </li>
+</ol><ol class="ListBlock MediaList">	
+	<li class="ListItem">
+        <a href="javascript:;" class="ItemLink ItemCon InkRipple">
+            <div class="ItemMedia">
+                <img src="images/load.gif" width="80">
+            </div>
+            <div class="ItemInner">
+				<div class="ItemTitleRow">
+					<div class="ItemTitle">
+					按钮
+					</div>
+					<div class="ItemAfter">
+					使用下面列出的类可以快速创建一个带有预定义样式的按钮。。
+					</div>
+				</div>
+				<div class="ItemSubtitle">按钮</div>
+				<div class="ItemText">按钮按钮按钮按钮按钮按钮</div>
+            </div>
+        </a>
+    </li>
+	<li class="ListItem">
+        <a href="javascript:;" class="ItemLink ItemCon InkRipple">
+            <div class="ItemMedia">
+                <img src="images/load.gif" width="44">
+            </div>
+            <div class="ItemInner">
+				<div class="ItemTitleRow">
+					<div class="ItemTitle">
+					按钮
+					</div>
+					<div class="ItemAfter">
+					使用下面列出的类可以快速创建一个带有预定义样式的按钮。。
+					</div>
+				</div>
+				<div class="ItemSubtitle">按钮</div>
+            </div>
+        </a>
+    </li>
+	<li class="ListItem">
+        <a href="javascript:;" class="ItemLink ItemCon InkRipple">
+            <div class="ItemInner">
+				<div class="ItemTitleRow">
+					<div class="ItemTitle">
+					按钮
+					</div>
+					<div class="ItemAfter">
+					使用下面列出的类可以快速创建一个带有预定义样式的按钮。。
+					</div>
+				</div>
+				<div class="ItemSubtitle">按钮</div>
+				<div class="ItemText">按钮按钮按钮按钮按钮按钮</div>
+            </div>
+        </a>
+    </li>
+	<li class="ListItem">
+        <a href="javascript:;" class="ItemLink ItemCon InkRipple">
+            <div class="ItemInner">
+				<div class="ItemTitleRow">
+					<div class="ItemTitle">
+					按钮
+					</div>
+					<div class="ItemAfter">
+					使用下面列出的类可以快速创建一个带有预定义样式的按钮。。
+					</div>
+				</div>
+				<div class="ItemSubtitle">按钮</div>
+				<div class="ItemText">按钮按钮按钮按钮按钮按钮</div>
+            </div>
+        </a>
+    </li>
+</ol>
+
+<div class="ListBlock Inset">
+<ul>
+<li class="ListItem"><a href="#" class="ListButton ItemLink">List Button 1</a></li>
+<li class="ListItem"><a href="#" class="ListButton ItemLink">List Button 2</a></li>
+<li class="ListItem"><a href="#" class="ListButton ItemLink">List Button 2</a></li>
+</ul>
+</div>
+<ul class="ListBlock Inset">
+    <li class="ListItem"><a href="#" class="ListButton ItemLink CR">...</a></li>
+</ul>
+
+<div class="Box">
+	<div class="BoxHeader">1212</div>
+	<div class="BoxContent">
+		<div class="BoxContentInner">呃呃呃</div>
+	</div>
+	<div class="BoxFooter">12121222</div>
+</div>
+
+<div class="Box">
+	<div class="BoxHeader">1212</div>
+	<div class="BoxContent">
+		<div class="BoxContentInner">呃呃呃</div>
+	</div>
+	<div class="BoxFooter"><a href="javascript:;" class="Link InkRipple">qwqw</a><a href="javascript:;" class="Link InkRipple">qwqw</a></div>
+</div>
+
+
+<ol class="ListBlock MediaList">	
+	<li class="ListItem">
+        <a href="javascript:;" class="ItemLink ItemCon InkRipple">
+            <div class="ItemMedia">
+                <img src="images/load.gif" width="80">
+            </div>
+            <div class="ItemInner">
+				<div class="ItemTitleRow">
+					<div class="ItemTitle">
+					按钮
+					</div>
+					<div class="ItemAfter">
+					使用下面列出的类可以快速创建一个带有预定义样式的按钮。。
+					</div>
+				</div>
+				<div class="ItemSubtitle">按钮</div>
+				<div class="ItemText">按钮按钮按钮按钮按钮按钮</div>
+            </div>
+        </a>
+    </li>
+	<li class="ListItem">
+        <a href="javascript:;" class="ItemLink ItemCon InkRipple">
+            <div class="ItemMedia">
+                <img src="images/load.gif" width="44">
+            </div>
+            <div class="ItemInner">
+				<div class="ItemTitleRow">
+					<div class="ItemTitle">
+					按钮
+					</div>
+					<div class="ItemAfter">
+					使用下面列出的类可以快速创建一个带有预定义样式的按钮。。
+					</div>
+				</div>
+				<div class="ItemSubtitle">按钮</div>
+            </div>
+        </a>
+    </li>
+	<li class="ListItem">
+        <a href="javascript:;" class="ItemLink ItemCon InkRipple">
+            <div class="ItemInner">
+				<div class="ItemTitleRow">
+					<div class="ItemTitle">
+					按钮
+					</div>
+					<div class="ItemAfter">
+					使用下面列出的类可以快速创建一个带有预定义样式的按钮。。
+					</div>
+				</div>
+				<div class="ItemSubtitle">按钮</div>
+				<div class="ItemText">按钮按钮按钮按钮按钮按钮</div>
+            </div>
+        </a>
+    </li>
+	<li class="ListItem">
+        <a href="javascript:;" class="ItemLink ItemCon InkRipple">
+            <div class="ItemInner">
+				<div class="ItemTitleRow">
+					<div class="ItemTitle">
+					按钮
+					</div>
+					<div class="ItemAfter">
+					使用下面列出的类可以快速创建一个带有预定义样式的按钮。。
+					</div>
+				</div>
+				<div class="ItemSubtitle">按钮</div>
+				<div class="ItemText">按钮按钮按钮按钮按钮按钮</div>
+            </div>
+        </a>
+    </li>
+</ol>
+					<li>
+						<h1 class="Ti">按钮</h1>
+						<p>使用下面列出的类可以快速创建一个带有预定义样式的按钮。。</p>
+						<div class="IndexBox MB">
+							<a href="javascript:;"   class="Btn InkRipple"><span class="Badge BadgeL">9</span>默认按钮</a>
+							<a href="javascript:;"   class="Btn BtnPrimary InkRipple">首选按钮</a>
+							<a href="javascript:;"   class="Btn BtnSuccess InkRipple">成功按钮</a>
+							<span  class="Btn BtnWarning InkRipple"><span class="Badge BadgeL BadgePrimary">9</span>警告按钮</span>
+							<b  class="Btn BtnDanger InkRipple">危险按钮<span class="Badge BadgeR BadgePrimary">9</span></b>
+						</div>
+						<div class="IndexBox MB">
+							<a href="javascript:;"   class="Btn BtnLine InkRipple">默认按钮</a>
+							<a href="javascript:;"   class="Btn BtnPrimary BtnLine InkRipple">首选按钮</a>
+							<a href="javascript:;"   class="Btn BtnSuccess BtnLine InkRipple">成功按钮</a>
+							<span  class="Btn BtnWarning BtnLine InkRipple">警告按钮</span>
+							<b  class="Btn BtnDanger BtnLine InkRipple">危险按钮</b>
+						</div>
+						
+						角标
+						<div class="IndexBox MB">
+							<span class="Badge">1</span>
+							<span class="Badge BadgePrimary">1</span>
+							<span class="Badge BadgeSuccess">1</span>
+							<span class="Badge BadgeWarning">441</span>
+							<span class="Badge BadgeDanger">99+</span>
+						</div>
+						<div class="Code">
+							<pre>
+<code>&lt;a href="javascript:;"  class="Btn BtnPrimary">默认按钮&lt;/a>
+							
+&lt;button class="Btn BtnSuccess">首选按钮&lt;/button>
+
+&lt;span class="Btn BtnWarning">成功按钮&lt;/span>
+
+&lt;b class="Btn BtnDanger">一般信息按钮&lt;/b>
+
+&lt;button class="Btn BtnE" type="submit">警告按钮&lt;/button>
+
+&lt;input class="Btn BtnF" type="button" value="危险按钮"/>
+
+&lt;input class="Btn BtnG" type="submit" value="连接按钮"/>
+</code></pre>
+						</div>
+						<h2>尺寸</h2>
+						<p>需要让按钮具有不同尺寸吗？使用 <code>.BtnBig</code>、<code>.BtnSmall</code>就可以获得不同尺寸的按钮。</p>
+						<div class="IndexBox MB">
+							<p>
+								<button type="button" class="Btn BtnPrimary BtnBig">（大按钮）Large button</button>
+								<button type="button" class="Btn BtnSuccess BtnBig">（大按钮）Large button</button>
+							</p>
+							<p>
+								<button type="button" class="Btn BtnPrimary">（默认尺寸）Default button</button>
+								<button type="button" class="Btn BtnSuccess">（默认尺寸）Default button</button>
+							</p>
+							<p>
+								<button type="button" class="Btn BtnPrimary BtnSmall">（小按钮）Small button</button>
+								<button type="button" class="Btn BtnSuccess BtnSmall">（小按钮）Small button</button>
+							</p>
+						</div>
+						<div class="Code">
+							<pre><code>&lt;p>
+  &lt;button type="button" class="Btn BtnPrimary BtnBig">（大按钮）Large button&lt;/button>
+  &lt;button type="button" class="Btn BtnSuccess BtnBig">（大按钮）Large button&lt;/button>
+&lt;/p>
+
+&lt;p>
+  &lt;button type="button" class="Btn BtnPrimary">（默认尺寸）Default button&lt;/button>
+  &lt;button type="button" class="Btn BtnSuccess">（默认尺寸）Default button&lt;/button>
+&lt;/p>
+
+&lt;p>
+  &lt;button type="button" class="Btn BtnPrimary BtnSmall">（小按钮）Small button&lt;/button>
+  &lt;button type="button" class="Btn BtnSuccess BtnSmall">（小按钮）Small button&lt;/button>
+&lt;/p>
+</code></pre>
+						</div>
+						<p>通过给按钮添加 <code>.BtnBlock</code> 类可以将其拉伸至父元素100%的宽度，而且按钮也变为了块级（block）元素。</p>
+						<div class="IndexBox MB">
+							<div class="CenBlock" style="max-width: 400px;">
+								<button type="button" class="Btn BtnPrimary BtnBig BtnBlock">（块级元素）Block level button</button>
+								<button type="button" class="Btn BtnSuccess BtnBig BtnBlock">（块级元素）Block level button</button>
+							</div>
+						</div>
+						<div class="Code">
+							<pre><code>&lt;button type="button" class="Btn BtnPrimary BtnBig BtnBlock">（块级元素）Block level button&lt;/button>
+							
+&lt;button type="button" class="Btn BtnSuccess BtnBig BtnBlock">（块级元素）Block level button&lt;/button></code></pre>
+						</div>
+						<h2>激活状态</h2>
+						<p>当按钮处于激活状态时，其表现为被按压下去（底色更深、边框夜色更深、向内投射阴影）。对于 <code>&lt;button&gt;</code> 元素，是通过 <code>:active</code> 状态实现的。对于 <code>&lt;a&gt;</code> 元素，是通过 <code>.active</code> 类实现的。然而，你还可以将 <code>.active</code> 应用到 <code>&lt;button&gt;</code> 上（包含 <code>aria-pressed="true"</code> 属性)），并通过编程的方式使其处于激活状态。</p>
+						<h3>button 元素</h3>
+						<p>由于 <code>:active</code> 是伪状态，因此无需额外添加，但是在需要让其表现出同样外观的时候可以添加 <code>.active</code> 类。</p>
+						<div class="IndexBox MB">
+							<button type="button" class="Btn BtnPrimary BtnBig active">Primary button</button>
+							<button type="button" class="Btn BtnSuccess BtnBig active">button</button>
+						</div>
+						<div class="Code">
+							<pre><code>&lt;button type="button" class="Btn BtnPrimary BtnBig active">Primary button&lt;/button>
+							
+&lt;button type="button" class="Btn BtnSuccess BtnBig active">button&lt;/button></code></pre>
+						</div>
+						<h3>链接（<code>&lt;a&gt;</code>）元素</h3>
+						<p>可以为基于 <code>&lt;a&gt;</code> 元素创建的按钮添加 <code>.active</code> 类。</p>
+						<div class="IndexBox MB">
+							<a href="javascript:;" class="Btn BtnPrimary BtnBig active">Primary link</a>
+							<a href="javascript:;" class="Btn BtnSuccess BtnBig active">link</a>
+						</div>
+						<div class="Code">
+							<pre><code>&lt;a href="javascript:;" class="Btn BtnPrimary BtnBig active">Primary link&lt;/a>
+							
+&lt;a href="javascript:;" class="Btn BtnSuccess BtnBig active">link&lt;/a></code></pre>
+						</div>
+						<h2>禁用状态</h2>
+						<p>通过为按钮的背景设置 <code>opacity</code> 属性就可以呈现出无法点击的效果。</p>
+						<h3>button 元素</h3>
+						<p>为 <code>&lt;button&gt;</code> 元素添加 <code>disabled</code> 属性，使其表现出禁用状态。</p>
+						<div class="IndexBox MB">
+							<button type="button" class="Btn BtnPrimary BtnBig" disabled="disabled">Primary button</button>
+							<button type="button" class="Btn BtnSuccess BtnBig" disabled="disabled">button</button>
+						</div>
+						<div class="Code">
+							<pre><code>&lt;button type="button" class="Btn BtnPrimary BtnBig" disabled="disabled">Primary button&lt;/button>
+
+&lt;button type="button" class="Btn BtnSuccess BtnBig" disabled="disabled">button&lt;/button></code></pre>
+						</div>
+						<h3>链接（<code>&lt;a&gt;</code>）元素</h3>
+						<p>为基于 <code>&lt;a&gt;</code> 元素创建的按钮添加 <code>.disabled</code> 类。</p>
+						<div class="IndexBox MB">
+							<a href="javascript:;" class="Btn BtnPrimary BtnBig disabled" >Primary link</a>
+							<a href="javascript:;" class="Btn BtnSuccess BtnBig disabled">link</a>
+						</div>
+						<div class="Code">
+							<pre><code>&lt;a href="javascript:;" class="Btn BtnPrimary BtnBig disabled">Primary link&lt;/a>
+							
+&lt;a href="javascript:;" class="Btn BtnSuccess BtnBig disabled">link&lt;/a></code></pre>
+						</div>
+						<p>为基于 <code>&lt;a&gt;</code> 元素创建的按钮添加 <code>.disabled</code> 类。</p>
+					</li>
+					<li>
+						<h1 class="Ti">浮动</h1>
+						<p>通过添加一个类，可以将任意元素向左或向右浮动。</p>
+						<div class="Code">
+							<pre><code>&lt;div class="FL">...&lt;/div>
+&lt;div class="FR">...&lt;/div></code></pre>
+						</div>
+					</li>
+					<li>
+						<h1 class="Ti">清除浮动</h1>
+						<p><strong>通过为父元素</strong>添加 <code>.CleFix</code> 类可以很容易地清除浮动（<code>float</code>）。</p>
+						<div class="Code">
+							<pre><code>&lt;div class="CleFix">...&lt;/div></code></pre>
+						</div>
+					</li>
+					<li>
+						<h1 class="Ti">让内容块居中</h1>
+						<p>为任意元素设置 <code>display: block</code> 属性并通过 <code>margin</code> 属性让其中的内容居中。</p>
+						<div class="Code">
+							<pre><code>&lt;div class="CenBlock">...&lt;/div></code></pre>
+						</div>
+					</li>
+					<li>
+						<h1 class="Ti">显示或隐藏内容</h1>
+						<p><code>.DisNo</code> 和 <code>.DisB</code> 类可以强制任意元素显示或隐藏。注意，这些类只对块级元素起作用。</p>
+						<div class="Code">
+							<pre><code>&lt;div class="DisNo">隐藏&lt;/div>
+&lt;div class="DisB">显示&lt;/div></code></pre>
+						</div>
+					</li>
+					<li>
+						<h1 class="Ti">文本颜色</h1>
+						<p>我们提供常用颜色文字属性。</p>
+						<div class="IndexBox MB">
+							<span class="CA"><code>.CA</code> 灰色</span>
+							<span class="CB"><code>.CB</code> 黑色</span>
+							<span class="CO"><code>.CO</code> 橘黄</span>
+							<span class="CG"><code>.CG</code> 绿色</span>
+							<span class="CR"><code>.CR</code> 红色</span>
+							<span class="CC"><code>.CC</code> 蓝色</span>
+						</div>
+					</li>
+					<li>
+						<h1 class="Ti">字体大小</h1>
+						<p>我们提供常用文字大小可供选择。还提供粗细字体选项。</p>
+						<div class="IndexBox MB">
+							<span class="F12"><code>.F12</code> 12px</span>
+							<span class="F13"><code>.F13</code> 13px</span>
+							<span class="F14"><code>.F14</code> 14px</span>
+							<span class="F16"><code>.F16</code> 16px</span>
+							<span class="F18"><code>.F18</code> 18px</span>
+							<span class="F20"><code>.F20</code> 20px</span>
+							<span class="F22"><code>.F22</code> 22px</span>
+							<span class="F24"><code>.F24</code> 24px</span>
+							<span class="F28"><code>.F28</code> 28px</span>
+							<span class="FWB"><code>.FWB</code> 粗体</span>
+							<span class="FWN"><code>.FWN</code> 正常</span>
+						</div>
+					</li>
+					<li>
+						<h1 class="Ti">统一边距</h1>
+						<p>我们统一的边距类型。以10px为限。 注意：边距只针对块级元素</p>
+						<div class="IndexBox MB">
+							<p><code>.MA</code> 四周边距</p>
+							<p><code>.MTB</code> 上下边距</p>
+							<p><code>.MB</code> 上边距</p>
+							<p><code>.MT</code> 上边距</p>
+							<p><code>.ML</code> 左边距</p>
+							<p><code>.MR</code> 右边距</p>
+						</div>
+					</li>
+					<li>
+						<h1 class="Ti">表单</h1>
+						<h2>基本实例</h2>
+						<p>单独的表单控件会被自动赋予一些全局样式。所有设置了 <code>.FormContr</code> 类的 <code>&lt;input&gt;</code>、<code>&lt;textarea&gt;</code> 和 <code>&lt;select&gt;</code> 元素都将被默认设置宽度属性为 <code>width: 100%;</code>。 将 <code>label</code> 元素和前面提到的控件包裹在 <code>.FormGroup</code> 中可以获得最好的排列。</p>
+						<div class="IndexBox MB">
+							<form>
+							  <div class="FormGroup">
+								<label for="exampleInputEmail1">Email address</label>
+								<input type="email" class="FormContr" id="exampleInputEmail1" placeholder="Enter email">
+							  </div>
+							  <div class="FormGroup">
+								<label for="exampleInputPassword1">Password</label>
+								<input type="password" class="FormContr" id="exampleInputPassword1" placeholder="Password">
+							  </div>
+							  <div class="FormGroup">
+								<label for="exampleInputFile">File input</label>
+								<input type="file" id="exampleInputFile">
+								<p class="HelpBlock">Example block-level help text here.</p>
+							  </div>
+							  <div class="Checkbox">
+								<label>
+								  <input type="checkbox"> Check me out
+								</label>
+							  </div>
+							  <button type="submit" class="Btn BtnPrimary">Submit</button>
+							</form>
+						</div>
+						<div class="Code">
+							<pre><code>&lt;form>
+  &lt;div class="FormGroup">
+    &lt;label for="exampleInputEmail1">Email address&lt;/label>
+    &lt;input type="email" class="FormContr" id="exampleInputEmail1" placeholder="Enter email">
+  &lt;/div>
+  &lt;div class="FormGroup">
+    &lt;label for="exampleInputPassword1">Password&lt;/label>
+    &lt;input type="password" class="FormContr" id="exampleInputPassword1" placeholder="Password">
+  &lt;/div>
+  &lt;div class="FormGroup">
+    &lt;label for="exampleInputFile">File input&lt;/label>
+    &lt;input type="file" id="exampleInputFile">
+    &lt;p class="HelpBlock">Example block-level help text here.&lt;/p>
+  &lt;/div>
+  &lt;div class="Checkbox">
+    &lt;label>
+      &lt;input type="checkbox"> Check me out
+    &lt;/label>
+  &lt;/div>
+    &lt;button type="submit" class="Btn BtnPrimary">Submit&lt;/button>
+&lt;/form></code></pre>
+						</div>
+						<h2>内联表单</h2>
+						<p>为 <code>&lt;form&gt;</code> 元素添加 <code>.FormInline</code> 类可使其内容左对齐并且表现为 <code>inline-block</code> 级别的控件。<strong>只适用于视口（viewport）至少在 768px 宽度时（视口宽度再小的话就会使表单折叠）。</strong></p>
+						<div class="IndexBox MB">						
+							<form class="FormInline">
+								<div class="FormGroup">
+									<label for="exampleInputName2">Name</label>
+									<input type="text" class="FormContr" id="exampleInputName2" placeholder="Jane Doe">
+								</div>
+								<div class="FormGroup">
+									<label for="exampleInputEmail2">Email</label>
+									<input type="email" class="FormContr" id="exampleInputEmail2" placeholder="jane.doe@example.com">
+								</div>
+								<button type="submit" class="Btn BtnPrimary">Send invitation</button>
+							</form>
+						</div>
+						<div class="Code">
+							<pre><code>&lt;form class="FormInline">
+  &lt;div class="FormGroup">
+    &lt;label for="exampleInputName2">Name&lt;/label>
+    &lt;input type="text" class="FormContr" id="exampleInputName2" placeholder="Jane Doe">
+  &lt;/div>
+  &lt;div class="FormGroup">
+    &lt;label for="exampleInputEmail2">Email&lt;/label>
+    &lt;input type="email" class="FormContr" id="exampleInputEmail2" placeholder="jane.doe@example.com">
+  &lt;/div>
+  &lt;button type="submit" class="Btn BtnPrimary">Send invitation&lt;/button>
+&lt;/form></code></pre>
+						</div>
+						<div>
+							<h4>一定要添加 <code>label</code> 标签</h4>
+    <p>如果你没有为每个输入控件设置 <code>label</code> 标签，屏幕阅读器将无法正确识别。对于这些内联表单，你可以通过为 <code>label</code> 设置 <code>.Only</code> 类将其隐藏。还有一些辅助技术提供label标签的替代方案，比如 <code>aria-label</code>、<code>aria-labelledby</code> 或 <code>title</code> 属性。如果这些都不存在，屏幕阅读器可能会采取使用 <code>placeholder</code> 属性，如果存在的话，使用占位符来替代其他的标记，但要注意，这种方法是不妥当的。</p>
+  </div>
+						<div class="IndexBox MB">
+							<form class="FormInline">
+								<div class="FormGroup">
+									<label class="Only" for="exampleInputEmail3">Email address</label>
+									<input type="email" class="FormContr" id="exampleInputEmail3" placeholder="Enter email">
+								</div>
+								<div class="FormGroup">
+									<label class="Only" for="exampleInputPassword3">Password</label>
+									<input type="password" class="FormContr" id="exampleInputPassword3" placeholder="Password">
+								</div>
+								<div class="Checkbox">
+									<label>
+										<input type="checkbox"> Remember me
+									</label>
+								</div>
+								<button type="submit" class="Btn BtnPrimary">Sign in</button>
+							</form>
+						</div>
+						<div class="Code">
+							<pre><code>&lt;form class="FormInline">
+  &lt;div class="FormGroup">
+	&lt;label class="Only" for="exampleInputEmail3">Email address&lt;/label>
+	&lt;input type="email" class="FormContr" id="exampleInputEmail3" placeholder="Enter email">
+  &lt;/div>
+  &lt;div class="FormGroup">
+	&lt;label class="Only" for="exampleInputPassword3">Password&lt;/label>
+	&lt;input type="password" class="FormContr" id="exampleInputPassword3" placeholder="Password">
+  &lt;/div>
+  &lt;div class="Checkbox">
+	<&lt;label>
+		&lt;input type="checkbox"> Remember me
+	&lt;/label>
+  &lt;/div>
+  &lt;button type="submit" class="Btn BtnPrimary">Sign in&lt;/button>
+&lt;/form></code></pre>
+						</div>
+						<h2>水平排列的表单</h2>
+						<p>通过为表单添加 <code>.FormLevel</code> 类，并联合使用预置的栅格类，可以将 <code>label</code> 标签和控件组水平并排布局。这样做将改变 <code>.FormGroup</code> 的行为，使其表现为栅格系统中的行（row），因此就无需再额外添加 <code>.Row</code> 了。</p>
+						<div class="IndexBox MB">
+							<form class="FormLevel">
+							  <div class="FormGroup">
+								<label for="inputEmail3" class="Col2 LabelContr">Email</label>
+								<div class="Col10">
+								  <input type="email" class="FormContr" id="inputEmail3" placeholder="Email">
+								</div>
+							  </div>
+							  <div class="FormGroup">
+								<label for="inputPassword3" class="Col2 LabelContr">Password</label>
+								<div class="Col10">
+								  <input type="password" class="FormContr" id="inputPassword3" placeholder="Password">
+								</div>
+							  </div>
+							  <div class="FormGroup">
+								<div class="ColOffset2 Col10">
+								  <div class="Checkbox">
+									<label>
+									  <input type="checkbox"> Remember me
+									</label>
+								  </div>
+								</div>
+							  </div>
+							  <div class="FormGroup">
+								<div class="ColOffset2 Col10">
+								  <button type="submit" class="Btn BtnPrimary">Sign in</button>
+								</div>
+							  </div>
+							</form>
+						</div>
+						<div class="Code">
+							<pre><code>&lt;form class="FormLevel">
+  &lt;div class="FormGroup">
+    &lt;label for="inputEmail3" class="Col2 LabelContr">Email&lt;/label>
+    &lt;div class="Col10">
+      &lt;input type="email" class="FormContr" id="inputEmail3" placeholder="Email">
+    &lt;/div>
+  &lt;/div>
+  &lt;div class="FormGroup">
+    &lt;label for="inputPassword3" class="Col2 LabelContr">Password&lt;/label>
+    &lt;div class="Col10">
+      &lt;input type="password" class="FormContr" id="inputPassword3" placeholder="Password">
+    &lt;/div>
+  &lt;/div>
+  &lt;div class="FormGroup">
+    &lt;div class="ColOffset2 Col10">
+      &lt;div class="Checkbox">
+       &lt;label>
+          &lt;input type="checkbox"> Remember me
+       &lt;/label>
+      &lt;/div>
+    &lt;/div>
+  &lt;/div>
+  &lt;div class="FormGroup">
+    &lt;div class="ColOffset2 Col10">
+      &lt;button type="submit" class="Btn BtnPrimary">Sign in&lt;/button>
+    &lt;/div>
+  &lt;/div>
+&lt;/form></code></pre>
+						</div>
+						<h2>被支持的控件</h2>
+						<p>包括大部分表单控件、文本输入域控件，还支持所有 HTML5 类型的输入控件： <code>text</code>、<code>password</code>、<code>datetime</code>、<code>datetime-local</code>、<code>date</code>、<code>month</code>、<code>time</code>、<code>week</code>、<code>number</code>、<code>email</code>、<code>url</code>、<code>search</code>、<code>tel</code> 和 <code>color</code>。</p>
+						<h2>文本域</h2>
+						<p>提供支持多行文本的表单控件。可根据需要改变 <code>rows</code> 属性。</p>
+						<div class="IndexBox MB">
+							<p><textarea class="FormContr" rows="3" placeholder="Textarea"></textarea></p>
+							 &lt;textarea class="FormContr" rows="3" placeholder="Textarea">&lt;/textarea>
+							
+						</div>
+						<h2 >多选和单选框</h2>
+						<p>多选框（checkbox）用于选择列表中的一个或多个选项，而单选框（radio）用于从多个选项中只选择一个。</p>
+						<p>设置了 <code>disabled</code> 属性的单选或多选框都能被赋予合适的样式。对于和多选或单选框联合使用的 <code>&lt;label&gt;</code> 标签，如果也希望将悬停于上方的鼠标设置为“禁止点击”的样式，请将 <code>.disabled</code> 类赋予 <code>.Radio</code>、<code>.RadioInline</code>、<code>.Checkbox</code>、<code>.CheckboxInline</code> 或 <code>&lt;fieldset&gt;</code>。</p>
+						<div class="IndexBox MB">
+							<form>
+								  <div class="Checkbox">
+									<label>
+									  <input type="checkbox" value="">
+									  Option one is this and that—be sure to include why it's great
+									</label>
+								  </div>
+								  <div class="Checkbox disabled">
+									<label>
+									  <input type="checkbox" value="" disabled="">
+									  Option two is disabled
+									</label>
+								  </div>
+								  <br>
+								  <div class="Radio">
+									<label>
+									  <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">
+									  Option one is this and that—be sure to include why it's great
+									</label>
+								  </div>
+								  <div class="Radio">
+									<label>
+									  <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+									  Option two can be something else and selecting it will deselect option one
+									</label>
+								  </div>
+								  <div class="Radio disabled">
+									<label>
+									  <input type="radio" name="optionsRadios" id="optionsRadios3" value="option3" disabled="">
+									  Option three is disabled
+									</label>
+								  </div>
+								</form>
+							
+						</div>
+						<div class="Code">
+							<pre><code>&lt;form>
+  &lt;div class="Checkbox">
+    &lt;label>
+      &lt;input type="checkbox" value="">
+      Option one is this and that—be sure to include why it's great
+    &lt;/label>
+  &lt;/div>
+  &lt;div class="Checkbox disabled">
+    &lt;label>
+      &lt;input type="checkbox" value="" disabled="">
+	  Option two is disabled
+	&lt;/label>
+  &lt;/div>
+  &lt;br>
+  &lt;div class="Radio">
+	&lt;label>
+	  &lt;input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">
+	  Option one is this and that—be sure to include why it's great
+	&lt;/label>
+  &lt;/div>
+  &lt;div class="Radio">
+	&lt;label>
+	  &lt;input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+	  Option two can be something else and selecting it will deselect option one
+	&lt;/label>
+  &lt;/div>
+  &lt;div class="Radio disabled">
+	&lt;label>
+	  &lt;input type="radio" name="optionsRadios" id="optionsRadios3" value="option3" disabled="">
+	  Option three is disabled
+	&lt;/label>
+  &lt;/div>
+&lt;/form></code></pre>
+						</div>
+						<h2>内联单选和多选框</h2>
+						<p>通过将 <code>.CheckboxInline</code> 或 <code>.RadioInline</code> 类应用到一系列的多选框（checkbox）或单选框（radio）控件上，可以使这些控件排列在一行。</p>
+						<div class="IndexBox MB">
+							<form>
+							  <label class="CheckboxInline">
+								<input type="checkbox" id="inlineCheckbox1" value="option1"> 1
+							  </label>
+							  <label class="CheckboxInline">
+								<input type="checkbox" id="inlineCheckbox2" value="option2"> 2
+							  </label>
+							  <label class="CheckboxInline">
+								<input type="checkbox" id="inlineCheckbox3" value="option3"> 3
+							  </label>
+							</form>
+							<br>
+							<form>
+							  <label class="RadioInline">
+								<input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> 1
+							  </label>
+							  <label class="RadioInline">
+								<input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> 2
+							  </label>
+							  <label class="RadioInline">
+								<input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3"> 3
+							  </label>
+							</form>
+						</div>
+						<div class="Code">
+							<pre><code>&lt;form>
+  &lt;label class="CheckboxInline">
+    &lt;input type="checkbox" id="inlineCheckbox1" value="option1"> 1
+  &lt;/label>
+  &lt;label class="CheckboxInline">
+    &lt;input type="checkbox" id="inlineCheckbox2" value="option2"> 2
+  &lt;/label>
+  &lt;label class="CheckboxInline">
+    &lt;input type="checkbox" id="inlineCheckbox3" value="option3"> 3
+  &lt;/label>
+  &lt;/form>
+  &lt;br>
+  &lt;form>
+  &lt;label class="RadioInline">
+    &lt;input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> 1
+  &lt;/label>
+  &lt;label class="RadioInline">
+    &lt;input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> 2
+  &lt;/label>
+  &lt;label class="RadioInline">
+    &lt;input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3"> 3
+  &lt;/label>
+&lt;/form></code></pre>
+						</div>
+						<h2>不带label文本的Checkbox 和 radio</h2>
+						<div class="IndexBox MB">
+						<form>
+      <div class="Checkbox">
+        <label>
+          <input type="checkbox" id="blankCheckbox" value="option1" aria-label="Checkbox without label text">
+        </label>
+      </div>
+      <div class="Radio">
+        <label>
+          <input type="radio" name="blankRadio" id="blankRadio1" value="option1" aria-label="Radio button without label text">
+        </label>
+      </div>
+    </form>
+						</div>
+						<div class="Code">
+							<pre><code>&lt;form>
+  &lt;div class="Checkbox">
+    &lt;label>
+      &lt;input type="checkbox" id="blankCheckbox" value="option1" aria-label="Checkbox without label text">
+    &lt;/label>
+  &lt;/div>
+  &lt;div class="Radio">
+    &lt;label>
+	  &lt;input type="radio" name="blankRadio" id="blankRadio1" value="option1" aria-label="Radio button without label text">
+    &lt;/label>
+  &lt;/div>
+&lt;/form></code></pre>
+						</div>
+						<h2>下拉列表（select）</h2>
+						<p>注意，很多原生选择菜单单 - 即在 Safari 和 Chrome 中 - 的圆角是无法通过修改 <code>border-radius</code> 属性来改变的。</p>
+						<div class="IndexBox MB">
+							<select class="FormContr">
+  <option>1</option>
+  <option>2</option>
+  <option>3</option>
+  <option>4</option>
+  <option>5</option>
+</select>
+						</div>
+						<div class="Code">
+							<pre><code>&lt;select class="FormContr">
+   &lt;option>1</option>
+   &lt;option>2</option>
+   &lt;option>3</option>
+   &lt;option>4</option>
+   &lt;option>5</option>
+&lt;/select></code></pre>
+						</div>
+						<p>对于标记了 <code>multiple</code> 属性的 <code>&lt;select&gt;</code> 控件来说，默认显示多选项。</p>
+						<div class="IndexBox MB">
+							<select multiple class="FormContr">
+							  <option>1</option>
+							  <option>2</option>
+							  <option>3</option>
+							  <option>4</option>
+							  <option>5</option>
+							</select>
+						</div>
+						<div class="Code">
+							<pre><code>&lt;select multiple class="FormContr">
+   &lt;option>1</option>
+   &lt;option>2</option>
+   &lt;option>3</option>
+   &lt;option>4</option>
+   &lt;option>5</option>
+&lt;/select></code></pre>
+						</div>
+						<h2>静态控件</h2>
+						<p>如果需要在表单中将一行纯文本和 <code>label</code> 元素放置于同一行，为 <code>&lt;p&gt;</code> 元素添加 <code>.FormContrStatic</code> 类即可。</p>
+						<div class="IndexBox MB">
+							<form class="FormLevel">
+							  <div class="FormGroup">
+								<label class="Col2 LabelContr">Email</label>
+								<div class="Col10">
+								  <p class="FormContrStatic">email@example.com</p>
+								</div>
+							  </div>
+							  <div class="FormGroup">
+								<label for="inputPassword" class="Col2 LabelContr">Password</label>
+								<div class="Col10">
+								  <input type="password" class="FormContr" id="inputPassword" placeholder="Password">
+								</div>
+							  </div>
+							</form>
+						</div>
+						<div class="Code">
+							<pre><code>&lt;form class="FormLevel">
+  &lt;div class="FormGroup">
+    &lt;label class="Col2 LabelContr">Email&lt;/label>
+    &lt;div class="Col10">
+      &lt;p class="FormContrStatic">email@example.com&lt;/p>
+    &lt;/div>
+  &lt;/div>
+  &lt;div class="FormGroup">
+    &lt;label for="inputPassword" class="Col2 LabelContr">Password&lt;/label>
+    &lt;div class="Col10">
+      &lt;input type="password" class="FormContr" id="inputPassword" placeholder="Password">
+    &lt;/div>
+  &lt;/div>
+&lt;/form></code></pre>
+						</div>
+						<div class="IndexBox MB">
+							<form class="FormInline">
+							  <div class="FormGroup">
+								<label class="Only">Email</label>
+								<p class="FormContrStatic">email@example.com</p>
+							  </div>
+							  <div class="FormGroup">
+								<label for="inputPassword2" class="Only">Password</label>
+								<input type="password" class="FormContr" id="inputPassword2" placeholder="Password">
+							  </div>
+							  <button type="submit" class="Btn BtnPrimary">Confirm identity</button>
+							</form>
+						</div>
+						<div class="Code">
+							<pre><code>&lt;form class="FormInline">
+  &lt;div class="FormGroup">
+    &lt;label class="Only">Email</label>
+    &lt;p class="FormContrStatic">email@example.com&lt;/p>
+  &lt;/div>
+  &lt;div class="FormGroup">
+    &lt;label for="inputPassword2" class="Only">Password&lt;/label>
+    &lt;input type="password" class="FormContr" id="inputPassword2" placeholder="Password">
+  &lt;/div>
+  &lt;button type="submit" class="Btn BtnPrimary">Confirm identity&lt;/button>
+&lt;/form></code></pre>
+						</div>
+						<h2>禁用状态</h2>
+						<p>为输入框设置 <code>disabled</code> 属性可以禁止其与用户有任何交互（焦点、输入等）。被禁用的输入框颜色更浅，并且还添加了 <code>not-allowed</code> 鼠标状态。</p>
+						<div class="IndexBox MB">
+							<p><input class="FormContr" id="disabledInput" type="text" placeholder="Disabled input here…" disabled=""></p>
+							&lt;input class="FormContr" id="disabledInput" type="text" placeholder="Disabled input here…" disabled="">
+						</div>
+						<h2>被禁用的 <code>fieldset</code></h2>
+						<p>为<code>&lt;fieldset&gt;</code> 设置 <code>disabled</code> 属性,可以禁用 <code>&lt;fieldset&gt;</code> 中包含的所有控件。</p>
+						<div class="IndexBox MB">
+							<fieldset disabled="">
+								<div class="FormGroup">
+								  <label for="disabledTextInput">Disabled input</label>
+								  <input type="text" id="disabledTextInput" class="FormContr" placeholder="Disabled input">
+								</div>
+								<div class="FormGroup">
+								  <label for="disabledSelect">Disabled select menu</label>
+								  <select id="disabledSelect" class="FormContr">
+									<option>Disabled select</option>
+								  </select>
+								</div>
+								<div class="Checkbox">
+								  <label>
+									<input type="checkbox"> Can't check this
+								  </label>
+								</div>
+								<button type="submit" class="Btn BtnSuccess">Submit</button>
+							  </fieldset>
+						</div>
+						<div class="Code">
+							<pre><code>&lt;fieldset disabled="">
+  &lt;div class="FormGroup">
+    &lt;label for="disabledTextInput">Disabled input&lt;/label>
+    &lt;input type="text" id="disabledTextInput" class="FormContr" placeholder="Disabled input">
+  &lt;/div>
+  &lt;div class="FormGroup">
+    &lt;label for="disabledSelect">Disabled select menu&lt;/label>
+    &lt;select id="disabledSelect" class="FormContr">
+      &lt;option>Disabled select&lt;/option>
+    &lt;/select>
+  &lt;/div>
+  &lt;div class="Checkbox">
+    &lt;label>
+      &lt;input type="checkbox"> Can't check this
+    &lt;/label>
+  &lt;/div>
+  &lt;button type="submit" class="Btn BtnSuccess">Submit&lt;/button>
+&lt;/fieldset></code></pre>
+						</div>
+						<h2>控件尺寸</h2>
+						<p>通过 <code>.InputLg</code> 类似的类可以为控件设置高度，通过 <code>.Col*</code> 类似的类可以为控件设置宽度。</p>
+						<div class="IndexBox MB">
+							<form>
+							  <div>
+								<input class="FormContr InputLg" type="text" placeholder=".InputLg">
+								<input type="text" class="FormContr MT" placeholder="Default input">
+								<input class="FormContr InputSm  MT" type="text" placeholder=".InputSm">
+
+								<select class="FormContr InputLg  MT">
+								  <option value="">.InputLg</option>
+								</select>
+								<select class="FormContr  MT">
+								  <option value="">Default select</option>
+								</select>
+								<select class="FormContr InputSm  MT">
+								  <option value="">.InputSm</option>
+								</select>
+							  </div>
+							</form>
+						</div>
+						<div class="Code">
+							<pre><code>&lt;input class="FormContr InputLg" type="text" placeholder=".InputLg">
+&lt;input type="text" class="FormContr" placeholder="Default input">
+&lt;input class="FormContr InputSm" type="text" placeholder=".InputSm">
+
+&lt;select class="FormContr InputLg">
+  &lt;option value="">.InputLg&lt;/option>
+&lt;/select>
+&lt;select class="FormContr">
+  &lt;option value="">Default select&lt;/option>
+&lt;/select>
+&lt;select class="FormContr InputSm">
+  &lt;option value="">.InputSm&lt;/option>
+&lt;/select></code></pre>
+						</div>
+						<h2>辅助文本</h2>
+						<p>针对表单控件的“块（block）”级辅助文本。</p>
+						<div class="IndexBox MB">
+							<div class="FormGroup">
+								<label for="inputHelpBlock">Input with help text</label>
+								<input type="text" id="inputHelpBlock" class="FormContr" aria-describedby="helpBlock">
+							</div>
+							<span id="helpBlock" class="HelpBlock">A block of help text that breaks onto a new line and may extend beyond one line.</span>
+						</div>
+						<div class="Code">
+							<pre><code>&lt;div class="FormGroup">
+  &lt;label for="inputHelpBlock">Input with help text&lt;/label>
+  &lt;input type="text" id="inputHelpBlock" class="FormContr" aria-describedby="helpBlock">
+&lt;/div>
+&lt;span id="helpBlock" class="HelpBlock">A block of help text that breaks onto a new line and may extend beyond one line.&lt;/span></code></pre>
+						</div>
+						<div class="Code">
+							<pre><code></code></pre>
+						</div>
+					</li>
+					<li>
+						<h1 class="Ti">位置</h1>
+						<p>支持多行文本的表单控件。可根据需要改变 <code>rows</code> 属性。</p>
+						<div class="IndexBox MB">
+							<div>
+								<p><code>.PA</code> 绝对定位</p>
+对象脱离常规流，使用top，right，bottom，left等属性进行绝对定位，盒子的偏移位置不影响常规流中的任何元素，其margin不与其他任何margin折叠</div>
+							<div>
+								<p><code>.PR</code> 相对定位</p>
+对象遵循常规流，并且参照自身在常规流中的位置通过top，right，bottom，left属性进行偏移时不影响常规流中的任何元素。
+							</div>
+							<div>
+								<p><code>.PF</code> 固定定位</p>
+对象脱离常规流，使用top，right，bottom，left等属性以窗口为参考点进行定位，当出现滚动条时，对象不会随着滚动。
+							</div>
+						</div>
+					</li>
+					<li>
+						<h1 class="Ti">溢出</h1>
+						<p>提供基本溢出样式。</p>
+						<div class="IndexBox MB">
+							<div>
+								<p><code>.OH</code> 隐藏溢出</p>
+隐藏溢出容器的内容且不出现滚动条</div>
+							<div>
+								<p><code>.OA</code> 自动溢出</p>
+当内容没有溢出容器时不出现滚动条，当内容溢出容器时出现滚动条，按需出现滚动条。此为body对象和textarea的默认值。
+							</div>
+						</div>
+					</li>
+					<li>
+						<h1 class="Ti">定义居中对齐</h1>
+						<div class="IndexBox MB">
+							<div><code>.VMid</code> 上下居中对齐</div>
+						</div>
+					</li>
+					<li>
+						<h1 class="Ti">强制不换行</h1>
+						<div class="IndexBox MB">
+							<div><code>.WS</code> 强制不换行</div>
+						</div>
+					</li>
+					<li>
+						<h1 class="Ti">自动换行</h1>
+						<div class="IndexBox MB">
+							<div><code>.WW</code> 自动换行，针对长英文</div>
+						</div>
+					</li>
+					<li>
+						<h1 class="Ti">强制英文单词断行</h1>
+						<div class="IndexBox MB">
+							<div><code>.WB</code> 强制英文单词断行</div>
+						</div>
+					</li>
+					<li>
+						<h1 class="Ti">响应式图片</h1>
+						<p>通过为图片添加 <code>.ImgResponse</code>  类可以让图片支持响应式布局。其实质是为图片设置了 <code>max-width: 100%;</code>、 <code>height: auto;</code> 和 <code>display: block;</code> 属性，从而让图片在其父元素中更好的缩放。</p>
+						<div class="IndexBox MB">
+							<div><code>&lt;img src="..." class="ImgResponse" alt="Responsive image"></code> </div>
+						</div>
+					</li>
+					<li>
+						<h1 class="Ti">表格</h1>
+						<h2>基本实例</h2>
+						<p>为任意 <code>&lt;table&gt;</code> 标签添加 <code>.Table</code> 类可以为其赋予基本的样式 — 少量的内补（padding）和水平方向的分隔线。这种方式看起来很多余！？但是我们觉得，表格元素使用的很广泛，如果我们为其赋予默认样式可能会影响例如日历和日期选择之类的插件，所以我们选择将此样式独立出来。</p>
+						<div class="IndexBox MB">
+							<table class="Table">
+								  <caption>Optional table caption.</caption>
+								  <thead>
+									<tr>
+									  <th>#</th>
+									  <th>First Name</th>
+									  <th>Last Name</th>
+									  <th>Username</th>
+									</tr>
+								  </thead>
+								  <tbody>
+									<tr>
+									  <th scope="row">1</th>
+									  <td>Mark</td>
+									  <td>Otto</td>
+									  <td>@mdo</td>
+									</tr>
+									<tr>
+									  <th scope="row">2</th>
+									  <td>Jacob</td>
+									  <td>Thornton</td>
+									  <td>@fat</td>
+									</tr>
+									<tr>
+									  <th scope="row">3</th>
+									  <td>Larry</td>
+									  <td>the Bird</td>
+									  <td>@twitter</td>
+									</tr>
+								  </tbody>
+								</table>
+						</div>
+						<div class="Code">
+							<pre><code>&lt;table class="table">
+  ...
+&lt;/table></code></pre>
+						</div>
+						<h2>带边框的表格</h2>
+						<p>添加 <code>.TableBor</code> 类为表格和其中的每个单元格增加边框。</p>
+						<div class="IndexBox MB">
+							<table class="Table TableBor">
+								  <caption>Optional table caption.</caption>
+								  <thead>
+									<tr>
+									  <th>#</th>
+									  <th>First Name</th>
+									  <th>Last Name</th>
+									  <th>Username</th>
+									</tr>
+								  </thead>
+								  <tbody>
+									<tr>
+									  <th scope="row">1</th>
+									  <td>Mark</td>
+									  <td>Otto</td>
+									  <td>@mdo</td>
+									</tr>
+									<tr>
+									  <th scope="row">2</th>
+									  <td>Jacob</td>
+									  <td>Thornton</td>
+									  <td>@fat</td>
+									</tr>
+									<tr>
+									  <th scope="row">3</th>
+									  <td>Larry</td>
+									  <td>the Bird</td>
+									  <td>@twitter</td>
+									</tr>
+								  </tbody>
+								</table>
+						</div>
+						<div class="Code">
+							<pre><code>&lt;table class="table TableBor">
+  ...
+&lt;/table></code></pre>
+						</div>
+						<h2>鼠标悬停</h2>
+						<p>通过添加 <code>.TableHover</code> 类可以让 <code>&lt;tbody&gt;</code> 中的每一行对鼠标悬停状态作出响应。</p>
+						<div class="IndexBox MB">
+							<table class="Table TableHover">
+								  <caption>Optional table caption.</caption>
+								  <thead>
+									<tr>
+									  <th>#</th>
+									  <th>First Name</th>
+									  <th>Last Name</th>
+									  <th>Username</th>
+									</tr>
+								  </thead>
+								  <tbody>
+									<tr>
+									  <th scope="row">1</th>
+									  <td>Mark</td>
+									  <td>Otto</td>
+									  <td>@mdo</td>
+									</tr>
+									<tr>
+									  <th scope="row">2</th>
+									  <td>Jacob</td>
+									  <td>Thornton</td>
+									  <td>@fat</td>
+									</tr>
+									<tr>
+									  <th scope="row">3</th>
+									  <td>Larry</td>
+									  <td>the Bird</td>
+									  <td>@twitter</td>
+									</tr>
+								  </tbody>
+								</table>
+						</div>
+						<div class="Code">
+							<pre><code>&lt;table class="table TableHover">
+  ...
+&lt;/table></code></pre>
+						</div>
+						<h2>紧缩表格</h2>
+						<p>通过添加 <code>.TableShrink</code> 类可以让表格更加紧凑，单元格中的内补（padding）均会减半。</p>
+						<div class="IndexBox MB">
+							<table class="Table TableShrink">
+								  <caption>Optional table caption.</caption>
+								  <thead>
+									<tr>
+									  <th>#</th>
+									  <th>First Name</th>
+									  <th>Last Name</th>
+									  <th>Username</th>
+									</tr>
+								  </thead>
+								  <tbody>
+									<tr>
+									  <th scope="row">1</th>
+									  <td>Mark</td>
+									  <td>Otto</td>
+									  <td>@mdo</td>
+									</tr>
+									<tr>
+									  <th scope="row">2</th>
+									  <td>Jacob</td>
+									  <td>Thornton</td>
+									  <td>@fat</td>
+									</tr>
+									<tr>
+									  <th scope="row">3</th>
+									  <td>Larry</td>
+									  <td>the Bird</td>
+									  <td>@twitter</td>
+									</tr>
+								  </tbody>
+								</table>
+						</div>
+						<div class="Code">
+							<pre><code>&lt;table class="table TableShrink">
+  ...
+&lt;/table></code></pre>
+						</div>
+						<h2>状态类</h2>
+						<p>通过这些状态类可以为行或单元格设置颜色。</p>
+						<div class="IndexBox MB">
+							<table class="Table TableBor TableStriped">
+								  <colgroup>
+									<col class="col-xs-1">
+									<col class="col-xs-7">
+								  </colgroup>
+								  <thead>
+									<tr>
+									  <th>Class</th>
+									  <th>描述</th>
+									</tr>
+								  </thead>
+								  <tbody>
+									<tr>
+									  <th scope="row">
+										<code>.active</code>
+									  </th>
+									  <td>鼠标悬停在行或单元格上时所设置的颜色</td>
+									</tr>
+									<tr>
+									  <th scope="row">
+										<code>.success</code>
+									  </th>
+									  <td>标识成功或积极的动作</td>
+									</tr>
+									<tr>
+									  <th scope="row">
+										<code>.info</code>
+									  </th>
+									  <td>标识普通的提示信息或动作</td>
+									</tr>
+									<tr>
+									  <th scope="row">
+										<code>.warning</code>
+									  </th>
+									  <td>标识警告或需要用户注意</td>
+									</tr>
+									<tr>
+									  <th scope="row">
+										<code>.danger</code>
+									  </th>
+									  <td>标识危险或潜在的带来负面影响的动作</td>
+									</tr>
+								  </tbody>
+								</table>
+						</div>
+						<div class="IndexBox MB">
+							<table class="Table TableHover">
+							  <thead>
+								<tr>
+								  <th>#</th>
+								  <th>Column heading</th>
+								  <th>Column heading</th>
+								  <th>Column heading</th>
+								</tr>
+							  </thead>
+							  <tbody>
+								<tr class="active">
+								  <th scope="row">1</th>
+								  <td>Column content</td>
+								  <td>Column content</td>
+								  <td>Column content</td>
+								</tr>
+								<tr>
+								  <th scope="row">2</th>
+								  <td>Column content</td>
+								  <td>Column content</td>
+								  <td>Column content</td>
+								</tr>
+								<tr class="success">
+								  <th scope="row">3</th>
+								  <td>Column content</td>
+								  <td>Column content</td>
+								  <td>Column content</td>
+								</tr>
+								<tr>
+								  <th scope="row">4</th>
+								  <td>Column content</td>
+								  <td>Column content</td>
+								  <td>Column content</td>
+								</tr>
+								<tr class="info">
+								  <th scope="row">5</th>
+								  <td>Column content</td>
+								  <td>Column content</td>
+								  <td>Column content</td>
+								</tr>
+								<tr>
+								  <th scope="row">6</th>
+								  <td>Column content</td>
+								  <td>Column content</td>
+								  <td>Column content</td>
+								</tr>
+								<tr class="warning">
+								  <th scope="row">7</th>
+								  <td>Column content</td>
+								  <td>Column content</td>
+								  <td>Column content</td>
+								</tr>
+								<tr>
+								  <th scope="row">8</th>
+								  <td>Column content</td>
+								  <td>Column content</td>
+								  <td>Column content</td>
+								</tr>
+								<tr class="danger">
+								  <th scope="row">9</th>
+								  <td>Column content</td>
+								  <td>Column content</td>
+								  <td>Column content</td>
+								</tr>
+							  </tbody>
+							</table>
+						</div>
+						<div class="Code">
+							<pre><code>&lt;tr class="active">...&lt;/tr>
+&lt;tr class="success">...&lt;/tr>
+&lt;tr class="warning">...&lt;/tr>
+&lt;tr class="danger">...&lt;/tr>
+&lt;tr class="info">...&lt;/tr>
+
+&lt;tr>
+  &lt;td class="active">...&lt;/td>
+  &lt;td class="success">...&lt;/td>
+  &lt;td class="warning">...&lt;/td>
+  &lt;td class="danger">...&lt;/td>
+  &lt;td class="info">...&lt;/td>
+&lt;/tr></code></pre>
+						</div>
+						<h2>响应式表格</h2>
+						<p>将任何 <code>.Table</code> 元素包裹在 <code>.TableResponse</code> 元素内，即可创建响应式表格，其会在小屏幕设备上（小于768px）水平滚动。当屏幕大于 768px 宽度时，水平滚动条消失。</p>
+						<div class="IndexBox MB">
+							<div class="TableResponse">
+								  <table class="Table TableBor">
+									<thead>
+									  <tr>
+										<th>#</th>
+										<th>Table heading</th>
+										<th>Table heading</th>
+										<th>Table heading</th>
+										<th>Table heading</th>
+										<th>Table heading</th>
+										<th>Table heading</th>
+									  </tr>
+									</thead>
+									<tbody>
+									  <tr>
+										<th scope="row">1</th>
+										<td>Table cell</td>
+										<td>Table cell</td>
+										<td>Table cell</td>
+										<td>Table cell</td>
+										<td>Table cell</td>
+										<td>Table cell</td>
+									  </tr>
+									  <tr>
+										<th scope="row">2</th>
+										<td>Table cell</td>
+										<td>Table cell</td>
+										<td>Table cell</td>
+										<td>Table cell</td>
+										<td>Table cell</td>
+										<td>Table cell</td>
+									  </tr>
+									  <tr>
+										<th scope="row">3</th>
+										<td>Table cell</td>
+										<td>Table cell</td>
+										<td>Table cell</td>
+										<td>Table cell</td>
+										<td>Table cell</td>
+										<td>Table cell</td>
+									  </tr>
+									</tbody>
+								  </table>
+								</div>
+						</div>
+						<div class="Code">
+							<pre><code>&lt;div class="TableResponse">
+  &lt;table class="Table">
+    ...
+  &lt;/table>
+&lt;/div></code></pre>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<!--PageBody end-->
+	</div>
+
+	
+</div>
+<script src="script/_lib/requireJS/require.js" data-main="script/main" defer async="true" ></script>
+</body>
+</html>
