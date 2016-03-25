@@ -141,7 +141,7 @@ $$.floatButton();
 </div>
 ```
  
->`badge(数字角标)`
+`badge(数字角标)`
 
 ```html
 <div class="MTB MR">
@@ -300,9 +300,18 @@ $$.floatButton();
 
 `slide(轮播图)` 
 
+## KUI事件及调用方法
+KUI提供实用用性更强的编写方式，提供多种常用功能和扩展，为了和jQuery进行区分，KUI的方法调用方式以 `$$.` 开始。下面介绍事件的使用方法：
 
+`特性支持检测` 提供针对性的检测功能(事件类型/滚动条位置/页面位置及窗口大小)
+```javascript
+$$.fn.support
+```
 
-
+`删除前后空格 和 BOM`
+```javascript
+$$.fn.trim(text)
+```
 
 
 
