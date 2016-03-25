@@ -1,5 +1,5 @@
 # KUI
-=====
+
 ### 已集成库
 - jQuery v2.2.1
 - AngularJS v1.5.0
@@ -50,99 +50,14 @@ HTML:
 <script src="script/_lib/requireJS/require.js" data-main="script/main" defer async="true" ></script>
 </body>
 ```
-main.js:
-```javascript
-require.config({
-	//默认情况下模块所在目录为
-	baseUrl: 'script',
-	paths:{
-		//库文件
-		jquery			: "_lib/jQuery/jquery.min3",
-		jqueryMobile	: "_lib/jquery.mobile/jquery.mobile.custom.min",
-		angular			: "_lib/angular/angular.min",
-		uiRouter		: "_lib/angular/angular-ui-router",
-		angularIOS		: "_lib/angular/angular-ios9-uiwebview.patch",
-		//滑动组件
-		Swipe			: "_lib/swipe",
-		//公共组件
-		kelat			: "kelat",		
-		//angular 依赖 app 模块
-		APP				: "app"
-	},
-	shim:{
-		"jquery"		: {exports:"$"},
-		"jqueryMobile"	: {deps:["jquery"]},
-		"angular"		: {exports:"angular",init: function(){...}},
-		"uiRouter"		: {deps:["angular"]},
-		"angularIOS"	: {deps:["angular"]},
-		"kelat"			: {exports:"$$",deps:["jqueryMobile"]},
-		"APP"			: {deps:["uiRouter"]}
-	},
-	map:{
-		"*":{
-			css		: "_lib/requireJS/css" ,
-			text	: "_lib/requireJS/text"
-		}
-	},
-	deps:["angular","uiRouter","angularIOS","jquery","jqueryMobile",'kelat'],
-	waitSeconds:0
-	//,urlArgs: "bust=" + (new Date()).getTime()//防止读取缓存，调试用
-});
-require([
-	"APP"
-],function(){
-	var $html = angular.element(document.getElementsByTagName('html')[0]);
-	angular.element().ready(function(){
-		//手动设置应用
-		angular.bootstrap($html, ["ui.router","MyApp"]); //注意：MyApp 模块只能放在最后一个，因为它依赖前面的第三方模块！
-	});
-});
-```
-app.js:
-```javascript
-define([
-'angular','uiRouter','angularIOS'
-],function(angular){
-'use strict';
-return  angular.module('myApp', ['ngIOS9UIWebViewPatch']).config(['$stateProvider',function( $stateProvider ){
-		// 设置路由
-		$stateProvider.state("parent",{
-			url:"/",
-			templateUrl :"pages/news/index/index.html",
-			controller : "NewsController",
-			resolve : {
-				load : loadDeps([
-					"../pages/news/index/index"
-				])
-			}	
-		});
-		$stateProvider.state("otherwise", {
-			url : "*path",
-			template : "" ,
-			controller : ['$state',
-				function ( $state ) {
-					$state.go( 'parent' );
-				}
-			]
-		});
-		function loadDeps( deps ) {
-			return ['$q', function ( $q ) {
-					var def = $q.defer();
-					require( deps , function () {
-						def.resolve();
-					});
-					return def.promise;
-				}
-			];
-		}
+main.js:设置依赖关系，动态加载
 
-	}]);
-});
-```
+app.js: 初始化应用路由和配置
+
 ## KUI提供以下功能
-=====
-`grid(网格布局)` 提供了一套响应式、移动设备优先十分灵活的网格布局
 
+
+>`grid(网格布局)` 提供了一套响应式、移动设备优先十分灵活的网格布局
 
 有间隔
 ```html
@@ -158,7 +73,7 @@ return  angular.module('myApp', ['ngIOS9UIWebViewPatch']).config(['$stateProvide
   <div class="Col50">.Col50</div>
 </div>
 ```
-`button(按钮)`   使用下面列出的类可以快速创建一个带有预定义样式的按钮
+>`button(按钮)`   使用下面列出的类可以快速创建一个带有预定义样式的按钮
 ```html
 <ul class="ListBlock ListBase">
 	<li class="ListItem"><a href="javascript:;" class="Btn InkRipple">默认按钮</a></li>
@@ -183,19 +98,55 @@ return  angular.module('myApp', ['ngIOS9UIWebViewPatch']).config(['$stateProvide
 ```html
 <a href="javascript:;" class="Btn BtnLine">默认按钮</a>
 ```
-带图标按钮 `.BtnLine`
+带图标/数字按钮
 ```html
-<a href="javascript:;" class="Btn">
-<img class="BtnIconL" src="images/svg/iconfont-dianhua.svg" alt="电话" width="16">
-默认按钮</a>
-//带数字的按钮
+<a href="javascript:;" class="Btn"><img class="BtnIconL" src="images/svg/iconfont-dianhua.svg" alt="电话" width="16"/>默认按钮</a>
 <a href="javascript:;" class="Btn"><span class="Badge BadgeL">9</span>默认按钮</a>
 ```
 禁用状态
 ```html
 <button type="button" class="Btn" disabled="disabled">默认按钮</button>
 ```
+>`floatbutton(浮动按钮)` 
+```html
+<div class="SpeedDial">
+	<a href="javascript:;" class="FloatingButton">
+		<i class="Icon IconPlus"></i>
+		<i class="Icon IconClose"></i>
+	</a>
+	<div class="SpeedDialButtons">
+		<a href="javascript:;"><i class="Icon IconEmail"></i></a>
+		<a href="javascript:;"><i class="Icon IconCalendar"></i></a>
+		<a href="javascript:;"><i class="Icon IconShare"></i></a>
+	</div>
+</div>
+<script>
+$$.floatButton();
+</script>
+```
+>`short(短标)`
+ 
+>`badge(数字角标)` 
+>`numberbox(数字输入框)` 
+>`form(表单)` 
+>`checkbox  radio(多选和单选)` 
+>`switch(开关)` 
+>`icon(图标)` 
+>`dialog(消息框)` 
+>`notify(通知)` 
+>`list(列表)` 
+>`mediaLists(媒体列表)` 
+>`text(文本)` 
+>`box(盒)` 
+>`tab(选项卡)` 
+>`loading(加载)` 
+>`stylebox(九宫格)` 
 
+### 扩展功能
+
+>`chart(EChart图表)` 
+>`timeline(时间轴)` 
+>`slide(轮播图)` 
 
 
 
