@@ -76,62 +76,7 @@ require.config({
 	shim:{
 		"jquery"		: {exports:"$"},
 		"jqueryMobile"	: {deps:["jquery"]},
-		"angular"		: {exports:"angular",init: function(){
-                // ---------------------重要代码段！------------------------------
-                // 应用启动后不能直接用 module.controller 等方法，否则会报控制器未定义的错误，
-                // 见 http://stackoverflow.com/questions/20909525/load-controller-dynamically-based-on-route-group
-                var _module = angular.module;
-                angular.module = function () {
-                    var newModule = _module.apply( angular , arguments );
-                    if ( arguments.length >= 2 ) {
-                        newModule.config( [
-                            '$controllerProvider' ,
-                            '$compileProvider' ,
-                            '$filterProvider' ,
-                            '$provide' ,
-                            function ( $controllerProvider , $compileProvider , $filterProvider , $provide ) {
-                                newModule.controller = function () {
-                                    $controllerProvider.register.apply( this , arguments );
-                                    return this;
-                                };
-                                newModule.directive = function () {
-                                    $compileProvider.directive.apply( this , arguments );
-                                    return this;
-                                };
-                                newModule.filter = function () {
-                                    $filterProvider.register.apply( this , arguments );
-                                    return this;
-                                };
-                                newModule.factory = function () {
-                                    $provide.factory.apply( this , arguments );
-                                    return this;
-                                };
-                                newModule.service = function () {
-                                    $provide.service.apply( this , arguments );
-                                    return this;
-                                };
-                                newModule.provider = function () {
-                                    $provide.provider.apply( this , arguments );
-                                    return this;
-                                };
-                                newModule.value = function () {
-                                    $provide.value.apply( this , arguments );
-                                    return this;
-                                };
-                                newModule.constant = function () {
-                                    $provide.constant.apply( this , arguments );
-                                    return this;
-                                };
-                                newModule.decorator = function () {
-                                    $provide.decorator.apply( this , arguments );
-                                    return this;
-                                };
-                            }
-                        ]);
-                    }
-                    return newModule;
-                };
-            }},
+		"angular"		: {exports:"angular",init: function(){...}},
 		"uiRouter"		: {deps:["angular"]},
 		"angularIOS"	: {deps:["angular"]},
 		"kelat"			: {exports:"$$",deps:["jqueryMobile"]},
@@ -157,6 +102,46 @@ require([
 	});
 });
 ```
+app.js:
+```js
+define([
+'angular','uiRouter','angularIOS'
+],function(angular){
+'use strict';
+return  angular.module('myApp', ['ngIOS9UIWebViewPatch']).config(['$stateProvider',function( $stateProvider ){
+		// 设置路由
+		$stateProvider.state("parent",{
+			url:"/",
+			templateUrl :"pages/news/index/index.html",
+			controller : "NewsController",
+			resolve : {
+				load : loadDeps([
+					"../pages/news/index/index"
+				])
+			}	
+		});
+		$stateProvider.state("otherwise", {
+			url : "*path",
+			template : "" ,
+			controller : ['$state',
+				function ( $state ) {
+					$state.go( 'parent' );
+				}
+			]
+		});
+		function loadDeps( deps ) {
+			return ['$q', function ( $q ) {
+					var def = $q.defer();
+					require( deps , function () {
+						def.resolve();
+					});
+					return def.promise;
+				}
+			];
+		}
 
+	}]);
+});
+```
 
 
