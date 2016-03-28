@@ -348,8 +348,8 @@ $$.loadJC('paths/app.css','css');
 $$.loadJC('paths/app.js','js',function(){callback});
 ```
 
-## UI部分
-=====
+### UI部分
+-----
 
 `返回顶部` 
 ```javascript
@@ -459,8 +459,10 @@ Chrome 设置步骤：
 - `5.` 如果目标中的路径含有双引号，则在双引号的外面添加。
 - `6.` 关闭浏览器重新通过桌面快捷方式的形式打开浏览器，浏览器提示"您使用的是不受支持的命令行标记： --disable-web-security。稳定性和安全性会有所下降"，说明设置成功。
  
-
-
+## License
+=====
+- Apache v2 License
+- MIT License
 
 
 
