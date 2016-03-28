@@ -301,6 +301,7 @@ $$.floatButton();
 `slide(轮播图)` 
 
 ## KUI事件及调用方法
+=====
 KUI提供实用用性更强的编写方式，提供多种常用功能和扩展，为了和jQuery进行区分，KUI的方法调用方式以 `$$.` 开始。下面介绍事件的使用方法：
 
 `特性支持检测` 提供针对性的检测功能(事件类型/滚动条位置/页面位置及窗口大小)
@@ -343,22 +344,121 @@ alert(Url.id)
 
 `动态加载` 动态加载JS（支持回调）和CSS
 ```javascript
-$$.loadJC('app.css','css');
-$$.loadJC('app.css','js',function(){callback});
+$$.loadJC('paths/app.css','css');
+$$.loadJC('paths/app.js','js',function(){callback});
+```
+
+## UI部分
+=====
+
+`返回顶部` 
+```javascript
+$$.backToTop();
+```
+
+`通知`  通知窗口 展示和关闭回调方法
+```javascript
+$$.addNotify({
+	title: '我的应用标题',
+	subtitle: '来自KUI的新消息',
+	message: '你好！欢迎使用KUI，KUI给你带来意想不到的展示效果。',
+	media: '<img src="images/02.jpg" width="44"/>',
+	onClose: function () {
+		$$.alert('通知关闭');
+	}
+});
+```
+
+`Indicator加载`  Indicator加载和卸载
+```javascript
+$$.indicator();
+$$.unIndicator();
+```
+
+`loading加载`  loading加载（提供更改标题功能）和卸载
+```javascript
+$$.loading('自定义标题');
+$$.unLoading();
+```
+
+`alert 框`  模拟原生alert，并提供回调方法。注：标题可不填
+```javascript
+$$.alert('内容','自定义标题',function(){callback});
+```
+
+`确认框 `  和alert相似，并提供取消按钮和回调方法。注：标题可不填
+```javascript
+$$.confirm("内容","确认消息标题",function(){callback});
+```
+
+`自动消失提示框 `  没有回调方法，只做提醒用，显示时间2000毫秒
+```javascript
+$$.prompt("内容");
+```
+
+`底部确认框 `  模拟APP确认框，和确认框相似，展示在底部，并提供取消按钮和回调方法。注：标题可不填
+```javascript
+$$.picker("内容","底部确认消息标题",function(){callback});
+```
+
+`空白提示 `  当显示内容为空时展示，并提供回调方法。注：内容可不填
+```javascript
+$$.blankTips("标题","内容",function(){callback});
 ```
 
 
+`显示操作表单 `  模拟苹果原生操作表单展示方式，提供回调和特定显示模式。注：回调可为空
+```javascript
+var actionSheetButtons = [
+	[{
+		text: '这里可以描述下面的操作这里可以描述下面的操作这里可以描述下面的操作这里可以描述下面的操作',
+		label: true
+	},{
+		text: 'alert警告消息框',
+		onClick: function () {
+			$$.alert('alert警告消息框!');
+		}
+	},{
+		text: '红色按钮',
+		color: 'CR',
+		onClick: function () {
+			$$.alert('你点击的是红色按钮!');
+		}
+	}],
+	[
+		{
+			text: '取消',
+			color: 'CW',
+			bg: 'BBlue'
+		}
+	]
+];
+$$.actions(actionSheetButtons);
+```
+
+`数字输入框` 提供常用的数字加减显示。
+```javascript
+$$.numberBox();
+```
 
 
+`进度条` 提供一个在指定位置显示的进度条，并可设置时间。
+```javascript
+$$.progressbar("body",time);
+```
 
+## 运行KUI
+=====
 
-
-
-
-
-
-
-
+使用 Chrome 或者 Firefox 进行浏览，注：KUI 需要进行跨域请求，请将浏览器设置允许跨域。
+Chrome 设置步骤：
+1.首先谷歌快捷方式上右击，在下拉列表中选择属性。
+2.打开属性窗口，切换到快捷方式选项卡下面，默认是常规选项卡。
+3.在目标路径的后面添加【 --allow-file-access-from-files --disable-web-security 】，格式如下：C:\Users\Administrator\AppData\Local\Google\Chrome\Application\chrome.exe --allow-file-access-from-files --disable-web-security,其中chrome.exe与--disable之间有一个空格。
+4.点击应用，然后点击确定关闭窗口。
+5.如果目标中的路径含有双引号，则在双引号的外面添加。
+6.关闭浏览器重新通过桌面快捷方式的形式打开浏览器，浏览器提示"您使用的是不受支持的命令行标记： --disable-web-security。稳定性和安全性会有所下降"，说明设置成功。
+ 
 
 
 
