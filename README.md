@@ -452,12 +452,12 @@ $$.progressbar("body",time);
 使用 Chrome 或者 Firefox 进行浏览，注：KUI 需要进行跨域请求，请将浏览器设置允许跨域。
 
 Chrome 设置步骤：
-1`.`首先谷歌快捷方式上右击，在下拉列表中选择属性。
-2`.`打开属性窗口，切换到快捷方式选项卡下面，默认是常规选项卡。
-3`.`在目标路径的后面添加【 --allow-file-access-from-files --disable-web-security 】，格式如下：C:\Users\Administrator\AppData\Local\Google\Chrome\Application\chrome.exe --allow-file-access-from-files --disable-web-security,其中chrome.exe与--disable之间有一个空格。
-4`.`点击应用，然后点击确定关闭窗口。
-5`.`如果目标中的路径含有双引号，则在双引号的外面添加。
-6`.`关闭浏览器重新通过桌面快捷方式的形式打开浏览器，浏览器提示"您使用的是不受支持的命令行标记： --disable-web-security。稳定性和安全性会有所下降"，说明设置成功。
+- `1.` 首先谷歌快捷方式上右击，在下拉列表中选择属性。
+- `2.` 打开属性窗口，切换到快捷方式选项卡下面，默认是常规选项卡。
+- `3.` 在目标路径的后面添加【 --allow-file-access-from-files --disable-web-security 】，格式如下：C:\Users\Administrator\AppData\Local\Google\Chrome\Application\chrome.exe --allow-file-access-from-files --disable-web-security,其中chrome.exe与--disable之间有一个空格。
+- `4.` 点击应用，然后点击确定关闭窗口。
+- `5.` 如果目标中的路径含有双引号，则在双引号的外面添加。
+- `6.` 关闭浏览器重新通过桌面快捷方式的形式打开浏览器，浏览器提示"您使用的是不受支持的命令行标记： --disable-web-security。稳定性和安全性会有所下降"，说明设置成功。
  
 
 
