@@ -20,10 +20,10 @@ function( title , $scope , $state , $window) {
 			/**箭头上*/
 			AU:function(){return this.removeClass("ArrowD").addClass("ArrowU");},
 		})
-		//alert($$().jsonView($$.getUrlParams()))
+		//alert($$().jsonArray($$.getUrlParams()))
 		
 		$$().touches(document.getElementById("about"),function(Touches){
-			$$.fn.log($$().jsonView(Touches))
+			$$.fn.log($$().jsonArray(Touches))
 		});
 	}]);
 	

@@ -316,7 +316,7 @@ $$.fn.trim(text)
 
 `JSON 序列`
 ```javascript
-$$.fn.jsonView(JSON)
+$$.fn.jsonArray(JSON)
 ```
 
 `设备/操作系统探测` 主要针对移动端进行检测
@@ -327,7 +327,7 @@ $$.fn.device
 `触摸事件` 对指定DOM元素的触摸事件返回相应的移动坐标数据，并提供回调。
 ```javascript
 $$.fn.touches(document.getElementById("id"),function(Touches){
-		$$.fn.log($$().jsonView(Touches))
+		$$.fn.log($$().jsonArray(Touches))
 	})
 ```
 

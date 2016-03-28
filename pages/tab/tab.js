@@ -9,11 +9,11 @@ function( title , $scope , $state) {
 			
 			//设置选项卡
 			$scope.tabs = [
-				{name:'全部'},
-				{name:'待付款'},
-				{name:'待发货'},
-				{name:'待收货'},
-				{name:'待评价'}
+				{name:'选项卡1'},
+				{name:'选项卡2'},
+				{name:'选项卡3'},
+				{name:'选项卡4'},
+				{name:'选项卡5'}
 			];
 			// 当前tab 默认选中第一个
 			$scope.currentTab = $scope.tabs[0];

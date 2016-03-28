@@ -141,7 +141,7 @@ window['kelat']['fn'] = window['kelat'].prototype = {
 		return typeof data === 'string' && Local.running ? data.replace(Local.RegExpr.trim,'') : '';
 	},
 	// JSON 序列
-	jsonView : function(data){
+	jsonArray : function(data){
 		return Local.running ? JSON.stringify(data) : '';
 	},
 	// log
