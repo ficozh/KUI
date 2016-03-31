@@ -7,8 +7,8 @@ function( title , $scope , $state , $window) {
 		//更改页面标题
 		document.title =$scope.$$prevSibling.HeaderTitle= title;
 		//$scope.HeaderTitle ="eeeeee";
-		alert($$().trim(' mmm '));
-		alert($$.validate('18049000492','mobile'));
+		//alert($$().trim(' mmm '));
+		//alert($$.validate('18049000492','mobile'));
 		$$().log($$().device)
 		$$.fn.extend({
 			/**箭头左*/

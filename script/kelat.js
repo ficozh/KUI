@@ -1037,15 +1037,15 @@ if(typeof define === "function" && define.amd){
 	});
 };
 
-if ( !noGlobal ) {
+if( !noGlobal ){
 	window['kelat'] = window.$$ = kelat;
-}
+};
 if( !Local.running ){
 	kelat.addNotify({
 		title: Local.title,
 		message: Local.message
 	});
-}
+};
 //返回对象
 return window['kelat'];
 }));

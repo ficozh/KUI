@@ -1824,41 +1824,42 @@ outline-offset:-2px;
 
 
 /* ===== 响应设计 ===== */
-/* 超小屏幕（手机，大于等于 320px） */
-@media (min-width:320px){
-    .WAll{width:100%}
+/* 大屏幕（大桌面显示器，最大 1200px） */
+@media screen and (max-width:1200px) {
+    .WAll{width:1170px}
 }
 
-/* 超小屏幕（手机，大于等于 480px） */
-@media (min-width:480px){
-    .WAll{width:100%}
-    .ActionsModal{width:480px;left:50%;margin-left:-240px}
+/* 中等屏幕（桌面显示器，最大 992px） */
+@media screen and (max-width:992px) {
+    .WAll{width:970px}
 }
 
-/* 超小屏幕（手机，大于等于 640px） */
-@media (min-width:640px){
-    .WAll{width:100%}
-}
-
-/* 小屏幕（平板，大于等于 768px） */
-@media (min-width:768px){
+/* 小屏幕（平板，最大 768px） */
+@media screen and (max-width:768px) { 
     .ListBlock.ListTabletInset{overflow:hidden;margin-left:12px;margin-right:12px;border-radius:6px}
     .ListBlock.ListTabletInset:before,
     .ListBlock.ListTabletInset:after{display:none}
     .WAll{width:750px}
 }
 
-/* 中等屏幕（桌面显示器，大于等于 992px） */
-@media (min-width:992px){
-    .WAll{width:970px}
+/* 超小屏幕（手机，最大 640px） */
+@media screen and (max-width:640px) { 
+    .WAll{width:100%}
 }
 
-/* 大屏幕（大桌面显示器，大于等于 1200px） */
-@media (min-width:1200px){
-    .WAll{width:1170px}
+/* 超小屏幕（手机，最大 480px） */
+@media screen and (max-width:480px) { 
+    .WAll{width:100%}
+    .ActionsModal{width:480px;left:50%;margin-left:-240px}
 }
 
-@media screen and (-webkit-device-pixel-ratio: 2) { 
+/* 超小屏幕（手机，最大 320px） */
+@media screen and (max-width:320px) { 
+	.WAll{width:100%}
+}
+
+/*设备像素比 2*/
+@media only screen and (-webkit-min-device-pixel-ratio:2), only screen and (-webkit-device-pixel-ratio:2) { 
 .Box .BoxHeader:after,
 .Box .BoxFooter:before,
 .ActionsButton:after,
@@ -1871,9 +1872,9 @@ outline-offset:-2px;
 .ListBlock .ItemInner:after{
 -webkit-transform:scaleY(.5);
         transform:scaleY(.5)
-}
-} 
-@media screen and (-webkit-device-pixel-ratio: 3) { 
+}}
+/*设备像素比 3*/
+@media only screen and (-webkit-min-device-pixel-ratio:3), only screen and (-webkit-device-pixel-ratio:3) { 
 .Box .BoxHeader:after,
 .Box .BoxFooter:before,
 .ActionsButton:after,
@@ -1886,5 +1887,4 @@ outline-offset:-2px;
 .ListBlock .ItemInner:after{
 -webkit-transform:scaleY(.33);
         transform:scaleY(.33)
-}
-}
+}}
