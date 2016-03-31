@@ -15,8 +15,7 @@
 - 移动端的响应速度要求更快。
 
 ### 框架结构
-![框架结构](http://git.oschina.net/group1/M00/00/AF/ZxV3aVb8gAqAfbw9AAHodSvGOoM398.jpg "框架结构")
-
+![框架结构](http://git.oschina.net/uploads/images/2016/0331/100258_2989ebf6_484141.jpeg "框架结构")
 
 ### 框架功能
 - 可实现单页应用。
