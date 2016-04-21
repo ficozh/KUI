@@ -286,11 +286,36 @@ td,th{padding:0}
     ...
   </table>
 </div>*/
+@media screen and (max-width:767px){
+    .TableResponse {width:100%;margin-bottom:15px;overflow-y:hidden;-ms-overflow-style:-ms-autohiding-scrollbar;border:1px solid #dddddd;}
+    .TableResponse > .Table{margin-bottom:0;}
+    .TableResponse > .Table tr > th,
+    .TableResponse > .Table tr > td{white-space:nowrap;}
+    .TableResponse > .TableBor {border:0;}
+    .TableResponse > .TableBor tr > th:first-child,
+    .TableResponse > .TableBor tr > td:first-child{border-left:0;}
+    .TableResponse > .TableBor tr > th:last-child,
+    .TableResponse > .TableBor tr > td:last-child{border-right:0;}
+    .TableResponse > .TableBor tr:last-child > th,
+    .TableResponse > .TableBor tr:last-child > td{border-bottom:0;}
+}
 
 /* ===== 响应式图片 =====  <img src="..." class="ImgResponse" />*/
 .ImgResponse{display:block;max-width:100%;height:auto}
 
-/* ===== 表单 ===== 
+/* ===== 表单 ===== */
+/*
+<div class="FormGroup">
+  <label>...</label>
+  <input type="text" class="FormContr"  placeholder="Enter email"/>
+</div>
+*/
+.FormGroup{margin-bottom:15px;}
+.FormGroup:before,
+.FormGroup:after{content:"";display:table}
+.FormGroup:after{clear:both;}
+
+/*
 <input type="text" class="FormContr"  placeholder="text"/>
 
 <select class="FormContr">
@@ -315,9 +340,25 @@ box-shadow:inset 0 1px 1px rgba(0, 0, 0, 0.075);
 .FormContr:-ms-input-placeholder{color:#999}
 .FormContr::-webkit-input-placeholder{color:#999}
 
-/*控件尺寸 <input class="FormContr InputLg" type="text"/>*/
-.InputLg{height:46px;padding:10px 16px;font-size:18px;line-height:1.3333333;border-radius:6px}
-select.InputLg{height:46px;line-height:46px}
+/*
+<form class="FormInline">
+  <div class="FormGroup">
+	<input type="password" class="FormContr" placeholder="Password"/>
+  </div>
+</form>
+*/
+
+.FormInline .FormGroup{display:inline-block;margin-bottom:0;vertical-align:middle;}
+.FormInline .FormContr{display:inline-block;width:auto;vertical-align:middle;}
+
+
+.FormLevel .LabelContr{text-align:right;margin-bottom:0;}
+
+/*控件尺寸
+<input class="FormContr InputLg" type="text" placeholder=".InputLg"/>
+*/
+.InputLg{height:46px;padding:10px 16px;font-size:18px;line-height:1.3333333;border-radius:6px;}
+select.InputLg {height:46px;line-height:46px;}
 textarea.InputLg,
 select[multiple].InputLg{height:auto}
 
@@ -891,7 +932,7 @@ text-transform:uppercase;
 }
 
 /*Picker*/
-.ModalPickerBox{left:0;top:auto;right:0;bottom:0;width:100%;margin:0!important;background-color:#fff;border-radius:0;
+.ModalPickerBox{left:0;top:auto;right:0;bottom:0;width:100%;margin:0;background-color:#fff;border-radius:0;
 -webkit-transform:translate3d(0,100%,0) scale(1);
 		transform:translate3d(0,100%,0) scale(1)
 }
@@ -905,8 +946,8 @@ text-transform:uppercase;
 }
 
 
-/**/
-.ActionsModal{left:0;top:auto;right:0;bottom:0;width:100%;margin:0!important;background-color:transparent;box-shadow:none;
+/*actions*/
+.ActionsModal{left:0;top:auto;right:0;bottom:0;width:100%;margin:0;background-color:transparent;box-shadow:none;
 -webkit-transform:translate3d(0,100%,0) scale(1);
 		transform:translate3d(0,100%,0) scale(1)
 }
@@ -1850,13 +1891,43 @@ outline-offset:-2px;
 /* 超小屏幕（手机，最大 480px） */
 @media screen and (max-width:480px) { 
     .WAll{width:100%}
-    .ActionsModal{width:480px;left:50%;margin-left:-240px}
+    
 }
 
 /* 超小屏幕（手机，最大 320px） */
 @media screen and (max-width:320px) { 
 	.WAll{width:100%}
 }
+
+
+
+/* 超小屏幕（手机，大于等于 320px） */
+@media screen and (min-width:320px){
+}
+/* 超小屏幕（手机，大于等于 480px） */
+@media screen and (min-width:480px){
+	.ActionsModal,
+	.NotifyBox.ListBlock,
+	.ModalPromptBox,
+	.ModalPickerBox{max-width:480px;left:50%;margin-left:-240px}
+}
+
+/* 超小屏幕（手机，大于等于 640px） */
+@media screen and (min-width:640px){
+}
+
+/* 小屏幕（平板，大于等于 768px） */
+@media screen and (min-width:768px){
+}
+
+/* 中等屏幕（桌面显示器，大于等于 992px） */
+@media screen and (min-width:992px){
+}
+
+/* 大屏幕（大桌面显示器，大于等于 1200px） */
+@media screen and (min-width:1200px){
+}
+
 
 /*设备像素比 2*/
 @media only screen and (-webkit-min-device-pixel-ratio:2), only screen and (-webkit-device-pixel-ratio:2) { 

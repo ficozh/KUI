@@ -5,3 +5,6 @@ kelat.js v1.0.1 新功能和修正：
 3、指定范围取随机数。$$().range(34578,4);
 4、判断是否为数字。$$().isNumber(12121);
 5、闪动提醒。$$.glint('#id');
+6、增加防止事件冒泡。$$.bubbles(event,'A Div Img',function(){});
+7、修改URL地址参数截取。$$.getUrlParams({'url':'http://www.****.com','type':['=','id']});
+8、增加图片头数据加载就绪事件。$$.imgReady('imgUrl',function(){});
