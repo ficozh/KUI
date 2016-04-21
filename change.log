@@ -1,4 +1,4 @@
-kelat.js v1.0.1 新功能和修正：
+kelat.js v1.0.1 新功能和修正：----- 2016.4.20
 
 1、增加html转义函数。$$().escapeHTML('<div>');
 2、修改 验证  支持自定义正则。$$.validate('18000000999',/^1[34578]\d{9}$/);
@@ -9,9 +9,9 @@ kelat.js v1.0.1 新功能和修正：
 7、修改URL地址参数截取。$$.getUrlParams({'url':'http://www.****.com','type':['=','id']});
 8、增加图片头数据加载就绪事件。$$.imgReady('imgUrl',function(){});
 
-kelat.js v1.0.0 新功能和修正：
+kelat.js v1.0.0 新功能和修正：----- 2016.3.14
 
 1、增加特性支持检测; $$.fn.support
 2、增加删除前后空格 和 BOM; $$.fn.trim(text)
-2、增加JSON 序列; $$.fn.jsonArray(JSON)
-2、增加设备/操作系统探测; $$.fn.device
+3、增加JSON 序列; $$.fn.jsonArray(JSON)
+4、增加设备/操作系统探测; $$.fn.device
