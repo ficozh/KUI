@@ -12,6 +12,6 @@ kelat.js v1.0.1 新功能和修正：----- 2016.4.20
 kelat.js v1.0.0 新功能和修正：----- 2016.3.14
 
 1、增加特性支持检测; $$.fn.support
-2、增加删除前后空格 和 BOM; $$.fn.trim(text)
-3、增加JSON 序列; $$.fn.jsonArray(JSON)
+2、增加删除前后空格 和 BOM; $$.fn.trim(text);
+3、增加JSON 序列; $$.fn.jsonArray(JSON);
 4、增加设备/操作系统探测; $$.fn.device
