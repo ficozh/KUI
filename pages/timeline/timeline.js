@@ -4,11 +4,20 @@ define(['APP'],function(APP){
 	APP.controller('TimeLineController', 
 		["title",'$scope','$state',
 function( title , $scope , $state) {
-			//更改页面标题
-			document.title = title
-			
-			$$.loadJC("pages/timeline/timeline.css",'css');
-
+		//声明
+		$scope.Load = {
+			bussiness: function() {
+				//执行函数 
+				$$.loadJC("pages/timeline/timeline.css",'css');
+			},
+			init : function(){
+				//更改页面标题
+				document.title = $scope.$$prevSibling.HeaderTitle = title;
+				//执行方法
+				$scope.Load.bussiness()
+			}
+		};
+		//运行
+		$scope.Load.init();
 	}]);
-	
 });

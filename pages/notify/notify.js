@@ -7,13 +7,14 @@ function( title , $scope , $state) {
 		//声明
 		$scope.Load = {
 			bussiness: function() {
-				$('.simpleBtn').on('click', function () {
+				//执行函数 
+				$$('.simpleBtn').on('click', function () {
 					$$.addNotify({
 						title: 'KMUI',
 						message: '这是一个带有标题和消息的简单通知消息'
 					});
 				});
-				$('.fullBtn').on('click', function () {
+				$$('.fullBtn').on('click', function () {
 					$$.addNotify({
 						title: 'KMUI',
 						subtitle: '通知副标题',
@@ -21,7 +22,7 @@ function( title , $scope , $state) {
 						media: '<img class="Icon" src="images/svg/iconfont-user.svg" alt="用户"/>'
 					});
 				});
-				$('.customBtn').on('click', function () {
+				$$('.customBtn').on('click', function () {
 					$$.addNotify({
 						title: '我的应用标题',
 						subtitle: '来自KMUI的新消息',
@@ -29,7 +30,7 @@ function( title , $scope , $state) {
 						media: '<img src="images/02.jpg" width="44"/>'
 					});
 				});
-				$('.callbackBtn').on('click', function () {
+				$$('.callbackBtn').on('click', function () {
 					$$.addNotify({
 						title: '我的应用标题',
 						subtitle: '来自KMUI的新消息',
@@ -40,20 +41,16 @@ function( title , $scope , $state) {
 						}
 					});
 				});
-
+				
 			},
 			init : function(){
 				//更改页面标题
-				//UserInfo.setTitle(title);
-				//更改页面标题
 				document.title = $scope.$$prevSibling.HeaderTitle = title;
-				//获取用户信息回调
+				//执行方法
 				$scope.Load.bussiness()
-				//业务执行方法
-				//UserInfo.getUserInfo($scope.Load.bussiness);
 			}
 		};
+		//运行
 		$scope.Load.init();
-		
 	}]);
-});	
+});

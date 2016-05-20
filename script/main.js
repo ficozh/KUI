@@ -87,7 +87,7 @@ require.config({
 		//"angularTouch"	: {deps:["angular"]},
 		"angularIOS"	: {deps:["angular"]},
 		//"mePageloading"		: {deps:["angular"]},
-		"kelat"			: {exports:"$$",deps:["jqueryMobile"]},
+		"kelat"			: {exports:"$$"},
 		"APP"			: {deps:["uiRouter"]}
 	},
 	map:{
@@ -96,7 +96,7 @@ require.config({
 			text	: "_lib/requireJS/text"
 		}
 	},
-	deps:["angular","uiRouter","angularIOS","jquery","jqueryMobile",'kelat'],
+	deps:["angular","uiRouter","angularIOS",'kelat'],
 	waitSeconds:0
 	//,urlArgs: "bust=" + (new Date()).getTime()//防止读取缓存，调试用
 });

@@ -1,14 +1,19 @@
 //根路径
 define(['APP'],function(APP){
 	'use strict';
-	APP.controller('GridController', 
+	APP.controller('PullController', 
 		["title",'$scope','$state',
 function( title , $scope , $state) {
 		//声明
 		$scope.Load = {
 			bussiness: function() {
 				//执行函数 
-				
+				$$(".PullToRefresh").on('refresh',function(){
+					setTimeout(function () {
+						$$.pullToRefreshDone($$(".PullToRefresh"))
+					},1000)
+				})
+				$$.initPullToRefresh($$(".PullToRefresh"));
 			},
 			init : function(){
 				//更改页面标题
@@ -19,5 +24,5 @@ function( title , $scope , $state) {
 		};
 		//运行
 		$scope.Load.init();
-	}]);
-});	
+	}]);	
+});

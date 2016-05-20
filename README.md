@@ -330,7 +330,7 @@ $$.fn.device
 `触摸事件` 对指定DOM元素的触摸事件返回相应的移动坐标数据，并提供回调。
 ```javascript
 $$.fn.touches(document.getElementById("id"),function(Touches){
-		$$.fn.log($$().jsonArray(Touches))
+		$$.fn.log($$.fn.jsonArray(Touches))
 	})
 ```
 

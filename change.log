@@ -1,13 +1,36 @@
+kelat.js v1.2.0 新功能和修正：----- 2016.5.15
+
+1、增加选择器控件。$$.picker();
+2、修改自动消失提示框，增加设置时间(可选)。$$.prompt("欢迎体验KUI",2000);
+3、修改底部确认框函数。$$.confirmModal(content, title, callbackOk, callbackCancel)
+4、增加弹出菜单函数。$$.popover($$('.Menu'))
+5、修正弹框函数，支持字符串和对象。$$.popover('content') / $$.popover($$('.Menu'))
+6、修正 scrolltop 无效。
+
+kelat.js v1.0.1 新功能和修正：----- 2016.4.28
+
+1、增加DOM元素选择器。$$('body').addClass('PosA');
+2、增加事件检测事件。$$.fn.support.desktopEvents();
+3、增加层边界事件，调试样式时来设定边界。$$.fn.layerBorder();
+4、增加Javascript函数节流。$$.fn.throttle(callBack, delay, mustRunDelay);
+5、增加触摸事件。$$.fn.touches(els, callBackStart,callBackMove,callBackEnd);
+6、增加空操作。$$.noop();
+7、增加下拉刷新。$$.initPullToRefresh($$(".PullToRefresh"));
+8、增加图片渲染事件。$$.imgRender(options, callback);
+
 kelat.js v1.0.1 新功能和修正：----- 2016.4.20
 
 1、增加html转义函数。$$().escapeHTML('<div>');
 2、修改 验证  支持自定义正则。$$.validate('18000000999',/^1[34578]\d{9}$/);
 3、指定范围取随机数。$$().range(34578,4);
-4、判断是否为数字。$$().isNumber(12121);
+4、判断是否为数字。$$.fn.isNumber(12121);
 5、闪动提醒。$$.glint('#id');
 6、增加防止事件冒泡。$$.bubbles(event,'A Div Img',function(){});
 7、修改URL地址参数截取。$$.getUrlParams({'url':'http://www.****.com','type':['=','id']});
 8、增加图片头数据加载就绪事件。$$.imgReady('imgUrl',function(){});
+9、增加是否在Window容器。$$.isWindow(obj);
+10、增加空白提示。$$.blankTips(title, content, callBack);
+11、增加数字输入框。$$.numberBox();
 
 kelat.js v1.0.0 新功能和修正：----- 2016.3.14
 

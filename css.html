@@ -7,7 +7,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="format-detection" content="telephone=no">
 <title>全局 CSS 样式</title>
-<link rel="stylesheet" type="text/css" href="style/public.css" media="all"/>
+<link rel="stylesheet" type="text/css" href="style/kelat.css" media="all"/>
 <link rel="stylesheet" type="text/css" href="style/theme.css" media="all"/>
 <style>
 body {
@@ -49,7 +49,8 @@ background-color: #6f5499;
 .IndexPage .Code {padding:9px 14px;margin-bottom:14px;background-color:#f7f7f9;border:1px solid #e1e1e8;border-radius:4px;}
 .IndexPage .indexList li > p{font-size:16px;margin-bottom:1em}
 
-.IndexPage .GridShow [class^=Col]{padding:10px;background-color:#eee;border:1px solid #ddd;}
+.GridShow .Row{margin-bottom:10px;}
+.GridShow [class^=Col]{border:1px solid #ccc;background-color:#fff;line-height:20px;padding:5px;margin-bottom:5px}
 .IndexPage .IndexBox{padding:10px;background-color:#f5f5f5;border:1px solid #ddd;}
 
 
@@ -113,58 +114,47 @@ maximum-scale=1,user-scalable=no"></code></pre>
 						<h1 class="Ti">栅格系统</h1>
 						<p>提供了一套响应式、移动设备优先的流式栅格系统，随着屏幕或视口（viewport）尺寸的增加，系统会自动分为最多12列</p>
 						<p>栅格系统用于通过一系列的行（Row）与列（Col）的组合来创建页面布局，你的内容就可以放入这些创建好的布局中。</p>
-						<div class="Code">
-							<pre><code>&lt;div class="Row">
-	&lt;div class="Col1">.Col1&lt;/div>
-	&lt;div class="Col1">.Col1&lt;/div>
-	&lt;div class="Col1">.Col1&lt;/div>
-	&lt;div class="Col1">.Col1&lt;/div>
-	&lt;div class="Col1">.Col1&lt;/div>
-	&lt;div class="Col1">.Col1&lt;/div>
-	&lt;div class="Col1">.Col1&lt;/div>
-	&lt;div class="Col1">.Col1&lt;/div>
-&lt;/div>
-&lt;div class="Row">
-	&lt;div class="Col8">.Col8&lt;/div>
-	&lt;div class="Col4">.Col4&lt;/div>
-&lt;/div>
-&lt;div class="Row">
-	&lt;div class="Col4">.Col4&lt;/div>
-	&lt;div class="Col4">.Col4&lt;/div>
-	&lt;div class="Col4">.Col4&lt;/div>
-&lt;/div>
-&lt;div class="Row">
-	&lt;div class="Col6">.Col6&lt;/div>
-	&lt;div class="Col6">.Col6&lt;/div>
-&lt;/div></code></pre>
+						<div class="GridShow">
+							<div class="Row">
+							  <div class="Col50">.Col50</div>
+							  <div class="Col50">.Col50</div>
+							</div>
+							<div class="Row">
+							  <div class="Col25">.Col25</div>
+							  <div class="Col25">.Col25</div>
+							  <div class="Col25">.Col25</div>
+							  <div class="Col25">.Col25</div>
+							</div>
+							<div class="Row">
+							  <div class="Col33">.Col33</div>
+							  <div class="Col33">.Col33</div>
+							  <div class="Col33">.Col33</div>
+							</div>
+							<div class="Row">
+							  <div class="Col20">.Col20</div>
+							  <div class="Col20">.Col20</div>
+							  <div class="Col20">.Col20</div>
+							  <div class="Col20">.Col20</div>
+							  <div class="Col20">.Col20</div>
+							</div>
+							<div class="Row">
+							  <div class="Col33">.Col33</div>
+							  <div class="Col66">.Col66</div>
+							</div>
+							<div class="Row">
+							  <div class="Col25">.Col25</div>
+							  <div class="Col25">.Col25</div>
+							  <div class="Col50">.Col50</div>
+							</div>
+							<div class="Row">
+							  <div class="Col25">.Col25</div>
+							  <div class="Col75">.Col75</div>
+							</div>
+							<div class="Row GridShow">
+							  <div class="Col20">.Col20</div>
+							  <div class="Col80">.Col80</div>
+							</div>
 						</div>
-						<div class="Row GridShow MB">
-  <div class="Col1">.Col1</div>
-  <div class="Col1">.Col1</div>
-  <div class="Col1">.Col1</div>
-  <div class="Col1">.Col1</div>
-  <div class="Col1">.Col1</div>
-  <div class="Col1">.Col1</div>
-  <div class="Col1">.Col1</div>
-  <div class="Col1">.Col1</div>
-  <div class="Col1">.Col1</div>
-  <div class="Col1">.Col1</div>
-  <div class="Col1">.Col1</div>
-  <div class="Col1">.Col1</div>
-</div>
-<div class="Row GridShow MB">
-  <div class="Col8">.Col8</div>
-  <div class="Col4">.Col4</div>
-</div>
-<div class="Row GridShow MB">
-  <div class="Col4">.Col4</div>
-  <div class="Col4">.Col4</div>
-  <div class="Col4">.Col4</div>
-</div>
-<div class="Row GridShow MB">
-  <div class="Col6">.Col6</div>
-  <div class="Col6">.Col6</div>
-</div>
 						<p>栅格系统适用于任何设备展示。</p>
 						<p>如果在一个 <code>.Row</code> 内包含的列（column）大于12个，包含多余列（column）的元素将作为一个整体单元被另起一行排列。</p>
 					</li>
@@ -616,10 +606,10 @@ maximum-scale=1,user-scalable=no"></code></pre>
 					</li>
 					<li>
 						<h1 class="Ti">显示或隐藏内容</h1>
-						<p><code>.DisNo</code> 和 <code>.DisB</code> 类可以强制任意元素显示或隐藏。注意，这些类只对块级元素起作用。</p>
+						<p><code>.DisNo</code> 和 <code>.DisBlock</code> 类可以强制任意元素显示或隐藏。注意，这些类只对块级元素起作用。</p>
 						<div class="Code">
 							<pre><code>&lt;div class="DisNo">隐藏&lt;/div>
-&lt;div class="DisB">显示&lt;/div></code></pre>
+&lt;div class="DisBlock">显示&lt;/div></code></pre>
 						</div>
 					</li>
 					<li>
@@ -655,7 +645,7 @@ maximum-scale=1,user-scalable=no"></code></pre>
 						<h1 class="Ti">统一边距</h1>
 						<p>我们统一的边距类型。以10px为限。 注意：边距只针对块级元素</p>
 						<div class="IndexBox MB">
-							<p><code>.MA</code> 四周边距</p>
+							<p><code>.MAll</code> 四周边距</p>
 							<p><code>.MTB</code> 上下边距</p>
 							<p><code>.MB</code> 上边距</p>
 							<p><code>.MT</code> 上边距</p>
@@ -1215,14 +1205,14 @@ maximum-scale=1,user-scalable=no"></code></pre>
 						<p>支持多行文本的表单控件。可根据需要改变 <code>rows</code> 属性。</p>
 						<div class="IndexBox MB">
 							<div>
-								<p><code>.PA</code> 绝对定位</p>
+								<p><code>.PosA</code> 绝对定位</p>
 对象脱离常规流，使用top，right，bottom，left等属性进行绝对定位，盒子的偏移位置不影响常规流中的任何元素，其margin不与其他任何margin折叠</div>
 							<div>
-								<p><code>.PR</code> 相对定位</p>
+								<p><code>.PosR</code> 相对定位</p>
 对象遵循常规流，并且参照自身在常规流中的位置通过top，right，bottom，left属性进行偏移时不影响常规流中的任何元素。
 							</div>
 							<div>
-								<p><code>.PF</code> 固定定位</p>
+								<p><code>.PosF</code> 固定定位</p>
 对象脱离常规流，使用top，right，bottom，left等属性以窗口为参考点进行定位，当出现滚动条时，对象不会随着滚动。
 							</div>
 						</div>

@@ -432,6 +432,42 @@ return angular.module('MyApp', ['ngIOS9UIWebViewPatch'
 					}	
 				}
 			}
+		})
+		.state("pull",{//tab(选项卡)
+			url:"/pull",
+			views:{
+				'Header': Header,
+				'WrapContent':{
+					templateUrl :"pages/pull/pull.html",
+					controller : "PullController",
+					resolve : {
+						title:function(){
+							return "pull to refresh(下拉刷新)";
+						},
+						load : loadDeps([
+							"../pages/pull/pull"
+						])
+					}	
+				}
+			}
+		})
+		.state("picker",{//picker(选择器)
+			url:"/picker",
+			views:{
+				'Header': Header,
+				'WrapContent':{
+					templateUrl :"pages/picker/picker.html",
+					controller : "PickerController",
+					resolve : {
+						title:function(){
+							return "picker(选择器)";
+						},
+						load : loadDeps([
+							"../pages/picker/picker"
+						])
+					}	
+				}
+			}
 		});
 		
 		
@@ -506,12 +542,17 @@ return angular.module('MyApp', ['ngIOS9UIWebViewPatch'
 		// 另外，这段代码必须放在最后一个路由，否则直接在链接中到 #/路由 会无效
 		$stateProvider.state("otherwise", {
 			url : "*path",
-			template : "" ,
-			controller : ['$state',
-				function ( $state ) {
-					$state.go( "parent" );
+			views:{
+				'Header': Header,
+				'WrapContent':{
+					template : "" ,
+					controller : ['$state',
+						function ( $state ) {
+							$state.go( "parent" );
+						}
+					]
 				}
-			]
+			}
 		});
 		
 		//另外还可以用这个api让路径的前面加个叹号，跟Twitter一样

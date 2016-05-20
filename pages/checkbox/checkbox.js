@@ -7,21 +7,17 @@ function( title , $scope , $state ) {
 		//声明
 		$scope.Load = {
 			bussiness: function() {
+				//执行函数 
 				$scope.AnonymousState=true
 			},
 			init : function(){
 				//更改页面标题
 				document.title = $scope.$$prevSibling.HeaderTitle = title;
-				//更改页面标题
-				//UserInfo.setTitle(title);
-				
-				//获取用户信息回调
+				//执行方法
 				$scope.Load.bussiness()
-				//业务执行方法
-				//UserInfo.getUserInfo($scope.Load.bussiness);
 			}
 		};
-		$scope.Load.init();	
-		
-	}]);	
-});	
+		//运行
+		$scope.Load.init();
+	}]);
+});
