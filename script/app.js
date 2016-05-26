@@ -433,7 +433,7 @@ return angular.module('MyApp', ['ngIOS9UIWebViewPatch'
 				}
 			}
 		})
-		.state("pull",{//tab(选项卡)
+		.state("pull",{//pull to refresh(下拉刷新)
 			url:"/pull",
 			views:{
 				'Header': Header,
@@ -446,6 +446,24 @@ return angular.module('MyApp', ['ngIOS9UIWebViewPatch'
 						},
 						load : loadDeps([
 							"../pages/pull/pull"
+						])
+					}	
+				}
+			}
+		})
+		.state("infiniteScroll",{//infinite scroll(无限滚动)
+			url:"/infiniteScroll",
+			views:{
+				'Header': Header,
+				'WrapContent':{
+					templateUrl :"pages/infinite/infinite.html",
+					controller : "InfiniteScrollController",
+					resolve : {
+						title:function(){
+							return "infinite scroll(无限滚动)";
+						},
+						load : loadDeps([
+							"../pages/infinite/infinite"
 						])
 					}	
 				}

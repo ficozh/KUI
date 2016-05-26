@@ -148,7 +148,14 @@ input{line-height:normal}
 input[type="checkbox"],
 input[type="radio"]{padding:0;margin:4px 0 0;margin-top:1px \9;line-height:normal}
 
-input[type="number"]{-webkit-user-select:text;outline:0;-webkit-appearance:none;-moz-appearance:textfield}
+input[type="number"]{
+-webkit-user-select:text;
+   -moz-user-select:text;
+		user-select:text;
+outline:0;
+-webkit-appearance:none;
+   -moz-appearance:textfield
+}
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button{height:auto;margin:0;-webkit-appearance:none}
 
@@ -1008,6 +1015,7 @@ text-transform:uppercase;
 -webkit-transform:translate3d(0,0,0);
 		transform:translate3d(0,0,0);
 -webkit-user-select:none;
+   -moz-user-select:none;
 		user-select:none
 }
 .ModalBox .ModalFooter input[type="submit"].Button,
@@ -1169,10 +1177,6 @@ pointer-events:none;
 .PickerCenterHighlight:after{bottom:0;top:auto}
 
 
-
-
-
-
 .PickerModal .PickerItemsColWrapper{
 -webkit-transition-duration:.3s;
 		transition-duration:.3s;
@@ -1206,22 +1210,6 @@ pointer-events:none;
 -webkit-transition-timing-function:ease-out;
 		transition-timing-function:ease-out;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /*actions*/
 .ActionsModal{left:0;top:auto;right:0;bottom:0;width:100%;margin:0;background-color:transparent;box-shadow:none;
@@ -1592,9 +1580,11 @@ text-transform:uppercase;
 -webkit-align-items:center;
      -ms-flex-align:center;
         align-items:center;
--ms-touch-action:manipulation;/*防止双击缩放*/
-    touch-action:manipulation;
+/*防止双击缩放 由于出现 Deferred long-running timer task(s) to improve scrolling smoothness. See crbug.com/574343. 提醒，所以注释掉
+-ms-touch-action:manipulation;
+    touch-action:manipulation;*/
 -webkit-user-select:none;/*用户不能选择元素中的任何内容*/
+   -moz-user-select:none;
         user-select:none;
 -webkit-transition-timing-function:linear;
 		transition-timing-function:linear;
@@ -1918,80 +1908,46 @@ text-transform:uppercase;
 
 
 /*下拉刷新*/
-.PullToRefresh{position:relative;overflow:auto;height:100%;z-index:1;
-box-sizing:border-box;
--webkit-overflow-scrolling:touch
-}
-
-
-/* === Pull To Refresh === */
-.pull-to-refresh-layer {
-position:absolute;
-position:relative;
-margin-top:-44px;
-left:0;
-top:0;
-width:100%;
-height:44px;
-}
-.pull-to-refresh-layer .preloader {
-position:absolute;
-left:50%;
-top:50%;
-margin-left:-10px;
-margin-top:-10px;
-visibility:hidden;
-}
-.pull-to-refresh-layer .pull-to-refresh-arrow {
-width:13px;
-height:20px;
-position:absolute;
-left:50%;
-top:50%;
-margin-left:-6px;
-margin-top:-10px;
-background:no-repeat center;
-background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%2026%2040'%3E%3Cpolygon%20points%3D'9%2C22%209%2C0%2017%2C0%2017%2C22%2026%2C22%2013.5%2C40%200%2C22'%20fill%3D'%238c8c8c'%2F%3E%3C%2Fsvg%3E");
-background-size:13px 20px;
-z-index:10;
+.PullToRefresh .PullToRefreshList{margin:10px 0}
+/*下拉刷新图标*/
+.PullToRefreshLayer{position:absolute;left:0;top:0;width:100%;height:44px;margin-top:-44px}
+.PullToRefreshLayer .Loading{position:absolute;left:50%;top:50%;margin-left:-10px;margin-top:-10px;visibility:hidden}
+.PullToRefreshLayer .PullToRefreshArrow{position:absolute;left:50%;top:50%;width:13px;height:20px;margin-left:-6px;margin-top:-10px;background:no-repeat center;
+background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%2026%2040'%3E%3Cpolygon%20points%3D'9%2C22%209%2C0%2017%2C0%2017%2C22%2026%2C22%2013.5%2C40%200%2C22'%20fill%3D'%23666666'%2F%3E%3C%2Fsvg%3E");
+background-size:13px 20px;z-index:10;
 -webkit-transform:rotate(0deg) translate3d(0, 0, 0);
-transform:rotate(0deg) translate3d(0, 0, 0);
--webkit-transition-duration:300ms;
-transition-duration:300ms;
+		transform:rotate(0deg) translate3d(0, 0, 0);
+-webkit-transition-duration:.3s;
+		transition-duration:.3s;
 }
-.pull-to-refresh-content.pull-to-refresh-no-navbar {
-margin-top:-44px;
+/*下拉刷新内容*/
+.PullToRefreshContent.PullToRefreshNoNavbar{padding-top:44px;margin-top:-44px;
 height:-webkit-calc(100% + 44px);
-height:-moz-calc(100% + 44px);
-height:calc(100% + 44px);
+height:   -moz-calc(100% + 44px);
+height:		   calc(100% + 44px);
 }
-.pull-to-refresh-content.pull-to-refresh-no-navbar .pull-to-refresh-layer {
-margin-top:0;
+.PullToRefreshContent.PullToRefreshNoNavbar .PullToRefreshLayer{margin-top:0}
+.PullToRefreshContent.transitioning,
+.PullToRefreshContent.Refresh {
+-webkit-transition-duration:.4s;
+		transition-duration:.4s;
 }
-.pull-to-refresh-content.transitioning,
-.pull-to-refresh-content.refreshing {
--webkit-transition-duration:400ms;
-transition-duration:400ms;
-}
-.pull-to-refresh-content:not(.refreshing) .pull-to-refresh-layer .preloader {
+.PullToRefreshContent:not(.Refresh) .PullToRefreshLayer .Loading{
 -webkit-animation:none;
-animation:none;
+		animation:none;
 }
-.pull-to-refresh-content.refreshing {
--webkit-transform:translate3d(0, 44px, 0);
-transform:translate3d(0, 44px, 0);
+.PullToRefreshContent.Refresh{
+-webkit-transform:translate3d(0,44px,0);
+		transform:translate3d(0,44px,0);
 }
-.pull-to-refresh-content.refreshing .pull-to-refresh-arrow {
-visibility:hidden;
+.PullToRefreshContent.Refresh .PullToRefreshArrow{visibility:hidden;
 -webkit-transition-duration:0ms;
-transition-duration:0ms;
+		transition-duration:0ms;
 }
-.pull-to-refresh-content.refreshing .preloader{
-visibility:visible;
-}
-.pull-to-refresh-content.pull-up .pull-to-refresh-arrow {
+.PullToRefreshContent.Refresh .Loading{visibility:visible}
+.PullToRefreshContent.PullUp .PullToRefreshArrow{
 -webkit-transform:rotate(180deg) translate3d(0, 0, 0);
-transform:rotate(180deg) translate3d(0, 0, 0);
+		transform:rotate(180deg) translate3d(0, 0, 0);
 }
 
 

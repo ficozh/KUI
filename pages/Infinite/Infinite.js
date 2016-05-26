@@ -1,17 +1,12 @@
 //根路径
 define(['APP'],function(APP){
 	'use strict';
-	APP.controller('PullController', 
+	APP.controller('InfiniteScrollController', 
 		["title",'$scope','$state',
 function( title , $scope , $state) {
 		//声明
 		$scope.Load = {
 			bussiness: function() {
-				//执行函数 
-				var songs = ['Yellow Submarine', 'Don\'t Stop Me Now', 'Billie Jean', 'Californication'];
-				var authors = ['Beatles', 'Queen', 'Michael Jackson', 'Red Hot Chili Peppers'];
-				// Pull to refresh content
-				var ptrContent = $$('.ListBlock');
 				
 				$$(".PullToRefresh").on('refresh',function(){
 					setTimeout(function () {

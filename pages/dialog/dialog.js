@@ -20,8 +20,6 @@ function( title , $scope , $state ) {
 						$$.alert("alert警告消息框",function(){
 							$$.prompt("欢迎体验KMUI")
 						});
-					},function(){
-						
 					});
 				});
 				
