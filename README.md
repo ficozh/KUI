@@ -326,7 +326,7 @@ $$.fn.jsonArray(JSON)
 ```javascript
 $$.fn.device
 ```
-Device API
+
 | 语法 | 效果 |
 | ------------- | ------------- |
 | $$.fn.device.os | `string` 包含"android" (对于Android), "ios" (对于iOS), undefined (对于任意其他操作系统/平台) |
