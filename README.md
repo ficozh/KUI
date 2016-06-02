@@ -510,7 +510,7 @@ $$('.something').on('click', function (e) {
 $$(window).trigger('resize');
 ```
 
-| Classes |
+| Classes | 描述 |
 | ------ | ------ |
 | .addClass(className) | 给元素增加class 
 ```javascript
@@ -541,8 +541,8 @@ $$('h1, h2').toggleClass('small');
 <!-- After -->
 <h1>This is first title</h1>
 <h2 class="small">This is subtitle</h2>
-```
-| 属性 |
+``` |
+| 属性 | 描述 |
 | .prop(propName) | 获取一个属性值:
 ```javascript
 var isChecked = $$('input').prop('checked');
