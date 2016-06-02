@@ -512,32 +512,10 @@ $$(window).trigger('resize');
 
 | Classes | 描述 |
 | ------ | ------ |
-| .addClass(className) | 给元素增加class ```javascript//Add "intro" class to all paragraphs$$('p').addClass('intro');``` |
-| .removeClass(className) | 删除指定的class
-```javascript
-//Add "big" class from all links with "big" class
-$$('a.big').removeClass('big');``` |
-| .hasClass(className) | 元素上是否有指定的class:
-```html
-<p class="intro">Lorem ipsum...</p>
-```
-```javascript
-$$('p').hasClass('intro'); //-> true
-``` |
-| .toggleClass(className) | 有则删除，无则添加:
-```html
-<!-- Before -->
-<h1 class="small">This is first title</h1>
-<h2>This is subtitle</h2> 
-```
-```javascript
-$$('h1, h2').toggleClass('small');
-```
-```html
-<!-- After -->
-<h1>This is first title</h1>
-<h2 class="small">This is subtitle</h2>
-``` |
+| .addClass(className) | 给元素增加class `$$('p').addClass('intro');` |
+| .removeClass(className) | 删除指定的class `$$('a.big').removeClass('big');` |
+| .hasClass(className) | 元素上是否有指定的class: `<p class="intro">Lorem ipsum...</p>` `$$('p').hasClass('intro');` //-> true |
+| .toggleClass(className) | 有则删除，无则添加:`<h1 class="small">This is first title</h1><h2>This is subtitle</h2>``$$('h1, h2').toggleClass('small');``<h1>This is first title</h1><h2 class="small">This is subtitle</h2>` |
 | 属性 | 描述 |
 | .prop(propName) | 获取一个属性值:
 ```javascript
