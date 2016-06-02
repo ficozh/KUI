@@ -514,107 +514,30 @@ $$(window).trigger('resize');
 | ------ | ------ |
 | .addClass(className) | 给元素增加class `$$('p').addClass('intro');` |
 | .removeClass(className) | 删除指定的class `$$('a.big').removeClass('big');` |
-| .hasClass(className) | 元素上是否有指定的class: `<p class="intro">Lorem ipsum...</p>` `$$('p').hasClass('intro');` //-> true |
-| .toggleClass(className) | 有则删除，无则添加:`<h1 class="small">This is first title</h1><h2>This is subtitle</h2>``$$('h1, h2').toggleClass('small');``<h1>This is first title</h1><h2 class="small">This is subtitle</h2>` |
+| .hasClass(className) | 元素上是否有指定的class:  `$$('p').hasClass('intro');` |
+| .toggleClass(className) | 有则删除，无则添加:`$$('h1, h2').toggleClass('small');` |
 | 属性 | 描述 |
-| .prop(propName) | 获取一个属性值:
-```javascript
-var isChecked = $$('input').prop('checked');
-``` |
-| .prop(propName, propValue) | 设置一个属性值:
-```javascript
-//Make all checkboxes checked
-$$('input[type="checkbox"]').prop('checked', true);
-``` |
-| .prop(propertiesObject) | 设置多个属性值:
-```javascript
-$$('input').prop({
-  checked: false,
-  disabled: true
-}) 
-``` |           
-| .attr(attrName) | 获取一个属性值:
-```html
-<a href="http://google.com">Google</a>
-```
-```javascript
-var link = $$('a').attr('href'); //-> http://google.com
-``` |
-| .attr(attrName, attrValue) | 设置一个属性值:
-```javascript
-//Set all links to google
-$$('a').attr('href', 'http://google.com');
-``` |
-| .attr(attributesObject) | 设置多个属性值:
-```javascript
-$$('a').attr({
-  id: 'new-id',
-  title: 'Link to Google',
-  href: 'http://google.com'
-}) 
-``` |
-| .removeAttr(attrName) | 删除属性值:
-```javascript
-//Remove "src" attribute from all images
-$$('img').removeAttr('src');
-``` |
-| .val() | 获取选中的元素中的第一个元素的当前值
-```html
-<input id="myInput" type="text" value="Lorem ipsum"/>
-```
-```javascript
-var inputVal = $$('#myInput').val(); //-> 'Lorem ipsum'
-``` |
-| .val(newValue) | 给选中的元素的每一个都设置指定的值
-$$('input#myInput').val('New value here');
-数据存储
-| .data(key, value) | 在选中的元素上存储任意数据
-$$('a').data('user', {
-    id: '123',
-    name: 'John',
-    email: 'john@doe.com'
-});  
-| .data(key) | 如果只有一个参数，则读取指定的值，如果有两个参数 data(key, value) 则是设置值，也可以通过 HTML5 data-* 属性来设置。
-var user = $$('a').data('user'); 
-//-> {id: '123', name: 'John', email: 'john@doe.com'}
-or
-
-<p data-id="123">Lorem ipsum...</p>
-var id = $$('p').data('id'); //-> 123
-| .removeData(key) | Remove specified data
-$$('a').removeData('user')
-Data Set
-| .dataset() | Returns element's data set (set of data- attributes) as plain Object
-<div id="my-div" data-loop="true" data-animate-pages="false" data-index="0" data-hello="world">
-    ...
-</div>
-var dataset = $$('#my-div').dataset();
-/* 
-dataset will contain plain object with camelCase keys and with formatted boolean and number types:
-{
-    loop: true,
-    animatePages: false,
-    index: 0,
-    hello: 'world'
-}
-*/
-CSS transform, transitions
-| .transform(CSSTransformString) | 添加带前缀的transform 样式:
-$$('a').transform('rotate(90deg)')
-| .transition(transitionDuration) | 设置css transition-duration 属性
-$$('p').transition(300)
-事件
-| .on(eventName, handler, useCapture) | 在选中的元素上绑定事件
-$$('a').on('click', function (e) { 
-  console.log('clicked'); 
-});
-$$('input[type="text"]').on('keyup keydown change', function (e) { 
-  console.log('input value changed'); 
-});
-.on(eventName, delegatedTarget, handler, useCapture) | 通过代理绑定事件
-$$(document).on('click', 'a', function (e) { 
-  console.log('link clicked'); 
-});
+| .prop(propName) | 获取一个属性值:`var isChecked = $$('input').prop('checked');` |
+| .prop(propName, propValue) | 设置一个属性值:`$$('input[type="checkbox"]').prop('checked', true);` |
+| .prop(propertiesObject) | 设置多个属性值:`$$('input').prop({checked:false,disabled:true})` |           
+| .attr(attrName) | 获取一个属性值:`$$('a').attr('href');` |
+| .attr(attrName, attrValue) | 设置一个属性值:`$$('a').attr('href', 'http://google.com');` |
+| .attr(attributesObject) | 设置多个属性值:`$$('a').attr({id:'new-id',title:'Link to Google',href:'http://google.com'})` |
+| .removeAttr(attrName) | 删除属性值:`$$('img').removeAttr('src');` |
+| .val() | 获取选中的元素中的第一个元素的当前值`$$('#myInput').val();` |
+| .val(newValue) | 给选中的元素的每一个都设置指定的值 `$$('input#myInput').val('New value here');`
+| 数据存储 | 描述 |
+| .data(key, value) | 在选中的元素上存储任意数据`$$('a').data('user',{id:'123',name:'John',email:'john@doe.com'});` |  
+| .data(key) | 如果只有一个参数，则读取指定的值，如果有两个参数 data(key, value) 则是设置值，也可以通过 HTML5 data-* 属性来设置。|
+| .removeData(key) | 删除特定数据 `$$('a').removeData('user')`|
+| 数据集 | 描述 |
+| .dataset() | 返回元素的数据集（组数据 - 属性）为纯对象 |
+| CSS transform, transitions | 描述 |
+| .transform(CSSTransformString) | 添加带前缀的transform 样式:`$$('a').transform('rotate(90deg)')` |
+| .transition(transitionDuration) | 设置css transition-duration 属性 `$$('p').transition(300)` |
+| 事件 | 描述 |
+| .on(eventName, handler, useCapture) | 在选中的元素上绑定事件`$$('a').on('click', function (e) {console.log('clicked'); });`|
+|.on(eventName, delegatedTarget, handler, useCapture) | 通过代理绑定事件`$$(document).on('click','a',function (e) {console.log('link clicked');});`|
 | .once(eventName, handler, useCapture) | Add event handler function to one or more events to the selected elements that will be executed only once
 $$('a').once('click', function (e) { 
   console.log('clicked'); 
