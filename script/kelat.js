@@ -85,13 +85,13 @@
 }(typeof window !== "undefined" ? window : this,function(window,noGlobal){
 'use strict';
 // 版本
-var version = "1.0.0";
+var version = "1.2.0";
 var classType = {};
 var toString = classType.toString;
 var hasOwn = classType.hasOwnProperty;
 var _KLTTEST_ = /ktest=true/.test(window.location.hash);
 //运行授权
-var running = ++[[-1]][+[-1]]+[]+[] >>> 0 ? !0 : !1 ;
+var running = ++[[]][+[]]+[]+[] >>> 0 ? !0 : !1 ;
 var KUIAPP = {};
 /***** 定义局部参数 *****/
 var Local = {
@@ -727,6 +727,7 @@ var kelatDom = (function(){
                 for(var i = 0; i < this.length; i++){
                     this[i].textContent = text;
                 }
+                return this;
             }
         },
         is: function(selector){
@@ -742,8 +743,10 @@ var kelatDom = (function(){
                 else if(el.msMatchesSelector){ return el.msMatchesSelector(selector); }
                 else{
                     compareWith = $(selector);
-                    for (i = 0; i < compareWith.length; i++) {
-                        if (compareWith[i] === this[0]) return true;
+                    for(i = 0; i < compareWith.length; i++){
+                        if(compareWith[i] === this[0]){
+							return true;
+						};
                     }
                     return false;
                 }
@@ -1948,6 +1951,7 @@ window['kelat']['validate'] = KUIAPP.Validate;
  * @return {Array} options:{'url':'http://www.***.com/',type:['=','id']} 分割符和参数名
  */
 KUIAPP.GetUrlParams = function(options) {
+	options = options || {};
     var ArrayData = {},
         LinkURL= options.url ? options.url : window.location.href,
         angularMark = LinkURL.indexOf("#/")+1 , 
@@ -2009,7 +2013,7 @@ window['kelat']['loadJC'] = KUIAPP.LoadJC;
  * @param {String} id:需要闪动的id
  */
 KUIAPP.Glint = function(id){
-    var $ID = $(id);
+    var $ID = $$(id);
     var degree = ["#DD7886","#FBC7BB","#F4E4C9","#DD7886","#FBC7BB","#F4E4C9","#FFF"],number = 0,
         length = degree.length;
     (function fn() {
@@ -2254,7 +2258,7 @@ KUIAPP.HandleInfiniteScroll = function() {
     var scrollTop = inf[0].scrollTop;
     var scrollHeight = inf[0].scrollHeight;
     var height = inf[0].offsetHeight;
-    var distance = inf[0].getAttribute('data-distance');
+    var distance = inf.find('.infinite-scroll').attr('data-distance');
     var virtualListContainer = inf.find('.virtual-list');
     var virtualList;
     var onTop = inf.hasClass('infinite-scroll-top');
@@ -3316,11 +3320,12 @@ function BlankTips(title, content, callBack){
     var TitleHTML    = title   ? '<div class="BlankTipsTitle">'  + title   + '</div>' : '';
     var ContentHTML  = content ? '<div class="BlankTipsContent">' + content + '</div>' : '';
     var BlankTipsHTML = '<div class="BlankTips">' + ContentHTML + TitleHTML + '</div></div>';
-    var $BlankTipsHTML = $(BlankTipsHTML);
+    var $BlankTipsHTML = $$(BlankTipsHTML);
     $BlankTipsHTML.on(Local.support.onClick, function(event){
         if(callBack){ callBack($BlankTipsHTML,event) };
     });
-    $(document.getElementById(Local.WrapperArea)).append($BlankTipsHTML)
+	$$('html,body').addClass('OH');
+    $$(document.getElementById(Local.WrapperArea)).append($BlankTipsHTML)
     return this;
 };
 window['kelat']['blankTips'] = BlankTips;

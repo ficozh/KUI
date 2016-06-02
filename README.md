@@ -322,10 +322,29 @@ $$.fn.trim(text)
 $$.fn.jsonArray(JSON)
 ```
 
-`设备/操作系统探测` 主要针对移动端进行检测
+`设备/操作系统探测` 主要针对移动端进行检测，它包含了关于设备和平台的有用信息
 ```javascript
 $$.fn.device
 ```
+Device API
+|语法|效果|
+|---|----
+|$$.fn.device.os|string. 包含"android" (对于Android), "ios" (对于iOS), undefined (对于任意其他操作系统/平台)
+|$$.fn.device.osVersion|string. 包含操作系统版本号，只在Android和iOS设备上可用。例如，如果是iOS设备，且其版本为7.1，则会显示“7.1”
+|$$.fn.device.android|boolean. 对于Android设备，为true，对于其他设备，为false
+|$$.fn.device.ios|boolean. 对于iOS设备，为true，对于其他设备，为false
+|$$.fn.device.ipad|boolean. 对于iPad，为true，对于其他设备，为false
+|$$.fn.device.iphone|boolean. 对于iPhone/iPod Touch，为true，对于其他设备，为false
+|$$.fn.device.pixelRatio|number. 返回设备屏幕像素比，实际上，它就是window.devicePixelRatio的快捷方式
+|$$.fn.device.webView|boolean. 如果应用在UIWebView（安装在家用电脑或phone gap上的网络应用）中运行，为true
+|$$.fn.device.minimalUi|boolean. 如果启用了minimal-ui模式，为true。所谓minimal-ui模式，即为：当网络应用运行在iOS 7.1+的iPhone/iPod上，并且添加了minimal-ui viewport这个meta标签
+|$$.fn.device.statusBar|boolean. 如果应用运行在全屏模式，并且需要状态栏遮罩，为true。只针对iOS
+
+
+
+
+
+
 
 `触摸事件` 对指定DOM元素的触摸事件返回相应的移动坐标数据，并提供回调。
 ```javascript
