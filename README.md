@@ -512,8 +512,7 @@ $$(window).trigger('resize');
 
 | Classes | 描述 |
 | ------ | ------ |
-| .addClass(className) | 给元素增加class 
-```javascript
+| .addClass(className) | 给元素增加class ```javascript
 //Add "intro" class to all paragraphs
 $$('p').addClass('intro');
 ``` |
