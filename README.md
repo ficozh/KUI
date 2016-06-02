@@ -323,11 +323,9 @@ $$.fn.jsonArray(JSON)
 ```
 
 `设备/操作系统探测` 主要针对移动端进行检测，它包含了关于设备和平台的有用信息
-```javascript
-$$.fn.device
-```
+Device API
 
-| 语法 | 效果 |
+| 语法 | 返回值 |
 | ------------- | ------------- |
 | $$.fn.device.os | `string` 包含"android" (对于Android), "ios" (对于iOS), undefined (对于任意其他操作系统/平台) |
 | $$.fn.device.osVersion | `string` 包含操作系统版本号，只在Android和iOS设备上可用。例如，如果是iOS设备，且其版本为7.1，则会显示“7.1” |
@@ -342,10 +340,33 @@ $$.fn.device
 | $$.fn.device.browse | `string` 返回浏览类型，包括（`ie` `Firefox` `Chrome` `Edge` `Opera` `Safari` `Netscape`） |
 
 
+这个设备检测库也在<html>元素上加入了额外的类，以在不同的操作系统和平台上，具有不同的CSS样式。
 
-
-
-
+所以，如果你用iOS 7.1的设备打开应用，你会拥有以下类：
+```html
+<html class="ios ios-7 ios-7-1 iosGt6 PixelRatio1">
+...
+```
+如果你用具有retina屏的iOS 7.1设备来打开应用，并且运行在全屏模式下（$$.fn.device.statusBar = true）：
+```html
+<html class="ios ios-7 ios-7-1 iosGt6 Retina PixelRatio2 StatusbarOverlay">
+...
+```
+如果你用iOS 8.0设备来打开应用，并且运行在全屏模式下（$$.fn.device.statusBar = true）：
+```html
+<html class="ios ios-8 ios-8-0 iosGt6 iosGt7 StatusbarOverlay">
+...
+```
+如果你用iPhone6 Plus和您的应用程序打开的应用程序在全屏模式下运行 ($$.fn.device.statusBar = true):
+```html
+<html class="ios ios-8 ios-8-0 iosGt6 iosGt7 Retina PixelRatio3 StatusbarOverlay">
+...
+```
+如果你用Android 4.4设备来打开应用，你会拥有以下类：
+```html
+<html class="android android-4 android-4-4">
+...
+```
 
 `触摸事件` 对指定DOM元素的触摸事件返回相应的移动坐标数据，并提供回调。
 ```javascript
@@ -469,6 +490,307 @@ $$.numberBox();
 ```javascript
 $$.progressbar("body",time);
 ```
+## 自定义的DOM库
+
+KUI不需要任何第三方的库，包括DOM操作。它有自己的 KDOM - 一个集成了大部分常用DOM操作的高性能库。你不需要学习任何新的东西，因为它的用法和大名鼎鼎的jQuery几乎是一样的，包括大部分常用的方法和jquery风格的链式调用。
+
+现在有一个全局的KDom对象，为了防止和其他库冲突，我们使用 $$。
+
+用法示例
+```javascript
+$$('.something').on('click', function (e) {
+    $$(this).addClass('hello').attr('title', 'world').insertAfter('.something-else');
+});
+```
+
+可用的方法
+
+下面这些方法几乎都和 jQuery/Zepto 是一样的：
+```javascript
+$$(window).trigger('resize');
+```
+
+| Classes |
+| ------ | ------ |
+| .addClass(className) | 给元素增加class 
+```javascript
+//Add "intro" class to all paragraphs
+$$('p').addClass('intro');
+``` |
+| .removeClass(className) | 删除指定的class
+```javascript
+//Add "big" class from all links with "big" class
+$$('a.big').removeClass('big');``` |
+| .hasClass(className) | 元素上是否有指定的class:
+```html
+<p class="intro">Lorem ipsum...</p>
+```
+```javascript
+$$('p').hasClass('intro'); //-> true
+``` |
+| .toggleClass(className) | 有则删除，无则添加:
+```html
+<!-- Before -->
+<h1 class="small">This is first title</h1>
+<h2>This is subtitle</h2> 
+```
+```javascript
+$$('h1, h2').toggleClass('small');
+```
+```html
+<!-- After -->
+<h1>This is first title</h1>
+<h2 class="small">This is subtitle</h2>
+```
+| 属性 |
+| .prop(propName) | 获取一个属性值:
+```javascript
+var isChecked = $$('input').prop('checked');
+``` |
+| .prop(propName, propValue) | 设置一个属性值:
+```javascript
+//Make all checkboxes checked
+$$('input[type="checkbox"]').prop('checked', true);
+``` |
+| .prop(propertiesObject) | 设置多个属性值:
+```javascript
+$$('input').prop({
+  checked: false,
+  disabled: true
+}) 
+``` |           
+| .attr(attrName) | 获取一个属性值:
+```html
+<a href="http://google.com">Google</a>
+```
+```javascript
+var link = $$('a').attr('href'); //-> http://google.com
+``` |
+| .attr(attrName, attrValue) | 设置一个属性值:
+```javascript
+//Set all links to google
+$$('a').attr('href', 'http://google.com');
+``` |
+| .attr(attributesObject) | 设置多个属性值:
+```javascript
+$$('a').attr({
+  id: 'new-id',
+  title: 'Link to Google',
+  href: 'http://google.com'
+}) 
+``` |
+| .removeAttr(attrName) | 删除属性值:
+```javascript
+//Remove "src" attribute from all images
+$$('img').removeAttr('src');
+``` |
+| .val() | 获取选中的元素中的第一个元素的当前值
+```html
+<input id="myInput" type="text" value="Lorem ipsum"/>
+```
+```javascript
+var inputVal = $$('#myInput').val(); //-> 'Lorem ipsum'
+``` |
+| .val(newValue) | 给选中的元素的每一个都设置指定的值
+$$('input#myInput').val('New value here');
+数据存储
+| .data(key, value) | 在选中的元素上存储任意数据
+$$('a').data('user', {
+    id: '123',
+    name: 'John',
+    email: 'john@doe.com'
+});  
+| .data(key) | 如果只有一个参数，则读取指定的值，如果有两个参数 data(key, value) 则是设置值，也可以通过 HTML5 data-* 属性来设置。
+var user = $$('a').data('user'); 
+//-> {id: '123', name: 'John', email: 'john@doe.com'}
+or
+
+<p data-id="123">Lorem ipsum...</p>
+var id = $$('p').data('id'); //-> 123
+| .removeData(key) | Remove specified data
+$$('a').removeData('user')
+Data Set
+| .dataset() | Returns element's data set (set of data- attributes) as plain Object
+<div id="my-div" data-loop="true" data-animate-pages="false" data-index="0" data-hello="world">
+    ...
+</div>
+var dataset = $$('#my-div').dataset();
+/* 
+dataset will contain plain object with camelCase keys and with formatted boolean and number types:
+{
+    loop: true,
+    animatePages: false,
+    index: 0,
+    hello: 'world'
+}
+*/
+CSS transform, transitions
+| .transform(CSSTransformString) | 添加带前缀的transform 样式:
+$$('a').transform('rotate(90deg)')
+| .transition(transitionDuration) | 设置css transition-duration 属性
+$$('p').transition(300)
+事件
+| .on(eventName, handler, useCapture) | 在选中的元素上绑定事件
+$$('a').on('click', function (e) { 
+  console.log('clicked'); 
+});
+$$('input[type="text"]').on('keyup keydown change', function (e) { 
+  console.log('input value changed'); 
+});
+.on(eventName, delegatedTarget, handler, useCapture) | 通过代理绑定事件
+$$(document).on('click', 'a', function (e) { 
+  console.log('link clicked'); 
+});
+| .once(eventName, handler, useCapture) | Add event handler function to one or more events to the selected elements that will be executed only once
+$$('a').once('click', function (e) { 
+  console.log('clicked'); 
+});
+$$('input[type="text"]').once('keyup keydown change', function (e) { 
+  console.log('input value changed'); 
+});
+| .once(eventName, delegatedTarget, handler, useCapture) | Live/delegated event handler that will be executed only once
+$$(document).once('click', 'a', function (e) { 
+  console.log('link clicked'); 
+});
+| .off(eventName, handler, useCapture) | 删除事件绑定
+function clickHandler(){
+    console.log('clicked');
+}
+// Add event listener
+$$('a').on('click', clickHandler);
+// Remove event listener
+$$('a').off('click', clickHandler);                  
+| .off(eventName, delegatedTarget, handler, useCapture) | 删除通过代理绑定的事件
+function clickHandler(){
+    console.log('clicked');
+}
+// Add event listener
+$$(document).on('click', 'a', clickHandler);
+// Remove event listener
+$$(document).off('click', 'a', clickHandler);
+| .trigger(eventName, eventData) | 触发选中元素上的事件，指定所有的事件回调函数
+| .transitionEnd(callback, permanent) | 在选中的元素上增加 transitionEnd 事件回调
+$$('a').transitionEnd(function(){ /* do something */ })
+| .animationEnd(callback) | 在选中的元素上增加 animationEnd 事件回调
+$$('a').animationEnd(function(){ /* do something */ })
+Styles
+| .width() | 获取当前选中元素中的第一个元素的当前计算出来的宽度
+var boxWidth = $$('div#box').width();
+| .outerWidth([includeMargin]) | 获取当前选中元素中的第一个元素的当前计算出来的宽度，包括 padding ，border 和 margin(如果 includeMargin 设置为 true)
+var outerWidth = $$('div#box').outerWidth(true);
+| .height() | 获取当前选中玄素中的第一个元素的当前计算出来的高度
+var boxHeight = $$('div#box').height();
+| .outerHeight([includeMargin]) | 获取当前选中元素中的第一个元素的当前计算出来的高度，包括 padding ，border 和 margin(如果 includeMargin 设置为 true)
+var outerHeight = $$('div#box').outerHeight(true);
+| .offset() | 获取当前选中元素的第一个元素相对 document 的位置偏移
+var coords = $$('.content').offset(); //-> {top: 100, left: 200}
+var top = coords.top; //-> 100
+var left = coords.left; //-> 200
+| .hide() | 对选中的元素设置 "display: none"
+//hide all paragraphs
+$$('p').hide();
+| .show() | 对选中的元素设置 "display: block"
+//show all paragraphs
+$$('p').show();
+| .css(property) | 获取选中元素中第一个元素的CSS属性值
+$$('.content').css('left'); //-> 200px
+| .css(property, value) | 设置全部选中元素中的CSS属性值
+$$('.content').css('left', '100px');
+| .css(propertiesObject) | 设置全部选中元素中的多个CSS属性值
+$$('a').css({
+    left: '100px',
+    top: '200px',
+    color: 'red',
+    width: '300px',
+    marginLeft: '17px',
+    'padding-right': '20px'
+});
+Scroll
+| .scrollTop() | 获取选中元素的 scrollTop 值
+| .scrollTop(position, duration, callback)	在指定时间（duration）内滚动到指定位置（position）。如果时间（duration没有定义），则立刻滚动到指定位置。如果你指定了回调函数，那么他会在滚动完成后执行。
+| .scrollLeft() | 获取选中元素的 scrollLeft 值
+| .scrollLeft(position, duration, callback) | 在指定的时间（duration 毫秒)内滚动到指定的位置(scrollLeft)。如果没有指定时间则立刻滚动到指定位置。如果你指定了回调函数，那么他会在动画完成后执行。
+| .scrollTo(left, top, duration, callback) | 在指定的时间（duration 毫秒)内滚动到指定的位置(scrollLeft, scrollTop)。如果没有指定时间则立刻滚动到指定位置。如果你指定了回调函数，那么他会在动画完成后执行。
+Dom 操作
+| .add(elements) | Create a new KDom collection with elements added to the set of matched elements:
+var links = $$('a');
+var divs = $$('div');
+links.add('p').addClass('blue');
+links.add(divs).addClass('red');
+| .each(callback)	遍历集合，对其中每一个元素执行回调。
+| .html()	获得选中的第一个元素的HTML内容
+| .html(newInnerHTML)	给全部选中元素设置HTML内容
+| .text()	获得选中的第一个元素的文本内容
+| .text(newTextContent)	给全部选中元素设置文本内容
+| .is(CSSSelector)	选中的元素是否符合指定的CSS选择器
+| .is(HTMLElement)	选中的元素是否是给定的 DOM 元素或者 Dom7 集合
+| .index()	当前选中的第一个元素在他的所有兄弟节点中的排序
+| .eq(index)	返回当前选中的元素中的指定序号的元素
+| .append(HTMLString)	在当前选中元素的每一个后面插入指定内容
+| .append(HTMLElement)	在当前选中元素的每一个后面插入指定元素
+| .prepend(newHTML)	在当前选中元素的每一个前面插入指定内容
+| .prepend(HTMLElement)	在当前选中元素的每一个前面插入指定元素
+| .insertBefore(target)	把当前选中的每一个元素插入到指定的目标之前。目标（target）应该是一个 CSS 选择器或者 HTML 元素 或者 Dom7集合
+| .insertAfter(target)	把当前选中的每一个元素插入到指定的目标之后。目标（target）应该是一个 CSS 选择器或者 HTML 元素 或者 Dom7集合
+| .next([selector])	获得当前选中的每一个元素的下一个直接兄弟元素。如果提供了一个选择器（selector），那么会用这个选择器来过滤这些兄弟元素。
+| .nextAll([selector])	获得当前选中的每一个元素之后的全部兄弟元素。如果提供了一个选择器（selector），那么会用这个选择器来过滤这些兄弟元素。
+| .prev([selector])	获得当前选中的每一个元素的上一个直接兄弟元素。如果提供了一个选择器（selector），那么会用这个选择器来过滤这些兄弟元素。
+| .prevAll([selector])	获得当前选中的每一个元素之前的全部兄弟元素。如果提供了一个选择器（selector），那么会用这个选择器来过滤这些兄弟元素。
+| .parent([selector])	获取选中的每一个元素的父元素。如果提供了一个选择器（selector），那么会用这个选择器来过滤这些父元素。
+| .parents([selector])	获取选中的每一个元素的祖先元素。如果提供了一个选择器（selector），那么会用这个选择器来过滤这些祖先元素。
+| .find(selector)	在选中的每一个元素的后代中查找指定的元素。
+| .children(selector)	在选中的每一个元素的直接孩子中查找指定的元素。
+| .filter(callback)	Filter collection of elements
+var redLinks = $$('a').filter(function(index, el) {
+    return $$(this).hasClass('red');
+})                  
+| .remove() | 从DOM中删除选中的元素 |
+| 快捷方式 |
+| .click() | Trigger "click" event on collection |
+| .click(handler) | Add "click" event handler to collection |
+| .blur() | Trigger "blur" event on collection |
+| .blur(handler) | Add "blur" event handler to collection |
+| .focus() | Trigger "focus" event on collection |
+| .focus(handler) | Add "focus" event handler to collection |
+| .focusin() | Trigger "focusin" event on collection |
+| .focusin(handler) | Add "focusin" event handler to collection |
+| .focusout() | Trigger "focusout" event on collection |
+| .focusout(handler) | Add "focusout" event handler to collection |
+| .keyup() | Trigger "keyup" event on collection |
+| .keyup(handler) | Add "keyup" event handler to collection |
+| .keydown() | Trigger "keydown" event on collection |
+| .keydown(handler) | Add "keydown" event handler to collection |
+| .keypress() | Trigger "keypress" event on collection |
+| .keypress(handler) | Add "keypress" event handler to collection |
+| .submit() | Trigger "submit" event on collection |
+| .submit(handler) | Add "submit" event handler to collection |
+| .change() | Trigger "change" event on collection |
+| .change(handler) | Add "change" event handler to collection |
+| .mousedown() | Trigger "mousedown" event on collection |
+| .mousedown(handler) | Add "mousedown" event handler to collection |
+| .mousemove() | Trigger "mousemove" event on collection |
+| .mousemove(handler) | Add "mousemove" event handler to collection |
+| .mouseup() | Trigger "mouseup" event on collection |
+| .mouseup(handler) | Add "mouseup" event handler to collection |
+| .mouseenter() | Trigger "mouseenter" event on collection |
+| .mouseenter(handler) | Add "mouseenter" event handler to collection |
+| .mouseleave() | Trigger "mouseleave" event on collection |
+| .mouseleave(handler) | Add "mouseleave" event handler to collection |
+| .mouseout() | Trigger "mouseout" event on collection |
+| .mouseout(handler) | Add "mouseout" event handler to collection |
+| .mouseover() | Trigger "mouseover" event on collection |
+| .mouseover(handler) | Add "mouseover" event handler to collection |
+| .touchstart() | Trigger "touchstart" event on collection |
+| .touchstart(handler) | Add "touchstart" event handler to collection |
+| .touchend() | Trigger "touchend" event on collection |
+| .touchend(handler) | Add "touchend" event handler to collection |
+| .touchmove() | Trigger "touchmove" event on collection |
+| .touchmove(handler) | Add "touchmove" event handler to collection |
+| .resize(handler) | Add "resize" event handler to collection |
+| .scroll(handler) | Add "scroll" event handler to collection |
+
+
+
 
 ## 运行KUI
 =====
