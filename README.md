@@ -512,10 +512,7 @@ $$(window).trigger('resize');
 
 | Classes | 描述 |
 | ------ | ------ |
-| .addClass(className) | 给元素增加class ```javascript
-//Add "intro" class to all paragraphs
-$$('p').addClass('intro');
-``` |
+| .addClass(className) | 给元素增加class ```javascript//Add "intro" class to all paragraphs$$('p').addClass('intro');``` |
 | .removeClass(className) | 删除指定的class
 ```javascript
 //Add "big" class from all links with "big" class
