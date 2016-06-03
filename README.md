@@ -308,9 +308,14 @@ $$.floatButton();
 KUI提供实用用性更强的编写方式，提供多种常用功能和扩展，为了和jQuery进行区分，KUI的方法调用方式以 `$$.` 开始。下面介绍事件的使用方法：
 
 `特性支持检测` 提供针对性的检测功能(事件类型/滚动条位置/页面位置及窗口大小)
-```javascript
-$$.fn.support
-```
+support API
+
+| 语法 | 返回值 |
+| ------------- | ------------- |
+| $$.fn.support.GetPageScroll | `number` 返回滚动条位置 `.X ` `.Y `|
+| $$.fn.support.GetPageSize | `number` 页面位置及窗口大小 `.PageW`  `.PageH` `.WinW` `.WinH` |
+| $$.fn.support.desktopEvents | `string` 桌面事件，对于PC设备是鼠标事件，移动设备是触摸事件 |
+| $$.fn.support.touch | `boolean` 判断是否支持触摸事件 |
 
 `删除前后空格 和 BOM`
 ```javascript
@@ -376,6 +381,11 @@ $$.fn.touches(document.getElementById("id"),function(Touches){
 ```
 
 `验证` 提供常用的验证，包括手机、邮箱、电话、数字等。
+validate API
+| 语法 | 返回值 |
+| ------------- | ------------- |
+| $$.fn.validate(string, type) |  `string` 需要验证的数据体。`type` 数据类型或正则表达式。数据类型包括（`email` `phone` `mobile` `number` `integer` `english` `chinese` `date`）|
+
 ```javascript
 $$.validate('13123456789','mobile')
 ```
@@ -538,7 +548,9 @@ $$(window).trigger('resize');
 | 数据集 | 描述 |
 | ------------- | ------------- |
 | .dataset() | 返回元素的数据集（组数据 - 属性）为纯对象 |
+
 | CSS transform, transitions | 描述 |
+| ------------- | ------------- |
 | .transform(CSSTransformString) | 添加带前缀的transform 样式:`$$('a').transform('rotate(90deg)')` |
 | .transition(transitionDuration) | 设置css transition-duration 属性 `$$('p').transition(300)` |
 
@@ -645,6 +657,44 @@ $$(window).trigger('resize');
 | .resize(handler) | 添加 "resize" 事件到句柄 |
 | .scroll(handler) | 添加 "scroll" 事件到句柄 |
 
+
+####Ajax 
+
+| 参数 | 类型 | 默认值 | 描述 |
+| ------------- | ------------- | ------------- | ------------- |
+
+| async | boolean | true | 如果您需要同步请求，请将此选项设置为false |
+| method | string | 'GET' | 请求方法 (e.g. "POST", "GET", "PUT") |
+| cache | boolean | true | 如果设置为false，将不被浏览器缓存。|
+| contentType | string | 'application/x-www-form-urlencoded' | 发送信息至服务器时内容编码类型。|
+| crossDomain | boolean | undefined | 默认： 同域请求为false，跨域请求为true如果你想强制跨域请求（如JSONP形式）同一域，设置crossDomain为true。这使得例如，服务器端重定向到另一个域 |
+| data | Object or String or Array |  | 发送到服务器的数据。将自动转换为请求字符串格式。GET 请求中将附加在 URL 后。查看 processData 选项说明以禁止此自动转换。必须为 Key/Value 格式。如果为数组，jQuery 将自动为不同值对应同一个名称。如 {foo:["bar1", "bar2"]} 转换为 "&foo=bar1&foo=bar2"。 |
+| processData | boolean | true | (默认: true) 默认情况下，通过data选项传递进来的数据，如果是一个对象(技术上讲只要不是字符串)，都会处理转化成一个查询字符串，以配合默认内容类型 "application/x-www-form-urlencoded"。如果要发送 DOM 树信息或其它不希望转换的信息，请设置为 false。|
+| dataType | string | 'text' | 数据类型，你期望从服务器返回的数据。可以是'text'或'JSON' |
+| headers | object |  | 一个额外的"{键:值}"对映射到请求一起发送。此设置被设置之前beforeSend函数被调用;因此，消息头中的值设置可以在覆盖beforeSend函数范围内的任何设置。|
+| xhrFields | object |  | 一对“文件名-文件值”在本机设置XHR对象。例如，如果需要的话，你可以用它来设置withCredentials为true的跨域请求。|
+| username | string |  | 用于响应HTTP访问认证请求的用户名 |
+| password | string |  | 用于响应HTTP访问认证请求的用密码 |
+| timeout | number | 0 | 设置请求超时时间（毫秒）。此设置将覆盖全局设置。|
+
+
+
+| 回调 |  |  | 描述 |
+| ------------- | ------------- | ------------- | ------------- |
+| beforeSend | function (xhr) | 可用于在发送前修改XHR对象的请求前回调函数。使用此设置自定义页眉等 |
+| error | function (xhr, status) | 请求失败时调用此函数 |
+| success | function (data, status, xhr) | 请求成功时调用此函数 |
+| complete | function (xhr, status) | 当请求完成之后调用这个函数，无论成功或失败。|
+| statusCode | object | 一组数值的HTTP代码和函数对象，当响应时调用了相应的代码。例如，如果响应状态是404，将触发以下警报 |
+
+####AJAX事件
+
+| 事件 | 对象 | 描述 |
+| ------------- | ------------- | ------------- |
+| ajaxStart | document | AJAX 请求开始时执行函数。|
+| ajaxError | document | AJAX 请求发生错误时执行函数。 |
+| ajaxSuccess | document | AJAX 请求成功时执行函数。|
+| ajaxComplete | document | AJAX 请求完成时执行函数。|
 
 
 

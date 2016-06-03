@@ -1940,9 +1940,9 @@ window['kelat']['bubbles'] = KUIAPP.Bubbles;
  * @param {String} type  :验证类型
  * @param {RegExp} regExp  :正则
  */
-KUIAPP.Validate = function(string, type, regExp) {
+KUIAPP.Validate = function(string, type) {
     var _RegExp="";
-    "regexp" === kelat.type(type) ? ( regExp = arguments[1] , _RegExp = type , type = undefined) : _RegExp = Local.RegExpr.validate[type];
+    "regexp" === kelat.type(type) ? ( _RegExp = type , type = undefined) : _RegExp = Local.RegExpr.validate[type];
     return _RegExp.test(string) && running ? true : false;
 };
 window['kelat']['validate'] = KUIAPP.Validate;
