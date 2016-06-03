@@ -382,6 +382,7 @@ $$.fn.touches(document.getElementById("id"),function(Touches){
 
 `验证` 提供常用的验证，包括手机、邮箱、电话、数字等。
 validate API
+
 | 语法 | 返回值 |
 | ------------- | ------------- |
 | $$.fn.validate(string, type) |  `string` 需要验证的数据体。`type` 数据类型或正则表达式。数据类型包括（`email` `phone` `mobile` `number` `integer` `english` `chinese` `date`）|
@@ -662,7 +663,6 @@ $$(window).trigger('resize');
 
 | 参数 | 类型 | 默认值 | 描述 |
 | ------------- | ------------- | ------------- | ------------- |
-
 | async | boolean | true | 如果您需要同步请求，请将此选项设置为false |
 | method | string | 'GET' | 请求方法 (e.g. "POST", "GET", "PUT") |
 | cache | boolean | true | 如果设置为false，将不被浏览器缓存。|
@@ -678,9 +678,8 @@ $$(window).trigger('resize');
 | timeout | number | 0 | 设置请求超时时间（毫秒）。此设置将覆盖全局设置。|
 
 
-
-| 回调 |  |  | 描述 |
-| ------------- | ------------- | ------------- | ------------- |
+| 回调 |  |  描述 |
+| ------------- | ------------- | ------------- |
 | beforeSend | function (xhr) | 可用于在发送前修改XHR对象的请求前回调函数。使用此设置自定义页眉等 |
 | error | function (xhr, status) | 请求失败时调用此函数 |
 | success | function (data, status, xhr) | 请求成功时调用此函数 |
