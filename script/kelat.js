@@ -1914,8 +1914,8 @@ function isArrayLike(obj){
         typeof length === "number" && length > 0 && ( length - 1 ) in obj;
 };
 //类型
-kelat.each("Boolean Number String Function Array Date RegExp Object Error Symbol".split(" "),function( i, name ) {
-    classType[ "[object " + name + "]" ] = name.toLowerCase();
+kelat.each("Boolean Number String Function Array Date RegExp Object Error Symbol".split(" "),function(i,name){
+    classType["[object " + name + "]"] = name.toLowerCase();
 });
 
 /** 防止事件冒泡
