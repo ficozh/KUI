@@ -1,10 +1,9 @@
 # KUI
 
 ### 已集成库
-- jQuery v2.2.1
 - AngularJS v1.5.0
 - RequireJS 2.1.15
-- kelat 1.0.0
+- kelat 1.2.0
 
 ### H5框架需要以下的特点
 - 为提高团队协作效率, 便于后台人员添加功能及前端后期优化维护。
@@ -664,7 +663,7 @@ $$(window).trigger('resize');
 | 参数 | 类型 | 默认值 | 描述 |
 | ------------- | ------------- | ------------- | ------------- |
 | async | boolean | true | 如果您需要同步请求，请将此选项设置为false |
-| method | string | 'GET' | 请求方法 (e.g. "POST", "GET", "PUT") |
+| method | string | 'GET' | 请求方法 ("POST", "GET", "PUT") |
 | cache | boolean | true | 如果设置为false，将不被浏览器缓存。|
 | contentType | string | 'application/x-www-form-urlencoded' | 发送信息至服务器时内容编码类型。|
 | crossDomain | boolean | undefined | 默认： 同域请求为false，跨域请求为true如果你想强制跨域请求（如JSONP形式）同一域，设置crossDomain为true。这使得例如，服务器端重定向到另一个域 |
