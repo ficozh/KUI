@@ -9,8 +9,8 @@ function( title , $scope , $state ) {
 			a:function(){alert()},
 			bussiness: function() {
 				//执行函数 
-				console.log( window)
-				$$(".AlertBtn").on("click",function(){
+				console.log($$(".AlertBtn"))
+				$$(".AlertBtn").tap(function(){
 					$$.alert("alert警告消息框",function(){
 						$$.alert("第二个alert警告消息框","alert标题");
 					});
@@ -30,7 +30,12 @@ function( title , $scope , $state ) {
 				
 				$$(".PopoverBtn").on("click",function(){
 					//$$.popover("欢迎体验KMUI")
-					$$.popover($$('.SettingModeMenu'))
+					$$.popover($$('.SettingModeMenu'),".PopoverBtn")
+				});
+				
+				$$(".PopupBtn").on("click",function(){
+					//$$.popover("欢迎体验KMUI")
+					$$.popup($$('.demo-popup'))
 				});
 				
 				

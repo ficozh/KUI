@@ -598,6 +598,7 @@ textarea.InputSm,
 select[multiple].InputSm{height:auto}
 
 /*内容标题*/
+.ContentBlock{padding:12px;color:#6d6d72;box-sizing:border-box;}
 .ContentBlockTitle,
 .ContentInnerTitle{position:relative;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;font-size:14px;line-height:1;font-weight:500;color:rgba(0,0,0,.6)}
 .ContentBlockTitle{margin:18px 0 10px;padding:0 12px}
@@ -826,6 +827,7 @@ display:flex;
         justify-content:space-between
 }
 .ListBlock .ItemInner:after{position:absolute;left:0;bottom:0;right:auto;top:auto;content:'';height:1px;width:100%;background-color:#c8c7cc;z-index:15;-webkit-transform-origin:50% 100%;transform-origin:50% 100%}
+.ListBlock .ListItem:last-child .ItemInner:after{display:none}
 .ListBlock .ItemMedia + .ItemInner{margin-left:15px}
 .ListBlock .ItemMedia i+i{margin-left:5px}
 .ListBlock .ItemLink,
@@ -981,6 +983,14 @@ display:-webkit-box
 		transform-origin:50% 100%
 }
 
+.ListBlock .ItemLink.ListButton:after{position:absolute;content:'';left:0;bottom:0;right:auto;top:auto;height:1px;width:100%;background-color:#c8c7cc;display:block;z-index:15;
+-webkit-transform-origin:50% 100%;
+		transform-origin:50% 100%;
+}
+.ListBlock .ListItem:last-child .ItemLink.ListButton:after{display:none}
+
+
+
 /*
 滑块
 <div class="RangeSlider">
@@ -1123,7 +1133,7 @@ box-sizing:border-box;
 .NavBar,
 .ToolBar{background:#fff}
 .NavBar a.Link,
-.ToolBar a.Link{position:relative;text-decoration:none;line-height:44px;height:44px;
+.ToolBar a.Link{position:relative;text-decoration:none;line-height:44px;height:44px;padding:0 10px;
 display:-webkit-box;
 display:-ms-flexbox;
 display:-webkit-flex;
@@ -1167,7 +1177,7 @@ display:flex;
 		align-items:center;
 }
 .NavBar .Left,
-.NavBar .Right{width:24px;
+.NavBar .Right{min-width:24px;
 -webkit-flex-shrink:0;
    -ms-flex:0 0 auto;
 		flex-shrink:0;
@@ -1191,6 +1201,11 @@ display:flex;
 .NavBar .Left{margin-right:10px}
 .NavBar .Right{margin-left:10px}
 .NavBar .Right:first-child{position:absolute;right:8px;height:100%}
+.NavBarFixed .PageContent{padding-top:44px}
+.PopupBox .NavBar{position:absolute;
+-webkit-transform:translate3d(0,0,0);
+		transform:translate3d(0,0,0);
+}
 
 /*模态框*/
 .ModalBox{position:fixed;left:50%;top:50%;width:280px;max-height:100%;margin-left:-140px;margin-top:0;z-index:500;overflow:hidden;opacity:0;border-radius:6px;background-color:#fff;box-shadow:rgba(0,0,0,0.4) 0 0 5px;
@@ -1281,21 +1296,122 @@ text-transform:uppercase;
 }
 
 /*Popover*/
-.ModalPopoverBox{left:12px;right:12px;width:auto;max-width:480px;margin:0;}
-.ModalPopoverBox .ModalInner{padding:5px;}
-.ModalPopoverBox .ModalPopoverAngle{position:absolute;left:-26px;top:0;width:26px;height:26px;z-index:100;overflow:hidden;}
-.ModalPopoverBox .ModalPopoverAngle:after{position:absolute;left:0;top:0;width:26px;height:26px;content:' ';background:rgba(255, 255, 255, 0.95);border-radius:3px;
--webkit-transform:rotate(45deg);
-		transform:rotate(45deg)
+.ModalPopover{position:absolute;top:0;left:0;margin:0;width:280px;background:rgba(255, 255, 255, 0.95);opacity:0;display:none;border-radius:13px;z-index:13500;
+-webkit-transform:none;
+		transform:none;
+-webkit-transition-property:opacity;
+   -moz-transition-property:opacity;
+	-ms-transition-property:opacity;
+	 -o-transition-property:opacity;
+		transition-property:opacity;
 }
-.ModalPopoverBox .ModalPopoverAngle.AngleLeft{left:-26px}
-.ModalPopoverBox .ModalPopoverAngle.AngleLeft:after{left:19px;top:0}
-.ModalPopoverBox .ModalPopoverAngle.AngleRight{left:100%;}
-.ModalPopoverBox .ModalPopoverAngle.AngleRight:after{left:-19px;top:0}
-.ModalPopoverBox .ModalPopoverAngle.AngleTop{left:0;top:-26px}
-.ModalPopoverBox .ModalPopoverAngle.AngleTop:after{left:0;top:19px}
-.ModalPopoverBox .ModalPopoverAngle.AngleBottom{left:0;top:100%}
-.ModalPopoverBox .ModalPopoverAngle.AngleBottom:after{left:0;top:-19px}
+.ModalPopover.ModalIn,.ModalPopover.ModalOut{
+-webkit-transition-duration:.3s;
+		transition-duration:.3s
+}
+.ModalPopover.ModalIn{opacity:1}
+.ModalPopover.ModalOut{opacity:0}
+
+.ModalPopover .ListBlock{margin:0;background:none}
+.ModalPopover .ListBlock:first-child{border-radius:13px 13px 0 0}
+.ModalPopover .ListBlock:first-child:before{display:none}
+.ModalPopover .ListBlock:first-child li:first-child a{border-radius:13px 13px 0 0}
+.ModalPopover .ListBlock:last-child{border-radius:0 0 13px 13px}
+.ModalPopover .ListBlock:last-child:after{display:none}
+.ModalPopover .ListBlock:last-child li:last-child a{border-radius:0 0 13px 13px}
+.ModalPopover .ListBlock:first-child:last-child li:first-child:last-child a,
+.ModalPopover .ListBlock:first-child:last-child:first-child:last-child{border-radius:13px}
+.ModalPopover .ListBlock + .ListBlock{margin-top:35px}
+
+.ModalPopover.ModalPopoverPickerColumns{width:280px}
+.ModalPopover.popoverOnTop {
+  -webkit-transform-origin: center bottom;
+  transform-origin: center bottom;
+}
+.ModalPopover.popoverOnBottom {
+  -webkit-transform-origin: center top;
+  transform-origin: center top;
+}
+
+.ModalPopoverAngle{position:absolute;top:0;left:-26px;width:26px;height:26px;overflow:hidden;z-index:100}
+.ModalPopoverAngle:after{position:absolute;left:0;top:0;width:26px;height:26px;content:' ';background:rgba(255,255,255,0.95);border-radius:3px;
+-webkit-transform:rotate(45deg);
+		transform:rotate(45deg);
+}
+.ModalPopoverAngle.onLeft{left:-26px}
+.ModalPopoverAngle.onLeft:after{left:19px;top:0}
+.ModalPopoverAngle.onRight{left:100%}
+.ModalPopoverAngle.onRight:after{left:-19px;top:0}
+.ModalPopoverAngle.onTop{left:0;top:-26px}
+.ModalPopoverAngle.onTop:after{left:0;top:19px}
+.ModalPopoverAngle.onBottom{left:0;top:100%}
+.ModalPopoverAngle.onBottom:after{left:0;top:-19px}
+.ModalPopoverInner{overflow:auto;
+-webkit-overflow-scrolling:touch;
+}
+
+
+.ModalPopover .PickerModal{position:relative;display:block;background:none;z-index:inherit;
+-webkit-transform:translate3d(0,0,0);
+		transform:translate3d(0,0,0);
+}
+.PickerModal.PickerModalInline .ToolBar:before,
+.ModalPopover .PickerModal .ToolBar:before{display:none}
+.PickerModal.PickerModalInline .ToolBar:after,
+.ModalPopover .PickerModal .ToolBar:after{position:absolute;left:0;bottom:0;right:auto;top:auto;height:1px;width:100%;content:'';background-color:#929499;display:block;z-index:15;
+-webkit-transform-origin:50% 100%;
+		transform-origin:50% 100%;
+}
+
+.ModalPopover .PickerModal{width:auto}
+.ModalPopover .PickerModal .ToolBar{background:none}
+
+
+
+
+.PopupBox{position:fixed;left:0;bottom:0;width:100%;height:100%;z-index:11000;background:#fff;display:none;
+box-sizing:border-box;
+-webkit-overflow-scrolling:touch;
+-webkit-transition-property:-webkit-transform;
+   -moz-transition-property:-moz-transform;
+	-ms-transition-property:-ms-transform;
+     -o-transition-property:-o-transform;
+		transition-property:transform;
+-webkit-transform:translate3d(0,100%,0);
+		transform:translate3d(0,100%,0);
+}
+.PopupBox.ModalIn,
+.PopupBox.ModalOut{
+-webkit-transition-duration:400ms;
+		transition-duration:400ms;
+}
+.PopupBox.ModalIn{
+-webkit-transform:translate3d(0,0,0);
+		transform:translate3d(0,0,0);
+}
+
+.PopupBox.ModalOut{
+-webkit-transform:translate3d(0,100%,0);
+		transform:translate3d(0,100%,0);
+}
+.PopupBox .PageContent{height:100%;overflow:auto;}
+@media all and (min-width: 630px) and (min-height: 630px) {
+	.PopupBox:not(.tablet-fullscreen){width:630px;height:630px;left:50%;top:50%;margin-left:-315px;margin-top:-315px;
+	-webkit-transform:translate3d(0,1024px,0);
+			transform:translate3d(0,1024px,0);
+	}
+	.PopupBox:not(.tablet-fullscreen).ModalIn {
+	-webkit-transform:translate3d(0,0,0);
+			transform:translate3d(0,0,0);
+	}
+	.PopupBox:not(.tablet-fullscreen).ModalOut {
+	-webkit-transform:translate3d(0,1024px,0);
+			transform:translate3d(0,1024px,0);
+	}
+}
+
+
+
 
 /*选择器*/
 .PickerModal{position:fixed;left:0;bottom:0;width:100%;height:260px;z-index:12500;display:none;background:#cfd5da;
@@ -1345,9 +1461,9 @@ text-transform:uppercase;
 		transform-origin:50% 100%;
 }
 .PickerModal .ToolBar + .PickerModalInner {
-    height: -webkit-calc(100% - 44px);
-    height: -moz-calc(100% - 44px);
-    height: calc(100% - 44px);
+height:-webkit-calc(100% - 45px);
+height:-moz-calc(100% - 45px);
+height:calc(100% - 45px);
 }
 
 .PickerItems{padding:0;text-align:right;font-size:24px;
@@ -1747,6 +1863,10 @@ display:flex;
 }
 .Box .BoxFooter .Lump, .Box .BoxHeader .Lump{
 box-sizing:border-box;
+display:-webkit-box;
+display:-ms-flexbox;
+display:-webkit-flex;
+display:flex;
 -webkit-box-flex:1;
 -ms-flex:1;
 overflow:hidden;
@@ -1758,9 +1878,6 @@ justify-content:space-between;
 -ms-flex-align:center;
 -webkit-align-items:center;
 align-items:center;
--ms-flex-item-align:stretch;
--webkit-align-self:stretch;
-align-self:stretch;
 }
 .Box .BoxHeader[valign="top"],
 .Box .BoxFooter[valign="top"]{
@@ -2184,44 +2301,38 @@ height:		   calc(100% + 44px);
 
 
 /* ===== 响应设计 ===== */
-/* 大屏幕（大桌面显示器，最大 1200px） */
-@media screen and (max-width:1200px) {
-    .WAll{width:1170px}
+/* 大屏幕 大桌面显示器，最大 1200px */
+@media screen and (min-width: 1025px) and (max-width:1200px) {
+    .WAll{width:1000px}
 }
 
-/* 中等屏幕（桌面显示器，最大 992px） */
-@media screen and (max-width:992px) {
-    .WAll{width:970px}
+/* 中等屏幕 桌面显示器，最大 1024px */
+@media screen and (min-width: 993px) and (max-width:1024px) {
+    .WAll{width:920px}
 }
 
-/* 小屏幕（平板，最大 768px） */
-@media screen and (max-width:768px) { 
-    .ListBlock.ListTabletInset{overflow:hidden;margin-left:12px;margin-right:12px;border-radius:6px}
-    .ListBlock.ListTabletInset:before,
-    .ListBlock.ListTabletInset:after{display:none}
+/* 中等屏幕 桌面显示器，最大 992px */
+@media screen and (min-width: 769px) and (max-width:992px) {
     .WAll{width:750px}
 }
 
-/* 超小屏幕（手机，最大 640px） */
-@media screen and (max-width:640px) { 
+/* 小屏幕 平板，最大 768px */
+@media screen and (min-width: 641px) and (max-width: 768px) {
+    .ListBlock.ListTabletInset{overflow:hidden;margin-left:12px;margin-right:12px;border-radius:6px}
+    .ListBlock.ListTabletInset:before,
+    .ListBlock.ListTabletInset:after{display:none}
+    .WAll{width:640px}
+}
+
+/* 超小屏幕 手机，最大 640px */
+@media screen and (min-width: 481px) and (max-width:640px) { 
     .WAll{width:100%}
 }
 
-/* 超小屏幕（手机，最大 480px） */
-@media screen and (max-width:480px) { 
+/* 超小屏幕 手机，最大 480px */
+@media screen and (min-width: 321px) and (max-width:480px) { 
     .WAll{width:100%}
     
-}
-
-/* 超小屏幕（手机，最大 320px） */
-@media screen and (max-width:320px) { 
-	.WAll{width:100%}
-}
-
-
-
-/* 超小屏幕（手机，大于等于 320px） */
-@media screen and (min-width:320px){
 }
 /* 超小屏幕（手机，大于等于 480px） */
 @media screen and (min-width:480px){
@@ -2231,26 +2342,15 @@ height:		   calc(100% + 44px);
 	.ModalPickerBox{max-width:480px;left:50%;margin-left:-240px}
 }
 
-/* 超小屏幕（手机，大于等于 640px） */
-@media screen and (min-width:640px){
+/* 超小屏幕（手机，最大 320px） */
+@media screen and (max-width:320px) { 
+	.WAll{width:100%}
 }
-
-/* 小屏幕（平板，大于等于 768px） */
-@media screen and (min-width:768px){
-}
-
-/* 中等屏幕（桌面显示器，大于等于 992px） */
-@media screen and (min-width:992px){
-}
-
-/* 大屏幕（大桌面显示器，大于等于 1200px） */
-@media screen and (min-width:1200px){
-}
-
 
 /*设备像素比 2*/
 @media only screen and (-webkit-min-device-pixel-ratio:2), only screen and (-webkit-device-pixel-ratio:2) { 
 .NavBar:after,
+.ModalPopover .PickerModal .ToolBar:after,
 .PickerModal .ToolBar:before,
 .PickerModal.PickerModalInner .ToolBar:after,
 .PickerModal.PickerModalInline .ToolBar:after,
@@ -2272,6 +2372,7 @@ height:		   calc(100% + 44px);
 /*设备像素比 3*/
 @media only screen and (-webkit-min-device-pixel-ratio:3), only screen and (-webkit-device-pixel-ratio:3) { 
 .NavBar:after,
+.ModalPopover .PickerModal .ToolBar:after,
 .PickerModal .ToolBar:before,
 .PickerModal.PickerModalInner .ToolBar:after,
 .PickerModal.PickerModalInline .ToolBar:after,

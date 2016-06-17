@@ -1,3 +1,33 @@
+kelat.js v1.2.1 新功能和修正：----- 2016.6.6
+
+1、增加tap事件。$$(document).on('tap',function(){});
+2、增加swipe事件。$$(document).on('swipe',function(){});
+3、修正选择器性能问题。
+4、增加文本流从右到左检测。$$.fn.rtl;
+5、修改了响应式布局。
+6、增加弹出式页面控件。$$.popup($$('.class'))
+7、增加修改默认语言包方法。加载库之前需要注入kelatlocale对象到window对象中。
+	例如：
+	window.kelatlocale={
+	  "SYSTEM_LANGUAGE": {
+		"MODAL": {
+			TIPS:"提示",
+			OK:"确定",
+			CANCEL:"取消"
+		},
+		"IMG":{
+			IMGTIPS:"图片格式不正确或者跨域请求！",
+		},
+		"LOADING": [
+		  '正在加载...'
+		]
+	  },
+	  "id": "zh-cn"
+	};
+8、增加无限滚动控件。 $$.infiniteScroll(true,function(){})
+
+
+
 kelat.js v1.2.0 新功能和修正：----- 2016.5.15
 
 1、增加选择器控件。$$.picker();

@@ -12,8 +12,19 @@ function( title , $scope , $state) {
 				//执行函数 
 				$$.fn.log(window)
 				var today = new Date();
+				
+				$$('.DemoPickerModal').on('click', function () {
+					$$.popup('.PickerModalDemo');
+				});
+				
+				
+				
+				
 				//默认
 				$$.picker({
+					momentumRatio:10,
+					updateValuesOnMomentum:true,
+					onlyInPopover: true,
 					input: '#ks-picker-device',
 					cols: [
 						{
@@ -47,6 +58,7 @@ function( title , $scope , $state) {
 				var pickerDependent = $$.picker({
 					input: '#ks-picker-dependent',
 					rotateEffect: true,
+					updateValuesOnClosePicker:false,
 					formatValue: function (picker, values) {
 						return values[1];
 					},
@@ -70,7 +82,7 @@ function( title , $scope , $state) {
 				//自定义工具栏
 				var pickerCustomToolbar = $$.picker({
 					input: '#ks-picker-custom-toolbar',
-					rotateEffect: true,
+					calculateHeight: false,
 					toolbarTemplate:
 						'<div class="ToolBar">' +
 							'<div class="ToolBarInner">' +
@@ -91,11 +103,11 @@ function( title , $scope , $state) {
 							values: ('漂亮 丑陋 大方 滑稽 惊人 快乐 爱哭 冷静 很酷').split(' ')
 						},
 						{
-							values: ('男人 女人 男孩 女孩 老人 学生').split(' ')
+							values: ('婴儿 幼儿 青年 中年 老人 学生').split(' ')
 						},
 					],
 					onOpen: function (picker) {
-						picker.container.find('.ToolBarRandomizeLink').on('click', function () {
+						$$('.ToolBarRandomizeLink').on('click', function () {
 							var col0Values = picker.cols[0].values;
 							var col0Random = col0Values[Math.floor(Math.random() * col0Values.length)];
 

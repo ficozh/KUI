@@ -4,7 +4,23 @@ define(['APP'],function(APP){
 	APP.controller('MYWalletController',
 		["title",'$scope','$state','$window',
 function( title , $scope , $state , $window) {
-
+		/*function time(endTime){
+				var mydate=new Date();
+				var myweekday=mydate.getDay();
+				var mymonth=mydate.getMonth()+1;
+				var myday= mydate.getDate()-1;
+				var myyear= mydate.getYear();
+				var year=(myyear > 200) ? myyear : 1900 + myyear;
+				var enddate = new Date(endTime).getTime();  
+				var nowdate = new Date(year+"-"+mymonth+"-"+myday).getTime();     
+				if(enddate < nowdate){
+					return false;
+				}else{
+					return true;
+				}
+			}
+		alert(time('2016-6-15'))
+		*/
 		//声明
 		$scope.Load = {
 			bussiness: function() {
@@ -60,7 +76,7 @@ function( title , $scope , $state , $window) {
 				$$.fn.ls.names = $$.fn.jsonArray(names)
 				var storedNames=localStorage['names']?JSON.parse(localStorage['names']):'';
 				$$.fn.log(window)
-				$$.fn.extend({
+				$$.extend({
 					/**箭头左*/
 					AL:function(){alert(1);},
 					/**箭头右*/

@@ -2,8 +2,9 @@
 
 	<div class="BlockLabel PL PR">
 		<p>选择器是一个功能强大的组件，它允许您创建自定义叠加采摘它看起来像iOS原生选择器。</p>
-		<p>选择器可以用作直列组分或作为覆盖。叠加选择器会自动转换为酥料饼的平板电脑（iPad版）。</p>
+		<p>选择器可以用作直列组分或作为面板显示。</p>
 	</div>
+	<div class="ContentBlockTitle  DemoPickerModal">面板信息展示，点击可显示</div>
 	<div class="ContentBlockTitle">选择器单选</div>
 	<div class="ListBlock">
 		<ul>
@@ -11,7 +12,7 @@
 				<div class="ItemCon">
 					<div class="ItemInner">
 						<div class="ItemInput">
-							<input type="text" placeholder="你的苹果设备" readonly="" class="InputContr" id="ks-picker-device"/>
+							<input type="text" placeholder="你的苹果设备" readonly="readonly"  class="InputContr" id="ks-picker-device"/>
 						</div>
 					</div>
 				</div>
@@ -25,7 +26,7 @@
 				<div class="ItemCon">
 					<div class="ItemInner">
 						<div class="ItemInput">
-							<input type="text" placeholder="描述你自己" readonly="" class="InputContr" id="ks-picker-describe"/>
+							<input type="text" placeholder="描述你自己" readonly="readonly" class="InputContr" id="ks-picker-describe"/>
 						</div>
 					</div>
 				</div>
@@ -79,7 +80,19 @@
 		</div>
 		<div id="ks-picker-date-container"></div>
 	</div>
-
+<div class="PickerModal PickerModalDemo">
+      <div class="ToolBar">
+        <div class="ToolBarInner">
+          <div class="Left"></div>
+          <div class="Right"><a href="javascript:;" class="Link  ClosePicker">完成</a></div>
+        </div>
+      </div>
+      <div class="PickerModalInner">
+        <div class="ContentBlock">
+          选择器可以用作面板显示。主要显示重要信息和描述等。因为区域限制，所以展示的文本数量有限。
+        </div>
+      </div>
+    </div>
 </div>
 
 
