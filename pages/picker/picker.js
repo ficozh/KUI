@@ -5,7 +5,6 @@ define(['APP'],function(APP){
 		["title",'$scope','$state',
 function( title , $scope , $state) {
 	
-	
 		//声明
 		$scope.Load = {
 			bussiness: function() {
@@ -22,10 +21,10 @@ function( title , $scope , $state) {
 				
 				//默认
 				$$.picker({
-					momentumRatio:10,
-					updateValuesOnMomentum:true,
-					onlyInPopover: true,
 					input: '#ks-picker-device',
+					isEfficient:true,
+					autoUpdate:false,
+					value: ['iPad mini 2'],
 					cols: [
 						{
 							textAlign: 'center',
@@ -41,7 +40,7 @@ function( title , $scope , $state) {
 					cols: [
 						{
 							textAlign: 'left',
-							values: ('漂亮 丑陋 大方 滑稽 惊人 快乐 爱哭 冷静 很酷').split(' ')
+							values: ('漂亮de 丑陋de 美丽大方 滑稽幽默的 惊人de 快乐 爱哭 冷静 很酷漂亮de 丑陋de 美丽大方 滑稽幽默的 惊人de 快乐 爱哭 冷静 很酷漂亮de 丑陋de 美丽大方 滑稽幽默的 惊人de 快乐 爱哭 冷静 很酷').split(' ')
 						},
 						{
 							values: ('男人 女人 男孩 女孩 老人 学生').split(' ')
@@ -58,7 +57,6 @@ function( title , $scope , $state) {
 				var pickerDependent = $$.picker({
 					input: '#ks-picker-dependent',
 					rotateEffect: true,
-					updateValuesOnClosePicker:false,
 					formatValue: function (picker, values) {
 						return values[1];
 					},
@@ -82,7 +80,8 @@ function( title , $scope , $state) {
 				//自定义工具栏
 				var pickerCustomToolbar = $$.picker({
 					input: '#ks-picker-custom-toolbar',
-					calculateHeight: false,
+					//calculateHeight: false,
+					rotateEffect: true,
 					toolbarTemplate:
 						'<div class="ToolBar">' +
 							'<div class="ToolBarInner">' +
@@ -90,7 +89,7 @@ function( title , $scope , $state) {
 									'<a href="javascript:;" class="Link ToolBarRandomizeLink">随机</a>' +
 								'</div>' +
 								'<div class="Right">' +
-									'<a href="javascript:;" class="Link ClosePicker">就是我</a>' +
+									'<a href="javascript:;" class="Link OkPicker">就是我</a>' +
 								'</div>' +
 							'</div>' +
 						'</div>',

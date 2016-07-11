@@ -1,14 +1,22 @@
 //根路径
 define(['APP'],function(APP){
 	'use strict';
-	APP.controller('FloatButtonController', 
+	APP.controller('ImageLazyLoadController', 
 		["title",'$scope','$state',
-function( title , $scope , $state ) {
+function( title , $scope , $state) {
+	
+	
 		//声明
 		$scope.Load = {
 			bussiness: function() {
 				//执行函数 
-				$$.floatButton('.FloaButton');
+				
+				$$.imagesLazyLoad();
+				
+				
+				
+				
+
 			},
 			init : function(){
 				//更改页面标题
@@ -19,5 +27,5 @@ function( title , $scope , $state ) {
 		};
 		//运行
 		$scope.Load.init();
-	}]);
-});
+	}]);	
+});	

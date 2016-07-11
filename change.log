@@ -25,6 +25,7 @@ kelat.js v1.2.1 新功能和修正：----- 2016.6.6
 	  "id": "zh-cn"
 	};
 8、增加无限滚动控件。 $$.infiniteScroll(true,function(){})
+9、增加图片延迟加载。 $$.imagesLazyLoad()
 
 
 

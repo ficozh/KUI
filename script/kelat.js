@@ -1,6 +1,6 @@
 ﻿/*!
  * kelat JavaScript Library v1.2.1-beta1
- * https://kelat.com/
+ * http://git.oschina.net/ficozhe/K-UI
  *
  * Date: 2016-04-27
  */
@@ -31,7 +31,7 @@ var running = !0 ;
 var KUIAPP = {
 	//类型
 	type : function( obj ) {
-		if(obj == null){
+		if(obj === null){
 			return obj + "";
 		}
 		//支持：Android的<4.0（功能正则表达式）
@@ -41,7 +41,7 @@ var KUIAPP = {
 	},
     //是字符串
     isString : function(obj){ 
-        return typeof obj == 'string';
+        return typeof obj === 'string';
     },
     //是否为数字
     isNumber : function(Number){
@@ -133,18 +133,20 @@ KUIAPP.Extend = function(){
 var KUILocale = {
   "SYSTEM_LANGUAGE": {
     "MODAL": {
-        TIPS:"提示",
-        OK:"确定",
-        CANCEL:"取消"
+        TIPS:'提示',
+        OK:'确定',
+        CANCEL:'取消'
     },
     "IMG":{
-		IMGTIPS:"图片格式不正确或者跨域请求！",
+		IMGTIPS:'图片格式不正确或者跨域请求！',
+		IMGPlaceholder :'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7'
 	},
     "LOADING": [
       '正在加载...'
     ]
   },
-  "Material": true,
+  "Material": false,
+  "WrapperArea": 'WrapperArea',
   "id": "zh-cn"
 };
 if(window['kelatlocale']){
@@ -156,14 +158,16 @@ if(window['kelatlocale']){
 var Local = {
     message:'\u60a8\u4f7f\u7528\u671f\u5df2\u5230\uff01',
     //图片
-    ImgPlaceholder:'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7',
+    ImgPlaceholder:kelatlocale.SYSTEM_LANGUAGE.IMG.IMGPlaceholder,
+    ImgLazyLoadThreshold : 0,
+    ImgLazyLoadSequential: true,
     ImgTips : kelatlocale.SYSTEM_LANGUAGE.IMG.IMGTIPS,
     // 区域设定
-    WrapperArea : 'WrapperArea',
+    WrapperArea : kelatlocale.WrapperArea,
     // 层高
     LayerIndex : '2000',
     // 加载
-    LoadingTitle : kelatlocale.SYSTEM_LANGUAGE.LOADING.IMGTIPS,
+    LoadingTitle : kelatlocale.SYSTEM_LANGUAGE.LOADING,
     LoadingHtml : '<span class="Loading"></span>',
     // 模态框
     ModalTitle : kelatlocale.SYSTEM_LANGUAGE.MODAL.TIPS,
@@ -296,7 +300,8 @@ var kelatDom = (function(){
         if(selector){
             //String
             if(typeof selector === 'string'){
-                var els, tempParent, html = selector.replace(Local.RegExpr.trim,'');
+                var els, tempParent, html; 
+					selector = html = selector.replace(Local.RegExpr.trim,'');
                 if(html.indexOf('<') >= 0 && html.indexOf('>') >= 0){
                     var toCreate = 'div';
                     if(html.indexOf('<li') === 0){toCreate = 'ul';}
@@ -305,7 +310,7 @@ var kelatDom = (function(){
                     if(html.indexOf('<tbody') === 0){toCreate = 'table';}
                     if(html.indexOf('<option') === 0){toCreate = 'select';}
                     tempParent = document.createElement(toCreate);
-                    tempParent.innerHTML = selector;
+                    tempParent.innerHTML = html;
                     for(i = 0; i < tempParent.childNodes.length; i++){
                         arr.push(tempParent.childNodes[i]);
                     };
@@ -340,12 +345,12 @@ var kelatDom = (function(){
         //类和属性
         addClass: function(className){
             var classes, elem, cur, curValue, clazz, j, finalValue,i = 0;
-            if (typeof className =="function") {
-                return this.each(function(j) {
-                    $$(this).addClass( className.call(this, j, getClass(this)));
+            if(typeof className === "function"){
+                return this.each(function(j){
+                    $$(this).addClass(className.call(this, j, getClass(this)));
                 });
             };
-            if(typeof className === "string" && className ) {
+            if(typeof className === "string" && className ){
                 classes = className.match(Local.RegExpr.rnotwhite) || [];
                 while(( elem = this[ i++ ] )){
                     curValue = getClass(elem);
@@ -359,8 +364,8 @@ var kelatDom = (function(){
                         }
                         // Only assign if different to avoid unneeded rendering.
                         finalValue = cur.replace(Local.RegExpr.trim,'');
-                        if( curValue !== finalValue ){
-                            elem.setAttribute( "class", finalValue );
+                        if(curValue !== finalValue){
+                            elem.setAttribute("class", finalValue);
                         }
                     }
                 }
@@ -403,19 +408,19 @@ var kelatDom = (function(){
             return this;
         },
         attr: function(attrs, value){
-            if (arguments.length === 1 && typeof attrs === 'string') {
+            if(arguments.length === 1 && typeof attrs === 'string'){
                 //获取attr
                 if(this[0]) return this[0].getAttribute(attrs);
                 else return undefined;
             }else{
                 //设定attrs
                 for(var i = 0; i < this.length; i++) {
-                    if (arguments.length === 2) {
+                    if(arguments.length === 2){
                         //String
                         this[i].setAttribute(attrs, value);
                     }else{
                         //Object
-                        for (var attrName in attrs) {
+                        for(var attrName in attrs){
                             this[i][attrName] = attrs[attrName];
                             this[i].setAttribute(attrName, attrs[attrName]);
                         }
@@ -442,7 +447,7 @@ var kelatDom = (function(){
                         this[i][props] = value;
                     }else{
                         // Object
-                        for(var propName in props) {
+                        for(var propName in props){
                             this[i][propName] = props[propName];
                         }
                     }
@@ -454,7 +459,7 @@ var kelatDom = (function(){
             if(typeof value === 'undefined') {
                 //获取value
                 if(this[0]){
-                    if (this[0].kelatDomElementDataStorage && (key in this[0].kelatDomElementDataStorage)) {
+                    if(this[0].kelatDomElementDataStorage && (key in this[0].kelatDomElementDataStorage)){
                         return this[0].kelatDomElementDataStorage[key];
                     }else{
                         var dataKey = this[0].getAttribute('data-' + key); 
@@ -465,9 +470,9 @@ var kelatDom = (function(){
                 }
             }else{
                 //设定value
-                for (var i = 0; i < this.length; i++) {
+                for(var i = 0; i < this.length; i++){
                     var el = this[i];
-                    if (!el.kelatDomElementDataStorage) el.kelatDomElementDataStorage = {};
+                    if(!el.kelatDomElementDataStorage) el.kelatDomElementDataStorage = {};
                     el.kelatDomElementDataStorage[key] = value;
                 }
                 return this;
@@ -509,10 +514,10 @@ var kelatDom = (function(){
             }
         },
         val: function(value){
-            if(typeof value === 'undefined') {
+            if(typeof value === 'undefined'){
                 return this[0] ? this[0].value : undefined;
             }else{
-                for (var i = 0; i < this.length; i++) {
+                for(var i = 0; i < this.length; i++){
                     this[i].value = value;
                 }
                 return this;
@@ -530,7 +535,7 @@ var kelatDom = (function(){
             if(typeof duration !== 'string'){
                 duration = duration + 'ms';
             }
-            for (var i = 0; i < this.length; i++) {
+            for(var i = 0; i < this.length; i++){
                 var elStyle = this[i].style;
                 elStyle.webkitTransitionDuration = elStyle.MsTransitionDuration = elStyle.msTransitionDuration = elStyle.MozTransitionDuration = elStyle.OTransitionDuration = elStyle.transitionDuration = duration;
             }
@@ -554,19 +559,19 @@ var kelatDom = (function(){
             var events = eventName.split(' ');
             var i, j;
             for(i = 0; i < this.length; i++){
-                if (typeof targetSelector === 'function' || targetSelector === false) {
+                if(typeof targetSelector === 'function' || targetSelector === false){
                     // Usual events
-                    if (typeof targetSelector === 'function') {
+                    if(typeof targetSelector === 'function'){
                         listener = arguments[1];
                         capture = arguments[2] || false;
                     }
-                    for (j = 0; j < events.length; j++) {
+                    for(j = 0; j < events.length; j++){
                         this[i].addEventListener(events[j], listener, capture);
                     }
                 }else{
                     //Live events
                     for(j = 0; j < events.length; j++){
-                        if (!this[i].kelatDomLiveListeners) this[i].kelatDomLiveListeners = [];
+                        if(!this[i].kelatDomLiveListeners) this[i].kelatDomLiveListeners = [];
                         this[i].kelatDomLiveListeners.push({listener: listener, liveListener: handleLiveEvent});
                         this[i].addEventListener(events[j], handleLiveEvent, capture);
                     }
@@ -578,18 +583,18 @@ var kelatDom = (function(){
             var events = eventName.split(' ');
             for(var i = 0; i < events.length; i++){
                 for(var j = 0; j < this.length; j++){
-                    if (typeof targetSelector === 'function' || targetSelector === false) {
-                        // Usual events
+                    if(typeof targetSelector === 'function' || targetSelector === false){
+                        //异常事件
                         if(typeof targetSelector === 'function'){
                             listener = arguments[1];
                             capture = arguments[2] || false;
                         }
                         this[j].removeEventListener(events[i], listener, capture);
                     }else{
-                        // Live event
-                        if (this[j].kelatDomLiveListeners) {
-                            for (var k = 0; k < this[j].kelatDomLiveListeners.length; k++) {
-                                if (this[j].kelatDomLiveListeners[k].listener === listener) {
+                        //Live event
+                        if(this[j].kelatDomLiveListeners){
+                            for(var k = 0; k < this[j].kelatDomLiveListeners.length; k++){
+                                if(this[j].kelatDomLiveListeners[k].listener === listener){
                                     this[j].removeEventListener(events[i], this[j].kelatDomLiveListeners[k].liveListener, capture);
                                 }
                             }
@@ -612,20 +617,20 @@ var kelatDom = (function(){
             }
             return dom.on(eventName, targetSelector, proxy, capture);
         },
-        bind: function( types, data, fn ) {
-            return this.on( types, null, data, fn );
+        bind: function(types, data, fn){
+            return this.on(types, null, data, fn);
         },
-        unbind: function( types, fn ) {
-            return this.off( types, null, fn );
+        unbind: function(types, fn){
+            return this.off(types, null, fn);
         },
         trigger: function(eventName, eventData){
             var events = eventName.split(' ');
             for(var i = 0; i < events.length; i++){
-                for (var j = 0; j < this.length; j++) {
+                for(var j = 0; j < this.length; j++){
                     var evt;
                     try{
                         evt = new CustomEvent(events[i], {detail: eventData, bubbles: true, cancelable: true});
-                    }catch (e){
+                    }catch(e){
                         evt = document.createEvent('Event');
                         evt.initEvent(events[i], true, true);
                         evt.detail = eventData;
@@ -640,7 +645,7 @@ var kelatDom = (function(){
                 i, j, dom = this;
             function fireCallBack(e){
                 /*jshint validthis:true */
-                if(e.target !== this) { return; }
+                if(e.target !== this){ return; }
                 callback.call(this, e);
                 for(i = 0; i < events.length; i++){
                     dom.off(events[i], fireCallBack);
@@ -662,8 +667,8 @@ var kelatDom = (function(){
                     dom.off(events[i], fireCallBack);
                 }
             }
-            if (callback) {
-                for(i = 0; i < events.length; i++) {
+            if(callback){
+                for(i = 0; i < events.length; i++){
                     dom.on(events[i], fireCallBack);
                 }
             }
@@ -709,7 +714,7 @@ var kelatDom = (function(){
             }
         },
         offset: function(){
-            if (this.length > 0) {
+            if(this.length > 0){
                 var el = this[0];
                 var box = el.getBoundingClientRect();
                 var body = document.body;
@@ -805,10 +810,10 @@ var kelatDom = (function(){
                 var el = this[0];
                 if(el === document) return selector === document;
                 if(el === window) return selector === window;
-                if(el.matches){ return el.matches(selector); }
-                else if(el.webkitMatchesSelector){return el.webkitMatchesSelector(selector); }
-                else if(el.mozMatchesSelector){ return el.mozMatchesSelector(selector); }
-                else if(el.msMatchesSelector){ return el.msMatchesSelector(selector); }
+                if(el.matches){ return el.matches(selector);}
+                else if(el.webkitMatchesSelector){return el.webkitMatchesSelector(selector);}
+                else if(el.mozMatchesSelector){return el.mozMatchesSelector(selector);}
+                else if(el.msMatchesSelector){return el.msMatchesSelector(selector);}
                 else{
                     compareWith = $(selector);
                     for(i = 0; i < compareWith.length; i++){
@@ -818,12 +823,12 @@ var kelatDom = (function(){
                     }
                     return false;
                 }
-            }else if(selector === document){ return this[0] === document; }
-            else if(selector === window){ return this[0] === window; }
+            }else if(selector === document){return this[0] === document;}
+            else if(selector === window){return this[0] === window;}
             else {
                 if(selector.nodeType || selector instanceof kelatDom){
                     compareWith = selector.nodeType ? [selector] : selector;
-                    for (i = 0; i < compareWith.length; i++) {
+                    for(i = 0; i < compareWith.length; i++){
                         if(compareWith[i] === this[0]) return true;
                     }
                     return false;
@@ -834,11 +839,11 @@ var kelatDom = (function(){
         },
         indexOf: function(el){
             for(var i = 0; i < this.length; i++){
-                if (this[i] === el) return i;
+                if(this[i] === el) return i;
             }
         },
         index: function(){
-            if (this[0]) {
+            if(this[0]){
                 var child = this[0];
                 var i = 0;
                 while((child = child.previousSibling) !== null){
@@ -872,8 +877,8 @@ var kelatDom = (function(){
                     while (tempDiv.firstChild) {
                         this[i].appendChild(tempDiv.firstChild);
                     }
-                }else if(newChild instanceof kelatDom) {
-                    for (j = 0; j < newChild.length; j++) {
+                }else if(newChild instanceof kelatDom){
+                    for(j = 0; j < newChild.length; j++){
                         this[i].appendChild(newChild[j]);
                     }
                 }else{
@@ -936,12 +941,18 @@ var kelatDom = (function(){
         },
         next: function(selector){
             if(this.length > 0){
-                if (selector) {
-                    if (this[0].nextElementSibling && $(this[0].nextElementSibling).is(selector)) return new kelatDom([this[0].nextElementSibling]);
-                    else return new kelatDom([]);
+                if(selector){
+                    if(this[0].nextElementSibling && $(this[0].nextElementSibling).is(selector)){
+						return new kelatDom([this[0].nextElementSibling]);
+					}else{
+						return new kelatDom([]);
+					};
                 }else{
-                    if (this[0].nextElementSibling) return new kelatDom([this[0].nextElementSibling]);
-                    else return new kelatDom([]);
+                    if(this[0].nextElementSibling){
+						return new kelatDom([this[0].nextElementSibling]);
+					}else{
+						return new kelatDom([]);
+					};
                 }
             }
             else return new kelatDom([]);
@@ -1014,7 +1025,17 @@ var kelatDom = (function(){
             }
             return $($.unique(parents));
         },
-        find : function(selector){
+		closest: function(selector){
+			var closest = this;
+			if(typeof selector === 'undefined'){
+				return new kelatDom([]);
+			}
+			if(!closest.is(selector)){
+				closest = closest.parents(selector).eq(0);
+			}
+			return closest;
+		},
+		find : function(selector){
             var foundElements = [];
             for(var i = 0; i < this.length; i++){
                 var found = this[i].querySelectorAll(selector);
@@ -1059,7 +1080,7 @@ var kelatDom = (function(){
             }
             return dom;
         },
-        ready: function(fn) {
+        ready: function(fn){
             var fired = false;
             function trigger(){
                 document.removeEventListener( "DOMContentLoaded", trigger );
@@ -1078,6 +1099,9 @@ var kelatDom = (function(){
                 document.addEventListener( "DOMContentLoaded", trigger );
                 window.addEventListener( "load", trigger );
             }
+        },
+		trim: function(text){
+            return typeof text === 'string' && running ? text.replace(Local.RegExpr.trim,'') : '';
         }
     };
     
@@ -1305,7 +1329,7 @@ var kelatDom = (function(){
                     try{
                         responseData = JSON.parse(xhr.responseText);
                         fireAjaxCallback('ajaxSuccess', {xhr: xhr}, 'success', responseData, xhr.status, xhr);
-                    }catch (err){
+                    }catch(err){
                         fireAjaxCallback('ajaxError', {xhr: xhr, parseerror: true}, 'error', xhr, 'parseerror');
                     };
                 }else{
@@ -1374,12 +1398,12 @@ var kelatDom = (function(){
         if(!callback) return;
         var i, prop;
         if(KUIAPP.isArray(obj) || obj instanceof kelatDom){
-            //Array
+            //数组 Array
             for(i = 0; i < obj.length; i++){
                 callback(i, obj[i]);
             };
         }else{
-            //Object
+            //对象 Object
             for(prop in obj){
                 if(obj.hasOwnProperty(prop)){
                     callback(prop, obj[prop]);
@@ -1571,7 +1595,7 @@ var kelatDom = (function(){
             if(animateLeft && newLeft === currentLeft) animateLeft = false;
             function render(time){
                 if(time === undefined){
-                    time = new Date().getTime();
+                    time = +(new Date());
                 }
                 if(startTime === null){
                     startTime = time;
@@ -1942,7 +1966,7 @@ var compatible = function(event, source){
         event._args = args;
         return this.each(function(){
             //直接调用处理  focus(), blur() 
-            if(event.type in focus && typeof this[event.type] == "function"){
+            if(event.type in focus && typeof this[event.type] === "function"){
                 this[event.type]();
             }else if('dispatchEvent' in this){
                 //集合中的项可能不是DOM元素
@@ -1978,7 +2002,7 @@ var compatible = function(event, source){
             bubbles = true;
         if(props){
             for(var name in props){
-                (name == 'bubbles') ? (bubbles = !!props[name]) : (event[name] = props[name]);
+                (name === 'bubbles') ? (bubbles = !!props[name]) : (event[name] = props[name]);
             };
         };
         event.initEvent(type, bubbles, true);
@@ -1992,11 +2016,11 @@ var compatible = function(event, source){
         longTapDelay = 750,
         gesture;
     //滑动方向
-    function swipeDirection(x1, x2, y1, y2) {
+    function swipeDirection(x1, x2, y1, y2){
         return Math.abs(x1 - x2) >= Math.abs(y1 - y2) ? (x1 - x2 > 0 ? 'Left' : 'Right') : (y1 - y2 > 0 ? 'Up' : 'Down');
     };
     //长按
-    function longTap() {
+    function longTap(){
         longTapTimeout = null;
         if(touch.last){
             touch.el.trigger('longTap');
@@ -2004,57 +2028,46 @@ var compatible = function(event, source){
         };
     };
     //取消长按
-    function cancelLongTap() {
+    function cancelLongTap(){
         if(longTapTimeout){
             clearTimeout(longTapTimeout);
         };
         longTapTimeout = null;
     };
     //取消所有绑定事件
-    function cancelAll() {
-        if(touchTimeout){
-            clearTimeout(touchTimeout);
-        };
-        if(tapTimeout){
-            clearTimeout(tapTimeout);
-        };
-        if(swipeTimeout){
-            clearTimeout(swipeTimeout);
-        };
-        if(longTapTimeout){
-            clearTimeout(longTapTimeout);
-        };
+    function cancelAll(){
+        if(touchTimeout)  {clearTimeout(touchTimeout)};
+        if(tapTimeout)    {clearTimeout(tapTimeout)};
+        if(swipeTimeout)  {clearTimeout(swipeTimeout)};
+        if(longTapTimeout){clearTimeout(longTapTimeout)};
         touchTimeout = tapTimeout = swipeTimeout = longTapTimeout = null;
         touch = {};
     };
     //原始触摸类型
     function isPrimaryTouch(event){
-        return (event.pointerType == 'touch' || event.pointerType == event.MSPOINTER_TYPE_TOUCH) && event.isPrimary;
+        return (event.pointerType === 'touch' || event.pointerType === event.MSPOINTER_TYPE_TOUCH) && event.isPrimary;
     };
     //指针事件类型
     function isPointerEventType(e, type){
-        return (e.type == 'pointer'+type || e.type == 'mouse'+type || e.type.toLowerCase() == 'mspointer'+type);
+        return (e.type === 'pointer'+type || e.type === 'mouse'+type || e.type.toLowerCase() === 'mspointer'+type);
     };
     //元素准备完成
     $(document).ready(function(){
-        
-        var now, delta, deltaX = 0, deltaY = 0, firstTouch, _isPointerType, _isOnClick = true;
-
+        var now, delta, deltaX = 0, deltaY = 0, firstTouch, _isPointerType, _targetTouches;
         if('MSGesture' in window){
             gesture = new MSGesture();
             gesture.target = document.body;
         };
-
         $(document).bind('MSGestureEnd', function(e){
             var swipeDirectionFromVelocity =
                 e.velocityX > 1 ? 'Right' : e.velocityX < -1 ? 'Left' : e.velocityY > 1 ? 'Down' : e.velocityY < -1 ? 'Up' : null;
             if(swipeDirectionFromVelocity){
               touch.el.trigger('swipe');
               touch.el.trigger('swipe'+ swipeDirectionFromVelocity);
-            }
+            };
         })
         .on('touchstart MSPointerDown pointerdown',function(e){
-            if((_isPointerType = isPointerEventType(e, 'down')) && !isPrimaryTouch(e)){return;};
+            if(((_isPointerType = isPointerEventType(e, 'down')) && !isPrimaryTouch(e))){return};
             firstTouch = _isPointerType ? e : e.touches[0];
             if(e.touches && e.touches.length === 1 && touch.x2){
                 //清除触摸数据
@@ -2062,6 +2075,7 @@ var compatible = function(event, source){
                 touch.x2 = undefined;
                 touch.y2 = undefined;
             };
+			_targetTouches = e.targetTouches;
             now = Date.now();
             delta = now - (touch.last || now);
             touch.el = $('tagName' in firstTouch.target ? firstTouch.target : firstTouch.target.parentNode);
@@ -2079,7 +2093,7 @@ var compatible = function(event, source){
             };
         })
         .on('touchmove MSPointerMove pointermove',function(e){
-            if((_isPointerType = isPointerEventType(e, 'move')) && !isPrimaryTouch(e)){return;};
+            if(((_isPointerType = isPointerEventType(e, 'move')) && !isPrimaryTouch(e))){return};
             firstTouch = _isPointerType ? e : e.touches[0];
             cancelLongTap();
             touch.x2 = firstTouch.pageX;
@@ -2089,19 +2103,14 @@ var compatible = function(event, source){
             deltaY += Math.abs(touch.y1 - touch.y2);
         })
         .on('touchend MSPointerUp pointerup mouseup',function(e){
-            if((_isPointerType = isPointerEventType(e, 'up')) && !isPrimaryTouch(e)  && !Local.support.touch){
+            if((_isPointerType = isPointerEventType(e, 'up')) && !isPrimaryTouch(e)){
                 var touchElement = $(e.target);
-                if(touchElement){
+                if(touchElement && !Local.support.touch){
                     touchElement.trigger('tap');
                 }
                 return;
             };
-            if(!_isOnClick){
-                _isOnClick = !_isOnClick;
-                return;
-            };
             cancelLongTap();
-
             //滑动事件
             if((touch.x2 && Math.abs(touch.x1 - touch.x2) > 30) || (touch.y2 && Math.abs(touch.y1 - touch.y2) > 30)){
                 swipeTimeout = setTimeout(function() {
@@ -2115,49 +2124,53 @@ var compatible = function(event, source){
                 //例如,当移动到一个点和回到原点
                 if (deltaX < 30 && deltaY < 30) {
                     //点击触发前滚动
-                    tapTimeout = setTimeout(function() {
-                        var event = $.Event('tap');
-                        event.cancelTouch = cancelAll;
-                        touch.el.trigger(event);
-                        //立即触发双击
-                        if(touch.isDoubleTap){
-                            if(touch.el){
-                                touch.el.trigger('doubleTap')
-                            };
-                            touch = {};
-                        }else{
-                            //间隔250毫秒后触发点击
-                            touchTimeout = setTimeout(function(){
-                                touchTimeout = null;
+                    tapTimeout = setTimeout(function(){
+                        try{
+                            var event = $.Event('tap');
+                            event.cancelTouch = cancelAll;
+                            event.targetTouches = _targetTouches;
+                            touch.el.trigger(event);
+                            //立即触发双击
+                            if(touch.isDoubleTap){
                                 if(touch.el){
-                                    touch.el.trigger('singleTap');
+                                    touch.el.trigger('doubleTap')
                                 };
                                 touch = {};
-                            },250)
+                            }else{
+                                //间隔250毫秒后触发点击
+                                touchTimeout = setTimeout(function(){
+                                    touchTimeout = null;
+                                    if(touch.el){
+                                        touch.el.trigger('singleTap');
+                                    };
+                                    touch = {};
+                                },250)
+                            };
+                        }catch(err){
+                            //防止快速点击时 touch.el 未定义
+                            return
                         };
                     },0);
                 }else{
                     touch = {};
                 }
                 deltaX = deltaY = 0;
-                _isOnClick = !_isOnClick;
-            }
+            };
         })
         //当浏览器窗口失去焦点时,
         //例如:当一个模态对话框显示时,取消所有正在进行的事件
-        .on('touchcancel MSPointerCancel pointercancel mouseout', cancelAll);
+        .on('touchcancel MSPointerCancel pointercancel', cancelAll);
         //用户滚动窗口
         //滚动时,不点击或滑动,取消所有正在进行的事件
-        $(window).on('scroll', cancelAll)
+        $(window).on('scroll', cancelAll);
     });
     //事件扩展
     ['swipe', 'swipeLeft', 'swipeRight', 'swipeUp', 'swipeDown','doubleTap', 'tap', 'singleTap', 'longTap'].forEach(function(eventName){
         $.fn[eventName] = function(callback){
-            return callback ? this.on(eventName,callback) : this.trigger(eventName);
+            return !!callback ? this.on(eventName,callback) : this.trigger(eventName);
         };
     });
 })($$);
-
 
 //判断是否为数组 && 是否为空数组
 function isArrayLike(obj){
@@ -2186,7 +2199,7 @@ KUIAPP.Bubbles = function(seifEvent, els, callback){
     kelat.each(els.toUpperCase().split(" "),function( i, name ) {
         bubblesIndex.push(obj.tagName !== name && running ? 0 : 1);
     });
-    return (bubblesIndex.indexOf(1) == -1 && running) ? callback() : null;
+    return (bubblesIndex.indexOf(1) === -1 && running) ? callback() : null;
 };
 window['kelat']['bubbles'] = KUIAPP.Bubbles;
 
@@ -2215,7 +2228,7 @@ KUIAPP.GetUrlParams = function(options) {
         URLData = angularURLData.substring(Mark);
     if(Mark !== 0){
         if(!!options.type){
-            var typeData = URLData.indexOf(options.type[0])+1;
+            var typeData = URLData.indexOf(options.type[0])+options.type[0].length;
             ArrayData[options.type[1]] = URLData.substring(typeData);
         }else{
             //获取参数的值
@@ -2238,19 +2251,19 @@ window['kelat']['getUrlParams'] = KUIAPP.GetUrlParams;
 KUIAPP.LoadJC = function(path, type, callback) {
     if(typeof path !=='undefined' && running){
         var head = document.getElementsByTagName('head')[0];
-        if(type=="js"){
+        if(type==="js"){
             var script = document.createElement('script')
             script.src = path;
             script.type = 'text/javascript';
             head.appendChild(script);
             if(callback){
                 script.onload = script.onreadystatechange = function (){
-                    if(!this.readyState || this.readyState == 'loaded' || this.readyState == 'complete'){
+                    if(!this.readyState || this.readyState === 'loaded' || this.readyState === 'complete'){
                         callback();
                     };
                 };
             };
-        }else if(type=="css"){
+        }else if(type==="css"){
             var link = document.createElement('link');
             link.href = path;
             link.rel = 'stylesheet';
@@ -2506,7 +2519,7 @@ window['kelat']['initPullToRefresh'] = KUIAPP.InitPullToRefresh;
 ======================================================*/
 /** 处理滚动 */
 var _isInfiniteScroll = true,_scrollCurrent = 0;
-KUIAPP.HandleInfiniteScroll = function() {
+KUIAPP.HandleInfiniteScroll = function(){
 	var $InfiniteScroll = $$('.InfiniteScroll');
 	if(_isInfiniteScroll &&  $InfiniteScroll.length > 0){
 		var height = $InfiniteScroll.height();
@@ -2532,20 +2545,20 @@ KUIAPP.HandleInfiniteScroll = function() {
 	}
 };
 /** 添加滚动 */
-KUIAPP.AttachInfiniteScroll = function() {
-	_isInfiniteScroll = true;
-	$$(window).on('scroll', KUIAPP.HandleInfiniteScroll);
+KUIAPP.AttachInfiniteScroll = function(){
+    _isInfiniteScroll = true;
+    $$(window).on('scroll', KUIAPP.HandleInfiniteScroll);
 };
 /** 卸载滚动 */
-KUIAPP.DetachInfiniteScroll = function () {
+KUIAPP.DetachInfiniteScroll = function(){
     $$(window).off('scroll', KUIAPP.HandleInfiniteScroll);
 };
 /** 初始化滚动 */
-KUIAPP.InitInfiniteScroll = function (infinite, callBack) {
-	if(infinite){
-		callBack();
-		KUIAPP.AttachInfiniteScroll();
-	}
+KUIAPP.InitInfiniteScroll = function(infinite, callBack){
+    if(infinite){
+        callBack();
+        KUIAPP.AttachInfiniteScroll();
+    }
 };
 window['kelat']['infiniteScroll'] = KUIAPP.InitInfiniteScroll;
 window['kelat']['detachInfiniteScroll'] = KUIAPP.DetachInfiniteScroll;
@@ -2559,28 +2572,40 @@ window['kelat']['detachInfiniteScroll'] = KUIAPP.DetachInfiniteScroll;
 KUIAPP.Picker = function(params){
     var $Picker = this;
     var defaults = {
+		//计算高度
         calculateHeight : true,
         updateValuesOnMomentum: false,
         updateValuesOnTouchmove: true,
-        updateValuesOnClosePicker: true,
+		//旋转效果
         rotateEffect: false,
+		//高效
+		isEfficient:false,
+		//自动更新
+		autoUpdate:true,
+		//动量比
         momentumRatio: 7,
+		//自由模式
         freeMode: false,
         //常用设置
+		//点击其他区域关闭
         closeByOutsideClick: true,
+		//滚动输入
         scrollToInput: true,
+		//输入只读
         inputReadOnly: true,
+		//转换成Popover
         convertToPopover: true,
+		//只显示Popover
         onlyInPopover: false,
+		//工具栏
         toolbar: true,
-        toolbarCloseText: Local.ModalButtonOk,
+        toolbarOkText: Local.ModalButtonOk,
+        toolbarCloseText: Local.ModalButtonCancel,
         toolbarTemplate: 
             '<div class="ToolBar RippleBox">' +
                 '<div class="ToolBarInner">' +
-                    '<div class="Left"></div>' +
-                    '<div class="Right">' +
-                        '<a href="javascript:;" class="Link InkRipple ClosePicker">{{closeText}}</a>' +
-                    '</div>' +
+                    '<div class="Left"><a href="javascript:;" class="Link InkRipple ClosePicker">{{closeText}}</a></div>' +
+                    '<div class="Right"><a href="javascript:;" class="Link InkRipple OkPicker">{{okText}}</a></div>' +
                 '</div>' +
             '</div>'
     };
@@ -2593,18 +2618,11 @@ KUIAPP.Picker = function(params){
     $Picker.params = params;
     $Picker.cols = [];
     $Picker.initialized = false;
-    //绑定确认事件
-    $$(document).on(Local.support.onClick,".ClosePicker",function(){
-        var pickerToClose = $$('.PickerModal.ModalIn');
-        if(pickerToClose.length > 0){
-            KUIAPP.CloseModal(pickerToClose);
-        }else{
-            pickerToClose = $$('.ModalPopover.ModalIn .PickerModal');
-            if(pickerToClose.length > 0){
-                KUIAPP.CloseModal(pickerToClose.parents('.ModalPopover'));
-            };
-        };
-    });
+    $Picker.isCreate = true;
+	
+	//滚动区域
+	var $WrapContent = $$('.WrapContent');
+
     // 内嵌的标志
     $Picker.inline = $Picker.params.container ? true : false;
 
@@ -2668,10 +2686,10 @@ KUIAPP.Picker = function(params){
             $Picker.params.onChange($Picker, $Picker.value, $Picker.displayValue);
         };
         if($Picker.input && $Picker.input.length > 0){
-            var method = $Picker.input[0].tagName=="INPUT" ? ['val','change'] : ['text',Local.support.onClick];
+            var method = $Picker.input[0].tagName === "INPUT" ? ['val','change'] : ['text',Local.support.onClick];
+			var _val = $Picker.params.formatValue ? $Picker.params.formatValue($Picker, $Picker.value, $Picker.displayValue) : $Picker.value.join(' ')
             //赋值并格式化
-            $$($Picker.input)[method[0]]($Picker.params.formatValue ? $Picker.params.formatValue($Picker, $Picker.value, $Picker.displayValue) : $Picker.value.join(' '));
-            //var triggerType = $Picker.input[0].tagName=="INPUT" ?  : ;
+			$$($Picker.input)[method[0]](_val);
             $$($Picker.input).trigger(method[1]);
         }
     };
@@ -2737,23 +2755,40 @@ KUIAPP.Picker = function(params){
             };
         };
         col.calcSize();
+		//外壳旋转
+		function wrapperRotate(Translate,isTransition){
+			if($Picker.params.rotateEffect){
+				//Translate = ((Translate/(2*Math.PI*(110+10)))*360)-18
+				//Translate = Math.round(Math.asin(b) * (180/Math.PI))
+				//col.wrapper.transform('rotateY(0deg) rotateX('+(-Translate)+'deg) translateZ(0)');
+				col.wrapper.transform('translate3d(0,' + Translate + 'px,0)');
+			}else{
+				col.wrapper.transform('translate3d(0,' + Translate + 'px,0)');
+			}
+			if(isTransition){
+				col.wrapper.transition(0);
+			}
+		};
         
-        col.wrapper.transform('translate3d(0,' + maxTranslate + 'px,0)').transition(0);
+        //col.wrapper.transform('translate3d(0,' + maxTranslate + 'px,0)').transition(0);
+		wrapperRotate(maxTranslate,true);
 
         var activeIndex = 0;
         var animationFrameId;
 
         //设置 Value
         col.setValue = function(newValue, transition, valueCallbacks) {
-            typeof transition == "undefined" && (transition = "");
+            typeof transition === 'undefined' && (transition = '');
             var newActiveIndex = col.wrapper.find('.PickerItem[data-picker-value="' + newValue + '"]').index();
             if(typeof newActiveIndex === 'undefined' || newActiveIndex === -1) {
                 return;
             };
-            var newTranslate = -newActiveIndex * itemHeight + maxTranslate;
+            var newTranslate = -newActiveIndex * itemHeight  + maxTranslate;
             //更新外层元素
             col.wrapper.transition(transition);
-            col.wrapper.transform('translate3d(0,' + (newTranslate) + 'px,0)');
+            //col.wrapper.transform('translate3d(0,' + (newTranslate) + 'px,0)');
+			wrapperRotate((newTranslate));
+			
             //检测元素
             if($Picker.params.updateValuesOnMomentum && col.activeIndex && col.activeIndex !== newActiveIndex ){
                 $$.cancelAnimationFrame(animationFrameId);
@@ -2773,25 +2808,26 @@ KUIAPP.Picker = function(params){
             if(activeIndex >= col.items.length){activeIndex = col.items.length - 1;};
             var previousActiveIndex = col.activeIndex;
             col.activeIndex = activeIndex;
-            col.wrapper.find('.PickerSelected').removeClass('PickerSelected');
-
-            col.items.transition(transition);
+            col.items.removeClass('PickerSelected');
+			
             
-            var selectedItem = col.items.eq(activeIndex).addClass('PickerSelected').transform('');
+            var selectedItem = col.items.eq(activeIndex).addClass('PickerSelected');
                 
-            //设置3D旋转效果
+			//设置3D旋转效果
             if($Picker.params.rotateEffect){
+				col.items.transition(transition);
                 var percentage = (translate - (Math.floor((translate - maxTranslate)/itemHeight) * itemHeight + maxTranslate)) / itemHeight;
                 
-                col.items.each(function(){
+                col.items.each(function(index){
                     var item = $$(this);
-                    var itemOffsetTop = item.index() * itemHeight;
-                    var translateOffset = maxTranslate - translate;
-                    var itemOffset = itemOffsetTop - translateOffset;
-                    var percentage = itemOffset / itemHeight;
+                    //var itemOffsetTop = (index) * itemHeight;
+                    //var translateOffset = maxTranslate - translate;
+                    //var itemOffset = itemOffsetTop - translateOffset;
+                    //var percentage = itemOffset / itemHeight;
+                    var percentage = (((index) * itemHeight) - (maxTranslate - translate)) / itemHeight;
 
                     var itemsFit = Math.ceil(col.height / itemHeight / 2) + 1;
-                    
+					
                     var angle =(-18*percentage);
                     if(angle > 180){angle = 180;};
                     if(angle < -180){angle = -180;};
@@ -2801,10 +2837,14 @@ KUIAPP.Picker = function(params){
                     }else{
                         item.removeClass('PickerItemFar');
                     };
+					
                     //设置 transform
                     item.transform('translate3d(0, ' + (-translate + maxTranslate) + 'px, ' + (originBug ? -110 : 0) + 'px) rotateX(' + angle + 'deg)');
+                    //$$(this).transform('translate3d(0, 0,' + (originBug ? -110 : 0) + 'px) rotateX(' + (angle) + 'deg)');
                 });
-            };
+            }else{
+				col.items.transition(transition);
+			};
 
             if(valueCallbacks || typeof valueCallbacks === 'undefined'){
                 //更新 values
@@ -2815,7 +2855,9 @@ KUIAPP.Picker = function(params){
                     if(col.onChange){
                         col.onChange($Picker, col.value, col.displayValue);
                     };
-                    $Picker.updateValue();
+					if($Picker.params.autoUpdate){
+						$Picker.updateValue();
+					};
                 }
             }
         };
@@ -2840,7 +2882,7 @@ KUIAPP.Picker = function(params){
             e.preventDefault();
             isTouched = true;
             touchStartY = touchCurrentY = e.type === 'touchstart' ? e.targetTouches[0].pageY : e.pageY;
-            touchStartTime = (new Date()).getTime();
+            touchStartTime = +(new Date());
             allowItemClick = true;
             startTranslate = currentTranslate = $$.getTranslate(col.wrapper[0], 'y');
         };
@@ -2873,14 +2915,15 @@ KUIAPP.Picker = function(params){
                 returnTo = 'max';
             };
             //更新外层元素
-            col.wrapper.transform('translate3d(0,' + currentTranslate + 'px,0)');
+            //col.wrapper.transform('translate3d(0,' + currentTranslate + 'px,0)');
+			wrapperRotate(currentTranslate);
 
             //更新元素
-            col.updateItems(undefined, currentTranslate, 0, $Picker.params.updateValuesOnTouchmove);
+			col.updateItems(undefined, currentTranslate, 0, $Picker.params.updateValuesOnTouchmove);
             
             //计算速度
             velocityTranslate = currentTranslate - prevTranslate || currentTranslate;
-            velocityTime = (new Date()).getTime();
+            velocityTime = +(new Date());
             prevTranslate = currentTranslate;
         };
         //离开事件
@@ -2893,12 +2936,14 @@ KUIAPP.Picker = function(params){
             col.wrapper.transition('');
             if(returnTo){
                 if(returnTo === 'min'){
-                    col.wrapper.transform('translate3d(0,' + minTranslate + 'px,0)');
+                    //col.wrapper.transform('translate3d(0,' + minTranslate + 'px,0)');
+					wrapperRotate(minTranslate);
                 }else{
-                    col.wrapper.transform('translate3d(0,' + maxTranslate + 'px,0)');
+                    //col.wrapper.transform('translate3d(0,' + maxTranslate + 'px,0)');
+					wrapperRotate(maxTranslate);
                 };
             };
-            touchEndTime = new Date().getTime();
+            touchEndTime = +(new Date());
             var velocity, newTranslate;
             if(touchEndTime - touchStartTime > 300){
                 newTranslate = currentTranslate;
@@ -2906,7 +2951,6 @@ KUIAPP.Picker = function(params){
                 velocity = Math.abs(velocityTranslate / (touchEndTime - velocityTime));
                 newTranslate = currentTranslate + velocityTranslate * $Picker.params.momentumRatio;
             };
-
             newTranslate = Math.max(Math.min(newTranslate, maxTranslate), minTranslate);
 
             //活动值
@@ -2918,10 +2962,11 @@ KUIAPP.Picker = function(params){
             };
 
             //更新外层元素
-            col.wrapper.transform('translate3d(0,' + (parseInt(newTranslate,10)) + 'px,0)');
+            //col.wrapper.transform('translate3d(0,' + (parseInt(newTranslate,10)) + 'px,0)');
+			wrapperRotate((parseInt(newTranslate,10)));
 
             //更新元素
-            col.updateItems(activeIndex, newTranslate, '', true);
+			col.updateItems(activeIndex, newTranslate, '', true);
 
             //检测元素
             if($Picker.params.updateValuesOnMomentum){
@@ -2952,7 +2997,7 @@ KUIAPP.Picker = function(params){
             col.container[method](_KLT_.touchEvents.start, handleTouchStart);
             col.container[method](_KLT_.touchEvents.move, handleTouchMove);
             col.container[method](_KLT_.touchEvents.end, handleTouchEnd);
-            col.items[method]('click', handleClick);
+            col.items[method](Local.support.onClick, handleClick);
         };
         //销毁事件
         col.destroyEvents = function () {
@@ -3014,8 +3059,8 @@ KUIAPP.Picker = function(params){
         };
         pickerClass = 'PickerModal PickerColumns ' + ($Picker.params.cssClass || '') + ($Picker.params.rotateEffect ? ' Picker3d' : '');
         pickerHTML =
-            '<div class="' + (pickerClass) + '">' +
-                ($Picker.params.toolbar ? $Picker.params.toolbarTemplate.replace(/{{closeText}}/g, $Picker.params.toolbarCloseText) : '') +
+            '<div class="' + (pickerClass) +'">' +
+                ($Picker.params.toolbar ? $Picker.params.toolbarTemplate.replace(/{{closeText}}/, $Picker.params.toolbarCloseText).replace(/{{okText}}/, $Picker.params.toolbarOkText) : '') +
                 '<div class="PickerModalInner PickerItems">' +
                     colsHTML +
                     '<div class="PickerCenterHighlight"></div>' +
@@ -3027,19 +3072,21 @@ KUIAPP.Picker = function(params){
     //输入事件
     function openOnInput(e) {
         e.preventDefault();
+		if(!$Picker.isCreate){
+			KUIAPP.ShowModal($Picker.container);
+		}
         if($Picker.opened){
             return;
         };
-        $Picker.open();
+		$Picker.open();
         
         if($Picker.params.scrollToInput && !isPopover() && $Picker.params.calculateHeight){
             var bodyContent = $Picker.input.parents('body');
-            var WrapContent = $$('.WrapContent');
             if(bodyContent.length === 0){
                 return;
             };
-            var paddingTop = parseInt(WrapContent.css('padding-top'), 10),
-                paddingBottom = parseInt(WrapContent.css('padding-bottom'), 10),
+            var paddingTop = parseInt($WrapContent.css('padding-top'), 10),
+                paddingBottom = parseInt($WrapContent.css('padding-bottom'), 10),
                 pageHeight = bodyContent[0].offsetHeight - paddingTop - $Picker.container.height(),
                 pageScrollHeight = bodyContent[0].scrollHeight - paddingTop - $Picker.container.height(),
                 newPaddingBottom;
@@ -3051,7 +3098,8 @@ KUIAPP.Picker = function(params){
                     if(pageHeight === pageScrollHeight){
                         newPaddingBottom = $Picker.container.height();
                     };
-                    WrapContent.css({'padding-bottom': (newPaddingBottom) + 'px'});
+                    $WrapContent.css({'padding-bottom': (newPaddingBottom) + 'px'});
+                    //$WrapContent.transform('translateY(-' + (newPaddingBottom) + 'px)');
                 };
                 bodyContent.scrollTop(scrollTop, 300);
             };
@@ -3091,14 +3139,15 @@ KUIAPP.Picker = function(params){
     };
     
     if(!$Picker.inline && $Picker.params.closeByOutsideClick){
-        $$('html').on(Local.support.onClick, closeOnHTMLClick);
+        $$('html').on('click', closeOnHTMLClick);
     };
 
     //关闭选择器
     function onPickerClose() {
         $Picker.opened = false;
         if($Picker.input && $Picker.input.length > 0){
-            $Picker.input.parents('body,.WrapContent').css({'padding-bottom': ''});
+            $WrapContent.css({'padding-bottom': ''});
+            //$WrapContent.transform('translateY(0)');
             if(Local.Material){
                 $Picker.input.trigger('blur');
             };
@@ -3117,29 +3166,39 @@ KUIAPP.Picker = function(params){
         var toPopover = isPopover();
         if(!$Picker.opened){
             //设置标识
-            //$Picker.opened = true;
-            //布局
-            $Picker.layout();
+			if($Picker.isCreate){
+				//布局
+				$Picker.layout();
+				//插入指定内容
+				if(toPopover){
+					$Picker.pickerHTML = '<div class="ModalPopover ModalPopoverPickerColumns"><div class="ModalPopoverInner">' + $Picker.pickerHTML + '</div></div>';
+					$Picker.popover = KUIAPP.Popover($Picker.pickerHTML, $Picker.params.input, true);
+					$Picker.container = $$($Picker.popover).find('.PickerModal');
+					$$($Picker.popover).on('close', function () {
+						onPickerClose();
+					});
+				}else if($Picker.inline){
+					$Picker.container = $$($Picker.pickerHTML);
+					$Picker.container.addClass('PickerModalInline');
+					$$($Picker.params.container).append($Picker.container);
+				}else{
+					$Picker.container = $$(KUIAPP.PickerModal($Picker.pickerHTML,!$Picker.params.isEfficient));
+					$$($Picker.container).on('close', function () {
+						onPickerClose();
+					});
+				};
 
-            //插入指定内容
-            if(toPopover){
-                $Picker.pickerHTML = '<div class="ModalPopover ModalPopoverPickerColumns"><div class="ModalPopoverInner">' + $Picker.pickerHTML + '</div></div>';
-                $Picker.popover = KUIAPP.Popover($Picker.pickerHTML, $Picker.params.input, true);
-                $Picker.container = $$($Picker.popover).find('.PickerModal');
-                $$($Picker.popover).on('close', function () {
-                    onPickerClose();
-                });
-            }else if($Picker.inline){
-                $Picker.container = $$($Picker.pickerHTML);
-                $Picker.container.addClass('PickerModalInline');
-                $$($Picker.params.container).append($Picker.container);
-            }else{
-                $Picker.container = $$(KUIAPP.PickerModal($Picker.pickerHTML));
-                $$($Picker.container).on('close', function () {
-                    onPickerClose();
-                });
-            }
-
+				if($Picker.params.isEfficient){
+					$Picker.isCreate = false;
+				}
+			}
+			//绑定确认事件
+			$Picker.container.find(".OkPicker,.ClosePicker").on('click',function(){
+				if($$(this).hasClass('OkPicker')){
+					$Picker.updateValue();
+				};
+				$Picker.close();
+			});
             //储存选择器实例
             $Picker.container[0].KLTPicker = $Picker;
 
@@ -3169,7 +3228,7 @@ KUIAPP.Picker = function(params){
             if($Picker.input && $Picker.input.length > 0 && Local.Material){
                 $Picker.input.trigger('focus');
             }
-        }
+        };
 
         //设置标识
         $Picker.opened = true;
@@ -3186,10 +3245,18 @@ KUIAPP.Picker = function(params){
             return;
         };
         if(inPopover()){
-            KUIAPP.CloseModal($Picker.popover);
+			if($Picker.isCreate){
+				KUIAPP.CloseModal($Picker.popover);
+			}else{
+				KUIAPP.HideModal($Picker.popover);
+			}
             return;
         }else{
-            KUIAPP.CloseModal($Picker.container);
+			if($Picker.isCreate){
+				KUIAPP.CloseModal($Picker.container);
+			}else{
+				KUIAPP.HideModal($Picker.container);
+			}
             return;
         };
     };
@@ -3198,9 +3265,9 @@ KUIAPP.Picker = function(params){
     $Picker.destroy = function(){
         $Picker.close();
         if($Picker.params.input && $Picker.input.length > 0){
-            $Picker.input.off(Local.support.onClick+' focus', openOnInput);
+            $Picker.input.off('click focus', openOnInput);
         };
-        $$('html').off(Local.support.onClick, closeOnHTMLClick);
+        $$('html').off('click', closeOnHTMLClick);
         $$(window).off('resize', resizeCols);
     };
 
@@ -3218,26 +3285,27 @@ window['kelat']['picker'] = function(params){return new KUIAPP.Picker(params);};
 
 /**返回顶部 */
 KUIAPP.BackToTop = function(){
-    var isScroll = running;
     var BackToTop = '<div class="BackToTop"><i class="I IGoTop"></i></div>';
+	var $WrapperArea = $$(document.getElementById(Local.WrapperArea));
+    var $BackToTop = $$(BackToTop);
     //window绑定scroll事件
     $$(window).on("scroll",function(){
-        if($$(document.getElementById(Local.WrapperArea)).find('#isBackToTop').length === 0){
-            $$(".BackToTop").remove();
-            return;
-        };
-        var $BackToTop = $$(BackToTop);
-        //滚动条位置
-        var ScrollTop=Local.support.GetPageScroll().Y;
-        if(ScrollTop >= 200 && isScroll){
-            isScroll = !1;
-            $$(document.getElementById(Local.WrapperArea)).append($BackToTop);
-            $BackToTop.once(Local.support.onClick,function(){
-                $$('body').scrollTop(0,100);
-            });
-        }else if(ScrollTop < 100){
-            isScroll = running;
-            $$(".BackToTop").remove();
+        if($WrapperArea.find('#isBackToTop').length > 0){
+            //滚动条位置
+            var ScrollTop=Local.support.GetPageScroll().Y;
+            if(ScrollTop >= 200){
+                $WrapperArea.append($BackToTop);
+                $BackToTop.once(Local.support.onClick,function(){
+                    $$('html,body').scrollTop(0,100);
+					setTimeout(function(){
+						$BackToTop.remove()
+					},100)
+                });
+            }else if(ScrollTop < 100){
+                $BackToTop.remove();
+            };
+        }else{
+            return
         };
     });
 };
@@ -3285,7 +3353,7 @@ KUIAPP.AddNotify = function(options){
         $ItemHTML.css('margin-top',-_ItemHeight + 'px');
         window.setTimeout(function(){
             $ItemHTML.addClass("ListItemInOut").css('margin-top','0px');
-        },0);
+        },5);
     };
     return this;
 };
@@ -3303,7 +3371,7 @@ KUIAPP.CloseNotify = function(item){
     },20);
     item.addClass('NotifyBoxHidden').transitionEnd(function(){
         item.remove();
-        if ($Notify.find('.ListItem').length === 0) {
+        if($Notify.find('.ListItem').length === 0){
             $Notify.hide();
         }
     });
@@ -3350,7 +3418,7 @@ window['kelat']['unLoading'] = KUIAPP.unLoading;
 /** 导航栏标题位置
  * @param {Object} modal:模态对象
  */
-KUIAPP.SizeNavbars = function (modal) {
+KUIAPP.SizeNavbars = function(modal){
     var navbarInner = modal ? $$(modal).find('.NavBar .NavBarInner') : $$('.NavBar .NavBarInner');
     navbarInner.each(function(){
         var $Navbar = $$(this);
@@ -3395,7 +3463,25 @@ KUIAPP.SizeNavbars = function (modal) {
             centerLeft = -centerLeft;
         };
         center.css({left: centerLeft + 'px'});
-        
+    });
+};
+
+/** 显示 Modal
+ * @param {Object} modal:模态框对象
+ */
+KUIAPP.ShowModal = function(modal){
+	modal.prev('.ModalBlank').css('z-index',Local.LayerIndex).removeClass("ModalBlankVisibleOut").addClass('ModalBlankVisibleIn');
+	modal.removeClass('ModalOut').css({"z-index": ++Local.LayerIndex}).addClass('ModalIn')
+};
+/** 隐藏 Modal
+ * @param {Object} modal:模态框对象
+ */
+KUIAPP.HideModal = function(modal){
+	modal.removeClass('ModalIn').addClass('ModalOut').transitionEnd(function(e){
+		modal.removeClass('ModalOut');
+    });
+	modal.prev('.ModalBlank').removeClass('ModalBlankVisibleIn').addClass('ModalBlankVisibleOut').transitionEnd(function(){
+		$$(this).removeClass('ModalBlankVisibleOut').removeAttr('style');//.hide();
     });
 };
 /** 打开 
@@ -3408,21 +3494,22 @@ KUIAPP.OpenModal = function(modal, className, Shift, displayTime) {
     var isPopover = modal.hasClass('ModalPopover');
     var isPickerModal = modal.hasClass('PickerModal');
     var isPopup = modal.hasClass('PopupBox');
-
-    $$(document.getElementById(Local.WrapperArea)).append('<div class="ModalBlank ModalBlank'+timesTamp+'" style="z-index:' + Local.LayerIndex + '"/>');    
+    var removeOnClose = modal.hasClass('RemoveOnClose');
+    
+    $$(document.getElementById(Local.WrapperArea)).append('<div class="ModalBlank ModalBlank'+timesTamp+'" style="z-index:' + Local.LayerIndex + '"/>');
     $$(document.getElementById(Local.WrapperArea)).append(modal[0]);
     KUIAPP.SizeNavbars(modal);
     var $ModalBlank = $$('.ModalBlank'+timesTamp)
-    if(className == 'ModalPromptBox'){
+    if((!!className?className:'') === 'ModalPromptBox'){
         modal.addClass(className);
         window.setTimeout(function(){
             KUIAPP.CloseModal(modal);
-        }, displayTime);
+        }, !!displayTime?displayTime:5);
     }else{
         if(Local.IsModalPopover){
             modal.addClass(className);
-        }else{
-            modal.addClass(className).css({
+        }else if(!isPopover && !isPickerModal && !isPopup){
+            modal.css({
                 marginTop: -Math.round(modal.outerHeight() / 2) + 'px'
             });
         };
@@ -3430,15 +3517,14 @@ KUIAPP.OpenModal = function(modal, className, Shift, displayTime) {
     };
     window.setTimeout(function(){
         if(modal && running){
-            modal.css({"z-index": ++Local.LayerIndex}).removeClass('ModalOut').addClass('ModalIn');
+            KUIAPP.ShowModal(modal);
         };
         if(isPopover || isPickerModal || isPopup){
             $ModalBlank.on(Local.support.onClick,function(){
                 KUIAPP.CloseModal(modal,Shift);
             });
         }
-        $ModalBlank.addClass('ModalBlankVisible');
-    },0);
+    },5);
 };
 /** 关闭 
  * @param {Object} modal:模态框对象
@@ -3453,24 +3539,30 @@ KUIAPP.CloseModal = function(modal, Shift) {
     var isPopup = modal.hasClass('PopupBox');
     var isPickerModal = modal.hasClass('PickerModal');
     var removeOnClose = modal.hasClass('RemoveOnClose');
+    var hideOnClose = modal.hasClass('HideOnClose');
     modal.trigger('close');
     //选择器 body class
-    if(isPickerModal){
-        $$('body').addClass('PickerModalClosing');
-    };
     modal.removeClass('ModalIn').addClass('ModalOut').transitionEnd(function(e){
         !!Shift && Shift[0].append(Shift[1]);
         if(isPickerModal || isPopover || isPopup){
             $$('body').removeClass('PickerModalClosing');
-            modal.removeClass('ModalOut').hide();
+			if(hideOnClose){
+				modal.removeClass('ModalOut');
+			}else{
+				modal.removeClass('ModalOut').hide();
+			}
             if(removeOnClose && modal.length > 0) {
                 modal.remove();
             };
         }else{//删除
             modal.remove();
         };
-    }).prev().removeClass("ModalBlankVisible").transitionEnd(function(){
-        $$(this).remove();
+    }).prev().removeClass("ModalBlankVisibleIn").addClass('ModalBlankVisibleOut').transitionEnd(function(){
+        if(hideOnClose && modal.length > 0) {
+			$$(this).removeClass('ModalBlankVisibleOut').removeAttr('style');//.hide();
+		}else{
+			$$(this).remove();
+		};
     });
     
     return true;
@@ -3488,9 +3580,9 @@ KUIAPP.Modal = function(options) {
     //创建按钮
     if(options.buttons && options.buttons.length > 0){
         for(var i = 0; i < options.buttons.length; i++){
-            if(i == 0){
+            if(i === 0){
                 ButtonsNAME = "First";
-            }else if(i == (options.buttons.length - 1)){
+            }else if(i === (options.buttons.length - 1)){
                 ButtonsNAME = "Last";
             };
             ButtonsHTML += '<a href="javascript:;" class="ModalButton ' + ButtonsNAME + '">' + options.buttons[i].text + '</a>';
@@ -3503,7 +3595,7 @@ KUIAPP.Modal = function(options) {
     var AfterTextHTML= options.afterText? options.afterText : '';
     var NoButtons    = !options.buttons || options.buttons.length === 0 ? 'ModalNoButtons' : '';
     var ModalButtonsHTML = options.buttons && options.buttons.length > 0 ? '<div class="ModalFooter ModalFooter' + options.buttons.length + '">' + ButtonsHTML + '</div>' : '';
-    ModalHTML = '<div class="ModalBox ' + NoButtons + '"><div class="ModalInner">' + (TitleHTML + ContentHTML + AfterTextHTML) + '</div>' + ModalButtonsHTML + '</div>';
+    ModalHTML = '<div class="ModalBox ' + NoButtons +' '+ (!!options.className ? options.className : '')+'"><div class="ModalInner">' + (TitleHTML + ContentHTML + AfterTextHTML) + '</div>' + ModalButtonsHTML + '</div>';
     //创建父元素
     var $Modal = $$(ModalHTML);
     //添加对象
@@ -3563,7 +3655,7 @@ KUIAPP.Confirm = function(content, title, callbackOk, callbackCancel, buttonText
     return running ? KUIAPP.Modal({
         content: content || '',
         title: typeof title === 'undefined' ? Local.ModalTitle : title,
-        className: className ? className : "",
+        className: !!className ? className : "",
         buttons: [{
             text: buttonText && buttonText[1] ? buttonText[1] : Local.ModalButtonCancel,
             onClick: callbackCancel
@@ -3602,9 +3694,8 @@ KUIAPP.Popup = function (modal, removeOnClose) {
     };
     modal.show();
     //绑定确认事件
-    $$(document).on(Local.support.onClick,".ClosePopup",function(){
-        var popupToClose = $$('.PopupBox.ModalIn');
-        KUIAPP.CloseModal(popupToClose);
+    modal.find(".OkPicker,.ClosePicker,.ClosePopup").on('click',function(){
+        KUIAPP.CloseModal(modal);
     });
     KUIAPP.OpenModal(modal);
     return modal[0];
@@ -3628,10 +3719,13 @@ KUIAPP.PickerModal = function(modal, removeOnClose) {
     };
     if(typeof modal === 'string' && modal.indexOf('<') >= 0) {
         modal = $$(modal);
+		modal.dd='1'
         if (modal.length > 0) {
             if(removeOnClose){
                 modal.addClass('RemoveOnClose');
-            };
+            }else{
+				modal.addClass('HideOnClose');
+			};
             $$(document.getElementById(Local.WrapperArea)).append(modal[0]);
         }else{
             return false;
@@ -3644,7 +3738,6 @@ KUIAPP.PickerModal = function(modal, removeOnClose) {
     if($$('.PickerModal.ModalIn:not(.ModalOut)').length > 0 && !modal.hasClass('ModalIn')) {
         KUIAPP.CloseModal('.PickerModal.ModalIn:not(.ModalOut)');
     }
-    modal.show();
     KUIAPP.OpenModal(modal);
     return modal[0];
 };
@@ -3915,7 +4008,7 @@ KUIAPP.OpenActions = function(actions){
                 KUIAPP.CloseModal(actions);
             });
         });
-    },0);
+    },5);
 };
 /** 操作表单 
  * @param {Array} options:操作表单数组
@@ -3935,7 +4028,7 @@ KUIAPP.Actions = function(options){
             if(button.bg){ buttonClass += ' ' + button.bg };
             if(button.disabled){ buttonClass += ' disabled' };
             ButtonsHTML += '<div class="' + buttonClass + '">' + buttonText + '</div>';
-            if(j === options[i].length - 1){ButtonsHTML += '</div>'};
+            if(j === (options[i].length - 1)){ButtonsHTML += '</div>'};
         }
     }
     ActionsHTML = '<div class="ModalBox ActionsModal">' + ButtonsHTML + '</div>';
@@ -3972,7 +4065,7 @@ KUIAPP.NumberBox = function(){
     var Minus = ".NumBoxMinus";
     var Disabled = "disabled";
     var CheckValue = function(options){
-        if(options.value == null || options.value == '' || isNaN(options.value)){
+        if(options.value === null || options.value === '' || isNaN(options.value)){
             options.input.val(options.min || 0);
         }else{
             if(options.max != null && !isNaN(options.max) && options.value >= parseInt(options.max)){
@@ -4037,7 +4130,7 @@ KUIAPP.Progressbar = function(container, time) {
     }
     window.setTimeout(function(){
         progressbar.remove();
-    }, time)
+    }, time?time:2000)
     return progressbar[0];
 };
 window['kelat']['progressbar'] = KUIAPP.Progressbar;
@@ -4048,12 +4141,12 @@ window['kelat']['progressbar'] = KUIAPP.Progressbar;
 KUIAPP.Ripple = function(){
     return $$(document).on(Local.support.onClick, ".InkRipple", function(event){
         if(running){
-            var $$Th = $$(this), _Date = (new Date()).getTime();
+            var $$Th = $$(this), _Date = +(new Date());
             //使用父元素的最大宽高,创建一个覆盖元素的圆形。
             var _Diameter = Math.max($$Th.outerWidth(), $$Th.outerHeight());
             //得到点击坐标=点击坐标相对于页面 - 父元素的位置相对于页面 - 半自高度/宽度，使其从中心展示;
-            var _OffsetX = event.pageX - $$Th.offset().left - _Diameter / 2;
-            var _OffsetY = event.pageY - $$Th.offset().top - _Diameter / 2;
+            var _OffsetX = (Local.support.touch ? event.targetTouches[0].pageX : event.pageX) - $$Th.offset().left - _Diameter / 2;
+            var _OffsetY = (Local.support.touch ? event.targetTouches[0].pageY : event.pageY) - $$Th.offset().top - _Diameter / 2;
             //创建.ink元素，设置大小
             $$Th.prepend('<span class="ink" id="ink' + _Date + '" style="top:'+_OffsetY+'px;left:'+_OffsetX+'px;height:'+_Diameter+'px;width:'+_Diameter+'px"></span>');
             var $$Ink = $$("#ink" + _Date);
@@ -4068,11 +4161,14 @@ KUIAPP.Ripple = function(){
 /*======================================================
 ************   浮动菜单   ************
 ======================================================*/
-KUIAPP.FloatButton = function() {
-    $$(document).on(Local.support.onClick, ".FloatingButton", function(event){
+KUIAPP.FloatButton = function(item) {
+	var $item = $$(item);
+	if($item.hasClass('FloatingButton') && $item.parent().hasClass('SpeedDial')){
+    $item.on(Local.support.onClick, function(event){
         event.preventDefault();
         $$(this).parent(".SpeedDial").toggleClass("SpeedDialOpened");
     });
+	}
     return this
 };
 window['kelat']['floatButton'] = KUIAPP.FloatButton;
@@ -4182,6 +4278,129 @@ window['kelat']['extend']({
         });
     }
 });
+/*======================================================
+************   Image Lazy Loading   ************
+************   Based on solution by Marc Godard, https://github.com/MarcGodard   ************
+======================================================*/
+var _isImagesLazyLoad = true;
+KUIAPP.initImagesLazyLoad = function(Placeholder){
+	var pageContainer = $$('#'+Local.WrapperArea);
+
+	//Lazy images
+	var lazyLoadImages;
+	if (pageContainer.hasClass('Lazy')) {
+		lazyLoadImages = pageContainer;
+		pageContainer = lazyLoadImages.parents('#'+Local.WrapperArea);
+	}else{
+		lazyLoadImages = pageContainer.find('.Lazy');
+	}
+	if(lazyLoadImages.length === 0){
+		
+		return;
+	};
+
+	//图片占位
+	var placeholderSrc = Local.ImgPlaceholder;
+	if(typeof Placeholder === 'string') {
+		placeholderSrc = Placeholder;
+	}
+	if(Placeholder !== false){
+		lazyLoadImages.each(function(){
+			if($$(this).attr('data-src')){
+				$$(this).attr('src', placeholderSrc);
+			};
+		});
+	};
+
+	// load image
+	var imagesSequence = [];
+	var imageIsLoading = false;
+	function loadImage(el){
+		el = $$(el);
+
+		var bg = el.attr('data-background');
+		var src = bg ? bg : el.attr('data-src');
+		if(!src){
+			return;
+		};
+
+		function onLoad(){
+			el.removeClass('Lazy').addClass('LazyLoaded');
+			if(bg){
+				el.css('background-image', 'url(' + src + ')');
+			}else{
+				el.attr('src', src);
+			};
+
+			if (Local.ImgLazyLoadSequential) {
+				imageIsLoading = false;
+				if (imagesSequence.length > 0) {
+					loadImage(imagesSequence.shift());
+				};
+			};
+		};
+
+		if (Local.ImgLazyLoadSequential) {
+			if(imageIsLoading){
+				if(imagesSequence.indexOf(el[0]) < 0){
+					imagesSequence.push(el[0]);
+				};
+				return;
+			};
+		}
+
+		// Loading flag
+		imageIsLoading = true;
+		
+		var image = new Image();
+		image.onload = onLoad;
+		image.onerror = onLoad;
+		image.src =src;
+	};
+	function lazyHandler(){
+		lazyLoadImages = pageContainer.find('.Lazy');
+		if(lazyLoadImages === 0){
+			_isImagesLazyLoad = false;
+			detachEvents()
+		}else{
+			_isImagesLazyLoad = true;
+			attachEvents();
+			lazyLoadImages.each(function(index, el) {
+				el = $$(el);
+				if(isElementInViewport(el[0])){
+					loadImage(el);
+				};
+			});
+		};
+	};
+
+	function isElementInViewport (el) {
+		var rect = el.getBoundingClientRect();
+		var threshold = Local.ImgLazyLoadThreshold || 0;
+		return(
+			rect.top >= (0 - threshold) &&
+			rect.left >= (0 - threshold) &&
+			rect.top <= (window.innerHeight + threshold) &&
+			rect.left <= (window.innerWidth + threshold)
+		);
+	}
+
+	function attachEvents(destroy) {
+		var method = destroy ? 'off' : 'on';
+		lazyLoadImages[method]('lazy', lazyHandler);
+		pageContainer[method]('lazy', lazyHandler);
+		$$(window)[method]('scroll', lazyHandler);
+		$$(window)[method]('resize', lazyHandler);
+	};
+	function detachEvents() {
+		attachEvents(true);
+	};
+	//绑定事件
+	attachEvents();
+	//初始化
+	lazyHandler();
+};
+window['kelat']['imagesLazyLoad'] = KUIAPP.initImagesLazyLoad;
 
 //执行函数
 window['kelat']['init'] = (function(){

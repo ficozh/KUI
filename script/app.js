@@ -3,12 +3,36 @@
 return angular.module('MyApp', ['ngIOS9UIWebViewPatch'
 	//,'me-pageloading'
 	]).config([
-		'$stateProvider','$locationProvider','$urlRouterProvider',
+		'$stateProvider','$locationProvider','$urlRouterProvider','$httpProvider',
 		//"mePageLoadingProvider",
-		function( $stateProvider,$locationProvider,$urlRouterProvider
+		function( $stateProvider,$locationProvider,$urlRouterProvider,$httpProvider
 		//,mePageLoadingProvider
 		){
-		
+			
+		/*********http请求拦截器**********/
+		$httpProvider.interceptors.push(function($q) {
+			return {
+				request: function(config) {
+					return config || $q.when(config);
+				},
+				requestError: function(rejection) {
+					return $q.reject(rejection);
+				},
+				response: function(response) {
+					return response || $q.when(response);
+				},
+				responseError: function(rejection) {
+					if(rejection.status=='403'){
+						window.location="index.html#/system/login";
+					}
+					return $q.reject(rejection);
+				}
+			};
+		});
+
+			
+			
+		console.log($httpProvider)
 		// 设置头部菜单路由
 		var Header={
 			templateUrl :"pages/header/header.html",
@@ -456,14 +480,32 @@ return angular.module('MyApp', ['ngIOS9UIWebViewPatch'
 			views:{
 				'Header': Header,
 				'WrapContent':{
-					templateUrl :"pages/infinite/infinite.html",
+					templateUrl :"pages/Infinite/Infinite.html",
 					controller : "InfiniteScrollController",
 					resolve : {
 						title:function(){
 							return "infinite scroll(无限滚动)";
 						},
 						load : loadDeps([
-							"../pages/infinite/infinite"
+							"../pages/Infinite/Infinite"
+						])
+					}	
+				}
+			}
+		})
+		.state("imageLazyLoad",{//Image Lazy Loading(图片延迟加载)
+			url:"/imageLazyLoad",
+			views:{
+				'Header': Header,
+				'WrapContent':{
+					templateUrl :"pages/imageLazyLoad/imageLazyLoad.html",
+					controller : "ImageLazyLoadController",
+					resolve : {
+						title:function(){
+							return "imageLazyLoading(图片延迟加载)";
+						},
+						load : loadDeps([
+							"../pages/imageLazyLoad/imageLazyLoad"
 						])
 					}	
 				}
