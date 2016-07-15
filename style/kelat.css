@@ -993,6 +993,63 @@ display:-webkit-box
 }
 .ListBlock .ListItem:last-child .ItemLink.ListButton:after{display:none}
 
+/*滑动操作*/
+.ListBlock .Swipeout{overflow:hidden;
+-webkit-transform-style:preserve-3d;
+		transform-style:preserve-3d;
+}
+.ListBlock .Swipeout.Deleting{
+-webkit-transition-duration:300ms;
+		transition-duration:300ms;
+}
+.ListBlock .Swipeout.Deleting .SwipeoutCon{
+-webkit-transform: translateX(-100%);
+transform: translateX(-100%);
+}
+.ListBlock .Swipeout.transitioning .SwipeoutCon,
+.ListBlock .Swipeout.transitioning .SwipeoutActionsRight .SwipeoutItem,
+.ListBlock .Swipeout.transitioning .SwipeoutActionsLeft .SwipeoutItem,
+.ListBlock .Swipeout.transitioning .SwipeoutOverswipe {
+-webkit-transition-duration:300ms!important;
+		transition-duration:300ms!important;
+}
+.ListBlock .SwipeoutCon{position:relative;z-index:10;}
+.ListBlock .SwipeoutOverswipe{
+-webkit-transition:200ms left;
+		transition:200ms left;
+}
+.ListBlock .SwipeoutActionsLeft,
+.ListBlock .SwipeoutActionsRight{position:absolute;top:0;height:100%;
+display:-webkit-box;
+display:-ms-flexbox;
+display:-webkit-flex;
+display:flex;
+}
+.ListBlock .SwipeoutActionsLeft .SwipeoutItem,
+.ListBlock .SwipeoutActionsRight .SwipeoutItem{position:relative;left:0;padding:0 24px;color:#fff;background:#c7c7cc;
+display:-webkit-box;
+display:-ms-flexbox;
+display:-webkit-flex;
+display:flex;
+-webkit-box-align:center;
+-ms-flex-align:center;
+-webkit-align-items:center;
+align-items:center;
+}
+.ListBlock .SwipeoutActionsLeft .SwipeoutItem:after,
+.ListBlock .SwipeoutActionsRight .SwipeoutItem:after{position:absolute;content:'';top:0;width:600%;height:100%;background:inherit;z-index:-1}
+.ListBlock .SwipeoutActionsLeft .SwipeoutItem.SwipeoutDelete,
+.ListBlock .SwipeoutActionsRight .SwipeoutItem.SwipeoutDelete{background:#f44336}
+.ListBlock .SwipeoutActionsRight{right:0%;
+-webkit-transform:translateX(100%);
+		transform:translateX(100%);
+}
+.ListBlock .SwipeoutActionsRight .SwipeoutItem:after{left:100%;margin-left:-1px}
+.ListBlock .SwipeoutActionsLeft{left:0%;
+-webkit-transform:translateX(-100%);
+		transform:translateX(-100%);
+}
+.ListBlock .SwipeoutActionsLeft .SwipeoutItem:after{right:100%;margin-right:-1px}
 
 
 /*
@@ -1228,11 +1285,13 @@ display:flex;
 
 /*蒙板*/
 .ModalBlank,
-.LoadingIndicatorBlank{position:fixed;top:0;left:0;right:0;bottom:0;background-color:rgba(0,0,0,.4);opacity:0;z-index:-1}
+.LoadingIndicatorBlank{position:fixed;top:0;left:0;right:0;bottom:0;background-color:rgba(0,0,0,.4);opacity:0;z-index:-1;
+-webkit-transform:translateZ(0) scale(1);
+		transform:translateZ(0) scale(1)}
 /*模态框*/		
-.ModalBox{position:fixed;left:50%;top:50%;width:280px;max-height:100%;margin-left:-140px;margin-top:0;z-index:500;border-radius:6px;background-color:#fff;box-shadow:rgba(0,0,0,0.4) 0 0 5px;
--webkit-transform:translate3d(0,0,0) scale(1.185);
-		transform:translate3d(0,0,0) scale(1.185)}
+.ModalBox{position:fixed;left:50%;top:50%;width:280px;max-height:100%;margin-left:-140px;margin-top:0;z-index:500;border-radius:6px;background-color:#fff;box-shadow:rgba(0,0,0,0.4) 0 0 5px;opacity:0;
+-webkit-transform:translate3d(0,0,0) scale(1.18574);
+		transform:translate3d(0,0,0) scale(1.18574)}
 .ModalBox,
 .ModalBlank,
 .LoadingIndicatorBlank{
@@ -1684,10 +1743,10 @@ background-repeat:no-repeat;
 
 
 .LoadingIndicatorBlank{visibility:visible;opacity:0;background:none;z-index:3000}
-.LoadingIndicatorBox{position:fixed;left:50%;top:50%;width:64px;height:64px;padding:8px;margin-left:-32px;margin-top:-32px;background:rgba(0,0,0,.85);z-index:3500;border-radius:6px}
+.LoadingIndicatorBox{position:fixed;left:50%;top:50%;width:64px;height:64px;padding:14px;margin-left:-32px;margin-top:-32px;background:rgba(0,0,0,.85);z-index:3500;border-radius:6px}
 .LoadingIndicatorBox .Loading{display:block}
-.LoadingIndicatorBox .Loading,
-.ModalBox .Loading{width:48px;height:48px}
+.LoadingIndicatorBox .Loading{width:36px;height:36px}
+.ModalBox .Loading{width:24px;height:24px}
 
 @-webkit-keyframes LoadingSpin{ 100%{-webkit-transform:rotate(360deg)} }
 @keyframes LoadingSpin{ 100%{transform:rotate(360deg)} }
@@ -2114,12 +2173,14 @@ text-transform:uppercase;
 .WAllFluid::after{display:block;clear:both;content:"";visibility:hidden;height:0}
 
 /* ===== 背景色 ===== */
-.BW{background-color:#fff}
-.BBlue{background-color:rgba(33,150,243,.75)}
-.BPurple{background-color:rgba(156,39,176,.75)}
-.BRed{background-color:rgba(244,67,54,.75)}
-.BPink{background-color:rgba(233,30,99,.75)}
-.BTeal{background-color:rgba(0,159,136,.75)}
+.BW{background-color:#fff!important}
+.BBlue{background-color:rgba(33,150,243,.75)!important}
+.BPurple{background-color:rgba(156,39,176,.75)!important}
+.BRed{background-color:rgba(244,67,54,.75)!important}
+.BPink{background-color:rgba(233,30,99,.75)!important}
+.BTeal{background-color:rgba(0,159,136,.75)!important}
+.BGreen{background-color:rgba(76,175,80,.75)!important}
+.BOrange{background-color:rgba(255,152,0,.75)!important}
 
 /* ===== 清除浮动  针对 IE9 以下===== */
 .Cle{display:block;clear:both;height:0;font-size:0;line-height:0}

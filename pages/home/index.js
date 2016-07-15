@@ -61,7 +61,7 @@ function( title , $scope , $state , $window) {
 						];
 					//$$(document.body).constructor.alert("12112")；
 					$scope.download=function(event){
-						$$.bubbles('a div img span',function(event){
+						$$.bubbles(event,'a div img span',function(event){
 							alert(1)
 						})
 					};

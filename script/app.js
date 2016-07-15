@@ -323,7 +323,7 @@ return angular.module('MyApp', ['ngIOS9UIWebViewPatch'
 			}
 			
 		})
-		.state("text",{//text(文本)
+		.state("text",{//background & text(背景和文本)
 			url:"/text",
 			views:{
 				'Header': Header,
@@ -332,7 +332,7 @@ return angular.module('MyApp', ['ngIOS9UIWebViewPatch'
 					controller : "TextController",
 					resolve : {
 						title:function(){
-							return "text(文本)";
+							return "background & text(背景和文本)";
 						},
 						load : loadDeps([
 							"../pages/text/text"
@@ -524,6 +524,24 @@ return angular.module('MyApp', ['ngIOS9UIWebViewPatch'
 						},
 						load : loadDeps([
 							"../pages/picker/picker"
+						])
+					}	
+				}
+			}
+		})
+		.state("swipeoutActions",{//Swipeout Actions(滑动操作)
+			url:"/swipeoutActions",
+			views:{
+				'Header': Header,
+				'WrapContent':{
+					templateUrl :"pages/swipeoutActions/swipeoutActions.html",
+					controller : "SwipeoutActionsController",
+					resolve : {
+						title:function(){
+							return "Swipeout Actions(滑动操作)";
+						},
+						load : loadDeps([
+							"../pages/swipeoutActions/swipeoutActions"
 						])
 					}	
 				}
