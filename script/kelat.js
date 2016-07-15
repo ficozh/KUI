@@ -3760,9 +3760,9 @@ KUIAPP.ModalString = function(modal, removeOnClose, callback){
     return callback(modal);
 };
 /** 弹出菜单 
- * @param {String} title:标题
- * @param {String} content:内容
- * @param {function} callBack:回调
+ * @param {Object & String} modal:模态框对象
+ * @param {String} target:模态框目标
+ * @param {String} removeOnClose:是否删除
  */
 KUIAPP.Popover = function(modal, target, removeOnClose){
     if(typeof removeOnClose === 'undefined'){
@@ -3993,6 +3993,9 @@ window['kelat']['actions'] = KUIAPP.Actions;
 ======================================================*/
 KUIAPP.swipeoutOpenedEl = undefined;
 KUIAPP.allowSwipeout = true;
+/** 初始化滑动操作
+ * @param {Object & String} swipeoutEl:滑动对象
+ */
 KUIAPP.initSwipeout = function(swipeoutEl){
 	var isTouched, isMoved, isScrolling, touchesStart = {}, touchStartTime, touchesDiff, swipeOutEl, swipeOutContent, actionsRight, actionsLeft, actionsLeftWidth, actionsRightWidth, translate, opened, openedActions, buttonsLeft, buttonsRight, direction, overswipeLeftButton, overswipeRightButton, overswipeLeft, overswipeRight, noFoldLeft, noFoldRight;
 	
@@ -4068,7 +4071,7 @@ KUIAPP.initSwipeout = function(swipeoutEl){
 		};
 
 		if(!isMoved){
-			if($$('.ListBlock.sortable-opened').length > 0){return;};
+			if($$('.ListBlock.SortableOpened').length > 0){return;};
 			/*jshint validthis:true */
 			swipeOutEl = $$(this);
 			swipeOutContent = swipeOutEl.find('.SwipeoutCon');
@@ -4327,6 +4330,11 @@ KUIAPP.initSwipeout = function(swipeoutEl){
 		$$(document).on(_KLT_.touchEvents.end, '.ListBlock li.Swipeout', handleTouchEnd);
 	};
 };
+/** 打开滑动操作
+ * @param {Object} el:滑动对象
+ * @param {String} dir:方向
+ * @param {function} callback:回调事件
+ */
 KUIAPP.swipeoutOpen = function(el, dir, callback){
 	el = $$(el);
 	if(arguments.length === 2){
@@ -4378,6 +4386,10 @@ KUIAPP.swipeoutOpen = function(el, dir, callback){
 	});
 	KUIAPP.swipeoutOpenedEl = el;
 };
+/** 取消滑动操作
+ * @param {Object} el:滑动对象
+ * @param {function} callback:回调事件
+ */
 KUIAPP.swipeoutClose = function(el, callback){
 	el = $$(el);
 	if(el.length === 0) return;
@@ -4421,6 +4433,10 @@ KUIAPP.swipeoutClose = function(el, callback){
 		KUIAPP.swipeoutOpenedEl = undefined;
 	};
 };
+/** 删除滑动操作
+ * @param {Object} el:滑动对象
+ * @param {function} callback:回调事件
+ */
 KUIAPP.swipeoutDelete = function(el, callback){
 	el = $$(el);
 	if(el.length === 0){
@@ -4444,6 +4460,170 @@ KUIAPP.swipeoutDelete = function(el, callback){
 	el.find('.SwipeoutCon').transform('translate3d(' + translate + ',0,0)');
 };
 window['kelat']['initSwipeout'] = KUIAPP.initSwipeout;
+
+
+/*=====================================================
+************   可排序列表   ************
+=====================================================*/
+/** 触发排序列表
+ * @param {Object} sortableContainer:滑动对象
+ */
+KUIAPP.sortableToggle = function(sortableContainer){
+	sortableContainer = $$(sortableContainer);
+	if(sortableContainer.length === 0){
+		sortableContainer = $$('.ListBlock.Sortable');
+	};
+	sortableContainer.toggleClass('SortableOpened');
+	if(sortableContainer.hasClass('SortableOpened')){
+		sortableContainer.trigger('open');
+	}else{
+		sortableContainer.trigger('close');
+	};
+	return sortableContainer;
+};
+/** 打开排序列表
+ * @param {Object} sortableContainer:滑动对象
+ */
+KUIAPP.sortableOpen = function(sortableContainer){
+	sortableContainer = $$(sortableContainer);
+	if(sortableContainer.length === 0){
+		sortableContainer = $$('.ListBlock.Sortable');
+	};
+	sortableContainer.addClass('SortableOpened');
+	sortableContainer.trigger('open');
+	return sortableContainer;
+};
+/** 关闭排序列表
+ * @param {Object} sortableContainer:滑动对象
+ */
+KUIAPP.sortableClose = function(sortableContainer){
+	sortableContainer = $$(sortableContainer);
+	if(sortableContainer.length === 0){
+		sortableContainer = $$('.ListBlock.Sortable');
+	};
+	sortableContainer.removeClass('SortableOpened');
+	sortableContainer.trigger('close');
+	return sortableContainer;
+};
+/** 初始排序列表 */
+KUIAPP.initSortable = function () {
+	var isTouched, isMoved, touchStartY, touchesDiff, sortingEl, sortingElHeight, sortingItems, minTop, maxTop, insertAfter, insertBefore, sortableContainer;
+	//开关事件
+	$$(document).on('click','.ToggleSortable,.CloseSortable,.OpenSortable',function(){
+		var clicked = $$(this)
+		var clickedData = clicked.dataset()
+		if(clicked.hasClass('ToggleSortable')){
+			KUIAPP.sortableToggle(clickedData.sortable);
+		}
+		if(clicked.hasClass('OpenSortable')){
+			KUIAPP.sortableOpen(clickedData.sortable);
+		}
+		if(clicked.hasClass('CloseSortable')){
+			KUIAPP.sortableClose(clickedData.sortable);
+		}
+	})
+
+	//触摸事件
+	function handleTouchStart(e) {
+		isMoved = false;
+		isTouched = true;
+		touchStartY = e.type === 'touchstart' ? e.targetTouches[0].pageY : e.pageY;
+		/*jshint validthis:true */
+		sortingEl = $$(this).parent();
+		sortingItems = sortingEl.parent().find('li');
+		sortableContainer = sortingEl.parents('.sortable');
+		e.preventDefault();
+		KUIAPP.allowSwipeout = false;
+	}
+	//移动事件
+	function handleTouchMove(e) {
+		if(!isTouched || !sortingEl){
+			return;
+		};
+		var pageX = e.type === 'touchmove' ? e.targetTouches[0].pageX : e.pageX;
+		var pageY = e.type === 'touchmove' ? e.targetTouches[0].pageY : e.pageY;
+		if(!isMoved){
+			sortingEl.addClass('sorting');
+			sortableContainer.addClass('sortable-sorting');
+			minTop = sortingEl[0].offsetTop;
+			maxTop = sortingEl.parent().height() - sortingEl[0].offsetTop - sortingEl.height();
+			sortingElHeight = sortingEl[0].offsetHeight;
+		}
+		isMoved = true;
+
+		e.preventDefault();
+		touchesDiff = pageY - touchStartY;
+		var translate = touchesDiff;
+		if(translate < -minTop){
+			translate = -minTop;
+		};
+		if(translate > maxTop){
+			translate = maxTop;
+		};
+		sortingEl.transform('translate3d(0,' + translate + 'px,0)');
+
+		insertBefore = insertAfter = undefined;
+
+		sortingItems.each(function(){
+			var currentEl = $$(this);
+			if(currentEl[0] === sortingEl[0]){
+				return;
+			};
+			var currentElOffset = currentEl[0].offsetTop;
+			var currentElHeight = currentEl.height();
+			var sortingElOffset = sortingEl[0].offsetTop + translate;
+
+			if((sortingElOffset >= currentElOffset - currentElHeight / 2) && sortingEl.index() < currentEl.index()){
+				currentEl.transform('translate3d(0, '+(-sortingElHeight)+'px,0)');
+				insertAfter = currentEl;
+				insertBefore = undefined;
+			}else if((sortingElOffset <= currentElOffset + currentElHeight / 2) && sortingEl.index() > currentEl.index()){
+				currentEl.transform('translate3d(0, '+(sortingElHeight)+'px,0)');
+				insertAfter = undefined;
+				if(!insertBefore){
+					insertBefore = currentEl;
+				};
+			}else{
+				$$(this).transform('translate3d(0, 0%,0)');
+			};
+		});
+	}
+	//离开事件
+	function handleTouchEnd(e) {
+		KUIAPP.allowSwipeout = true;
+		if(!isTouched || !isMoved){
+			isTouched = false;
+			isMoved = false;
+			return;
+		}
+		e.preventDefault();
+		sortingItems.transform('');
+		sortingEl.removeClass('sorting');
+		sortableContainer.removeClass('sortable-sorting');
+		var virtualList, oldIndex, newIndex;
+		if(insertAfter){
+			sortingEl.insertAfter(insertAfter);
+			sortingEl.trigger('sort');
+		};
+		if(insertBefore){
+			sortingEl.insertBefore(insertBefore);
+			sortingEl.trigger('sort');
+		};
+		insertAfter = insertBefore = undefined;
+		isTouched = false;
+		isMoved = false;
+	}
+	//绑定事件
+	$$(document).on(_KLT_.touchEvents.start, '.ListBlock.Sortable .SortableHandler', handleTouchStart);
+	if(Local.support.touch){
+		$$(document).on(_KLT_.touchEvents.move, '.ListBlock.Sortable .SortableHandler', handleTouchMove);
+		$$(document).on(_KLT_.touchEvents.end, '.ListBlock.Sortable .SortableHandler', handleTouchEnd);
+	}else{
+		$$(document).on(_KLT_.touchEvents.move, handleTouchMove);
+		$$(document).on(_KLT_.touchEvents.end, handleTouchEnd);
+	}		
+};
+window['kelat']['initSortable'] = KUIAPP.initSortable;  
 
 /*======================================================
 ************   数字输入框   ************

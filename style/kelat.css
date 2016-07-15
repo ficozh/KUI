@@ -1051,6 +1051,25 @@ align-items:center;
 }
 .ListBlock .SwipeoutActionsLeft .SwipeoutItem:after{right:100%;margin-right:-1px}
 
+/*排序列表*/
+.ListBlock .SortableHandler{position:absolute;right:0;top:0;bottom:1px;z-index:10;background-repeat:no-repeat;background-size:18px 12px;background-position:center;width:50px;opacity:0;visibility:hidden;cursor:pointer;
+background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%2018%2012'%20fill%3D'%23c7c7cc'%3E%3Cpath%20d%3D'M0%2C2V0h22v2H0z'%2F%3E%3Cpath%20d%3D'M0%2C7V5h22v2H0z'%2F%3E%3Cpath%20d%3D'M0%2C12v-2h22v2H0z'%2F%3E%3C%2Fsvg%3E");
+-webkit-transition-duration:300ms;
+		transition-duration:300ms;
+}
+.ListBlock.Sortable .ItemInner{
+-webkit-transition-duration:300ms;
+		transition-duration:300ms;
+}
+.ListBlock.SortableOpened .SortableHandler{visibility:visible;opacity:1}
+.ListBlock.SortableOpened .ItemInner,
+.ListBlock.SortableOpened .ItemLink .ItemInner{padding-right:50px}
+.ListBlock.SortableOpened .ItemLink .ItemInner,
+.ListBlock.SortableOpened .ItemLink .ItemTitleRow{background-image:none}
+.ListBlock.sortable-sorting li {
+-webkit-transition-duration:300ms;
+		transition-duration:300ms;
+}
 
 /*
 滑块

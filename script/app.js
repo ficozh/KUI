@@ -546,6 +546,24 @@ return angular.module('MyApp', ['ngIOS9UIWebViewPatch'
 					}	
 				}
 			}
+		})
+		.state("sortable",{//Sortable List(可排序列表)
+			url:"/sortable",
+			views:{
+				'Header': Header,
+				'WrapContent':{
+					templateUrl :"pages/sortable/sortable.html",
+					controller : "SortableController",
+					resolve : {
+						title:function(){
+							return "Sortable List(可排序列表)";
+						},
+						load : loadDeps([
+							"../pages/sortable/sortable"
+						])
+					}	
+				}
+			}
 		});
 		
 		
