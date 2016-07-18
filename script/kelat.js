@@ -26,19 +26,16 @@ var toString = classType.toString;
 var hasOwn = classType.hasOwnProperty;
 var _KLTTEST_ = /ktest=true/.test(window.location.hash);
 //运行授权
-//var running = !0 ;
 var running = ++[[]][+[]]+[]+[] >>> 0 ? !0 : !1 ;
 var KUIAPP = {
-	//类型
-	type : function( obj ) {
-		if(obj === null){
-			return obj + "";
-		}
-		//支持：Android的<4.0（功能正则表达式）
-		return typeof obj === "object" || typeof obj === "function" ?
-			classType[ toString.call(obj) ] || "object" :
-			typeof obj;
-	},
+    //类型
+    type : function( obj ) {
+        if(obj === null){
+            return obj + "";
+        }
+        //支持：Android的<4.0 功能正则表达式
+        return typeof obj === "object" || typeof obj === "function" ? classType[ toString.call(obj) ] || "object" : typeof obj;
+    },
     //是字符串
     isString : function(obj){ 
         return typeof obj === 'string';
@@ -48,7 +45,7 @@ var KUIAPP = {
         return !isNaN(parseFloat(Number)) && isFinite(Number);
     },
     //是否为数组
-	isArray : function(arr){
+    isArray : function(arr){
         return (Object.prototype.toString.apply(arr) === '[object Array]') ? true : false;
     },
     //是否在Window容器
@@ -58,27 +55,27 @@ var KUIAPP = {
 };
 //是否普通对象
 KUIAPP.isPlainObject = function( obj ) {
-	// 不是普通的对象:
-	// - 任何对象或值，其内部的 [[Class]] 属性不是 "[object Object]"
-	// - DOM节点
-	// - window窗口
-	if(KUIAPP.type(obj) !== "object" || obj.nodeType || KUIAPP.isWindow(obj)){
-		return false;
-	};
-	if(obj.constructor && !hasOwn.call( obj.constructor.prototype, "isPrototypeOf" )){
-		return false;
-	};
-	//如果没有返回
-	//|obj|是一个普通的对象, 通过创建 {} 或新构造的对象
-	return true;
+    // 不是普通的对象:
+    // - 任何对象或值，其内部的 [[Class]] 属性不是 "[object Object]"
+    // - DOM节点
+    // - window窗口
+    if(KUIAPP.type(obj) !== "object" || obj.nodeType || KUIAPP.isWindow(obj)){
+        return false;
+    };
+    if(obj.constructor && !hasOwn.call( obj.constructor.prototype, "isPrototypeOf" )){
+        return false;
+    };
+    //如果没有返回
+    //|obj|是一个普通的对象, 通过创建 {} 或新构造的对象
+    return true;
 };
 //是否为函数
 KUIAPP.isFunction = function(obj) {
-	return KUIAPP.type(obj) === "function";
+    return KUIAPP.type(obj) === "function";
 };
 //扩展 --- 功能参考 jQuery
 KUIAPP.Extend = function(){
-	var options, name, src, copy, copyIsArray, clone,
+    var options, name, src, copy, copyIsArray, clone,
         target = arguments[0] || {},
         index = 1,
         length = arguments.length,
@@ -138,9 +135,9 @@ var KUILocale = {
         CANCEL:'取消'
     },
     "IMG":{
-		IMGTIPS:'图片格式不正确或者跨域请求！',
-		IMGPlaceholder :'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7'
-	},
+        IMGTIPS:'图片格式不正确或者跨域请求！',
+        IMGPlaceholder :'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7'
+    },
     "LOADING": [
       '正在加载...'
     ]
@@ -149,9 +146,9 @@ var KUILocale = {
   "id": "zh-cn"
 };
 if(window['kelatlocale']){
-	window['kelatlocale'] = KUIAPP.Extend(true,KUILocale,window['kelatlocale'])
+    window['kelatlocale'] = KUIAPP.Extend(true,KUILocale,window['kelatlocale'])
 }else{
-	window['kelatlocale'] = KUILocale;
+    window['kelatlocale'] = KUILocale;
 };
 /***** 定义局部参数 *****/
 var Local = {
@@ -173,10 +170,10 @@ var Local = {
     ModalButtonOk : kelatlocale.SYSTEM_LANGUAGE.MODAL.OK,
     ModalButtonCancel : kelatlocale.SYSTEM_LANGUAGE.MODAL.CANCEL,
     isModalPopover : false,
-	//Swipeout
-	swipeout: true,
-	swipeoutActionsNoFold: false,
-	swipeoutNoFollow: false,
+    //Swipeout
+    swipeout: true,
+    swipeoutActionsNoFold: false,
+    swipeoutNoFollow: false,
 
     // 正则
     RegExpr : {
@@ -304,7 +301,7 @@ var kelatDom = (function(){
             //String
             if(typeof selector === 'string'){
                 var els, tempParent, html; 
-					selector = html = selector.replace(Local.RegExpr.trim,'');
+                    selector = html = selector.replace(Local.RegExpr.trim,'');
                 if(html.indexOf('<') >= 0 && html.indexOf('>') >= 0){
                     var toCreate = 'div';
                     if(html.indexOf('<li') === 0){toCreate = 'ul';}
@@ -946,16 +943,16 @@ var kelatDom = (function(){
             if(this.length > 0){
                 if(selector){
                     if(this[0].nextElementSibling && $(this[0].nextElementSibling).is(selector)){
-						return new kelatDom([this[0].nextElementSibling]);
-					}else{
-						return new kelatDom([]);
-					};
+                        return new kelatDom([this[0].nextElementSibling]);
+                    }else{
+                        return new kelatDom([]);
+                    };
                 }else{
                     if(this[0].nextElementSibling){
-						return new kelatDom([this[0].nextElementSibling]);
-					}else{
-						return new kelatDom([]);
-					};
+                        return new kelatDom([this[0].nextElementSibling]);
+                    }else{
+                        return new kelatDom([]);
+                    };
                 }
             }
             else return new kelatDom([]);
@@ -1028,17 +1025,17 @@ var kelatDom = (function(){
             }
             return $($.unique(parents));
         },
-		closest: function(selector){
-			var closest = this;
-			if(typeof selector === 'undefined'){
-				return new kelatDom([]);
-			}
-			if(!closest.is(selector)){
-				closest = closest.parents(selector).eq(0);
-			}
-			return closest;
-		},
-		find : function(selector){
+        closest: function(selector){
+            var closest = this;
+            if(typeof selector === 'undefined'){
+                return new kelatDom([]);
+            }
+            if(!closest.is(selector)){
+                closest = closest.parents(selector).eq(0);
+            }
+            return closest;
+        },
+        find : function(selector){
             var foundElements = [];
             for(var i = 0; i < this.length; i++){
                 var found = this[i].querySelectorAll(selector);
@@ -1103,7 +1100,7 @@ var kelatDom = (function(){
                 window.addEventListener( "load", trigger );
             }
         },
-		trim: function(text){
+        trim: function(text){
             return typeof text === 'string' && running ? text.replace(Local.RegExpr.trim,'') : '';
         }
     };
@@ -1905,15 +1902,15 @@ window['kelat']['extend'] = $$.extend = _KLT_.extend = KUIAPP.Extend;
 
 window['kelat']['extend']({
     //自定义特性
-    expando : "kelat" + ( version + Math.random() ).replace( /\D/g, "" ),    
+    expando : "kelat" + ( version + Math.random() ).replace( /\D/g, "" ),
     //空操作
     noop : function() {},
-	//Ajax
-	ajax : $$.ajax,
-	ajaxSetup : $$.ajaxSetup,
-	get : $$.get,
-	post : $$.post,
-	getJSON  : $$.getJSON,
+    //Ajax
+    ajax : $$.ajax,
+    ajaxSetup : $$.ajaxSetup,
+    get : $$.get,
+    post : $$.post,
+    getJSON  : $$.getJSON,
     //是字符串
     isString : KUIAPP.isString,
     //是否为函数
@@ -2078,7 +2075,7 @@ var compatible = function(event, source){
                 touch.x2 = undefined;
                 touch.y2 = undefined;
             };
-			_targetTouches = e.targetTouches;
+            _targetTouches = e.targetTouches;
             now = Date.now();
             delta = now - (touch.last || now);
             touch.el = $('tagName' in firstTouch.target ? firstTouch.target : firstTouch.target.parentNode);
@@ -2524,29 +2521,29 @@ window['kelat']['initPullToRefresh'] = KUIAPP.InitPullToRefresh;
 KUIAPP.isInfiniteScroll = true;
 KUIAPP.scrollCurrent = 0;
 KUIAPP.HandleInfiniteScroll = function(){
-	var $InfiniteScroll = $$('.InfiniteScroll');
-	if(KUIAPP.isInfiniteScroll &&  $InfiniteScroll.length > 0){
-		var height = $InfiniteScroll.height();
-		var distance = parseInt($InfiniteScroll.attr('data-distance'));
-		if(!distance){distance = 50;};
-		if(distance > height){distance = height;};
-		
-		//滚动条位置
-		var scrollTop=Local.support.GetPageScroll().Y;
-		//window height
-		var winHeight=Local.support.GetPageSize().WinH;
-		//防止向上滚动触发事件
-		if(KUIAPP.scrollCurrent>scrollTop){
-			return
-		};
-		if((scrollTop+distance+winHeight) > height ){
-			KUIAPP.scrollCurrent = scrollTop
-			$InfiniteScroll.trigger('infinite');
-		};
-	}else{
-		KUIAPP.isInfiniteScroll = false;
-		KUIAPP.DetachInfiniteScroll();
-	}
+    var $InfiniteScroll = $$('.InfiniteScroll');
+    if(KUIAPP.isInfiniteScroll &&  $InfiniteScroll.length > 0){
+        var height = $InfiniteScroll.height();
+        var distance = parseInt($InfiniteScroll.attr('data-distance'));
+        if(!distance){distance = 50;};
+        if(distance > height){distance = height;};
+        
+        //滚动条位置
+        var scrollTop=Local.support.GetPageScroll().Y;
+        //window height
+        var winHeight=Local.support.GetPageSize().WinH;
+        //防止向上滚动触发事件
+        if(KUIAPP.scrollCurrent>scrollTop){
+            return
+        };
+        if((scrollTop+distance+winHeight) > height ){
+            KUIAPP.scrollCurrent = scrollTop
+            $InfiniteScroll.trigger('infinite');
+        };
+    }else{
+        KUIAPP.isInfiniteScroll = false;
+        KUIAPP.DetachInfiniteScroll();
+    }
 };
 /** 添加滚动 */
 KUIAPP.AttachInfiniteScroll = function(){
@@ -2576,32 +2573,32 @@ window['kelat']['detachInfiniteScroll'] = KUIAPP.DetachInfiniteScroll;
 KUIAPP.Picker = function(params){
     var $Picker = this;
     var defaults = {
-		//计算高度
+        //计算高度
         calculateHeight : true,
         updateValuesOnMomentum: false,
         updateValuesOnTouchmove: true,
-		//旋转效果
+        //旋转效果
         rotateEffect: false,
-		//高效
-		isEfficient:false,
-		//自动更新
-		autoUpdate:true,
-		//动量比
+        //高效
+        isEfficient:false,
+        //自动更新
+        autoUpdate:true,
+        //动量比
         momentumRatio: 7,
-		//自由模式
+        //自由模式
         freeMode: false,
         //常用设置
-		//点击其他区域关闭
+        //点击其他区域关闭
         closeByOutsideClick: true,
-		//滚动输入
+        //滚动输入
         scrollToInput: true,
-		//输入只读
+        //输入只读
         inputReadOnly: true,
-		//转换成Popover
+        //转换成Popover
         convertToPopover: true,
-		//只显示Popover
+        //只显示Popover
         onlyInPopover: false,
-		//工具栏
+        //工具栏
         toolbar: true,
         toolbarOkText: Local.ModalButtonOk,
         toolbarCloseText: Local.ModalButtonCancel,
@@ -2623,9 +2620,9 @@ KUIAPP.Picker = function(params){
     $Picker.cols = [];
     $Picker.initialized = false;
     $Picker.isCreate = true;
-	
-	//滚动区域
-	var $WrapContent = $$('.WrapContent');
+    
+    //滚动区域
+    var $WrapContent = $$('.WrapContent');
 
     // 内嵌的标志
     $Picker.inline = $Picker.params.container ? true : false;
@@ -2691,9 +2688,9 @@ KUIAPP.Picker = function(params){
         };
         if($Picker.input && $Picker.input.length > 0){
             var method = $Picker.input[0].tagName === "INPUT" ? ['val','change'] : ['text',Local.support.onClick];
-			var _val = $Picker.params.formatValue ? $Picker.params.formatValue($Picker, $Picker.value, $Picker.displayValue) : $Picker.value.join(' ')
+            var _val = $Picker.params.formatValue ? $Picker.params.formatValue($Picker, $Picker.value, $Picker.displayValue) : $Picker.value.join(' ')
             //赋值并格式化
-			$$($Picker.input)[method[0]](_val);
+            $$($Picker.input)[method[0]](_val);
             $$($Picker.input).trigger(method[1]);
         }
     };
@@ -2759,23 +2756,23 @@ KUIAPP.Picker = function(params){
             };
         };
         col.calcSize();
-		//外壳旋转
-		function wrapperRotate(Translate,isTransition){
-			if($Picker.params.rotateEffect){
-				//Translate = ((Translate/(2*Math.PI*(110+10)))*360)-18
-				//Translate = Math.round(Math.asin(b) * (180/Math.PI))
-				//col.wrapper.transform('rotateY(0deg) rotateX('+(-Translate)+'deg) translateZ(0)');
-				col.wrapper.transform('translate3d(0,' + Translate + 'px,0)');
-			}else{
-				col.wrapper.transform('translate3d(0,' + Translate + 'px,0)');
-			}
-			if(isTransition){
-				col.wrapper.transition(0);
-			}
-		};
+        //外壳旋转
+        function wrapperRotate(Translate,isTransition){
+            if($Picker.params.rotateEffect){
+                //Translate = ((Translate/(2*Math.PI*(110+10)))*360)-18
+                //Translate = Math.round(Math.asin(b) * (180/Math.PI))
+                //col.wrapper.transform('rotateY(0deg) rotateX('+(-Translate)+'deg) translateZ(0)');
+                col.wrapper.transform('translate3d(0,' + Translate + 'px,0)');
+            }else{
+                col.wrapper.transform('translate3d(0,' + Translate + 'px,0)');
+            }
+            if(isTransition){
+                col.wrapper.transition(0);
+            }
+        };
         
         //col.wrapper.transform('translate3d(0,' + maxTranslate + 'px,0)').transition(0);
-		wrapperRotate(maxTranslate,true);
+        wrapperRotate(maxTranslate,true);
 
         var activeIndex = 0;
         var animationFrameId;
@@ -2791,8 +2788,8 @@ KUIAPP.Picker = function(params){
             //更新外层元素
             col.wrapper.transition(transition);
             //col.wrapper.transform('translate3d(0,' + (newTranslate) + 'px,0)');
-			wrapperRotate((newTranslate));
-			
+            wrapperRotate((newTranslate));
+            
             //检测元素
             if($Picker.params.updateValuesOnMomentum && col.activeIndex && col.activeIndex !== newActiveIndex ){
                 $$.cancelAnimationFrame(animationFrameId);
@@ -2813,13 +2810,13 @@ KUIAPP.Picker = function(params){
             var previousActiveIndex = col.activeIndex;
             col.activeIndex = activeIndex;
             col.items.removeClass('PickerSelected');
-			
+            
             
             var selectedItem = col.items.eq(activeIndex).addClass('PickerSelected');
                 
-			//设置3D旋转效果
+            //设置3D旋转效果
             if($Picker.params.rotateEffect){
-				col.items.transition(transition);
+                col.items.transition(transition);
                 var percentage = (translate - (Math.floor((translate - maxTranslate)/itemHeight) * itemHeight + maxTranslate)) / itemHeight;
                 
                 col.items.each(function(index){
@@ -2831,7 +2828,7 @@ KUIAPP.Picker = function(params){
                     var percentage = (((index) * itemHeight) - (maxTranslate - translate)) / itemHeight;
 
                     var itemsFit = Math.ceil(col.height / itemHeight / 2) + 1;
-					
+                    
                     var angle =(-18*percentage);
                     if(angle > 180){angle = 180;};
                     if(angle < -180){angle = -180;};
@@ -2841,14 +2838,14 @@ KUIAPP.Picker = function(params){
                     }else{
                         item.removeClass('PickerItemFar');
                     };
-					
+                    
                     //设置 transform
                     item.transform('translate3d(0, ' + (-translate + maxTranslate) + 'px, ' + (originBug ? -110 : 0) + 'px) rotateX(' + angle + 'deg)');
                     //$$(this).transform('translate3d(0, 0,' + (originBug ? -110 : 0) + 'px) rotateX(' + (angle) + 'deg)');
                 });
             }else{
-				col.items.transition(transition);
-			};
+                col.items.transition(transition);
+            };
 
             if(valueCallbacks || typeof valueCallbacks === 'undefined'){
                 //更新 values
@@ -2859,9 +2856,9 @@ KUIAPP.Picker = function(params){
                     if(col.onChange){
                         col.onChange($Picker, col.value, col.displayValue);
                     };
-					if($Picker.params.autoUpdate){
-						$Picker.updateValue();
-					};
+                    if($Picker.params.autoUpdate){
+                        $Picker.updateValue();
+                    };
                 }
             }
         };
@@ -2920,10 +2917,10 @@ KUIAPP.Picker = function(params){
             };
             //更新外层元素
             //col.wrapper.transform('translate3d(0,' + currentTranslate + 'px,0)');
-			wrapperRotate(currentTranslate);
+            wrapperRotate(currentTranslate);
 
             //更新元素
-			col.updateItems(undefined, currentTranslate, 0, $Picker.params.updateValuesOnTouchmove);
+            col.updateItems(undefined, currentTranslate, 0, $Picker.params.updateValuesOnTouchmove);
             
             //计算速度
             velocityTranslate = currentTranslate - prevTranslate || currentTranslate;
@@ -2941,10 +2938,10 @@ KUIAPP.Picker = function(params){
             if(returnTo){
                 if(returnTo === 'min'){
                     //col.wrapper.transform('translate3d(0,' + minTranslate + 'px,0)');
-					wrapperRotate(minTranslate);
+                    wrapperRotate(minTranslate);
                 }else{
                     //col.wrapper.transform('translate3d(0,' + maxTranslate + 'px,0)');
-					wrapperRotate(maxTranslate);
+                    wrapperRotate(maxTranslate);
                 };
             };
             touchEndTime = +(new Date());
@@ -2967,10 +2964,10 @@ KUIAPP.Picker = function(params){
 
             //更新外层元素
             //col.wrapper.transform('translate3d(0,' + (parseInt(newTranslate,10)) + 'px,0)');
-			wrapperRotate((parseInt(newTranslate,10)));
+            wrapperRotate((parseInt(newTranslate,10)));
 
             //更新元素
-			col.updateItems(activeIndex, newTranslate, '', true);
+            col.updateItems(activeIndex, newTranslate, '', true);
 
             //检测元素
             if($Picker.params.updateValuesOnMomentum){
@@ -3076,13 +3073,13 @@ KUIAPP.Picker = function(params){
     //输入事件
     function openOnInput(e) {
         e.preventDefault();
-		if(!$Picker.isCreate){
-			KUIAPP.ShowModal($Picker.container);
-		}
+        if(!$Picker.isCreate){
+            KUIAPP.ShowModal($Picker.container);
+        }
         if($Picker.opened){
             return;
         };
-		$Picker.open();
+        $Picker.open();
         
         if($Picker.params.scrollToInput && !isPopover() && $Picker.params.calculateHeight){
             var bodyContent = $Picker.input.parents('body');
@@ -3109,7 +3106,7 @@ KUIAPP.Picker = function(params){
             };
         };
     };
-	var i=0;
+    var i=0;
     //关闭HTML事件
     function closeOnHTMLClick(e) {
         if(inPopover()){
@@ -3168,39 +3165,39 @@ KUIAPP.Picker = function(params){
         var toPopover = isPopover();
         if(!$Picker.opened){
             //设置标识
-			if($Picker.isCreate){
-				//布局
-				$Picker.layout();
-				//插入指定内容
-				if(toPopover){
-					$Picker.pickerHTML = '<div class="ModalPopover ModalPopoverPickerColumns"><div class="ModalPopoverInner">' + $Picker.pickerHTML + '</div></div>';
-					$Picker.popover = KUIAPP.Popover($Picker.pickerHTML, $Picker.params.input, true);
-					$Picker.container = $$($Picker.popover).find('.PickerModal');
-					$$($Picker.popover).on('close', function () {
-						onPickerClose();
-					});
-				}else if($Picker.inline){
-					$Picker.container = $$($Picker.pickerHTML);
-					$Picker.container.addClass('PickerModalInline');
-					$$($Picker.params.container).append($Picker.container);
-				}else{
-					$Picker.container = $$(KUIAPP.PickerModal($Picker.pickerHTML,!$Picker.params.isEfficient));
-					$$($Picker.container).on('close', function () {
-						onPickerClose();
-					});
-				};
+            if($Picker.isCreate){
+                //布局
+                $Picker.layout();
+                //插入指定内容
+                if(toPopover){
+                    $Picker.pickerHTML = '<div class="ModalPopover ModalPopoverPickerColumns"><div class="ModalPopoverInner">' + $Picker.pickerHTML + '</div></div>';
+                    $Picker.popover = KUIAPP.Popover($Picker.pickerHTML, $Picker.params.input, true);
+                    $Picker.container = $$($Picker.popover).find('.PickerModal');
+                    $$($Picker.popover).on('close', function () {
+                        onPickerClose();
+                    });
+                }else if($Picker.inline){
+                    $Picker.container = $$($Picker.pickerHTML);
+                    $Picker.container.addClass('PickerModalInline');
+                    $$($Picker.params.container).append($Picker.container);
+                }else{
+                    $Picker.container = $$(KUIAPP.PickerModal($Picker.pickerHTML,!$Picker.params.isEfficient));
+                    $$($Picker.container).on('close', function () {
+                        onPickerClose();
+                    });
+                };
 
-				if($Picker.params.isEfficient){
-					$Picker.isCreate = false;
-				}
-			}
-			//绑定确认事件
-			$Picker.container.find(".OkPicker,.ClosePicker").on('click',function(){
-				if($$(this).hasClass('OkPicker') && !$Picker.params.autoUpdate){
-					$Picker.updateValue();
-				};
-				$Picker.close();
-			});
+                if($Picker.params.isEfficient){
+                    $Picker.isCreate = false;
+                }
+            }
+            //绑定确认事件
+            $Picker.container.find(".OkPicker,.ClosePicker").on('click',function(){
+                if($$(this).hasClass('OkPicker') && !$Picker.params.autoUpdate){
+                    $Picker.updateValue();
+                };
+                $Picker.close();
+            });
             //储存选择器实例
             $Picker.container[0].KLTPicker = $Picker;
 
@@ -3242,20 +3239,20 @@ KUIAPP.Picker = function(params){
             return;
         };
         if(inPopover()){
-			if($Picker.isCreate){
-				KUIAPP.CloseModal($Picker.popover);
-			}else{
-				KUIAPP.HideModal($Picker.popover);
-				$Picker.opened = false;
-			}
+            if($Picker.isCreate){
+                KUIAPP.CloseModal($Picker.popover);
+            }else{
+                KUIAPP.HideModal($Picker.popover);
+                $Picker.opened = false;
+            }
             return;
         }else{
-			if($Picker.isCreate){
-				KUIAPP.CloseModal($Picker.container);
-			}else{
-				KUIAPP.HideModal($Picker.container);
-				$Picker.opened = false;
-			}
+            if($Picker.isCreate){
+                KUIAPP.CloseModal($Picker.container);
+            }else{
+                KUIAPP.HideModal($Picker.container);
+                $Picker.opened = false;
+            }
             return;
         };
     };
@@ -3264,7 +3261,7 @@ KUIAPP.Picker = function(params){
     $Picker.destroy = function(){
         $Picker.close();
         if($Picker.params.input && $Picker.input.length > 0){
-            //$Picker.input.off('click focus', openOnInput);
+            $Picker.input.off('click focus', openOnInput);
         };
         $$('html').off('click', closeOnHTMLClick);
         $$(window).off('resize', resizeCols);
@@ -3285,7 +3282,7 @@ window['kelat']['picker'] = function(params){return new KUIAPP.Picker(params);};
 /**返回顶部 */
 KUIAPP.BackToTop = function(){
     var BackToTop = '<div class="BackToTop"><i class="I IGoTop"></i></div>';
-	var $WrapperArea = $$(document.getElementById(Local.WrapperArea));
+    var $WrapperArea = $$(document.getElementById(Local.WrapperArea));
     var $BackToTop = $$(BackToTop);
     //window绑定scroll事件
     $$(window).on("scroll",function(){
@@ -3296,9 +3293,9 @@ KUIAPP.BackToTop = function(){
                 $WrapperArea.append($BackToTop);
                 $BackToTop.once(Local.support.onClick,function(){
                     $$('html,body').scrollTop(0,100);
-					setTimeout(function(){
-						$BackToTop.remove()
-					},100)
+                    setTimeout(function(){
+                        $BackToTop.remove()
+                    },100)
                 });
             }else if(ScrollTop < 100){
                 $BackToTop.remove();
@@ -3469,19 +3466,19 @@ KUIAPP.SizeNavbars = function(modal){
  * @param {Object} modal:模态框对象
  */
 KUIAPP.ShowModal = function(modal){
-	modal.prev('.ModalBlank').css('z-index',Local.LayerIndex).removeClass("ModalBlankVisibleOut").addClass('ModalBlankVisibleIn');
-	modal.removeClass('ModalOut').css({"z-index": ++Local.LayerIndex}).addClass('ModalIn');
-	return modal;
+    modal.prev('.ModalBlank').css('z-index',Local.LayerIndex).removeClass("ModalBlankVisibleOut").addClass('ModalBlankVisibleIn');
+    modal.removeClass('ModalOut').css({"z-index": ++Local.LayerIndex}).addClass('ModalIn');
+    return modal;
 };
 /** 隐藏 Modal
  * @param {Object} modal:模态框对象
  */
 KUIAPP.HideModal = function(modal){
-	modal.removeClass('ModalIn').addClass('ModalOut').transitionEnd(function(e){
-		modal.removeClass('ModalOut');
+    modal.removeClass('ModalIn').addClass('ModalOut').transitionEnd(function(e){
+        modal.removeClass('ModalOut');
     });
-	modal.prev('.ModalBlank').removeClass('ModalBlankVisibleIn').addClass('ModalBlankVisibleOut').transitionEnd(function(){
-		$$(this).removeClass('ModalBlankVisibleOut').removeAttr('style');//.hide();
+    modal.prev('.ModalBlank').removeClass('ModalBlankVisibleIn').addClass('ModalBlankVisibleOut').transitionEnd(function(){
+        $$(this).removeClass('ModalBlankVisibleOut').removeAttr('style');//.hide();
     });
 };
 /** 打开 
@@ -3545,11 +3542,11 @@ KUIAPP.CloseModal = function(modal, Shift) {
     modal.removeClass('ModalIn').addClass('ModalOut').transitionEnd(function(e){
         !!Shift && Shift[0].append(Shift[1]);
         if(isPickerModal || isPopover || isPopup){
-			if(hideOnClose){
-				modal.removeClass('ModalOut');
-			}else{
-				modal.removeClass('ModalOut').hide();
-			}
+            if(hideOnClose){
+                modal.removeClass('ModalOut');
+            }else{
+                modal.removeClass('ModalOut').hide();
+            }
             if(removeOnClose && modal.length > 0) {
                 modal.remove();
             };
@@ -3558,10 +3555,10 @@ KUIAPP.CloseModal = function(modal, Shift) {
         };
     }).prev().removeClass("ModalBlankVisibleIn").addClass('ModalBlankVisibleOut').transitionEnd(function(){
         if(hideOnClose && modal.length > 0) {
-			$$(this).removeClass('ModalBlankVisibleOut').removeAttr('style');//.hide();
-		}else{
-			$$(this).remove();
-		};
+            $$(this).removeClass('ModalBlankVisibleOut').removeAttr('style');//.hide();
+        }else{
+            $$(this).remove();
+        };
     });
     
     return true;
@@ -3718,13 +3715,13 @@ KUIAPP.PickerModal = function(modal, removeOnClose) {
     };
     if(typeof modal === 'string' && modal.indexOf('<') >= 0) {
         modal = $$(modal);
-		modal.dd='1'
+        modal.dd='1'
         if (modal.length > 0) {
             if(removeOnClose){
                 modal.addClass('RemoveOnClose');
             }else{
-				modal.addClass('HideOnClose');
-			};
+                modal.addClass('HideOnClose');
+            };
             $$(document.getElementById(Local.WrapperArea)).append(modal[0]);
         }else{
             return false;
@@ -3801,10 +3798,10 @@ KUIAPP.Popover = function(modal, target, removeOnClose){
         if(targetParentPage.length > 0){
             targetOffset.top = targetOffset.top - targetParentPage[0].scrollTop;
         };
-		//滚动条位置
-		var scrollTop=Local.support.GetPageScroll();
-		//window height
-		var windowSize=Local.support.GetPageSize();
+        //滚动条位置
+        var scrollTop=Local.support.GetPageScroll();
+        //window height
+        var windowSize=Local.support.GetPageSize();
         var windowHeight = windowSize.WinH;
         var windowWidth = windowSize.WinW;
 
@@ -3813,62 +3810,62 @@ KUIAPP.Popover = function(modal, target, removeOnClose){
         var diff = 0;
         //位置
         var modalPosition = 'top';
-		if((modalHeight + modalAngleSize) < targetOffset.top){
-			// On top
-			modalTop = targetOffset.top - modalHeight - modalAngleSize  + scrollTop.Y;
-		}else if((modalHeight + modalAngleSize) < windowHeight - targetOffset.top - targetHeight){
-			// On bottom
-			modalPosition = 'bottom';
-			modalTop = targetOffset.top + targetHeight + modalAngleSize + scrollTop.Y;
-		}else{
-			// On middle
-			modalPosition = 'middle';
-			modalTop = targetHeight / 2 + targetOffset.top - modalHeight / 2;
-			diff = modalTop;
-			if(modalTop <= 0){
-				modalTop = 5;
-			}else if(modalTop + modalHeight >= windowHeight){
-				modalTop = windowHeight - modalHeight - 5;
-			}
-			diff = diff - modalTop;
-		};
-		//水平位置
-		if(modalPosition === 'top' || modalPosition === 'bottom'){
-			modalLeft = targetWidth / 2 + targetOffset.left - modalWidth / 2;
-			diff = modalLeft;
-			if(modalLeft < 5){
-				modalLeft = 5;
-			};
-			if(modalLeft + modalWidth > windowWidth){
-				modalLeft = windowWidth - modalWidth - 5;
-			};
-			if(modalPosition === 'top') {
-				modalAngle.addClass('onBottom');
-			};
-			if(modalPosition === 'bottom') {
-				modalAngle.addClass('onTop');
-			};
-			diff = diff - modalLeft;
-			modalAngleLeft = (modalWidth / 2 - modalAngleSize + diff);
-			modalAngleLeft = Math.max(Math.min(modalAngleLeft, modalWidth - modalAngleSize * 2 - 13), 13);
-			modalAngle.css({left: modalAngleLeft + 'px'});
+        if((modalHeight + modalAngleSize) < targetOffset.top){
+            // On top
+            modalTop = targetOffset.top - modalHeight - modalAngleSize  + scrollTop.Y;
+        }else if((modalHeight + modalAngleSize) < windowHeight - targetOffset.top - targetHeight){
+            // On bottom
+            modalPosition = 'bottom';
+            modalTop = targetOffset.top + targetHeight + modalAngleSize + scrollTop.Y;
+        }else{
+            // On middle
+            modalPosition = 'middle';
+            modalTop = targetHeight / 2 + targetOffset.top - modalHeight / 2;
+            diff = modalTop;
+            if(modalTop <= 0){
+                modalTop = 5;
+            }else if(modalTop + modalHeight >= windowHeight){
+                modalTop = windowHeight - modalHeight - 5;
+            }
+            diff = diff - modalTop;
+        };
+        //水平位置
+        if(modalPosition === 'top' || modalPosition === 'bottom'){
+            modalLeft = targetWidth / 2 + targetOffset.left - modalWidth / 2;
+            diff = modalLeft;
+            if(modalLeft < 5){
+                modalLeft = 5;
+            };
+            if(modalLeft + modalWidth > windowWidth){
+                modalLeft = windowWidth - modalWidth - 5;
+            };
+            if(modalPosition === 'top') {
+                modalAngle.addClass('onBottom');
+            };
+            if(modalPosition === 'bottom') {
+                modalAngle.addClass('onTop');
+            };
+            diff = diff - modalLeft;
+            modalAngleLeft = (modalWidth / 2 - modalAngleSize + diff);
+            modalAngleLeft = Math.max(Math.min(modalAngleLeft, modalWidth - modalAngleSize * 2 - 13), 13);
+            modalAngle.css({left: modalAngleLeft + 'px'});
 
-		}else if (modalPosition === 'middle') {
-			modalLeft = targetOffset.left - modalWidth - modalAngleSize;
-			modalAngle.addClass('onRight');
-			if(modalLeft < 5 || (modalLeft + modalWidth > windowWidth)){
-				if(modalLeft < 5){
-					modalLeft = targetOffset.left + targetWidth + modalAngleSize;
-				};
-				if(modalLeft + modalWidth > windowWidth){
-					modalLeft = windowWidth - modalWidth - 5;
-				};
-				modalAngle.removeClass('onRight').addClass('onLeft');
-			}
-			modalAngleTop = (modalHeight / 2 - modalAngleSize + diff);
-			modalAngleTop = Math.max(Math.min(modalAngleTop, modalHeight - modalAngleSize * 2 - 13), 13);
-			modalAngle.css({top: modalAngleTop + 'px'});
-		}
+        }else if (modalPosition === 'middle') {
+            modalLeft = targetOffset.left - modalWidth - modalAngleSize;
+            modalAngle.addClass('onRight');
+            if(modalLeft < 5 || (modalLeft + modalWidth > windowWidth)){
+                if(modalLeft < 5){
+                    modalLeft = targetOffset.left + targetWidth + modalAngleSize;
+                };
+                if(modalLeft + modalWidth > windowWidth){
+                    modalLeft = windowWidth - modalWidth - 5;
+                };
+                modalAngle.removeClass('onRight').addClass('onLeft');
+            }
+            modalAngleTop = (modalHeight / 2 - modalAngleSize + diff);
+            modalAngleTop = Math.max(Math.min(modalAngleTop, modalHeight - modalAngleSize * 2 - 13), 13);
+            modalAngle.css({top: modalAngleTop + 'px'});
+        }
         //应用样式
         modal.css({top: modalTop + 'px', left: (modalLeft) + 'px'});
     };
@@ -3997,338 +3994,338 @@ KUIAPP.allowSwipeout = true;
  * @param {Object & String} swipeoutEl:滑动对象
  */
 KUIAPP.initSwipeout = function(swipeoutEl){
-	var isTouched, isMoved, isScrolling, touchesStart = {}, touchStartTime, touchesDiff, swipeOutEl, swipeOutContent, actionsRight, actionsLeft, actionsLeftWidth, actionsRightWidth, translate, opened, openedActions, buttonsLeft, buttonsRight, direction, overswipeLeftButton, overswipeRightButton, overswipeLeft, overswipeRight, noFoldLeft, noFoldRight;
-	
-	//滑动操作关闭
-	$$(document).on('click','.SwipeoutClose',function(){
-		KUIAPP.swipeoutClose($$(this).parents('.SwipeoutOpened'));
-	});
-		
-	//滑动操作删除
-	$$(document).on('click','.SwipeoutDelete',function(){
-		var clicked = $$(this)
-		var clickedData = clicked.dataset()
-		if(clickedData.confirm){
-			var text = clickedData.confirm;
-			var title = clickedData.confirmtitle;
-			if(title){
-				kelat.confirm(text, title, function () {
-					KUIAPP.swipeoutDelete(clicked.parents('.Swipeout'));
-				},function(){
-					if(clickedData.closeOnCancel){
-						KUIAPP.swipeoutClose(clicked.parents('.Swipeout'));
-					};
-				});
-			}else{
-				kelat.confirm(text, function () {
-					KUIAPP.swipeoutDelete(clicked.parents('.Swipeout'));
-				}, function () {
-					if(clickedData.closeOnCancel){
-						KUIAPP.swipeoutClose(clicked.parents('.Swipeout'));
-					};
-				});
-			}
-		}else{
-			KUIAPP.swipeoutDelete(clicked.parents('.Swipeout'));
-		}
-	});
-	
-	//绑定取消事件
-	$$(document).on(_KLT_.touchEvents.start,function(e){
-		if (KUIAPP.swipeoutOpenedEl) {
-			var target = $$(e.target);
-			if(!(
-				KUIAPP.swipeoutOpenedEl.is(target[0]) ||
-				target.parents('.Swipeout').is(KUIAPP.swipeoutOpenedEl) ||
-				target.hasClass('ModalIn') ||
-				target.hasClass('ModalBlank') ||
-				target.hasClass('ActionsModal') || 
-				target.parents('.ActionsModal.ModalIn, .ModalBox.ModalIn').length > 0
-				)){
-				KUIAPP.swipeoutClose(KUIAPP.swipeoutOpenedEl);
-			}
-		}
-	});
-	//触摸事件
-	function handleTouchStart(e) {
-		if(!KUIAPP.allowSwipeout){return;};
-		isMoved = false;isTouched = true;isScrolling = undefined;
-		touchesStart.x = e.type === 'touchstart' ? e.targetTouches[0].pageX : e.pageX;
-		touchesStart.y = e.type === 'touchstart' ? e.targetTouches[0].pageY : e.pageY;
-		touchStartTime = (new Date()).getTime();
-	};
-	//滑动事件
-	function handleTouchMove(e) {
-		if(!isTouched){return;};
-		var pageX = e.type === 'touchmove' ? e.targetTouches[0].pageX : e.pageX;
-		var pageY = e.type === 'touchmove' ? e.targetTouches[0].pageY : e.pageY;
-		if(typeof isScrolling === 'undefined'){
-			isScrolling = !!(isScrolling || Math.abs(pageY - touchesStart.y) > Math.abs(pageX - touchesStart.x));
-		};
-		if(isScrolling){
-			isTouched = false;
-			return;
-		};
+    var isTouched, isMoved, isScrolling, touchesStart = {}, touchStartTime, touchesDiff, swipeOutEl, swipeOutContent, actionsRight, actionsLeft, actionsLeftWidth, actionsRightWidth, translate, opened, openedActions, buttonsLeft, buttonsRight, direction, overswipeLeftButton, overswipeRightButton, overswipeLeft, overswipeRight, noFoldLeft, noFoldRight;
+    
+    //滑动操作关闭
+    $$(document).on('click','.SwipeoutClose',function(){
+        KUIAPP.swipeoutClose($$(this).parents('.SwipeoutOpened'));
+    });
+        
+    //滑动操作删除
+    $$(document).on('click','.SwipeoutDelete',function(){
+        var clicked = $$(this)
+        var clickedData = clicked.dataset()
+        if(clickedData.confirm){
+            var text = clickedData.confirm;
+            var title = clickedData.confirmtitle;
+            if(title){
+                kelat.confirm(text, title, function () {
+                    KUIAPP.swipeoutDelete(clicked.parents('.Swipeout'));
+                },function(){
+                    if(clickedData.closeOnCancel){
+                        KUIAPP.swipeoutClose(clicked.parents('.Swipeout'));
+                    };
+                });
+            }else{
+                kelat.confirm(text, function () {
+                    KUIAPP.swipeoutDelete(clicked.parents('.Swipeout'));
+                }, function () {
+                    if(clickedData.closeOnCancel){
+                        KUIAPP.swipeoutClose(clicked.parents('.Swipeout'));
+                    };
+                });
+            }
+        }else{
+            KUIAPP.swipeoutDelete(clicked.parents('.Swipeout'));
+        }
+    });
+    
+    //绑定取消事件
+    $$(document).on(_KLT_.touchEvents.start,function(e){
+        if (KUIAPP.swipeoutOpenedEl) {
+            var target = $$(e.target);
+            if(!(
+                KUIAPP.swipeoutOpenedEl.is(target[0]) ||
+                target.parents('.Swipeout').is(KUIAPP.swipeoutOpenedEl) ||
+                target.hasClass('ModalIn') ||
+                target.hasClass('ModalBlank') ||
+                target.hasClass('ActionsModal') || 
+                target.parents('.ActionsModal.ModalIn, .ModalBox.ModalIn').length > 0
+                )){
+                KUIAPP.swipeoutClose(KUIAPP.swipeoutOpenedEl);
+            }
+        }
+    });
+    //触摸事件
+    function handleTouchStart(e) {
+        if(!KUIAPP.allowSwipeout){return;};
+        isMoved = false;isTouched = true;isScrolling = undefined;
+        touchesStart.x = e.type === 'touchstart' ? e.targetTouches[0].pageX : e.pageX;
+        touchesStart.y = e.type === 'touchstart' ? e.targetTouches[0].pageY : e.pageY;
+        touchStartTime = (new Date()).getTime();
+    };
+    //滑动事件
+    function handleTouchMove(e) {
+        if(!isTouched){return;};
+        var pageX = e.type === 'touchmove' ? e.targetTouches[0].pageX : e.pageX;
+        var pageY = e.type === 'touchmove' ? e.targetTouches[0].pageY : e.pageY;
+        if(typeof isScrolling === 'undefined'){
+            isScrolling = !!(isScrolling || Math.abs(pageY - touchesStart.y) > Math.abs(pageX - touchesStart.x));
+        };
+        if(isScrolling){
+            isTouched = false;
+            return;
+        };
 
-		if(!isMoved){
-			if($$('.ListBlock.SortableOpened').length > 0){return;};
-			/*jshint validthis:true */
-			swipeOutEl = $$(this);
-			swipeOutContent = swipeOutEl.find('.SwipeoutCon');
-			actionsRight = swipeOutEl.find('.SwipeoutActionsRight');
-			actionsLeft = swipeOutEl.find('.SwipeoutActionsLeft');
-			actionsLeftWidth = actionsRightWidth = buttonsLeft = buttonsRight = overswipeRightButton = overswipeLeftButton = null;
-			noFoldLeft = actionsLeft.hasClass('swipeout-actions-no-fold') || Local.swipeoutActionsNoFold;
-			noFoldRight = actionsRight.hasClass('swipeout-actions-no-fold') || Local.swipeoutActionsNoFold;
-			if(actionsLeft.length > 0){
-				actionsLeftWidth = actionsLeft.outerWidth();
-				buttonsLeft = actionsLeft.children('.SwipeoutItem');
-				overswipeLeftButton = actionsLeft.find('.SwipeoutOverswipe');
-			};
-			if(actionsRight.length > 0){
-				actionsRightWidth = actionsRight.outerWidth();
-				buttonsRight = actionsRight.children('.SwipeoutItem');
-				overswipeRightButton = actionsRight.find('.SwipeoutOverswipe');
-			};
-			opened = swipeOutEl.hasClass('SwipeoutOpened');
-			if(opened){
-				openedActions = swipeOutEl.find('.SwipeoutActionsLeft.SwipeoutActionsOpened').length > 0 ? 'left' : 'right';
-			};
-			swipeOutEl.removeClass('transitioning');
-			if(!Local.swipeoutNoFollow){
-				swipeOutEl.find('.SwipeoutActionsOpened').removeClass('SwipeoutActionsOpened');
-				swipeOutEl.removeClass('SwipeoutOpened');
-			};
-		}
-		isMoved = true;
-		e.preventDefault();
-		
-		touchesDiff = pageX - touchesStart.x;
-		translate = touchesDiff;
+        if(!isMoved){
+            if($$('.ListBlock.SortableOpened').length > 0){return;};
+            /*jshint validthis:true */
+            swipeOutEl = $$(this);
+            swipeOutContent = swipeOutEl.find('.SwipeoutCon');
+            actionsRight = swipeOutEl.find('.SwipeoutActionsRight');
+            actionsLeft = swipeOutEl.find('.SwipeoutActionsLeft');
+            actionsLeftWidth = actionsRightWidth = buttonsLeft = buttonsRight = overswipeRightButton = overswipeLeftButton = null;
+            noFoldLeft = actionsLeft.hasClass('swipeout-actions-no-fold') || Local.swipeoutActionsNoFold;
+            noFoldRight = actionsRight.hasClass('swipeout-actions-no-fold') || Local.swipeoutActionsNoFold;
+            if(actionsLeft.length > 0){
+                actionsLeftWidth = actionsLeft.outerWidth();
+                buttonsLeft = actionsLeft.children('.SwipeoutItem');
+                overswipeLeftButton = actionsLeft.find('.SwipeoutOverswipe');
+            };
+            if(actionsRight.length > 0){
+                actionsRightWidth = actionsRight.outerWidth();
+                buttonsRight = actionsRight.children('.SwipeoutItem');
+                overswipeRightButton = actionsRight.find('.SwipeoutOverswipe');
+            };
+            opened = swipeOutEl.hasClass('SwipeoutOpened');
+            if(opened){
+                openedActions = swipeOutEl.find('.SwipeoutActionsLeft.SwipeoutActionsOpened').length > 0 ? 'left' : 'right';
+            };
+            swipeOutEl.removeClass('transitioning');
+            if(!Local.swipeoutNoFollow){
+                swipeOutEl.find('.SwipeoutActionsOpened').removeClass('SwipeoutActionsOpened');
+                swipeOutEl.removeClass('SwipeoutOpened');
+            };
+        }
+        isMoved = true;
+        e.preventDefault();
+        
+        touchesDiff = pageX - touchesStart.x;
+        translate = touchesDiff;
 
-		if(opened){
-			if(openedActions === 'right'){
-				translate = translate - actionsRightWidth;
-			}else{
-				translate = translate + actionsLeftWidth;
-			}
-		};
+        if(opened){
+            if(openedActions === 'right'){
+                translate = translate - actionsRightWidth;
+            }else{
+                translate = translate + actionsLeftWidth;
+            }
+        };
 
-		if(translate > 0 && actionsLeft.length === 0 || translate < 0 && actionsRight.length === 0){
-			if(!opened){
-				isTouched = isMoved = false;
-				swipeOutContent.transform('');
-				if(buttonsRight && buttonsRight.length > 0){
-					buttonsRight.transform('');
-				};
-				if(buttonsLeft && buttonsLeft.length > 0){
-					buttonsLeft.transform('');
-				};
-				return;
-			}
-			translate = 0;
-		};
+        if(translate > 0 && actionsLeft.length === 0 || translate < 0 && actionsRight.length === 0){
+            if(!opened){
+                isTouched = isMoved = false;
+                swipeOutContent.transform('');
+                if(buttonsRight && buttonsRight.length > 0){
+                    buttonsRight.transform('');
+                };
+                if(buttonsLeft && buttonsLeft.length > 0){
+                    buttonsLeft.transform('');
+                };
+                return;
+            }
+            translate = 0;
+        };
 
-		if(translate < 0){
-			direction = 'toLeft';
-		}else if(translate > 0){
-			direction = 'toRight';
-		}else{
-			if(direction){
-				direction = direction;
-			}else{
-				direction = 'toLeft';
-			};
-		};
-		
-		var i, buttonOffset, progress;
-		
-		if(Local.swipeoutNoFollow){
-			if(opened){
-				if(openedActions === 'right' && touchesDiff > 0){
-					KUIAPP.swipeoutClose(swipeOutEl);
-				};
-				if(openedActions === 'left' && touchesDiff < 0){
-					KUIAPP.swipeoutClose(swipeOutEl);
-				};
-			}else{
-				if(touchesDiff < 0 && actionsRight.length > 0){
-					KUIAPP.swipeoutOpen(swipeOutEl, 'right');
-				};
-				if(touchesDiff > 0 && actionsLeft.length > 0){
-					KUIAPP.swipeoutOpen(swipeOutEl, 'left');
-				};
-			};
-			isTouched = false;
-			isMoved = false;
-			return;
-		};
-		overswipeLeft = false;
-		overswipeRight = false;
-		var $button;
-		if(actionsRight.length > 0){
-			//右操作
-			progress = translate / actionsRightWidth;
-			if(translate < -actionsRightWidth) {
-				translate = -actionsRightWidth - Math.pow(-translate - actionsRightWidth, 0.8);
-				if(overswipeRightButton.length > 0){
-					overswipeRight = true;
-				}
-			};
-			for(i = 0; i < buttonsRight.length; i++){
-				if(typeof buttonsRight[i]._buttonOffset === 'undefined'){
-					buttonsRight[i]._buttonOffset = buttonsRight[i].offsetLeft;
-				}
-				buttonOffset = buttonsRight[i]._buttonOffset;
-				$button = $$(buttonsRight[i]);
-				if(overswipeRightButton.length > 0 && $button.hasClass('SwipeoutOverswipe')){
-					$button.css({left: (overswipeRight ? -buttonOffset : 0) + 'px'});
-					if(overswipeRight){
-						$button.addClass('swipeout-overswipe-active');
-					}else{
-						$button.removeClass('swipeout-overswipe-active');   
-					}
-				};
-				$button.transform('translate3d(' + (translate - buttonOffset * (1 + Math.max(progress, -1))) + 'px,0,0)');
-			};
-		};
-		if(actionsLeft.length > 0){
-			//左操作
-			progress = translate / actionsLeftWidth;
-			if(translate > actionsLeftWidth){
-				translate = actionsLeftWidth + Math.pow(translate - actionsLeftWidth, 0.8);
-				if(overswipeLeftButton.length > 0){
-					overswipeLeft = true;
-				}
-			};
-			for(i = 0; i < buttonsLeft.length; i++){
-				if(typeof buttonsLeft[i]._buttonOffset === 'undefined'){
-					buttonsLeft[i]._buttonOffset = actionsLeftWidth - buttonsLeft[i].offsetLeft - buttonsLeft[i].offsetWidth;
-				}
-				buttonOffset = buttonsLeft[i]._buttonOffset;
-				$button = $$(buttonsLeft[i]);
-				if(overswipeLeftButton.length > 0 && $button.hasClass('SwipeoutOverswipe')){
-					$button.css({left: (overswipeLeft ? buttonOffset : 0) + 'px'});
-					if(overswipeLeft){
-						$button.addClass('swipeout-overswipe-active');
-					}else{
-						$button.removeClass('swipeout-overswipe-active');   
-					}
-				};
-				if(buttonsLeft.length > 1){
-					$button.css('z-index', buttonsLeft.length - i); 
-				};
-				$button.transform('translate3d(' + (translate + buttonOffset * (1 - Math.min(progress, 1))) + 'px,0,0)');
-			};
-		};
-		swipeOutContent.transform('translate3d(' + translate + 'px,0,0)');
-	};
-	//离开事件
-	function handleTouchEnd(e) {
-		if(!isTouched || !isMoved){
-			isTouched = false;
-			isMoved = false;
-			return;
-		};
+        if(translate < 0){
+            direction = 'toLeft';
+        }else if(translate > 0){
+            direction = 'toRight';
+        }else{
+            if(direction){
+                direction = direction;
+            }else{
+                direction = 'toLeft';
+            };
+        };
+        
+        var i, buttonOffset, progress;
+        
+        if(Local.swipeoutNoFollow){
+            if(opened){
+                if(openedActions === 'right' && touchesDiff > 0){
+                    KUIAPP.swipeoutClose(swipeOutEl);
+                };
+                if(openedActions === 'left' && touchesDiff < 0){
+                    KUIAPP.swipeoutClose(swipeOutEl);
+                };
+            }else{
+                if(touchesDiff < 0 && actionsRight.length > 0){
+                    KUIAPP.swipeoutOpen(swipeOutEl, 'right');
+                };
+                if(touchesDiff > 0 && actionsLeft.length > 0){
+                    KUIAPP.swipeoutOpen(swipeOutEl, 'left');
+                };
+            };
+            isTouched = false;
+            isMoved = false;
+            return;
+        };
+        overswipeLeft = false;
+        overswipeRight = false;
+        var $button;
+        if(actionsRight.length > 0){
+            //右操作
+            progress = translate / actionsRightWidth;
+            if(translate < -actionsRightWidth) {
+                translate = -actionsRightWidth - Math.pow(-translate - actionsRightWidth, 0.8);
+                if(overswipeRightButton.length > 0){
+                    overswipeRight = true;
+                }
+            };
+            for(i = 0; i < buttonsRight.length; i++){
+                if(typeof buttonsRight[i]._buttonOffset === 'undefined'){
+                    buttonsRight[i]._buttonOffset = buttonsRight[i].offsetLeft;
+                }
+                buttonOffset = buttonsRight[i]._buttonOffset;
+                $button = $$(buttonsRight[i]);
+                if(overswipeRightButton.length > 0 && $button.hasClass('SwipeoutOverswipe')){
+                    $button.css({left: (overswipeRight ? -buttonOffset : 0) + 'px'});
+                    if(overswipeRight){
+                        $button.addClass('swipeout-overswipe-active');
+                    }else{
+                        $button.removeClass('swipeout-overswipe-active');   
+                    }
+                };
+                $button.transform('translate3d(' + (translate - buttonOffset * (1 + Math.max(progress, -1))) + 'px,0,0)');
+            };
+        };
+        if(actionsLeft.length > 0){
+            //左操作
+            progress = translate / actionsLeftWidth;
+            if(translate > actionsLeftWidth){
+                translate = actionsLeftWidth + Math.pow(translate - actionsLeftWidth, 0.8);
+                if(overswipeLeftButton.length > 0){
+                    overswipeLeft = true;
+                }
+            };
+            for(i = 0; i < buttonsLeft.length; i++){
+                if(typeof buttonsLeft[i]._buttonOffset === 'undefined'){
+                    buttonsLeft[i]._buttonOffset = actionsLeftWidth - buttonsLeft[i].offsetLeft - buttonsLeft[i].offsetWidth;
+                }
+                buttonOffset = buttonsLeft[i]._buttonOffset;
+                $button = $$(buttonsLeft[i]);
+                if(overswipeLeftButton.length > 0 && $button.hasClass('SwipeoutOverswipe')){
+                    $button.css({left: (overswipeLeft ? buttonOffset : 0) + 'px'});
+                    if(overswipeLeft){
+                        $button.addClass('swipeout-overswipe-active');
+                    }else{
+                        $button.removeClass('swipeout-overswipe-active');   
+                    }
+                };
+                if(buttonsLeft.length > 1){
+                    $button.css('z-index', buttonsLeft.length - i); 
+                };
+                $button.transform('translate3d(' + (translate + buttonOffset * (1 - Math.min(progress, 1))) + 'px,0,0)');
+            };
+        };
+        swipeOutContent.transform('translate3d(' + translate + 'px,0,0)');
+    };
+    //离开事件
+    function handleTouchEnd(e) {
+        if(!isTouched || !isMoved){
+            isTouched = false;
+            isMoved = false;
+            return;
+        };
 
-		isTouched = false;
-		isMoved = false;
-		var timeDiff = (new Date()).getTime() - touchStartTime;
-		var action, actionsWidth, actions, buttons, i, noFold;
-		
-		noFold = direction === 'toLeft' ? noFoldRight : noFoldLeft;
-		actions = direction === 'toLeft' ? actionsRight : actionsLeft;
-		actionsWidth = direction === 'toLeft' ? actionsRightWidth : actionsLeftWidth;
+        isTouched = false;
+        isMoved = false;
+        var timeDiff = (new Date()).getTime() - touchStartTime;
+        var action, actionsWidth, actions, buttons, i, noFold;
+        
+        noFold = direction === 'toLeft' ? noFoldRight : noFoldLeft;
+        actions = direction === 'toLeft' ? actionsRight : actionsLeft;
+        actionsWidth = direction === 'toLeft' ? actionsRightWidth : actionsLeftWidth;
 
-		if(
-			timeDiff < 300 && (touchesDiff < -10 && direction === 'toLeft' || touchesDiff > 10 && direction === 'toRight') ||
-			timeDiff >= 300 && Math.abs(translate) > actionsWidth / 2
-		){
-			action = 'open';
-		}else{
-			action = 'close';
-		};
-		if(timeDiff < 300){
-			if(Math.abs(translate) === 0){
-				action = 'close';
-			};
-			if(Math.abs(translate) === actionsWidth){
-				action = 'open';
-			};
-		};
-		
-		if(action === 'open'){
-			KUIAPP.swipeoutOpenedEl = swipeOutEl;
-			swipeOutEl.trigger('open');
-			swipeOutEl.addClass('SwipeoutOpened transitioning');
-			var newTranslate = direction === 'toLeft' ? -actionsWidth : actionsWidth;
-			swipeOutContent.transform('translate3d(' + newTranslate + 'px,0,0)');
-			actions.addClass('SwipeoutActionsOpened');
-			buttons = direction === 'toLeft' ? buttonsRight : buttonsLeft;
-			if(buttons){
-				for(i = 0; i < buttons.length; i++){
-					$$(buttons[i]).transform('translate3d(' + newTranslate + 'px,0,0)');
-				}
-			};
-			if(overswipeRight){
-				actionsRight.find('.SwipeoutOverswipe')[0].click();
-			}
-			if(overswipeLeft){
-				actionsLeft.find('.SwipeoutOverswipe')[0].click();
-			}
-		}else{
-			swipeOutEl.trigger('close');
-			KUIAPP.swipeoutOpenedEl = undefined;
-			swipeOutEl.addClass('transitioning').removeClass('SwipeoutOpened');
-			swipeOutContent.transform('');
-			actions.removeClass('SwipeoutActionsOpened');
-		};
-		
-		var buttonOffset;
-		if(buttonsLeft && buttonsLeft.length > 0 && buttonsLeft !== buttons){
-			for(i = 0; i < buttonsLeft.length; i++){
-				buttonOffset = buttonsLeft[i]._buttonOffset;
-				if(typeof buttonOffset === 'undefined'){
-					buttonsLeft[i]._buttonOffset = actionsLeftWidth - buttonsLeft[i].offsetLeft - buttonsLeft[i].offsetWidth;
-				}
-				$$(buttonsLeft[i]).transform('translate3d(' + (buttonOffset) + 'px,0,0)');
-			}
-		};
-		if(buttonsRight && buttonsRight.length > 0 && buttonsRight !== buttons){
-			for(i = 0; i < buttonsRight.length; i++){
-				buttonOffset = buttonsRight[i]._buttonOffset;
-				if(typeof buttonOffset === 'undefined'){
-					buttonsRight[i]._buttonOffset = buttonsRight[i].offsetLeft;
-				}
-				$$(buttonsRight[i]).transform('translate3d(' + (-buttonOffset) + 'px,0,0)');
-			}
-		};
-		swipeOutContent.transitionEnd(function (e) {
-			if(opened && action === 'open' || closed && action === 'close'){
-				return;
-			};
-			swipeOutEl.trigger(action === 'open' ? 'opened' : 'closed');
-			if(opened && action === 'close'){
-				if(actionsRight.length > 0){
-					buttonsRight.transform('');
-				}
-				if(actionsLeft.length > 0){
-					buttonsLeft.transform('');
-				}
-			}
-		});
-		
-	};
-	//绑定事件
-	if(swipeoutEl){
-		$$(swipeoutEl).on(_KLT_.touchEvents.start, handleTouchStart);
-		$$(swipeoutEl).on(_KLT_.touchEvents.move, handleTouchMove);
-		$$(swipeoutEl).on(_KLT_.touchEvents.end, handleTouchEnd);
-	}else{
-		$$(document).on(_KLT_.touchEvents.start, '.ListBlock li.Swipeout', handleTouchStart);
-		$$(document).on(_KLT_.touchEvents.move, '.ListBlock li.Swipeout', handleTouchMove);
-		$$(document).on(_KLT_.touchEvents.end, '.ListBlock li.Swipeout', handleTouchEnd);
-	};
+        if(
+            timeDiff < 300 && (touchesDiff < -10 && direction === 'toLeft' || touchesDiff > 10 && direction === 'toRight') ||
+            timeDiff >= 300 && Math.abs(translate) > actionsWidth / 2
+        ){
+            action = 'open';
+        }else{
+            action = 'close';
+        };
+        if(timeDiff < 300){
+            if(Math.abs(translate) === 0){
+                action = 'close';
+            };
+            if(Math.abs(translate) === actionsWidth){
+                action = 'open';
+            };
+        };
+        
+        if(action === 'open'){
+            KUIAPP.swipeoutOpenedEl = swipeOutEl;
+            swipeOutEl.trigger('open');
+            swipeOutEl.addClass('SwipeoutOpened transitioning');
+            var newTranslate = direction === 'toLeft' ? -actionsWidth : actionsWidth;
+            swipeOutContent.transform('translate3d(' + newTranslate + 'px,0,0)');
+            actions.addClass('SwipeoutActionsOpened');
+            buttons = direction === 'toLeft' ? buttonsRight : buttonsLeft;
+            if(buttons){
+                for(i = 0; i < buttons.length; i++){
+                    $$(buttons[i]).transform('translate3d(' + newTranslate + 'px,0,0)');
+                }
+            };
+            if(overswipeRight){
+                actionsRight.find('.SwipeoutOverswipe')[0].click();
+            }
+            if(overswipeLeft){
+                actionsLeft.find('.SwipeoutOverswipe')[0].click();
+            }
+        }else{
+            swipeOutEl.trigger('close');
+            KUIAPP.swipeoutOpenedEl = undefined;
+            swipeOutEl.addClass('transitioning').removeClass('SwipeoutOpened');
+            swipeOutContent.transform('');
+            actions.removeClass('SwipeoutActionsOpened');
+        };
+        
+        var buttonOffset;
+        if(buttonsLeft && buttonsLeft.length > 0 && buttonsLeft !== buttons){
+            for(i = 0; i < buttonsLeft.length; i++){
+                buttonOffset = buttonsLeft[i]._buttonOffset;
+                if(typeof buttonOffset === 'undefined'){
+                    buttonsLeft[i]._buttonOffset = actionsLeftWidth - buttonsLeft[i].offsetLeft - buttonsLeft[i].offsetWidth;
+                }
+                $$(buttonsLeft[i]).transform('translate3d(' + (buttonOffset) + 'px,0,0)');
+            }
+        };
+        if(buttonsRight && buttonsRight.length > 0 && buttonsRight !== buttons){
+            for(i = 0; i < buttonsRight.length; i++){
+                buttonOffset = buttonsRight[i]._buttonOffset;
+                if(typeof buttonOffset === 'undefined'){
+                    buttonsRight[i]._buttonOffset = buttonsRight[i].offsetLeft;
+                }
+                $$(buttonsRight[i]).transform('translate3d(' + (-buttonOffset) + 'px,0,0)');
+            }
+        };
+        swipeOutContent.transitionEnd(function (e) {
+            if(opened && action === 'open' || closed && action === 'close'){
+                return;
+            };
+            swipeOutEl.trigger(action === 'open' ? 'opened' : 'closed');
+            if(opened && action === 'close'){
+                if(actionsRight.length > 0){
+                    buttonsRight.transform('');
+                }
+                if(actionsLeft.length > 0){
+                    buttonsLeft.transform('');
+                }
+            }
+        });
+        
+    };
+    //绑定事件
+    if(swipeoutEl){
+        $$(swipeoutEl).on(_KLT_.touchEvents.start, handleTouchStart);
+        $$(swipeoutEl).on(_KLT_.touchEvents.move, handleTouchMove);
+        $$(swipeoutEl).on(_KLT_.touchEvents.end, handleTouchEnd);
+    }else{
+        $$(document).on(_KLT_.touchEvents.start, '.ListBlock li.Swipeout', handleTouchStart);
+        $$(document).on(_KLT_.touchEvents.move, '.ListBlock li.Swipeout', handleTouchMove);
+        $$(document).on(_KLT_.touchEvents.end, '.ListBlock li.Swipeout', handleTouchEnd);
+    };
 };
 /** 打开滑动操作
  * @param {Object} el:滑动对象
@@ -4336,128 +4333,128 @@ KUIAPP.initSwipeout = function(swipeoutEl){
  * @param {function} callback:回调事件
  */
 KUIAPP.swipeoutOpen = function(el, dir, callback){
-	el = $$(el);
-	if(arguments.length === 2){
-		if(typeof arguments[1] === 'function'){
-			callback = dir;
-		}
-	};
+    el = $$(el);
+    if(arguments.length === 2){
+        if(typeof arguments[1] === 'function'){
+            callback = dir;
+        }
+    };
 
-	if(el.length === 0) return;
-	if(el.length > 1) el = $$(el[0]);
-	if(!el.hasClass('Swipeout') || el.hasClass('SwipeoutOpened')){
-		return;
-	};
-	if(!dir){
-		if(el.find('.SwipeoutActionsRight').length > 0){
-			dir = 'right';
-		}else{
-			dir = 'left';
-		};
-	};
-	var swipeOutActions = el.find('.swipeout-actions-' + dir);
-	if(swipeOutActions.length === 0){
-		return;
-	};
-	var noFold = swipeOutActions.hasClass('swipeout-actions-no-fold') || Local.swipeoutActionsNoFold;
-	el.trigger('open').addClass('SwipeoutOpened').removeClass('transitioning');
-	swipeOutActions.addClass('SwipeoutActionsOpened');
-	var buttons = swipeOutActions.children('.SwipeoutItem');
-	var swipeOutActionsWidth = swipeOutActions.outerWidth();
-	var translate = dir === 'right' ? -swipeOutActionsWidth : swipeOutActionsWidth;
-	var i;
-	if(buttons.length > 1){
-		for(i = 0; i < buttons.length; i++){
-			if(dir === 'right'){
-				$$(buttons[i]).transform('translate3d(' + (- buttons[i].offsetLeft) + 'px,0,0)');
-			}else{
-				$$(buttons[i]).css('z-index', buttons.length - i).transform('translate3d(' + (swipeOutActionsWidth - buttons[i].offsetWidth - buttons[i].offsetLeft) + 'px,0,0)');
-			}
-		}
-		var clientLeft = buttons[1].clientLeft;
-	};
-	el.addClass('transitioning');
-	for(i = 0; i < buttons.length; i++){
-		$$(buttons[i]).transform('translate3d(' + (translate) + 'px,0,0)');
-	};
-	el.find('.SwipeoutCon').transform('translate3d(' + translate + 'px,0,0)').transitionEnd(function(){
-		el.trigger('opened');
-		if (callback) callback.call(el[0]);
-	});
-	KUIAPP.swipeoutOpenedEl = el;
+    if(el.length === 0) return;
+    if(el.length > 1) el = $$(el[0]);
+    if(!el.hasClass('Swipeout') || el.hasClass('SwipeoutOpened')){
+        return;
+    };
+    if(!dir){
+        if(el.find('.SwipeoutActionsRight').length > 0){
+            dir = 'right';
+        }else{
+            dir = 'left';
+        };
+    };
+    var swipeOutActions = el.find('.swipeout-actions-' + dir);
+    if(swipeOutActions.length === 0){
+        return;
+    };
+    var noFold = swipeOutActions.hasClass('swipeout-actions-no-fold') || Local.swipeoutActionsNoFold;
+    el.trigger('open').addClass('SwipeoutOpened').removeClass('transitioning');
+    swipeOutActions.addClass('SwipeoutActionsOpened');
+    var buttons = swipeOutActions.children('.SwipeoutItem');
+    var swipeOutActionsWidth = swipeOutActions.outerWidth();
+    var translate = dir === 'right' ? -swipeOutActionsWidth : swipeOutActionsWidth;
+    var i;
+    if(buttons.length > 1){
+        for(i = 0; i < buttons.length; i++){
+            if(dir === 'right'){
+                $$(buttons[i]).transform('translate3d(' + (- buttons[i].offsetLeft) + 'px,0,0)');
+            }else{
+                $$(buttons[i]).css('z-index', buttons.length - i).transform('translate3d(' + (swipeOutActionsWidth - buttons[i].offsetWidth - buttons[i].offsetLeft) + 'px,0,0)');
+            }
+        }
+        var clientLeft = buttons[1].clientLeft;
+    };
+    el.addClass('transitioning');
+    for(i = 0; i < buttons.length; i++){
+        $$(buttons[i]).transform('translate3d(' + (translate) + 'px,0,0)');
+    };
+    el.find('.SwipeoutCon').transform('translate3d(' + translate + 'px,0,0)').transitionEnd(function(){
+        el.trigger('opened');
+        if (callback) callback.call(el[0]);
+    });
+    KUIAPP.swipeoutOpenedEl = el;
 };
 /** 取消滑动操作
  * @param {Object} el:滑动对象
  * @param {function} callback:回调事件
  */
 KUIAPP.swipeoutClose = function(el, callback){
-	el = $$(el);
-	if(el.length === 0) return;
-	if(!el.hasClass('SwipeoutOpened')) return;
-	var dir = el.find('.SwipeoutActionsOpened').hasClass('SwipeoutActionsRight') ? 'right' : 'left';
-	var swipeOutActions = el.find('.SwipeoutActionsOpened').removeClass('SwipeoutActionsOpened');
-	var noFold = swipeOutActions.hasClass('swipeout-actions-no-fold') || Local.swipeoutActionsNoFold;
-	var buttons = swipeOutActions.children('.SwipeoutItem');
-	var swipeOutActionsWidth = swipeOutActions.outerWidth();
-	KUIAPP.allowSwipeout = false;
-	el.trigger('close');
-	el.removeClass('SwipeoutOpened').addClass('transitioning');
+    el = $$(el);
+    if(el.length === 0) return;
+    if(!el.hasClass('SwipeoutOpened')) return;
+    var dir = el.find('.SwipeoutActionsOpened').hasClass('SwipeoutActionsRight') ? 'right' : 'left';
+    var swipeOutActions = el.find('.SwipeoutActionsOpened').removeClass('SwipeoutActionsOpened');
+    var noFold = swipeOutActions.hasClass('swipeout-actions-no-fold') || Local.swipeoutActionsNoFold;
+    var buttons = swipeOutActions.children('.SwipeoutItem');
+    var swipeOutActionsWidth = swipeOutActions.outerWidth();
+    KUIAPP.allowSwipeout = false;
+    el.trigger('close');
+    el.removeClass('SwipeoutOpened').addClass('transitioning');
 
-	var closeTO;
-	function onSwipeoutClose() {
-		KUIAPP.allowSwipeout = true;
-		if(el.hasClass('SwipeoutOpened')) return;
-		el.removeClass('transitioning');
-		buttons.transform('');
-		el.trigger('closed');
-		if(callback){
-			callback.call(el[0]);
-		};
-		if(closeTO){
-			clearTimeout(closeTO);
-		};
-	};
-	el.find('.SwipeoutCon').transform('').transitionEnd(onSwipeoutClose);
-	closeTO = setTimeout(onSwipeoutClose, 500);
-	
-	for(var i = 0; i < buttons.length; i++){
-		if(dir === 'right'){
-			$$(buttons[i]).transform('translate3d(' + (-buttons[i].offsetLeft) + 'px,0,0)');
-		}else{
-			$$(buttons[i]).transform('translate3d(' + (swipeOutActionsWidth - buttons[i].offsetWidth - buttons[i].offsetLeft) + 'px,0,0)');
-		}
-		$$(buttons[i]).css({left:0 + 'px'}).removeClass('swipeout-overswipe-active');
-	};
-	
-	if(KUIAPP.swipeoutOpenedEl && KUIAPP.swipeoutOpenedEl[0] === el[0]){
-		KUIAPP.swipeoutOpenedEl = undefined;
-	};
+    var closeTO;
+    function onSwipeoutClose() {
+        KUIAPP.allowSwipeout = true;
+        if(el.hasClass('SwipeoutOpened')) return;
+        el.removeClass('transitioning');
+        buttons.transform('');
+        el.trigger('closed');
+        if(callback){
+            callback.call(el[0]);
+        };
+        if(closeTO){
+            clearTimeout(closeTO);
+        };
+    };
+    el.find('.SwipeoutCon').transform('').transitionEnd(onSwipeoutClose);
+    closeTO = setTimeout(onSwipeoutClose, 500);
+    
+    for(var i = 0; i < buttons.length; i++){
+        if(dir === 'right'){
+            $$(buttons[i]).transform('translate3d(' + (-buttons[i].offsetLeft) + 'px,0,0)');
+        }else{
+            $$(buttons[i]).transform('translate3d(' + (swipeOutActionsWidth - buttons[i].offsetWidth - buttons[i].offsetLeft) + 'px,0,0)');
+        }
+        $$(buttons[i]).css({left:0 + 'px'}).removeClass('swipeout-overswipe-active');
+    };
+    
+    if(KUIAPP.swipeoutOpenedEl && KUIAPP.swipeoutOpenedEl[0] === el[0]){
+        KUIAPP.swipeoutOpenedEl = undefined;
+    };
 };
 /** 删除滑动操作
  * @param {Object} el:滑动对象
  * @param {function} callback:回调事件
  */
 KUIAPP.swipeoutDelete = function(el, callback){
-	el = $$(el);
-	if(el.length === 0){
-		return;
-	};
-	if(el.length > 1){
-		el = $$(el[0]);
-	};
-	KUIAPP.swipeoutOpenedEl = undefined;
-	el.trigger('delete');
-	el.css({height: el.outerHeight() + 'px'});
-	var clientLeft = el[0].clientLeft;
-	el.css({height: 0 + 'px'}).addClass('Deleting transitioning').transitionEnd(function () {
-		el.trigger('deleted');
-		if(callback){
-			callback.call(el[0]);
-		}
-		el.remove();
-	});
-	var translate = '-100%';
-	el.find('.SwipeoutCon').transform('translate3d(' + translate + ',0,0)');
+    el = $$(el);
+    if(el.length === 0){
+        return;
+    };
+    if(el.length > 1){
+        el = $$(el[0]);
+    };
+    KUIAPP.swipeoutOpenedEl = undefined;
+    el.trigger('delete');
+    el.css({height: el.outerHeight() + 'px'});
+    var clientLeft = el[0].clientLeft;
+    el.css({height: 0 + 'px'}).addClass('Deleting transitioning').transitionEnd(function () {
+        el.trigger('deleted');
+        if(callback){
+            callback.call(el[0]);
+        }
+        el.remove();
+    });
+    var translate = '-100%';
+    el.find('.SwipeoutCon').transform('translate3d(' + translate + ',0,0)');
 };
 window['kelat']['initSwipeout'] = KUIAPP.initSwipeout;
 
@@ -4469,161 +4466,255 @@ window['kelat']['initSwipeout'] = KUIAPP.initSwipeout;
  * @param {Object} sortableContainer:滑动对象
  */
 KUIAPP.sortableToggle = function(sortableContainer){
-	sortableContainer = $$(sortableContainer);
-	if(sortableContainer.length === 0){
-		sortableContainer = $$('.ListBlock.Sortable');
-	};
-	sortableContainer.toggleClass('SortableOpened');
-	if(sortableContainer.hasClass('SortableOpened')){
-		sortableContainer.trigger('open');
-	}else{
-		sortableContainer.trigger('close');
-	};
-	return sortableContainer;
+    sortableContainer = $$(sortableContainer);
+    if(sortableContainer.length === 0){
+        sortableContainer = $$('.ListBlock.Sortable');
+    };
+    sortableContainer.toggleClass('SortableOpened');
+    if(sortableContainer.hasClass('SortableOpened')){
+        sortableContainer.trigger('open');
+    }else{
+        sortableContainer.trigger('close');
+    };
+    return sortableContainer;
 };
 /** 打开排序列表
  * @param {Object} sortableContainer:滑动对象
  */
 KUIAPP.sortableOpen = function(sortableContainer){
-	sortableContainer = $$(sortableContainer);
-	if(sortableContainer.length === 0){
-		sortableContainer = $$('.ListBlock.Sortable');
-	};
-	sortableContainer.addClass('SortableOpened');
-	sortableContainer.trigger('open');
-	return sortableContainer;
+    sortableContainer = $$(sortableContainer);
+    if(sortableContainer.length === 0){
+        sortableContainer = $$('.ListBlock.Sortable');
+    };
+    sortableContainer.addClass('SortableOpened');
+    sortableContainer.trigger('open');
+    return sortableContainer;
 };
 /** 关闭排序列表
  * @param {Object} sortableContainer:滑动对象
  */
 KUIAPP.sortableClose = function(sortableContainer){
-	sortableContainer = $$(sortableContainer);
-	if(sortableContainer.length === 0){
-		sortableContainer = $$('.ListBlock.Sortable');
-	};
-	sortableContainer.removeClass('SortableOpened');
-	sortableContainer.trigger('close');
-	return sortableContainer;
+    sortableContainer = $$(sortableContainer);
+    if(sortableContainer.length === 0){
+        sortableContainer = $$('.ListBlock.Sortable');
+    };
+    sortableContainer.removeClass('SortableOpened');
+    sortableContainer.trigger('close');
+    return sortableContainer;
 };
-/** 初始排序列表 */
+/** 初始化排序列表 */
 KUIAPP.initSortable = function () {
-	var isTouched, isMoved, touchStartY, touchesDiff, sortingEl, sortingElHeight, sortingItems, minTop, maxTop, insertAfter, insertBefore, sortableContainer;
-	//开关事件
-	$$(document).on('click','.ToggleSortable,.CloseSortable,.OpenSortable',function(){
-		var clicked = $$(this)
-		var clickedData = clicked.dataset()
-		if(clicked.hasClass('ToggleSortable')){
-			KUIAPP.sortableToggle(clickedData.sortable);
-		}
-		if(clicked.hasClass('OpenSortable')){
-			KUIAPP.sortableOpen(clickedData.sortable);
-		}
-		if(clicked.hasClass('CloseSortable')){
-			KUIAPP.sortableClose(clickedData.sortable);
-		}
-	})
+    var isTouched, isMoved, touchStartY, touchesDiff, sortingEl, sortingElHeight, sortingItems, minTop, maxTop, insertAfter, insertBefore, sortableContainer;
+    //开关事件
+    $$(document).on('click','.ToggleSortable,.CloseSortable,.OpenSortable',function(){
+        var clicked = $$(this)
+        var clickedData = clicked.dataset()
+        if(clicked.hasClass('ToggleSortable')){
+            KUIAPP.sortableToggle(clickedData.sortable);
+        }
+        if(clicked.hasClass('OpenSortable')){
+            KUIAPP.sortableOpen(clickedData.sortable);
+        }
+        if(clicked.hasClass('CloseSortable')){
+            KUIAPP.sortableClose(clickedData.sortable);
+        }
+    })
 
-	//触摸事件
-	function handleTouchStart(e) {
-		isMoved = false;
-		isTouched = true;
-		touchStartY = e.type === 'touchstart' ? e.targetTouches[0].pageY : e.pageY;
-		/*jshint validthis:true */
-		sortingEl = $$(this).parent();
-		sortingItems = sortingEl.parent().find('li');
-		sortableContainer = sortingEl.parents('.sortable');
-		e.preventDefault();
-		KUIAPP.allowSwipeout = false;
-	}
-	//移动事件
-	function handleTouchMove(e) {
-		if(!isTouched || !sortingEl){
-			return;
-		};
-		var pageX = e.type === 'touchmove' ? e.targetTouches[0].pageX : e.pageX;
-		var pageY = e.type === 'touchmove' ? e.targetTouches[0].pageY : e.pageY;
-		if(!isMoved){
-			sortingEl.addClass('sorting');
-			sortableContainer.addClass('sortable-sorting');
-			minTop = sortingEl[0].offsetTop;
-			maxTop = sortingEl.parent().height() - sortingEl[0].offsetTop - sortingEl.height();
-			sortingElHeight = sortingEl[0].offsetHeight;
-		}
-		isMoved = true;
+    //触摸事件
+    function handleTouchStart(e) {
+        isMoved = false;
+        isTouched = true;
+        touchStartY = e.type === 'touchstart' ? e.targetTouches[0].pageY : e.pageY;
+        /*jshint validthis:true */
+        sortingEl = $$(this).parent();
+        sortingItems = sortingEl.parent().find('li');
+        sortableContainer = sortingEl.parents('.sortable');
+        e.preventDefault();
+        KUIAPP.allowSwipeout = false;
+    }
+    //移动事件
+    function handleTouchMove(e) {
+        if(!isTouched || !sortingEl){
+            return;
+        };
+        var pageX = e.type === 'touchmove' ? e.targetTouches[0].pageX : e.pageX;
+        var pageY = e.type === 'touchmove' ? e.targetTouches[0].pageY : e.pageY;
+        if(!isMoved){
+            sortingEl.addClass('sorting');
+            sortableContainer.addClass('sortable-sorting');
+            minTop = sortingEl[0].offsetTop;
+            maxTop = sortingEl.parent().height() - sortingEl[0].offsetTop - sortingEl.height();
+            sortingElHeight = sortingEl[0].offsetHeight;
+        }
+        isMoved = true;
 
-		e.preventDefault();
-		touchesDiff = pageY - touchStartY;
-		var translate = touchesDiff;
-		if(translate < -minTop){
-			translate = -minTop;
-		};
-		if(translate > maxTop){
-			translate = maxTop;
-		};
-		sortingEl.transform('translate3d(0,' + translate + 'px,0)');
+        e.preventDefault();
+        touchesDiff = pageY - touchStartY;
+        var translate = touchesDiff;
+        if(translate < -minTop){
+            translate = -minTop;
+        };
+        if(translate > maxTop){
+            translate = maxTop;
+        };
+        sortingEl.transform('translate3d(0,' + translate + 'px,0)');
 
-		insertBefore = insertAfter = undefined;
+        insertBefore = insertAfter = undefined;
 
-		sortingItems.each(function(){
-			var currentEl = $$(this);
-			if(currentEl[0] === sortingEl[0]){
-				return;
-			};
-			var currentElOffset = currentEl[0].offsetTop;
-			var currentElHeight = currentEl.height();
-			var sortingElOffset = sortingEl[0].offsetTop + translate;
+        sortingItems.each(function(){
+            var currentEl = $$(this);
+            if(currentEl[0] === sortingEl[0]){
+                return;
+            };
+            var currentElOffset = currentEl[0].offsetTop;
+            var currentElHeight = currentEl.height();
+            var sortingElOffset = sortingEl[0].offsetTop + translate;
 
-			if((sortingElOffset >= currentElOffset - currentElHeight / 2) && sortingEl.index() < currentEl.index()){
-				currentEl.transform('translate3d(0, '+(-sortingElHeight)+'px,0)');
-				insertAfter = currentEl;
-				insertBefore = undefined;
-			}else if((sortingElOffset <= currentElOffset + currentElHeight / 2) && sortingEl.index() > currentEl.index()){
-				currentEl.transform('translate3d(0, '+(sortingElHeight)+'px,0)');
-				insertAfter = undefined;
-				if(!insertBefore){
-					insertBefore = currentEl;
-				};
-			}else{
-				$$(this).transform('translate3d(0, 0%,0)');
-			};
-		});
-	}
-	//离开事件
-	function handleTouchEnd(e) {
-		KUIAPP.allowSwipeout = true;
-		if(!isTouched || !isMoved){
-			isTouched = false;
-			isMoved = false;
-			return;
-		}
-		e.preventDefault();
-		sortingItems.transform('');
-		sortingEl.removeClass('sorting');
-		sortableContainer.removeClass('sortable-sorting');
-		var virtualList, oldIndex, newIndex;
-		if(insertAfter){
-			sortingEl.insertAfter(insertAfter);
-			sortingEl.trigger('sort');
-		};
-		if(insertBefore){
-			sortingEl.insertBefore(insertBefore);
-			sortingEl.trigger('sort');
-		};
-		insertAfter = insertBefore = undefined;
-		isTouched = false;
-		isMoved = false;
-	}
-	//绑定事件
-	$$(document).on(_KLT_.touchEvents.start, '.ListBlock.Sortable .SortableHandler', handleTouchStart);
-	if(Local.support.touch){
-		$$(document).on(_KLT_.touchEvents.move, '.ListBlock.Sortable .SortableHandler', handleTouchMove);
-		$$(document).on(_KLT_.touchEvents.end, '.ListBlock.Sortable .SortableHandler', handleTouchEnd);
-	}else{
-		$$(document).on(_KLT_.touchEvents.move, handleTouchMove);
-		$$(document).on(_KLT_.touchEvents.end, handleTouchEnd);
-	}		
+            if((sortingElOffset >= currentElOffset - currentElHeight / 2) && sortingEl.index() < currentEl.index()){
+                currentEl.transform('translate3d(0, '+(-sortingElHeight)+'px,0)');
+                insertAfter = currentEl;
+                insertBefore = undefined;
+            }else if((sortingElOffset <= currentElOffset + currentElHeight / 2) && sortingEl.index() > currentEl.index()){
+                currentEl.transform('translate3d(0, '+(sortingElHeight)+'px,0)');
+                insertAfter = undefined;
+                if(!insertBefore){
+                    insertBefore = currentEl;
+                };
+            }else{
+                $$(this).transform('translate3d(0, 0%,0)');
+            };
+        });
+    }
+    //离开事件
+    function handleTouchEnd(e) {
+        KUIAPP.allowSwipeout = true;
+        if(!isTouched || !isMoved){
+            isTouched = false;
+            isMoved = false;
+            return;
+        }
+        e.preventDefault();
+        sortingItems.transform('');
+        sortingEl.removeClass('sorting');
+        sortableContainer.removeClass('sortable-sorting');
+        var virtualList, oldIndex, newIndex;
+        if(insertAfter){
+            sortingEl.insertAfter(insertAfter);
+            sortingEl.trigger('sort');
+        };
+        if(insertBefore){
+            sortingEl.insertBefore(insertBefore);
+            sortingEl.trigger('sort');
+        };
+        insertAfter = insertBefore = undefined;
+        isTouched = false;
+        isMoved = false;
+    }
+    //绑定事件
+    $$(document).on(_KLT_.touchEvents.start, '.ListBlock.Sortable .SortableHandler', handleTouchStart);
+    if(Local.support.touch){
+        $$(document).on(_KLT_.touchEvents.move, '.ListBlock.Sortable .SortableHandler', handleTouchMove);
+        $$(document).on(_KLT_.touchEvents.end, '.ListBlock.Sortable .SortableHandler', handleTouchEnd);
+    }else{
+        $$(document).on(_KLT_.touchEvents.move, handleTouchMove);
+        $$(document).on(_KLT_.touchEvents.end, handleTouchEnd);
+    }        
 };
 window['kelat']['initSortable'] = KUIAPP.initSortable;  
+
+/*=====================================================
+************   折叠面板   ************
+=====================================================*/
+/** 触发折叠面板
+ * @param {Object} item:折叠面板对象
+ */
+KUIAPP.accordionToggle = function (item) {
+    item = $$(item);
+    if(item.length === 0){
+        return;
+    }
+    if(item.hasClass('AccordionItemExpanded')){
+        KUIAPP.accordionClose(item);
+    }else{
+        KUIAPP.accordionOpen(item);
+    };
+};
+/** 打开折叠面板
+ * @param {Object} item:折叠面板对象
+ */
+KUIAPP.accordionOpen = function (item) {
+    item = $$(item);
+    var list = item.parents('.AccordionList').eq(0);
+    var content = item.children('.AccordionItemCon');
+    if(content.length === 0){
+        content = item.find('.AccordionItemCon');
+    };
+    var expandedItem = list.length > 0 && item.parent().children('.AccordionItemExpanded');
+    if(expandedItem.length > 0){
+        KUIAPP.accordionClose(expandedItem);
+    }
+    content.css('height', content[0].scrollHeight + 'px').transitionEnd(function () {
+        if(item.hasClass('AccordionItemExpanded')){
+            content.transition(0);
+            content.css('height', 'auto');
+            var clientLeft = content[0].clientLeft;
+            content.transition('');
+            item.trigger('opened');
+        }else{
+            content.css('height', '');
+            item.trigger('closed');
+        }
+    });
+    item.trigger('open');
+    item.addClass('AccordionItemExpanded');
+};
+/** 关闭折叠面板
+ * @param {Object} item:折叠面板对象
+ */
+KUIAPP.accordionClose = function (item) {
+    item = $$(item);
+    var content = item.children('.AccordionItemCon');
+    if(content.length === 0){
+        content = item.find('.AccordionItemCon');
+    };
+    item.removeClass('AccordionItemExpanded');
+    content.transition(0);
+    content.css('height', content[0].scrollHeight + 'px');
+    //重新布局
+    var clientLeft = content[0].clientLeft;
+    //关闭
+    content.transition('');
+    content.css('height', '').transitionEnd(function(){
+        if(item.hasClass('AccordionItemExpanded')){
+            content.transition(0);
+            content.css('height', 'auto');
+            var clientLeft = content[0].clientLeft;
+            content.transition('');
+            item.trigger('opened');
+        }else{
+            content.css('height', '');
+            item.trigger('closed');
+        }
+    });
+    item.trigger('close');
+};
+/** 初始化折叠面板
+ * @param {Object} item:折叠面板对象
+ */
+KUIAPP.initAccordion = function(){
+    $$(document).on('click','.AccordionItemToggle,.ItemLink,.AccordionItem',function(){
+        var clicked = $$(this);
+        var accordionItem = clicked.parent('.AccordionItem');
+        if(accordionItem.length === 0){
+            accordionItem = clicked.parents('.AccordionItem');
+        }
+        if(accordionItem.length === 0){
+            accordionItem = clicked.parents('li');
+        };
+        KUIAPP.accordionToggle(accordionItem);
+    })
+};
+window['kelat']['initAccordion'] = KUIAPP.initAccordion; 
 
 /*======================================================
 ************   数字输入框   ************
@@ -4730,13 +4821,13 @@ KUIAPP.Ripple = function(){
 ************   浮动菜单   ************
 ======================================================*/
 KUIAPP.FloatButton = function(item) {
-	var $item = $$(item);
-	if($item.hasClass('FloatingButton') && $item.parent().hasClass('SpeedDial')){
+    var $item = $$(item);
+    if($item.hasClass('FloatingButton') && $item.parent().hasClass('SpeedDial')){
     $item.on(Local.support.onClick, function(event){
         event.preventDefault();
         $$(this).parent(".SpeedDial").toggleClass("SpeedDialOpened");
     });
-	}
+    }
     return this
 };
 window['kelat']['floatButton'] = KUIAPP.FloatButton;
@@ -4851,118 +4942,118 @@ window['kelat']['extend']({
 ======================================================*/
 var _isImagesLazyLoad = true;
 KUIAPP.initImagesLazyLoad = function(Placeholder){
-	var pageContainer = $$('#'+Local.WrapperArea);
+    var pageContainer = $$('#'+Local.WrapperArea);
 
-	//延迟图像
-	var lazyLoadImages;
-	if(pageContainer.hasClass('Lazy')){
-		lazyLoadImages = pageContainer;
-		pageContainer = lazyLoadImages.parents('#'+Local.WrapperArea);
-	}else{
-		lazyLoadImages = pageContainer.find('.Lazy');
-	};
-	if(lazyLoadImages.length === 0){
-		return;
-	};
+    //延迟图像
+    var lazyLoadImages;
+    if(pageContainer.hasClass('Lazy')){
+        lazyLoadImages = pageContainer;
+        pageContainer = lazyLoadImages.parents('#'+Local.WrapperArea);
+    }else{
+        lazyLoadImages = pageContainer.find('.Lazy');
+    };
+    if(lazyLoadImages.length === 0){
+        return;
+    };
 
-	//图片占位
-	var placeholderSrc = Local.ImgPlaceholder;
-	if(typeof Placeholder === 'string') {
-		placeholderSrc = Placeholder;
-	}
-	if(Placeholder !== false){
-		lazyLoadImages.each(function(){
-			if($$(this).attr('data-src')){
-				$$(this).attr('src', placeholderSrc);
-			};
-		});
-	};
+    //图片占位
+    var placeholderSrc = Local.ImgPlaceholder;
+    if(typeof Placeholder === 'string') {
+        placeholderSrc = Placeholder;
+    }
+    if(Placeholder !== false){
+        lazyLoadImages.each(function(){
+            if($$(this).attr('data-src')){
+                $$(this).attr('src', placeholderSrc);
+            };
+        });
+    };
 
-	// load image
-	var imagesSequence = [];
-	var imageIsLoading = false;
-	function loadImage(el){
-		el = $$(el);
+    // load image
+    var imagesSequence = [];
+    var imageIsLoading = false;
+    function loadImage(el){
+        el = $$(el);
 
-		var bg = el.attr('data-background');
-		var src = bg ? bg : el.attr('data-src');
-		if(!src){
-			return;
-		};
+        var bg = el.attr('data-background');
+        var src = bg ? bg : el.attr('data-src');
+        if(!src){
+            return;
+        };
 
-		function onLoad(){
-			el.removeClass('Lazy').addClass('LazyLoaded');
-			if(bg){
-				el.css('background-image', 'url(' + src + ')');
-			}else{
-				el.attr('src', src);
-			};
-			if (Local.ImgLazyLoadSequential) {
-				imageIsLoading = false;
-				if (imagesSequence.length > 0) {
-					loadImage(imagesSequence.shift());
-				};
-			};
-		};
-		if(Local.ImgLazyLoadSequential){
-			if(imageIsLoading){
-				if(imagesSequence.indexOf(el[0]) < 0){
-					imagesSequence.push(el[0]);
-				};
-				return;
-			};
-		}
+        function onLoad(){
+            el.removeClass('Lazy').addClass('LazyLoaded');
+            if(bg){
+                el.css('background-image', 'url(' + src + ')');
+            }else{
+                el.attr('src', src);
+            };
+            if (Local.ImgLazyLoadSequential) {
+                imageIsLoading = false;
+                if (imagesSequence.length > 0) {
+                    loadImage(imagesSequence.shift());
+                };
+            };
+        };
+        if(Local.ImgLazyLoadSequential){
+            if(imageIsLoading){
+                if(imagesSequence.indexOf(el[0]) < 0){
+                    imagesSequence.push(el[0]);
+                };
+                return;
+            };
+        }
 
-		//图片加载标识
-		imageIsLoading = true;
-		
-		var image = new Image();
-		image.onload = onLoad;
-		image.onerror = onLoad;
-		image.src =src;
-	};
-	function lazyHandler(){
-		lazyLoadImages = pageContainer.find('.Lazy');
-		if(lazyLoadImages === 0){
-			_isImagesLazyLoad = false;
-			detachEvents()
-		}else{
-			_isImagesLazyLoad = true;
-			attachEvents();
-			lazyLoadImages.each(function(index, el) {
-				el = $$(el);
-				if(isElementInViewport(el[0])){
-					loadImage(el);
-				};
-			});
-		};
-	};
+        //图片加载标识
+        imageIsLoading = true;
+        
+        var image = new Image();
+        image.onload = onLoad;
+        image.onerror = onLoad;
+        image.src =src;
+    };
+    function lazyHandler(){
+        lazyLoadImages = pageContainer.find('.Lazy');
+        if(lazyLoadImages === 0){
+            _isImagesLazyLoad = false;
+            detachEvents()
+        }else{
+            _isImagesLazyLoad = true;
+            attachEvents();
+            lazyLoadImages.each(function(index, el) {
+                el = $$(el);
+                if(isElementInViewport(el[0])){
+                    loadImage(el);
+                };
+            });
+        };
+    };
 
-	function isElementInViewport (el) {
-		var rect = el.getBoundingClientRect();
-		var threshold = Local.ImgLazyLoadThreshold || 0;
-		return(
-			rect.top >= (0 - threshold) &&
-			rect.left >= (0 - threshold) &&
-			rect.top <= (window.innerHeight + threshold) &&
-			rect.left <= (window.innerWidth + threshold)
-		);
-	}
+    function isElementInViewport (el) {
+        var rect = el.getBoundingClientRect();
+        var threshold = Local.ImgLazyLoadThreshold || 0;
+        return(
+            rect.top >= (0 - threshold) &&
+            rect.left >= (0 - threshold) &&
+            rect.top <= (window.innerHeight + threshold) &&
+            rect.left <= (window.innerWidth + threshold)
+        );
+    }
 
-	function attachEvents(destroy) {
-		var method = destroy ? 'off' : 'on';
-		lazyLoadImages[method]('lazy', lazyHandler);
-		pageContainer[method]('lazy', lazyHandler);
-		$$(window)[method]('scroll', lazyHandler);
-		$$(window)[method]('resize', lazyHandler);
-	};
-	function detachEvents() {
-		attachEvents(true);
-	};
-	//绑定事件
-	attachEvents();
-	//初始化
-	lazyHandler();
+    function attachEvents(destroy) {
+        var method = destroy ? 'off' : 'on';
+        lazyLoadImages[method]('lazy', lazyHandler);
+        pageContainer[method]('lazy', lazyHandler);
+        $$(window)[method]('scroll', lazyHandler);
+        $$(window)[method]('resize', lazyHandler);
+    };
+    function detachEvents() {
+        attachEvents(true);
+    };
+    //绑定事件
+    attachEvents();
+    //初始化
+    lazyHandler();
 };
 window['kelat']['imagesLazyLoad'] = KUIAPP.initImagesLazyLoad;
 

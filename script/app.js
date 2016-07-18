@@ -247,6 +247,25 @@ return angular.module('MyApp', ['ngIOS9UIWebViewPatch'
 			}
 			
 		})
+		.state("Accordion",{//Accordion(折叠面板)
+			url:"/accordion",
+			views:{
+				'Header': Header,
+				'WrapContent':{
+					templateUrl :"pages/accordion/accordion.html",
+					controller : "AccordionController",
+					resolve : {
+						title:function(){
+							return "Accordion(折叠面板)";
+						},
+						load : loadDeps([
+							"../pages/accordion/accordion"
+						])
+					}	
+				}
+			}
+			
+		})
 		.state("list",{//list(列表)
 			url:"/list",
 			views:{

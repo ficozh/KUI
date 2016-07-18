@@ -1053,7 +1053,7 @@ align-items:center;
 
 /*排序列表*/
 .ListBlock .SortableHandler{position:absolute;right:0;top:0;bottom:1px;z-index:10;background-repeat:no-repeat;background-size:18px 12px;background-position:center;width:50px;opacity:0;visibility:hidden;cursor:pointer;
-background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%2018%2012'%20fill%3D'%23c7c7cc'%3E%3Cpath%20d%3D'M0%2C2V0h22v2H0z'%2F%3E%3Cpath%20d%3D'M0%2C7V5h22v2H0z'%2F%3E%3Cpath%20d%3D'M0%2C12v-2h22v2H0z'%2F%3E%3C%2Fsvg%3E");
+background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%2018%2012'%20fill%3D'%23c7c7cc'%3E%3Cpath%20d%3D'M0%2C2V0h22v2H0z'%2F%3E%3Cpath%20d%3D'M0%2C7V5h22v2H0z'%2F%3E%3Cpath%20d%3D'M0%2C12v-2h22v2H0z'%2F%3E%3C%2Fsvg%3E");
 -webkit-transition-duration:300ms;
 		transition-duration:300ms;
 }
@@ -1069,6 +1069,54 @@ background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D'http%3
 .ListBlock.sortable-sorting li {
 -webkit-transition-duration:300ms;
 		transition-duration:300ms;
+}
+
+
+/*  折叠面板  */
+.ListBlock .AccordionItemToggle{cursor:pointer;
+-webkit-transition-duration:300ms;
+		transition-duration:300ms;
+}
+.ListBlock .AccordionItemToggle .ItemInner{padding-right:26px;background:no-repeat 98% center;
+background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%201024%201024%22%3E%3Cpath%20fill%3D%22%23272727%22%20d%3D%22M733.230545%20518.795636%20295.749818%2081.314909c-9.076364-9.076364-23.831273-9.076364-32.907636%200-9.076364%209.076364-9.076364%2023.831273%200%2032.907636l421.050182%20421.050182-421.050182%20421.050182c-9.076364%209.076364-9.076364%2023.831273%200%2032.907636%209.076364%209.076364%2023.831273%209.076364%2032.907636%200l437.480727-437.480727C742.306909%20542.626909%20742.306909%20527.918545%20733.230545%20518.795636z%22%2F%3E%3C%2Fsvg%3E");
+background-size:12px 24px;
+}
+.ListBlock .AccordionItemToggle .ItemInner,
+.ListBlock .AccordionItem > .ItemLink .ItemInner {
+-webkit-transition-duration:300ms;
+		transition-duration:300ms;
+-webkit-transition-property:background-color;
+		transition-property:background-color;
+}
+.ListBlock .AccordionItemToggle .ItemInner:after,
+.ListBlock .AccordionItem > .ItemLink .ItemInner:after {
+-webkit-transition-duration:300ms;
+		transition-duration:300ms;
+}
+.ListBlock:not(.MediaList) .AccordionItemExpanded:not(.MediaList) .AccordionItemToggle .ItemInner,
+.ListBlock:not(.MediaList) .AccordionItemExpanded:not(.MediaList) > .ItemLink .ItemInner,
+.ListBlock.MediaList .AccordionItemExpanded .AccordionItemToggle .ItemTitleRow,
+.ListBlock.MediaList .AccordionItemExpanded > .ItemLink .ItemTitleRow,
+.ListBlock .AccordionItemExpanded.MediaItem .AccordionItemToggle .ItemTitleRow,
+.ListBlock .AccordionItemExpanded.MediaItem > .ItemLink .ItemTitleRow{
+background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%201024%201024%22%3E%3Cpath%20fill%3D%22%23272727%22%20d%3D%22M733.230545%20518.795636%20295.749818%2081.314909c-9.076364-9.076364-23.831273-9.076364-32.907636%200-9.076364%209.076364-9.076364%2023.831273%200%2032.907636l421.050182%20421.050182-421.050182%20421.050182c-9.076364%209.076364-9.076364%2023.831273%200%2032.907636%209.076364%209.076364%2023.831273%209.076364%2032.907636%200l437.480727-437.480727C742.306909%20542.626909%20742.306909%20527.918545%20733.230545%20518.795636z%22%20%20transform%3D%22translate(1024,0)%20rotate(90)%22%2F%3E%3C%2Fsvg%3E");
+background-size: 12px 24px;
+}
+.ListBlock .AccordionItemExpanded .AccordionItemToggle .ItemInner:after,
+.ListBlock .AccordionItemExpanded > .ItemLink .item-inner:after{background-color:transparent}
+.ListBlock .AccordionItem .ContentBlock,
+.ListBlock .AccordionItem .ListBlock{margin-top:0;margin-bottom:0}
+.ListBlock .AccordionItem ul{padding-left:0}
+.AccordionItemCon{position:relative;overflow:hidden;height:0;font-size:14px;
+-webkit-transition-duration:300ms;
+		transition-duration:300ms;
+-webkit-transform:translate3d(0, 0, 0);
+		transform:translate3d(0, 0, 0);
+}
+.AccordionItemExpanded > .AccordionItemCon{height:auto;}
+html.android-4 .AccordionItemCon {
+-webkit-transform:none;
+		transform:none;
 }
 
 /*
@@ -1507,9 +1555,6 @@ box-sizing:border-box;
 			transform:translate3d(0,1024px,0);
 	}
 }
-
-
-
 
 /*选择器*/
 .PickerModal{position:fixed;left:0;bottom:0;width:100%;height:260px;z-index:-1;background:#cfd5da;
