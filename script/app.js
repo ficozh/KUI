@@ -463,6 +463,24 @@ return angular.module('MyApp', ['ngIOS9UIWebViewPatch'
 			views:{
 				'Header': Header,
 				'WrapContent':{
+					templateUrl :"pages/tab/tabList.html",
+					controller : "TabController",
+					resolve : {
+						title:function(){
+							return "tab(选项卡)";
+						},
+						load : loadDeps([
+							"../pages/tab/tabList"
+						])
+					}	
+				}
+			}
+		})
+		.state("staticTab",{//tab(选项卡)
+			url:"/staticTab",
+			views:{
+				'Header': Header,
+				'WrapContent':{
 					templateUrl :"pages/tab/tab.html",
 					controller : "TabController",
 					resolve : {
@@ -471,6 +489,60 @@ return angular.module('MyApp', ['ngIOS9UIWebViewPatch'
 						},
 						load : loadDeps([
 							"../pages/tab/tab"
+						])
+					}	
+				}
+			}
+		})
+		.state("animatedTab",{//tab(选项卡)
+			url:"/animatedTab",
+			views:{
+				'Header': Header,
+				'WrapContent':{
+					templateUrl :"pages/tab/tabAnimated.html",
+					controller : "TabController",
+					resolve : {
+						title:function(){
+							return "tab(选项卡)";
+						},
+						load : loadDeps([
+							"../pages/tab/tabAnimated"
+						])
+					}	
+				}
+			}
+		})
+		.state("scrollTab",{//tab(选项卡)
+			url:"/scrollTab",
+			views:{
+				'Header': Header,
+				'WrapContent':{
+					templateUrl :"pages/tab/tabScroll.html",
+					controller : "TabController",
+					resolve : {
+						title:function(){
+							return "tab(选项卡)";
+						},
+						load : loadDeps([
+							"../pages/tab/tabScroll"
+						])
+					}	
+				}
+			}
+		})
+		.state("labelTab",{//tab(选项卡)
+			url:"/labelTab",
+			views:{
+				'Header': Header,
+				'WrapContent':{
+					templateUrl :"pages/tab/tabLabel.html",
+					controller : "TabController",
+					resolve : {
+						title:function(){
+							return "tab(选项卡)";
+						},
+						load : loadDeps([
+							"../pages/tab/tabLabel"
 						])
 					}	
 				}

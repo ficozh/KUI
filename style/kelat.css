@@ -1207,46 +1207,20 @@ background-size:20px 20px;
 opacity:.54}
 .Short .ShortDel:active{opacity:1}
 
-
-/*Tabs*/
-.Tabs{line-height:44px;height:44px;margin-bottom:10px;background-color:#fff;overflow:hidden;
-box-sizing:border-box;
-display:-webkit-box;
-display:-ms-flexbox;
-display:-webkit-flex;
-display:flex;
--webkit-box-pack:justify;
-   -ms-flex-pack:justify;
--webkit-justify-content:space-between;
-		justify-content:space-between;
--webkit-box-align:center;
-   -ms-flex-align:center;
--webkit-align-items:center;
-		align-items:center
-}
-.Tabs li{position:relative;width:100%;text-align:center;font-size:14px;line-height:inherit;border-bottom:1px solid #ddd;color:#666;cursor:pointer;box-sizing:border-box}
-.Tabs li.active{color:#2283e2}
-.Tabs li.active:after{position:absolute;content:"";display:block;bottom:0;left:10%;width:80%;height:2px;background-color:#2283e2}
-.WrapHeader + .WrapContent > .WAll .TabsFixed{top:45px}
-.TabsFixed{position:fixed;left:0;top:0;width:100%;z-index:6000}
-.TabsFixed+.TabsCon{padding-top:55px}
-
 /* === 图片延迟加载 === */
 .LazyLoaded.LazyFadeIn {
 -webkit-animation:lazyFadeIn 600ms;
 		animation:lazyFadeIn 600ms;
 }
-@-webkit-keyframes lazyFadeIn {
-  from{opacity:0}
-  to{opacity:1}
+@-webkit-keyframes lazyFadeIn{
+  from{opacity:0}to{opacity:1}
 }
 @keyframes lazyFadeIn {
-  from{opacity:0}
-  to{opacity:1}
+  from{opacity:0}to{opacity:1}
 }
 
-
 /*工具栏*/
+.BarInner,
 .NavBarInner,
 .ToolBarInner{position:absolute;left:0;top:0;width:100%;height:100%;padding:0 8px;
 box-sizing:border-box;
@@ -1293,7 +1267,6 @@ display:flex;
 -webkit-transform:translateZ(0px);
 		transform:translateZ(0px);
 }
-
 
 .NavBar .Icon,
 .ToolBar .Icon{display:block}
@@ -1343,12 +1316,104 @@ display:flex;
 .NavBar .Left{margin-right:10px}
 .NavBar .Right{margin-left:10px}
 .NavBar .Right:first-child{position:absolute;right:8px;height:100%}
-.NavBarFixed .PageContent{padding-top:44px}
 .PopupBox .NavBar{position:absolute;
 -webkit-transform:translate3d(0,0,0);
 		transform:translate3d(0,0,0);
 }
 
+
+.TabBar{z-index:5001;overflow:hidden;bottom:auto;top:0}
+.TabBar .ToolBarInner{padding-left:0;padding-right:0}
+.TabBar .Link{line-height:1.4}
+.TabBar .TabLink.active,
+.TabBar .Link.active{color:#0a6ebd}
+.TabBar .TabLink,
+.TabBar .Link{height:100%;width:100%;font-size:14px;text-transform:uppercase;padding-left:0;padding-right:0;
+box-sizing:border-box;
+display:-webkit-box;
+display:-ms-flexbox;
+display:-webkit-flex;
+display:flex;
+-webkit-box-pack:center;
+   -ms-flex-pack:center;
+-webkit-justify-content:center;
+		justify-content:center;
+-webkit-box-align:center;
+   -ms-flex-align:center;
+-webkit-align-items:center;
+		align-items:center;
+-ms-flex:1;
+-webkit-box-orient:vertical;
+   -moz-box-orient:vertical;
+    -ms-flex-direction:column;
+-webkit-flex-direction:column;
+		flex-direction:column;
+}
+.TabBar .Icon{height:24px}
+.TabBar .TabLink{position:relative;overflow:hidden;
+-webkit-transition-duration:300ms;
+		transition-duration:300ms;
+}
+.TabBar .TabLinkHighlight{position:absolute;left:0;bottom:0;height:3px;background:#0a6ebd;
+-webkit-transition-duration:300ms;
+		transition-duration:300ms;
+}
+.TabBarLabels{height:72px}
+.TabBarLabels .TabLink,
+.TabBarLabels .Link{padding-top:12px;padding-bottom:12px;height:100%;
+-webkit-box-pack:justify;
+   -ms-flex-pack:justify;
+-webkit-justify-content:space-between;
+		justify-content:space-between;
+}
+.TabBarLabels span.TabBarLabel{position:relative;line-height:1;display:block;margin:0;text-overflow:ellipsis;white-space:nowrap;overflow:hidden;max-width:100%}
+
+.TabBarScrollable .ToolBarInner{overflow:auto;
+-webkit-box-pack:start;
+   -ms-flex-pack:start;
+-webkit-justify-content:flex-start;
+justify-content:flex-start;
+}
+.TabBarScrollable .ToolBarInner::-webkit-scrollbar{display:none !important;width:0 !important;height:0 !important;
+-webkit-appearance:none;
+opacity:0 !important;
+}
+.TabBarScrollable .TabLink,
+.TabBarScrollable .Link{width:auto;padding:0 16px;
+   -webkit-box-flex:0;
+-webkit-flex-shrink:0;
+	-ms-flex:0 0 auto;
+flex-shrink:0;
+   -ms-flex:0;
+}
+.TabBarLabels.TabBarScrollable .TabLink,
+.TabBarLabels.TabBarScrollable .Link{padding:12px 16px}
+
+/* === Tabs === */
+.Tabs .Tab{display:none}
+.Tabs .Tab.active{display:block}
+.TabsAnimatedWrap{position:relative;width:100%;overflow:hidden;height:100%}
+.TabsAnimatedWrap > .Tabs{height:100%;
+display:-webkit-box;
+display:-ms-flexbox;
+display:-webkit-flex;
+display:flex;
+-webkit-transition-duration:300ms;
+		transition-duration:300ms;
+}
+.TabsAnimatedWrap > .Tabs > .Tab{width:100%;display:block;
+-webkit-box-flex:0;
+-webkit-flex-shrink:0;
+-ms-flex:0 0 auto;
+flex-shrink:0;
+}
+.WrapHeader + .WrapContent > .WAll .TabsFixed{top:45px}
+.WrapFooter + .WrapContent > .WAll .TabsFixed{top:45px}
+.TabsFixed{position:fixed;left:0;top:0;width:100%;z-index:6000}
+.TabsFixed + .TabsCon{padding-top:55px}
+.TabsFixed.TabBarLabels + .TabsCon{padding-top:75px}
+
+.WrapFooter .TabsFixed{top:auto;bottom:0}
 
 /*蒙板*/
 .ModalBlank,
@@ -1540,7 +1605,6 @@ box-sizing:border-box;
 -webkit-transform:translate3d(0,100%,0);
 		transform:translate3d(0,100%,0);
 }
-.PopupBox .PageContent{height:100%;overflow:auto;}
 @media all and (min-width: 630px) and (min-height: 630px) {
 	.PopupBox:not(.tablet-fullscreen){width:630px;height:630px;left:50%;top:50%;margin-left:-315px;margin-top:-315px;
 	-webkit-transform:translate3d(0,1024px,0);
@@ -1975,6 +2039,7 @@ display:flex;
 -webkit-align-items:inherit;
 		align-items:inherit
 }
+
 .Box .BoxHeader{border-radius:4px 4px 0 0;font-size:14px}
 .Box .BoxFooter{border-radius:0 0 4px 4px;color:#6d6d72}
 
@@ -1994,20 +2059,20 @@ display:flex;
 .Box .BoxContent .BoxContentInner>p:last-child{margin-bottom:0}
 .Box .BoxContent .Img{display:block}
 
-.Box .BoxFooter a.Link, .Box .BoxHeader a.Link{position:relative;line-height:44px;height:44px;text-decoration:none;margin-top:-10px;margin-bottom:-10px;
+.Box .BoxFooter a.Link, .Box .BoxHeader a.Link{position:relative;line-height:44px;height:44px;text-decoration:none;text-align:center;display:block;margin-top:-10px;margin-bottom:-10px;white-space:nowrap;text-overflow:ellipsis;overflow:hidden;
+border-radius:2px;border:none;outline:0;
 box-sizing:border-box;
-display:-webkit-box;
-display:-ms-flexbox;
-display:-webkit-flex;
-display:flex;
--webkit-box-pack:start;
-   -ms-flex-pack:start;
--webkit-justify-content:flex-start;
-		justify-content:flex-start;
--webkit-box-align:center;
-   -ms-flex-align:center;
--webkit-align-items:center;
-		align-items:center
+-webkit-appearance:none;
+   -moz-appearance:none;
+	-ms-appearance:none;
+		appearance:none;
+text-transform:uppercase;
+-webkit-transition-duration:300ms;
+		transition-duration:300ms;
+-webkit-transform:translate3d(0, 0, 0);
+		transform:translate3d(0, 0, 0);
+-webkit-user-select:none;
+		user-select:none;
 }
 .Box .BoxFooter .Lump, .Box .BoxHeader .Lump{
 box-sizing:border-box;
@@ -2035,6 +2100,15 @@ align-items:center;
 -webkit-align-items:flex-end;
 		align-items:flex-end
 }
+
+html.android-4 .Box .BoxHeader,
+html.android-4 .Box .BoxFooter{
+display:-webkit-box;
+display:block;
+}
+html.android-4 .Box .BoxFooter a.Link, 
+html.android-4 .Box .BoxHeader a.Link{float:left;padding:0 8px}
+
 
 /*块级卡片*/
 .BoxBlock{border-radius:0;margin-left:0;margin-right:0}
