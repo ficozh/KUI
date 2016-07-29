@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>index([selector|element])</title>
+<meta name="author" content="KUI 中文手册">
+<meta name="description" content="KUI 中文手册">
+<!-- KUI -->
+<link rel="stylesheet" href="../style/kelat.css" media="all"/>
+<!-- 扩展样式 -->
+<link rel="stylesheet" href="../style/theme.css" media="all"/>
+
+</head>
+<body >
+<div>
+   <div class="HelpBox">
+   
+    <h2><span>返回值:Object</span>$$.fn.device()</h2>
+    <h3>概述</h3>
+    <div class="desc">
+      <p>kelat拥有设备检测库。可以访问$$.fn.device这个对象，它包含了关于设备和平台的有用信息。</p>
+    </div>
+    <h3>参数</h3>
+    <div class="parameter">
+      <p>无参数</p>
+    </div>
+    <div class="example">
+      <h3>返回值</h3>
+      <h4>描述:</h4>
+      <table class="Table TableBor TableHover">
+
+<thead><tr>
+<th>语法</th>
+<th>返回值</th>
+</tr></thead>
+<tbody>
+
+<tr class="active">
+<td>$$.fn.device.os</td>
+<td><code>string</code> 包含"android" (对于Android), "ios" (对于iOS), undefined (对于任意其他操作系统/平台)</td>
+</tr>
+<tr>
+<td>$$.fn.device.osVersion</td>
+<td><code>string</code> 包含操作系统版本号，只在Android和iOS设备上可用。例如，如果是iOS设备，且其版本为7.1，则会显示“7.1”</td>
+</tr>
+<tr class="active">
+<td>$$.fn.device.android</td>
+<td><code>boolean</code> 对于Android设备，为true，对于其他设备，为false</td>
+</tr>
+<tr>
+<td>$$.fn.device.ios</td>
+<td><code>boolean</code> 对于iOS设备，为true，对于其他设备，为false</td>
+</tr>
+<tr class="active">
+<td>$$.fn.device.ipad</td>
+<td><code>boolean</code> 对于iPad，为true，对于其他设备，为false</td>
+</tr>
+<tr>
+<td>$$.fn.device.iphone</td>
+<td><code>boolean</code> 对于iPhone/iPod Touch，为true，对于其他设备，为false</td>
+</tr>
+<tr class="active">
+<td>$$.fn.device.pixelRatio</td>
+<td><code>number</code> 返回设备屏幕像素比，实际上，它就是window.devicePixelRatio的快捷方式</td>
+</tr>
+<tr>
+<td>$$.fn.device.webView</td>
+<td><code>boolean</code> 如果应用在UIWebView（安装在家用电脑或phone gap上的网络应用）中运行，为true</td>
+</tr>
+<tr class="active">
+<td>$$.fn.device.minimalUi</td>
+<td><code>boolean</code> 如果启用了minimal-ui模式，为true。所谓minimal-ui模式，即为：当网络应用运行在iOS 7.1+的iPhone/iPod上，并且添加了minimal-ui viewport这个meta标签</td>
+</tr>
+<tr>
+<td>$$.fn.device.statusBar</td>
+<td><code>boolean</code> 如果应用运行在全屏模式，并且需要状态栏遮罩，为true。只针对iOS</td>
+</tr>
+<tr class="active">
+<td>$$.fn.device.browse</td>
+<td><code>string</code> 返回浏览类型，包括（<code>ie</code> <code>Firefox</code> <code>Chrome</code> <code>Edge</code> <code>Opera</code> <code>Safari</code> <code>Netscape</code>）</td>
+</tr>
+
+</tbody></table>
+    </div>
+
+</div>
+
+</div>
+</body>
+</html>

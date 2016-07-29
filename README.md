@@ -657,6 +657,18 @@ $$(window).trigger('resize');
 | .resize(handler) | 添加 "resize" 事件到句柄 |
 | .scroll(handler) | 添加 "scroll" 事件到句柄 |
 
+| tap事件 | 描述 |
+| ------------- | ------------- |
+| .tap() | 触发元素tap事件 |
+| .singleTap() | 触发元素上的单击事件 |
+| .doubleTap() | 触发元素上的双击事件 |
+| .longTap() | 当一个元素被按住超过750ms触发 |
+| .swipe() | 事件在用户在某个元素上水平滑动超过 30px 时被触发 |
+| .swipeLeft() |  事件在用户在某个元素上从左滑动超过 30px 时被触发 |
+| .swipeRight() |  事件在用户在某个元素上从右滑动超过 30px 时被触发 |
+| .swipeUp() |  事件在用户在某个元素上从上滑动超过 30px 时被触发 |
+| .swipeDown() |  事件在用户在某个元素上从下滑动超过 30px 时被触发 |
+
 
 ####Ajax 
 

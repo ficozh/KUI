@@ -1,0 +1,362 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>KUI 中文手册</title>
+<meta name="author" content="KUI 中文手册">
+<meta name="description" content="KUI 中文手册">
+<!-- KUI -->
+<link rel="stylesheet" href="style/kelat.css" media="all"/>
+<!-- 扩展样式 -->
+<link rel="stylesheet" href="style/theme.css" media="all"/>
+</head>
+<body>
+<div id="content" class="a1">
+  <div class="col-1">
+    <div id="core">
+      <h2>核心</h2>
+      <ul>
+        <li>
+          <h3>核心库</h3>
+          <ul>
+            <li><a href="core/kelat.html">kelat([sel,[context]])</a></li>
+          </ul>
+        </li>
+        <li>
+          <h3>kelat 对象访问</h3>
+          <ul>
+            <li><a href="core/each.html">each(callback)</a></li>
+            <li><a href="core/kelatindex.html">index([selector|element])</a></li>
+          </ul>
+        </li>
+        <li>
+          <h3>数据缓存</h3>
+          <ul>
+            <li><a href="core/data.html">data([key],[value])</a></li>
+            <li><a href="core/removeData.html">removeData([name|list])</a></li>
+            <li><a href="core/kelatdata.html">dataset()</a></li>
+          </ul>
+        </li>
+        <li>
+          <h3>插件机制</h3>
+          <ul>
+            <li><a href="core/kelat.fn.extend.html">kelat.fn.extend(object)</a></li>
+            <li><a href="core/kelat.extend.html">kelat.extend(object)</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    <div id="attributes">
+      <h2>属性</h2>
+      <ul>
+        <li>
+          <h3>属性</h3>
+          <ul>
+            <li><a href="core/attr.html">attr(name|pro|key,val|fn)</a></li>
+            <li><a href="core/removeAttr.html">removeAttr(name)</a></li>
+            <li><a href="core/prop.html">prop(n|p|k,v|f)</a></li>
+          </ul>
+        </li>
+        <li>
+          <h3>CSS 类</h3>
+          <ul>
+            <li><a href="core/addClass.html">addClass(class|fn)</a></li>
+            <li><a href="core/removeClass.html">removeClass([class|fn])</a></li>
+            <li><a href="core/toggleClass.html">toggleClass(class|fn[,sw])</a></li>
+            <li><a href="core/hasClass.html">hasClass(class)</a></li>
+          </ul>
+        </li>
+        <li>
+          <h3>HTML代码/文本/值</h3>
+          <ul>
+            <li><a href="core/html.html">html([val|fn])</a></li>
+            <li><a href="core/text.html">text([val|fn])</a></li>
+            <li><a href="core/val.html">val([val|fn|arr])</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    <div id="css">
+      <h2>CSS</h2>
+      <ul>
+        <li>
+          <h3>CSS</h3>
+          <ul>
+            <li><a href="core/css.html">css(name|pro|[,val|fn])</a></li>
+          </ul>
+        </li>
+        <li>
+          <h3>位置</h3>
+          <ul>
+            <li><a href="core/offset.html">offset([coordinates])</a></li>
+            <li><a href="core/position.html">position()</a></li>
+            <li><a href="core/scrollTo.html">scrollTo(left, top, duration,fn)</a></li>
+            <li><a href="core/scrollTop.html">scrollTop(position, duration,fn)</a></li>
+            <li><a href="core/scrollLeft.html">scrollLeft(position, duration,fn)</a></li>
+          </ul>
+        </li>
+        <li>
+          <h3>尺寸</h3>
+          <ul>
+            <li><a href="core/height.html">height()</a></li>
+            <li><a href="core/width.html">width()</a></li>
+            <li><a href="core/outerHeight.html">outerHeight(options)</a></li>
+            <li><a href="core/outerWidth.html">outerWidth(options)</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="col-2">
+    <div id="selectors">
+      <h2>选择器</h2>
+      <ul>
+        <li>
+          <h3>基本</h3>
+          <ul>
+            <li><a href="core/id.html">#id</a></li>
+            <li><a href="core/element.html">element</a></li>
+            <li><a href="core/class.html">.class</a></li>
+            <li><a href="core/all.html">*</a></li>
+            <li><a href="core/multiple.html">selector1,selector2,selectorN</a></li>
+          </ul>
+        </li>
+        <li>
+          <h3>层级</h3>
+          <ul>
+            <li><a href="core/descendant.html">ancestor descendant</a></li>
+            <li><a href="core/child.html">parent &gt;  child</a></li>
+            <li><a href="core/next_1.html">prev + next</a></li>
+            <li><a href="core/siblings_1.html">prev ~ siblings</a></li>
+          </ul>
+        </li>
+        <li>
+          <h3>属性</h3>
+          <ul>
+            <li><a href="core/attributeHas.html">[attribute]</a></li>
+            <li><a href="core/attributeEquals.html">[attribute=value]</a></li>
+            <li><a href="core/attributeNotEqual.html">[attribute!=value]</a></li>
+            <li><a href="core/attributeStartsWith.html">[attribute^=value]</a></li>
+            <li><a href="core/attributeEndsWith.html">[attribute$=value]</a></li>
+            <li><a href="core/attributeContains.html">[attribute*=value]</a></li>
+            <li><a href="core/attributeMultiple.html">[attrSel1][attrSel2][attrSelN]</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+	    <div id="effects">
+      <h2>效果</h2>
+      <ul>
+        <li>
+          <h3>基本</h3>
+          <ul>
+            <li><a href="core/show.html">show()</a></li>
+            <li><a href="core/hide.html">hide()</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    <div id="manipulation">
+      <h2>文档处理</h2>
+      <ul>
+        <li>
+          <h3>内部插入</h3>
+          <ul>
+            <li><a href="core/append.html">append(content)</a></li>
+            <li><a href="core/appendTo.html">appendTo(content)</a></li>
+            <li><a href="core/prepend.html">prepend(content)</a></li>
+            <li><a href="core/prependTo.html">prependTo(content)</a></li>
+          </ul>
+        </li>
+        <li>
+          <h3>外部插入</h3>
+          <ul>
+            <li><a href="core/insertAfter.html">insertAfter(content)</a></li>
+            <li><a href="core/insertBefore.html">insertBefore(content)</a></li>
+          </ul>
+        </li>
+        <li>
+          <h3>删除</h3>
+          <ul>
+            <li><a href="core/remove.html">remove()</a></li>
+            <li><a href="core/detach.html">detach()</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="col-3">
+    <div id="traversing">
+      <h2>筛选</h2>
+      <ul>
+        <li>
+          <h3>过滤</h3>
+          <ul>
+            <li><a href="core/eq.html">eq(index|-index)</a></li>
+            <li><a href="core/filter.html">filter(fn)</a></li>
+            <li><a href="core/is.html">is(selector)</a></li>
+          </ul>
+        </li>
+        <li>
+          <h3>查找</h3>
+          <ul>
+            <li><a href="core/children.html">children([expr])</a></li>
+            <li><a href="core/closest.html">closest(selector)</a></li>
+            <li><a href="core/find.html">find(e|o|e)</a></li>
+            <li><a href="core/next.html">next([expr])</a></li>
+            <li><a href="core/nextAll.html">nextall([expr])</a></li>
+            <li><a href="core/parent.html">parent([expr])</a></li>
+            <li><a href="core/parents.html">parents([expr])</a></li>
+            <li><a href="core/prev.html">prev([expr])</a></li>
+            <li><a href="core/prevAll.html">prevall([expr])</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    <div id="ajax" >
+      <h2>ajax</h2>
+      <ul>
+        <li>
+          <h3>ajax 请求</h3>
+          <ul>
+            <li><a href="core/kelat.ajax.html">$$.ajax(url,[settings])</a></li>
+            <li><a href="core/kelat.get.html">$$.get(url,[data],[fn],[type])</a></li>
+            <li><a href="core/kelat.getJSON.html">$$.getJSON(url,[data],[fn])</a></li>
+            <li><a href="core/kelat.post.html">$$.post(url,[data],[fn],[type])</a></li>
+          </ul>
+        </li>
+        <li>
+          <h3>ajax 事件</h3>
+          <ul>
+            <li><a href="core/ajaxComplete.html">ajaxComplete(callback)</a></li>
+            <li><a href="core/ajaxError.html">ajaxError(callback)</a></li>
+            <li><a href="core/ajaxStart.html">ajaxStart(callback)</a></li>
+            <li><a href="core/ajaxSuccess.html">ajaxSuccess(callback)</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    <div id="utilities" >
+      <h2>工具</h2>
+      <ul>
+        <li>
+          <h3>设备/操作系统及特性探测</h3>
+          <ul>
+            <li><a href="core/kelatdevice.html">$$.fn.device</a></li>
+          </ul>
+        </li>
+        <li>
+          <h3>函数操作</h3>
+          <ul>
+            <li><a href="core/kelatnoop.html">$$.noop</a></li>
+          </ul>
+		  </li>
+        <li>
+          <h3>测试操作</h3>
+          <ul>
+            <li><a href="core/kelattype.html">$$.type(obj)</a></li>
+            <li><a href="core/kelatisArray.html">$$.isArray(obj)</a></li>
+            <li><a href="core/kelatisNumber.html">$$.isNumber(value)</a></li>
+            <li><a href="core/kelatisFunction.html">$$.isFunction(obj)</a></li>
+            <li><a href="core/kelatisPlainObject.html">$$.isPlainObject(obj)</a></li>
+            <li><a href="core/kelatisWindow.html">$$.isWindow(obj)</a></li>
+          </ul>
+        </li>
+        <li>
+          <h3>字符串操作</h3>
+          <ul>
+            <li><a href="core/kelattrim.html">$$.trim(str)</a></li>
+          </ul>
+        </li>
+        <li>
+          <h3>URL</h3>
+          <ul>
+            <li><a href="core/kelatparam.html">$$.getUrlParams([url,type])</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="col-4">
+    <div id="events">
+      <h2>事件</h2>
+      <ul>
+        <li>
+          <h3>页面载入</h3>
+          <ul>
+            <li><a href="core/ready.html">ready(fn)</a></li>
+          </ul>
+        </li>
+        <li>
+          <h3>事件处理</h3>
+          <ul>
+            <li><a href="core/on.html">on(eve,[sel],fn)</a></li>
+            <li><a href="core/off.html">off(eve,[sel],[fn])</a></li>
+            <li><a href="core/bind.html">bind(type,[data],fn)</a></li>
+            <li><a href="core/unbind.html">unbind(t,[d|f])</a></li>
+            <li><a href="core/once.html">once(type,[sel],fn)</a></li>
+            <li><a href="core/trigger.html">trigger(type,[data])</a></li>
+            <li><a href="core/triggerHandler.html">triggerHandler(type, [data])</a></li>
+          </ul>
+        </li>
+        <li>
+          <h3>css3 特殊事件</h3>
+          <ul>
+            <li><a href="core/transitionEnd.html">transitionEnd(fn)</a></li>
+            <li><a href="core/animationEnd.html">animationEnd(fn)</a></li>
+            <li><a href="core/requestAnimationFrame.html">requestAnimationFrame(fn)</a></li>
+            <li><a href="core/cancelAnimationFrame.html">cancelAnimationFrame(fn)</a></li>
+          </ul>
+        </li>
+        <li>
+          <h3>事件</h3>
+          <ul>
+            <li><a href="core/event.html">Event</a></li>
+            <!--li><a href="core/blur.html">blur([[data],fn])</a></li>
+            <li><a href="core/change.html">change([[data],fn])</a></li>
+            <li><a href="core/click.html">click([[data],fn])</a></li>
+            <li><a href="core/dblclick.html">dblclick([[data],fn])</a></li>
+            <li><a href="core/focus.html">focus([[data],fn])</a></li>
+            <li><a href="core/focusin.html">focusin([data],fn)</a></li>
+            <li><a href="core/focusout.html">focusout([data],fn)</a></li>
+            <li><a href="core/keydown.html">keydown([[data],fn])</a></li>
+            <li><a href="core/keypress.html">keypress([[data],fn])</a></li>
+            <li><a href="core/keyup.html">keyup([[data],fn])</a></li>
+            <li><a href="core/mousedown.html">mousedown([[data],fn])</a></li>
+            <li><a href="core/mouseenter.html">mouseenter([[data],fn])</a></li>
+            <li><a href="core/mouseleave.html">mouseleave([[data],fn])</a></li>
+            <li><a href="core/mousemove.html">mousemove([[data],fn])</a></li>
+            <li><a href="core/mouseout.html">mouseout([[data],fn])</a></li>
+            <li><a href="core/mouseover.html">mouseover([[data],fn])</a></li>
+            <li><a href="core/mouseup.html">mouseup([[data],fn])</a></li>
+            <li><a href="core/resize.html">resize([[data],fn])</a></li>
+            <li><a href="core/scroll.html">scroll([[data],fn])</a></li>
+            <li><a href="core/submit.html">submit([[data],fn])</a></li>
+            <li><a href="core/unload.html">unload([[data],fn])</a></li-->
+          </ul>
+        </li>
+        <li>
+          <h3>tap 事件</h3>
+          <ul>
+            <li><a href="core/tap.html">tap(fn)</a></li>
+            <li><a href="core/singleTap.html">singleTap(fn)</a></li>
+            <li><a href="core/longTap.html">longTap(fn)</a></li>
+            <li><a href="core/doubleTap.html">doubleTap(fn)</a></li>
+          </ul>
+        </li>
+        <li>
+          <h3>swipe 事件</h3>
+          <ul>
+            <li><a href="core/swipe.html">swipe(fn)</a></li>
+            <li><a href="core/swipeLeft.html">swipeLeft(fn)</a></li>
+            <li><a href="core/swipeRight.html">swipeRight(fn)</a></li>
+            <li><a href="core/swipeUp.html">swipeUp(fn)</a></li>
+            <li><a href="core/swipeDown.html">swipeDown(fn)</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+</body>
+</html>

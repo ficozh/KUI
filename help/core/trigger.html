@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>index([selector|element])</title>
+<meta name="author" content="KUI 中文手册">
+<meta name="description" content="KUI 中文手册">
+<!-- KUI -->
+<link rel="stylesheet" href="../style/kelat.css" media="all"/>
+<!-- 扩展样式 -->
+<link rel="stylesheet" href="../style/theme.css" media="all"/>
+
+</head>
+<body >
+<div>
+   <div class="HelpBox">
+   
+    <h2><span>返回值:kelat</span>trigger(type,[data])</h2>
+    <h3>概述</h3>
+    <div class="desc">
+      <p>在每一个匹配的元素上触发某类事件。</p>
+      <div class="longdesc">
+        <p>这个函数也会导致浏览器同名的默认行为的执行。比如，如果用trigger()触发一个'submit'，则同样会导致浏览器提交表单。如果要阻止这种默认行为，应返回false。</p>
+        <p>你也可以触发由bind()注册的自定义事件而不限于浏览器默认事件。</p>
+        <p>事件处理函数会收到一个修复的(规范化的)事件对象，但这个对象没有特定浏览器才有的属性，比如keyCode。</p>
+        <p>你可以有三种方式指定事件类型：</p>
+        <p>* 你可以传递字符串型的事件名称(type参数)。</p>
+        <p>* 你可以使用kelat.Event对象。可以将数据放进这个对象，并且这个对象可以被触发的事件处理函数获取到。</p>
+        <p>* 最后，你可以传递一个带有数据的字面量对象。他将被复制到真正的kelat.Event对象上去。 注意在这种情况下你'''必须'''指定一个 &lt;em&gt;type&lt;/em&gt; 属性。</p>
+      </div>
+    </div>
+    <h3>参数</h3>
+    <div class="parameter">
+      <h4><strong>type,[data]</strong><span>String|Event,Array</span><em>V1.0</em></h4>
+      <p><strong>type:</strong>一个事件对象或者要触发的事件类型</p>
+      <p><strong>data:</strong>传递给事件处理函数的附加参数</p>
+      <h4><strong>event <em> </em></strong><span>Object</span><em>V1.3</em></h4>
+      <p>事件发生时运行的函数</p>
+    </div>
+    <div class="example">
+      <h3>示例</h3>
+      <span id="f_ad2"></span>
+      <h4>描述:</h4>
+      <p>提交第一个表单，但不用submit()</p>
+      <h5>js 代码:</h5>
+      <pre><code>$$("form:first").trigger("submit")</code></pre>
+      <h4>描述:</h4>
+      <p>给一个事件传递参数</p>
+      <h5>js 代码:</h5>
+      <pre><code>$$("p").click( function (event, a, b) {
+  // 一个普通的点击事件时，a和b是undefined类型
+  // 如果用下面的语句触发，那么a指向"foo",而b指向"bar"
+} ).trigger("click", ["foo", "bar"]);</code></pre>
+      <h4>描述:</h4>
+      <p>下面的代码可以显示一个"Hello World"</p>
+      <h5>js 代码:</h5>
+      <pre><code>$$("p").bind("myEvent", function (event, message1, message2) {
+  alert(message1 + ' ' + message2);
+});
+$$("p").trigger("myEvent", ["Hello","World!"]);</code></pre>
+    </div>
+
+</div>
+
+</div>
+</body>
+</html>

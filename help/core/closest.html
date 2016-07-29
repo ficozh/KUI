@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>index([selector|element])</title>
+<meta name="author" content="KUI 中文手册">
+<meta name="description" content="KUI 中文手册">
+<!-- KUI -->
+<link rel="stylesheet" href="../style/kelat.css" media="all"/>
+<!-- 扩展样式 -->
+<link rel="stylesheet" href="../style/theme.css" media="all"/>
+
+</head>
+<body >
+<div>
+   <div class="HelpBox">
+   
+    <h2><span>返回值:kelat</span>closest(selector)</h2>
+    <h3>概述</h3>
+    <div class="desc">
+      <p>从元素本身开始，逐级向上级元素匹配，并返回最先匹配的元素。</p>
+      <div class="longdesc">
+        <p>closest会首先检查当前元素是否匹配，如果匹配则直接返回元素本身。如果不匹配则向上查找父元素，一层一层往上，直到找到匹配选择器的元素。如果什么都没找到则返回一个空的对象。</p>
+        <p>closest和parents的主要区别是：1，前者从当前元素开始匹配寻找，后者从父元素开始匹配寻找；2，前者逐级向上查找，直到发现匹配的元素后就停止了，后者一直向上查找直到根元素，然后把这些元素放进一个临时集合中，再用给定的选择器表达式去过滤；3，前者返回0或1个元素，后者可能包含0个，1个，或者多个元素。 </p>
+      </div>
+    </div>
+    <h3>参数</h3>
+    <div class="parameter">
+      <h4><strong>expr<em> </em></strong><span>String,Array,object</span></h4>
+      <p>用以过滤元素的表达式。</p>
+    </div>
+    <div class="example">
+      <h3>示例</h3>
+      <h4>描述:</h4>
+      <p>展示如何使用clostest来完成事件委托。</p>
+      <h5>HTML 代码:</h5>
+      <pre><code>&lt;ul&gt;
+    &lt;li&gt;&lt;b&gt;Click me!&lt;/b&gt;&lt;/li&gt;
+    &lt;li&gt;You can also &lt;b&gt;Click me!&lt;/b&gt;&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+      <h5>js 代码:</h5>
+      <pre><code>$$(document).bind("click", function (e) {
+    $$(e.target).closest("li").toggleClass("hilight");
+});</code></pre>
+    </div>
+
+</div>
+
+</div>
+</body>
+</html>

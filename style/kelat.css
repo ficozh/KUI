@@ -725,11 +725,11 @@ background-position:calc(100% - 15px) center;
 -webkit-background-size:13px 10px;
 background-size:13px 10px
 }
-label.LabelCheckbox,
+/*label.LabelCheckbox,
 label.LabelRadio{
 -webkit-transition-duration:300ms;
 		transition-duration:300ms
-}
+}*/
 
 /*======数字输入框=======*/
 .NumBox{position:relative;display:inline-block;vertical-align:middle;overflow:hidden;border:1px solid #CCC;background-color:#FFF;padding:0 35px;border-radius:4px;width:110px;height:35px}
@@ -2178,14 +2178,14 @@ text-transform:uppercase;
 .BtnLine.BtnSuccess{color:#4CD964}
 
 /* 警告按钮 */
-.BtnWarning{color:#FFF;border-color:#ff7200;background-color:#ff7200}
+.BtnWarning{color:#FFF;border-color:#ff851b;background-color:#ff851b}
 .BtnLine.BtnWarning:focus,
 .BtnLine.BtnWarning:active,
 .BtnWarning:hover,
 .BtnWarning:focus{color:#FFF}
 .BtnWarning:focus,
 .BtnWarning:active{border-color:#ff4e00;background-color:#ff4e00}
-.BtnLine.BtnWarning{color:#ff7200}
+.BtnLine.BtnWarning{color:#ff851b}
 
 /* 危险按钮 */
 .BtnDanger{color:#FFF;border-color:#FF3B30;background-color:#FF3B30}
@@ -2311,14 +2311,40 @@ text-transform:uppercase;
 .WAllFluid::after{display:block;clear:both;content:"";visibility:hidden;height:0}
 
 /* ===== 背景色 ===== */
-.BW{background-color:#fff!important}
-.BBlue{background-color:rgba(33,150,243,.75)!important}
-.BPurple{background-color:rgba(156,39,176,.75)!important}
-.BRed{background-color:rgba(244,67,54,.75)!important}
-.BPink{background-color:rgba(233,30,99,.75)!important}
-.BTeal{background-color:rgba(0,159,136,.75)!important}
-.BGreen{background-color:rgba(76,175,80,.75)!important}
-.BOrange{background-color:rgba(255,152,0,.75)!important}
+.BBlue{background-color:#10A9DC!important}
+.BPurple{background-color:#D81B60!important}
+.BRed{background-color:#FF3B30!important}
+.BTeal{background-color:#39CCCC!important}
+.BGreen{background-color:#4CD964!important}
+.BOrange{background-color:#ff851b!important}
+.BInfo{background-color:#00c0ef!important}
+.BBlack{background-color:#111111!important}
+.BNavy{background-color:#001F3F!important}
+.BBlue,
+.BPurple,
+.BRed,
+.BTeal,
+.BGreen,
+.BOrange,
+.BInfo,
+.BBlack,
+.BNavy{color:#fff!important}
+
+.BBlue.active{background-color:#118ab3!important}
+.BPurple.active{background-color:#ca195a!important}
+.BRed.active{background-color:#e0342b!important}
+.BTeal.active{background-color:#30bbbb!important}
+.BGreen.active{background-color:#3ebd54!important}
+.BOrange.active{background-color:#ff7701!important}
+.BInfo.active{background-color:#00a7d0!important}
+.BBlack.active{background-color:#000!important}
+.BNavy.active{background-color:#001a35!important}
+
+.BW{background-color:#fff!important;color:#333!important}
+.BGray{background-color:#d2d6de!important;color:#333!important}
+.BGray.active{background-color:#b5bbc8!important}
+
+
 
 /* ===== 清除浮动  针对 IE9 以下===== */
 .Cle{display:block;clear:both;height:0;font-size:0;line-height:0}

@@ -4,6 +4,7 @@ kelat.js v1.2.2 新功能和修正：----- 2016.7.1
 2、增加滑动删除。
 3、增加排序列表。
 4、增加折叠面板。
+5、扩展tab选项卡功能。
 
 
 kelat.js v1.2.1 新功能和修正：----- 2016.6.6
@@ -18,18 +19,22 @@ kelat.js v1.2.1 新功能和修正：----- 2016.6.6
 	例如：
 	window.kelatlocale={
 	  "SYSTEM_LANGUAGE": {
-		"MODAL": {
+		"MODAL": {//弹出框
 			TIPS:"提示",
 			OK:"确定",
 			CANCEL:"取消"
 		},
-		"IMG":{
+		"IMG":{//图片信息
 			IMGTIPS:"图片格式不正确或者跨域请求！",
+			IMGPlaceholder :'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7'
 		},
+		//加载
 		"LOADING": [
 		  '正在加载...'
 		]
 	  },
+	  //全局作用域id
+	  "WrapperArea": 'WrapperArea',
 	  "id": "zh-cn"
 	};
 8、增加无限滚动控件。 $$.infiniteScroll(true,function(){})

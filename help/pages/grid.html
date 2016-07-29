@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>index([selector|element])</title>
+<meta name="author" content="KUI 中文手册">
+<meta name="description" content="KUI 中文手册">
+<!-- KUI -->
+<link rel="stylesheet" href="../style/kelat.css" media="all"/>
+<!-- 扩展样式 -->
+<link rel="stylesheet" href="../style/theme.css" media="all"/>
+<style>
+		.GridShow .Row{margin-bottom:10px;}
+		.GridShow [class^=Col]{border:1px solid #ccc;background-color:#fff;line-height:20px;padding:5px;margin-bottom:5px}
+	</style>
+</head>
+<body >
+<div>
+   <div class="HelpBox">
+   
+    <h2>grid(网格布局)</h2>
+    <h3>概述</h3>
+    <div class="desc">
+      <p>栅格系统用于通过一系列的行（Row）与列（Col）的组合来创建页面布局，你的内容就可以放入这些创建好的布局中</p>
+    </div>
+    <h3></h3>
+    <div class="parameter">
+      <h4><strong>class</strong></h4>
+      <p>提供 Col100 | Col95 | Col90 | Col85 | Col80 | Col75 | Col66 | Col60 | Col50 | Col40 | Col33 | Col25 | Col20 | Col15 | Col10 | Col5 作为宽度标准</p>
+      <h4><strong>响应式 class (响应式布局，在宽度大于768px时触发)</strong></h4>
+      <p>提供 Table100 | Table95 | Table90 | Table85 | Table80 | Table75 | Table66 | Table60 | Table50 | Table40 | Table33 | Table25 | Table20  | Table15 | Table10 | Table5 作为宽度标准</p>
+      <h4><strong>自动平均布局</strong></h4>
+      <p>提供 元素间平均布局 ColAuto</p>
+    </div>
+    <div class="example GridShow">
+      <h3>实例</h3>
+      <h4>html代码结构（有间隔）:</h4>
+	  <pre><code>&lt;div class="Row">
+  &lt;div class="Col50">.Col50&lt;/div>
+  &lt;div class="Col50">.Col50&lt;/div>
+&lt;/div></code></pre>
+		<h4>展示效果:</h4>
+		<div class="Row">
+		  <div class="Col50">.Col50</div>
+		  <div class="Col50">.Col50</div>
+		</div>
+      <h4>html代码结构（无间隔）:</h4>
+	  <pre><code>&lt;div class="Row NoGutter">
+  &lt;div class="Col50">.Col50&lt;/div>
+  &lt;div class="Col50">.Col50&lt;/div>
+&lt;/div></code></pre>
+		<h4>展示效果:</h4>
+		<div class="Row NoGutter">
+		  <div class="Col50">.Col50</div>
+		  <div class="Col50">.Col50</div>
+		</div>
+      <h4>html代码结构（响应网格）:</h4>
+	  <pre><code>&lt;div class="Row">
+  &lt;div class="Col100 Table50">.Col100&lt;/div>
+  &lt;div class="Col100 Table50">.Col100&lt;/div>
+&lt;/div></code></pre>
+		<h4>展示效果:</h4>
+		<div class="Row">
+		  <div class="Col100 Table50">.Col100</div>
+		  <div class="Col100 Table50">.Col100</div>
+		</div>
+      <h4>html代码结构（平均布局）:</h4>
+	  <pre><code>&lt;div class="Row">
+  &lt;div class="Col100 ColAuto">.Col100&lt;/div>
+  &lt;div class="Col100 ColAuto">.Col100&lt;/div>
+&lt;/div></code></pre>
+		<h4>展示效果:</h4>
+		<div class="Row">
+		  <div class="Col100 ColAuto">.Col100</div>
+		  <div class="Col100 ColAuto">.Col100</div>
+		</div>
+    </div>
+
+</div>
+
+</div>
+</body>
+</html>

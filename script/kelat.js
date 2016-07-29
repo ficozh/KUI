@@ -1898,7 +1898,7 @@ window['kelat']['fn'] = window['kelat'].prototype = {
 var _KLT_ = window['kelat']['fn'];
 
 //扩展 --- 功能参考 jQuery
-window['kelat']['extend'] = $$.extend = _KLT_.extend = KUIAPP.Extend;
+window['kelat']['extend'] = $$.extend = $$.fn.extend = _KLT_.extend = KUIAPP.Extend ;
 
 window['kelat']['extend']({
     //自定义特性
@@ -2530,13 +2530,15 @@ KUIAPP.HandleInfiniteScroll = function(){
         
         //滚动条位置
         var scrollTop=Local.support.GetPageScroll().Y;
+        //元素位置
+        var InfiniteOffsetTop=$InfiniteScroll.offset().top;
         //window height
         var winHeight=Local.support.GetPageSize().WinH;
         //防止向上滚动触发事件
         if(KUIAPP.scrollCurrent>scrollTop){
             return
         };
-        if((scrollTop+distance+winHeight) > height ){
+        if((scrollTop+distance+winHeight - InfiniteOffsetTop) > height ){
             KUIAPP.scrollCurrent = scrollTop
             $InfiniteScroll.trigger('infinite');
         };
@@ -2551,12 +2553,14 @@ KUIAPP.AttachInfiniteScroll = function(){
     $$(window).on('scroll', KUIAPP.HandleInfiniteScroll);
 };
 /** 卸载滚动 */
-KUIAPP.DetachInfiniteScroll = function(){
+KUIAPP.DetachInfiniteScroll = function(infinite){
+    KUIAPP.scrollCurrent = 0;
     $$(window).off('scroll', KUIAPP.HandleInfiniteScroll);
 };
 /** 初始化滚动 */
 KUIAPP.InitInfiniteScroll = function(infinite, callBack){
     if(infinite){
+        KUIAPP.scrollCurrent = 0;
         callBack();
         KUIAPP.AttachInfiniteScroll();
     }
@@ -4628,6 +4632,7 @@ window['kelat']['initSortable'] = KUIAPP.initSortable;
 /** 触发折叠面板
  * @param {Object} item:折叠面板对象
  */
+KUIAPP.isAccordion = true;
 KUIAPP.accordionToggle = function (item) {
     item = $$(item);
     if(item.length === 0){
@@ -4663,7 +4668,8 @@ KUIAPP.accordionOpen = function (item) {
         }else{
             content.css('height', '');
             item.trigger('closed');
-        }
+        };
+		KUIAPP.isAccordion = true;
     });
     item.trigger('open');
     item.addClass('AccordionItemExpanded');
@@ -4695,6 +4701,7 @@ KUIAPP.accordionClose = function (item) {
             content.css('height', '');
             item.trigger('closed');
         }
+		KUIAPP.isAccordion = true;
     });
     item.trigger('close');
 };
@@ -4703,6 +4710,9 @@ KUIAPP.accordionClose = function (item) {
  */
 KUIAPP.initAccordion = function(){
     $$(document).on('click','.AccordionItemToggle,.ItemLink,.AccordionItem',function(){
+		if(!KUIAPP.isAccordion){
+			return
+		};
         var clicked = $$(this);
         var accordionItem = clicked.parent('.AccordionItem');
         if(accordionItem.length === 0){
@@ -4711,7 +4721,11 @@ KUIAPP.initAccordion = function(){
         if(accordionItem.length === 0){
             accordionItem = clicked.parents('li');
         };
-        KUIAPP.accordionToggle(accordionItem);
+		if(clicked.hasClass('ItemLink') && clicked.parent().hasClass('AccordionItem')){
+			KUIAPP.accordionToggle(accordionItem);
+			KUIAPP.isAccordion = false;
+		};
+        
     })
 };
 window['kelat']['initAccordion'] = KUIAPP.initAccordion; 

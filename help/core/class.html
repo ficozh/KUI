@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>index([selector|element])</title>
+<meta name="author" content="KUI 中文手册">
+<meta name="description" content="KUI 中文手册">
+<!-- KUI -->
+<link rel="stylesheet" href="../style/kelat.css" media="all"/>
+<!-- 扩展样式 -->
+<link rel="stylesheet" href="../style/theme.css" media="all"/>
+
+</head>
+<body >
+<div>
+   <div class="HelpBox">
+   
+    <h2><span>返回值:Array&lt;Element(s)&gt;</span>.class</h2>
+    <h3>概述</h3>
+    <div class="desc">
+      <p>根据给定的类匹配元素。</p>
+      <div class="longdesc">
+        <p></p>
+      </div>
+    </div>
+    <h3>参数</h3>
+    <div class="parameter">
+      <h4><strong>class</strong><span>String</span></h4>
+      <p>一个用以搜索的类。一个元素可以有多个类，只要有一个符合就能被匹配到。</p>
+    </div>
+    <div class="example">
+      <h3>示例</h3>
+      <span id="f_ad2"></span>
+      <h4>描述:</h4>
+      <p>查找所有类是 "myClass" 的元素.</p>
+      <h5>HTML 代码:</h5>
+      <pre><code>&lt;div class="notMe"&gt;div class="notMe"&lt;/div&gt;
+&lt;div class="myClass"&gt;div class="myClass"&lt;/div&gt;
+&lt;span class="myClass"&gt;span class="myClass"&lt;/span&gt;</code></pre>
+      <h5>js 代码:</h5>
+      <pre><code>$$(".myClass");</code></pre>
+      <h5>结果:</h5>
+      <pre><code>[ &lt;div class="myClass"&gt;div class="myClass"&lt;/div&gt;, &lt;span class="myClass"&gt;span class="myClass"&lt;/span&gt; ]</code></pre>
+    </div>
+
+</div>
+
+</div>
+</body>
+</html>
