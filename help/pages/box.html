@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>index([selector|element])</title>
+<meta name="author" content="KUI 中文手册">
+<meta name="description" content="KUI 中文手册">
+<!-- KUI -->
+<link rel="stylesheet" href="../style/kelat.css" media="all"/>
+<!-- 扩展样式 -->
+<link rel="stylesheet" href="../style/theme.css" media="all"/>
+<style>
+		.GridShow .Row{margin-bottom:10px;}
+		.GridShow [class^=Col]{border:1px solid #ccc;background-color:#fff;line-height:20px;padding:5px;margin-bottom:5px}
+	</style>
+</head>
+<body >
+<div>
+   <div class="HelpBox">
+   
+    <h2>box(盒)</h2>
+    <h3>概述</h3>
+    <div class="desc">
+      <p>盒列表视图，更强大的方式来控制和展示信息。盒包含一组相关数据，例如，一张照片，文本和链接等。盒通常是一个入口点，以方便的形式展示复杂的详细信息。</p>
+    </div>
+
+    <div class="example GridShow">
+       <h4>盒的布局结构</h4>
+	  <pre><code>&lt;div class="Box">
+    &lt;div class="BoxHeader">Header&lt;/div>
+    &lt;div class="BoxContent">
+        &lt;div class="BoxContentInner">content&lt;/div>
+    &lt;/div>
+    &lt;div class="BoxFooter">Footer&lt;/div>
+&lt;/div>
+</code></pre>
+		<ul class="List">
+			<li>Box - 盒的容器。</li>
+			<li>BoxHeader - 盒头。主要用于显示卡的标题。可选。</li>
+			<li>BoxContent - 盒内容的主容器。必须。</li>
+			<li>BoxFooter - 盒脚用于一些额外的信息或自定义操作/链接。可选。</li>
+			<li>BoxContentInner - 附加内包装。用于在盒内容中添加额外的填充。可选。</li>
+		</ul>
+		<h4>展示效果:</h4>
+		<div class="Box" style="width:50%">
+		<div class="BoxHeader">头</div>
+		<div class="BoxContent">
+			<div class="BoxContentInner">内容</div>
+		</div>
+		<div class="BoxFooter">脚</div>
+	</div>
+		<p>“盒头”和“盒脚”是flexbox布局（显示：Flex）在项目中心垂直对齐。如果你需要调整项目的顶部或者页眉/页脚底部，然后你可以使用附加的valign属性，用于检测：</p>
+		<ul class="List">
+			<li>&lt;div class="BoxHeader" valign="top"> - 对齐标题项目的top。</li>
+			<li>&lt;div class="BoxFooter" valign="bottom"> - 对齐标题项目的bottom。</li>
+		</ul>
+		
+		
+    </div>
+
+</div>
+
+</div>
+</body>
+</html>

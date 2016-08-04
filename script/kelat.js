@@ -1,8 +1,8 @@
 ﻿/*!
- * kelat JavaScript Library v1.2.1-beta1
+ * kelat JavaScript Library v1.2.2-beta1
  * http://git.oschina.net/ficozhe/K-UI
  *
- * Date: 2016-04-27
+ * Date: 2016-07-20
  */
 (function(Global, factory){
     if(typeof module === "object" && typeof module.exports === "object"){
@@ -1669,8 +1669,8 @@ window['kelat']['fn'] = window['kelat'].prototype = {
     //特性检测
     support : Local.support,
     //删除前后空格 和 BOM
-    trim : function(text) {
-        return typeof text === 'string' && running ? text.replace(Local.RegExpr.trim,'') : '';
+    trim : function(string) {
+        return typeof string === 'string' && running ? string.replace(Local.RegExpr.trim,'') : '';
     },
     //层边界
     layerBorder : function(){
@@ -1683,9 +1683,9 @@ window['kelat']['fn'] = window['kelat'].prototype = {
         return running ? JSON.stringify(obj) : '';
     },
     //html转义
-    escapeHTML : function(text) {  
+    escapeHTML : function(string) {  
         var replacements= {'<': '&lt;', '>': '&gt;', '&': '&amp;', '"': '&quot;'};
-        return text.replace(/[<>&"]/g, function(character) {  
+        return string.replace(/[<>&"]/g, function(character) {  
             return replacements[character];  
         }); 
     },
@@ -2469,7 +2469,7 @@ KUIAPP.InitPullToRefresh = function(Container) {
             container.addClass('Refresh');
             container.trigger('refresh', {
                 done: function(){
-                    pullToRefreshDone(container);
+                    KUIAPP.PullToRefreshDone(container);
                 }
             });
         }else{
@@ -2490,11 +2490,7 @@ KUIAPP.InitPullToRefresh = function(Container) {
         eventsTarget.off(_KLT_.touchEvents.move, handleTouchMove);
         eventsTarget.off(_KLT_.touchEvents.end, handleTouchEnd);
     };
-    function detachEvents() {
-        destroyPullToRefresh();
-        Wrapper.off('pageRemove', detachEvents);
-    }
-    Wrapper.on('pageRemove', detachEvents);
+	eventsTarget[0].KLTDestroyPullToRefresh = destroyPullToRefresh;
 };
 /** 刷新结束
  * @param {object} Container:容器对象
@@ -2510,9 +2506,32 @@ KUIAPP.PullToRefreshDone = function(Container) {
         Container.trigger('refreshdone');
     });
 };
+KUIAPP.PullToRefreshTrigger = function (Container) {
+	Container = $(Container);
+	if(Container.length === 0){
+		container = $('.PullToRefreshContent');
+	};
+	if(Container.hasClass('Refresh')) return;
+	Container.addClass('transitioning Refresh');
+	Container.trigger('refresh', {
+		done: function () {
+			KUIAPP.PullToRefreshDone(Container);
+		}
+	});
+};
+KUIAPP.DestroyPullToRefresh = function (pageContainer) {
+	pageContainer = $(pageContainer);
+	var pullToRefreshContent = pageContainer.hasClass('PullToRefreshContent') ? pageContainer : pageContainer.find('.PullToRefreshContent');
+	if(pullToRefreshContent.length === 0) return;
+	if(pullToRefreshContent[0].KLTDestroyPullToRefresh){
+		pullToRefreshContent[0].KLTDestroyPullToRefresh();
+	}
+};
 
 window['kelat']['pullToRefreshDone'] = KUIAPP.PullToRefreshDone;
 window['kelat']['initPullToRefresh'] = KUIAPP.InitPullToRefresh;
+window['kelat']['pullToRefreshTrigger'] = KUIAPP.PullToRefreshTrigger;
+window['kelat']['destroyPullToRefresh'] = KUIAPP.DestroyPullToRefresh;
 
 /* =====================================================
 ************   无限滚动   ************
@@ -2523,9 +2542,13 @@ KUIAPP.scrollCurrent = 0;
 KUIAPP.HandleInfiniteScroll = function(){
     var $InfiniteScroll = $$('.InfiniteScroll');
     if(KUIAPP.isInfiniteScroll &&  $InfiniteScroll.length > 0){
-        var height = $InfiniteScroll.height();
+		var height = $InfiniteScroll[0].offsetHeight;
         var distance = parseInt($InfiniteScroll.attr('data-distance'));
+		var onTop = $InfiniteScroll.hasClass('InfiniteScrollTop');
         if(!distance){distance = 50;};
+		if(typeof distance === 'string' && distance.indexOf('%') >= 0){
+			distance = parseInt(distance, 10) / 100 * height;
+		};
         if(distance > height){distance = height;};
         
         //滚动条位置
@@ -2538,10 +2561,16 @@ KUIAPP.HandleInfiniteScroll = function(){
         if(KUIAPP.scrollCurrent>scrollTop){
             return
         };
-        if((scrollTop+distance+winHeight - InfiniteOffsetTop) > height ){
-            KUIAPP.scrollCurrent = scrollTop
-            $InfiniteScroll.trigger('infinite');
-        };
+		if(onTop){
+			if(scrollTop < distance){
+				$InfiniteScroll.trigger('infinite');
+			}
+		}else{
+			if((scrollTop+distance+winHeight - InfiniteOffsetTop) > height ){
+				KUIAPP.scrollCurrent = scrollTop
+				$InfiniteScroll.trigger('infinite');
+			};
+		}
     }else{
         KUIAPP.isInfiniteScroll = false;
         KUIAPP.DetachInfiniteScroll();
@@ -2567,6 +2596,7 @@ KUIAPP.InitInfiniteScroll = function(infinite, callBack){
 };
 window['kelat']['infiniteScroll'] = KUIAPP.InitInfiniteScroll;
 window['kelat']['detachInfiniteScroll'] = KUIAPP.DetachInfiniteScroll;
+window['kelat']['attachInfiniteScroll'] = KUIAPP.AttachInfiniteScroll;
 
 /* =====================================================
 ************   选择器   ************
@@ -3290,7 +3320,7 @@ KUIAPP.BackToTop = function(){
     var $BackToTop = $$(BackToTop);
     //window绑定scroll事件
     $$(window).on("scroll",function(){
-        if($WrapperArea.find('#isBackToTop').length > 0){
+        if($WrapperArea.find('.isBackToTop').length > 0){
             //滚动条位置
             var ScrollTop=Local.support.GetPageScroll().Y;
             if(ScrollTop >= 200){
@@ -3318,7 +3348,6 @@ KUIAPP.BackToTop = function(){
  */
 KUIAPP.AddNotify = function(options){
     if(options){
-        options = options || {};
         var TitleHTML   = options.title   ? '<div class="ItemTitle">'   +options.title   +'</div>' :'';
         var SubtitleHTML= options.subtitle? '<div class="ItemSubtitle">'+options.subtitle+'</div>' :'';
         var MessageHTML = options.message ? '<div class="ItemText">'    +options.message +'</div>' :'';
@@ -3331,7 +3360,7 @@ KUIAPP.AddNotify = function(options){
         };
         $Notify.show();
         //媒体HTML
-        var ItemHTML='<li class="ListItem"><div class="ItemCon InkRipple">'+MediaHTML+
+        var ItemHTML= '<li class="ListItem"><div class="ItemCon InkRipple">'+MediaHTML+
                      '<div class="ItemInner"><div class="ItemTitleRow">'+TitleHTML+CloseHTML+'</div>'
                      +SubtitleHTML
                      +MessageHTML
@@ -3343,16 +3372,24 @@ KUIAPP.AddNotify = function(options){
             var target = $$(events.target);
             if (target.is('.CloseNotify') || $$(events.target).parents('.CloseNotify').length > 0) {
                 close = true;
-                if (options.onClose) { options.onClose($ItemHTML[0],events);};
-            }
-            if (close) { KUIAPP.CloseNotify($ItemHTML[0]) };
+                if(options.onClose){
+					options.onClose($ItemHTML[0],events);
+				};
+            }else{
+				if(options.closeOnClick){
+					close = true;
+				}
+			}
+            if(close){
+				KUIAPP.CloseNotify($ItemHTML[0]);
+			};
         });
         $Notify['prepend']($ItemHTML[0]);
         var _ItemHeight = $ItemHTML.outerHeight();
         
         $ItemHTML.css('margin-top',-_ItemHeight + 'px');
         window.setTimeout(function(){
-            $ItemHTML.addClass("ListItemInOut").css('margin-top','0px');
+            $ItemHTML.addClass("ListItemInOut "+options.additionalClass).css('margin-top','0px');
         },5);
     };
     return this;
@@ -3377,6 +3414,7 @@ KUIAPP.CloseNotify = function(item){
     });
 };
 window['kelat']['addNotify'] = KUIAPP.AddNotify;
+window['kelat']['closeNotify'] = KUIAPP.CloseNotify;
 
 /*======================================================
 ************   Indicator加载   ************
@@ -4461,6 +4499,8 @@ KUIAPP.swipeoutDelete = function(el, callback){
     el.find('.SwipeoutCon').transform('translate3d(' + translate + ',0,0)');
 };
 window['kelat']['initSwipeout'] = KUIAPP.initSwipeout;
+window['kelat']['swipeoutOpen'] = KUIAPP.swipeoutOpen;
+window['kelat']['swipeoutClose'] = KUIAPP.swipeoutClose;
 
 
 /*=====================================================
@@ -4625,6 +4665,8 @@ KUIAPP.initSortable = function () {
     }        
 };
 window['kelat']['initSortable'] = KUIAPP.initSortable;  
+window['kelat']['sortableOpen'] = KUIAPP.sortableOpen;  
+window['kelat']['sortableClose'] = KUIAPP.sortableClose;  
 
 /*=====================================================
 ************   折叠面板   ************
@@ -4729,6 +4771,9 @@ KUIAPP.initAccordion = function(){
     })
 };
 window['kelat']['initAccordion'] = KUIAPP.initAccordion; 
+window['kelat']['accordionOpen'] = KUIAPP.accordionOpen; 
+window['kelat']['accordionClose'] = KUIAPP.accordionClose; 
+window['kelat']['accordionToggle'] = KUIAPP.accordionToggle; 
 
 /*======================================================
 ************   Tabbar   ************
@@ -4888,6 +4933,7 @@ KUIAPP.initTab = function(tab, tabLink, force){
 	KUIAPP.initPageMaterialTabbar($$(document.getElementById(Local.WrapperArea)))
 };
 window['kelat']['tabs'] = KUIAPP.initTab;
+window['kelat']['showTab'] = KUIAPP.showTab;
 
 /*======================================================
 ************   数字输入框   ************

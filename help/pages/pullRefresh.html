@@ -1,0 +1,117 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>index([selector|element])</title>
+<meta name="author" content="KUI 中文手册">
+<meta name="description" content="KUI 中文手册">
+<!-- KUI -->
+<link rel="stylesheet" href="../style/kelat.css" media="all"/>
+<!-- 扩展样式 -->
+<link rel="stylesheet" href="../style/theme.css" media="all"/>
+<style>
+.ColorPalette{height:35px;
+line-height:35px;
+text-align:center;}
+.GridShow .Row{margin-bottom:10px;}
+.GridShow [class^=Col]{line-height:20px;padding:5px;margin-bottom:5px}
+</style>
+</head>
+<body >
+<div>
+   <div class="HelpBox" id="WrapperArea">
+   
+	<h2>$$.initPullToRefresh(Boolean,fn)</h2>
+		<h3>概述</h3>
+		<div class="desc">
+		<p>下拉刷新是一个特别的组件，可以用来初始化页面内容的刷新。</p>
+	</div>
+	<div class="example">
+        <h4>下拉刷新的HTML布局结构</h4>
+		<pre><code>&lt;div class="PullToRefresh PullToRefreshContent" data-distance="50">
+  &lt;div class="PullToRefreshLayer">
+    &lt;div class="Loading">&lt;/div>
+    &lt;div class="PullToRefreshArrow">&lt;/div>
+  &lt;/div>
+  &lt;ul class="ListBlock MediaList PullToRefreshList">
+    &lt;li class="ListItem">
+      &lt;div href="javascript:;" class="ItemCon InkRipple">
+        &lt;div class="ItemMedia">&lt;img src="images/01.jpg" width="44"/>&lt;/div>
+        &lt;div class="ItemInner">
+          &lt;div class="ItemTitleRow">
+            &lt;div class="ItemTitle">...&lt;/div>
+          &lt;/div>
+          &lt;div class="ItemSubtitle">...&lt;/div>
+        &lt;/div>
+      &lt;/div>
+    &lt;/li>
+&lt;/div></code></pre>
+		<ul class="List">
+			<li>PullToRefresh 需要额外添加PullToRefreshContent类，它会开启下拉刷新。</li>
+			<li>PullToRefreshLayer 隐藏的布局块，包含下拉刷新的可视元素：加载提示符和上/下箭头。</li>
+			<li>data-distance="50" 可以配置下拉刷新的下拉距离. 默认是 44px.</li>
+		</ul>
+		<h4>下拉刷新的行为顺序</h4>
+		<ul class="List">
+			<li>当用户开始下拉的时候， PullToRefresh 会增加一个额外的 PullDown 类。</li>
+			<li>当用户下拉使PullToRefreshContent元素下降超过44px时(即PullToRefreshLayer元素完全可视)，PullToRefresh元素将自动添加"PullUp"类，使箭头转向180度，以提醒用户界面将在他松开手指时刷新。</li>
+			<li>当用户在“PullUp”状态释放下拉区块使页面刷新时，PullToRefresh 区块将会添加一个"Refresh"类。在“Refresh”状态，箭头将会隐藏，同时会展现一个加载提示符。这个时候你通常需要进行Ajax异步请求并刷新页面内容</li>
+		</ul>
+
+	<h4>下拉刷新API</h4>
+	<p>$$.pullToRefreshDone(ptrContent) - 重置特定的下拉刷新界面</p>
+	<ul class="List">
+		<li>ptrContent - 想要重置的下拉刷新页面的HTML元素或CSS选择器</li>
+	</ul>
+	<p>$$.pullToRefreshTrigger(ptrContent) - JS手工触发特定界面的下拉刷新</p>
+	<ul class="List">
+		<li>ptrContent - 想要触发的下拉刷新页面的HTML元素或CSS选择器</li>
+	</ul>
+	<p>$$.destroyPullToRefresh(ptrContent) - 销毁/禁用 下拉刷新</p>
+	<ul class="List">
+		<li>ptrContent - 需要销毁/禁用的下拉刷新的HTML元素或CSS选择器</li>
+	</ul>
+	<p>$$.initPullToRefresh(ptrContent) - 初始化/启用下拉刷新</p>
+	<ul class="List">
+		<li>ptrContent - 需要启用的下拉刷新的HTML元素或CSS选择器</li>
+	</ul>
+	<h4>下拉刷新事件</h4>
+	<table class="Table TableBor TableHover">
+
+			<thead>
+				<tr>
+					<th>事件名称</th>
+					<th>Target</th>
+					<th>描述</th>
+				</tr>
+			</thead>
+
+			<tbody>
+				<tr>
+					<td>refresh</td>
+					<td>拥有下拉刷新功能的界面
+&lt;div class="PullToRefresh PullToRefreshContent"></td>
+					<td>事件会在下拉刷新进入“refreshing”状态时触发</td>
+				</tr>
+			</tbody>
+		</table>
+
+
+
+		
+
+	
+	
+	
+	
+   </div>
+
+</div>
+<script type="text/javascript" src="../script/kelat.js"></script>
+<script type="text/javascript">
+$$(document).ready(function(){
+});
+</script>
+</div>
+</body>
+</html>

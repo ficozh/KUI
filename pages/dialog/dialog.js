@@ -29,12 +29,10 @@ function( title , $scope , $state ) {
 				
 				
 				$$(".PopoverBtn").on("click",function(){
-					//$$.popover("欢迎体验KMUI")
-					$$.popover($$('.SettingModeMenu'),".PopoverBtn")
+					$$.popover($$('.SettingModeMenu'),$$(this))
 				});
 				
 				$$(".PopupBtn").on("click",function(){
-					//$$.popover("欢迎体验KMUI")
 					$$.popup($$('.demo-popup'))
 				});
 				
@@ -60,6 +58,7 @@ function( title , $scope , $state ) {
 							}
 						},{
 							text: '红色按钮',
+							bold:true,
 							color: 'CR',
 							onClick: function () {
 								$$.alert('你点击的是红色按钮!');

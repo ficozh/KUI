@@ -20,7 +20,7 @@ function( title , $scope , $state) {
 				
 				
 				//默认
-				$$.picker({
+				var my = $$.picker({
 					input: '#ks-picker-device',
 					isEfficient:true,
 					autoUpdate:false,
@@ -32,7 +32,7 @@ function( title , $scope , $state) {
 						}
 					]
 				});
-
+				my.opened = false
 				//3D选择器
 				var pickerDescribe = $$.picker({
 					input: '#ks-picker-describe',
@@ -184,8 +184,6 @@ function( title , $scope , $state) {
 						}
 					]
 				});
-				
-				
 				
 				
 				

@@ -10,6 +10,7 @@ function( title , $scope , $state) {
 				//执行函数 
 				$$('.simpleBtn').on('click', function () {
 					$$.addNotify({
+						closeOnClick:true,
 						title: 'KMUI',
 						message: '这是一个带有标题和消息的简单通知消息'
 					});

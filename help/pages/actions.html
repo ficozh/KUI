@@ -1,0 +1,169 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>index([selector|element])</title>
+<meta name="author" content="KUI 中文手册">
+<meta name="description" content="KUI 中文手册">
+<!-- KUI -->
+<link rel="stylesheet" href="../style/kelat.css" media="all"/>
+<!-- 扩展样式 -->
+<link rel="stylesheet" href="../style/theme.css" media="all"/>
+<style>
+.ColorPalette{height:35px;
+line-height:35px;
+text-align:center;}
+.GridShow .Row{margin-bottom:10px;}
+.GridShow [class^=Col]{line-height:20px;padding:5px;margin-bottom:5px}
+</style>
+</head>
+<body >
+<div>
+   <div class="HelpBox" id="WrapperArea">
+   
+	<h2>$$.actions(options)</h2>
+		<h3>概述</h3>
+		<div class="desc">
+		<p>操作表是一个上滑面板，用来向用户展示进行一个任务所需的选项。</p>
+		<p>你也可以使用它来提示用户，确认潜在的危险操作。</p>
+		<p>操作表包含一个可选的标题和至少一个按钮，每个按钮都对应一个操作。</p>
+		<p class="CO">注意，不建议在大屏幕（iPad）上使用操作表。在大屏幕上，你应该使用<a href="popover.html">弹出框</a>。</p>
+		<p>操作表是动态元素，只能使用Javascript来创建并弹出它。让我们看一下创建操作表相关的方法:</p>
+		<p>$$.actions(groups) - 创建并弹出操作表，其包含指定数量群组的按钮</p>
+		<p>$$.actions(buttons) - 创建并弹出操作表，其包含一个群组，群组包含指定数量的按钮</p>
+		</div>
+		<ul class="List">
+			<li>groups - <span class="CG">array</span> 一组群组，每个群组包含若干按钮</li>
+			<li>buttons - <span class="CG">array</span> 一组按钮，这种情况下，只有一个群组。</li>
+		</ul>
+		<p>这个方法返回动态创建的操作表HTML元素</p>
+		<p>每个在buttons中的按钮应该作为一个对象，其包含如下参数：</p>
+		<table class="Table TableBor TableHover">
+
+			<thead>
+				<tr>
+					<th>参数</th>
+					<th>类型</th>
+					<th>默认值</th>
+					<th>描述</th>
+				</tr>
+			</thead>
+
+			<tbody>
+				<tr>
+					<td>text</td>
+					<td>String</td>
+					<td></td>
+					<td>按钮上的文本（可以是HTML字符串）</td>
+				</tr>
+				<tr>
+					<td>bold</td>
+					<td>Boolean</td>
+					<td>false</td>
+					<td>可选，若为真，则按钮上文本加粗</td>
+				</tr>
+				<tr>
+					<td>color</td>
+					<td>String</td>
+					<td></td>
+					<td>可选，按钮颜色，待选颜色 参照<a href="text.html">文本</a>给出的颜色</td>
+				</tr>
+				<tr>
+					<td>bg</td>
+					<td>String</td>
+					<td></td>
+					<td>可选，按钮颜色，待选颜色 参照<a href="background.html">背景</a>给出的颜色</td>
+				</tr>
+				<tr>
+					<td>label</td>
+					<td>Boolean</td>
+					<td>true</td>
+					<td>可选，若为真，它会成为标题，而不是按钮</td>
+				</tr>
+				<tr>
+					<td>disabled</td>
+					<td>Boolean</td>
+					<td>false</td>
+					<td>可选，若为真，使按钮禁用</td>
+				</tr>
+				<tr>
+					<td>onClick</td>
+					<td>Function</td>
+					<td></td>
+					<td>可选，当用户点击该按钮时，会调用这个函数</td>
+				</tr>
+			</tbody>
+		</table>
+		
+		
+	<div class="example">
+        <h3>实例</h3>
+        <h4>弹层:</h4>
+		<h5>HTML 代码:</h5>
+        <pre><code>&lt;button type="button" class="Btn BtnPrimary InkRipple MenuBtn">底部菜单&lt;/button></code></pre>
+        <h5>js 代码:</h5>
+		<pre><code>$$(".MenuBtn").on("click",function(){
+	var actionSheetButtons = [
+    [{
+      text: '这里可以描述下面的操作这里可以描述下面的操作这里可以描述下面的操作这里可以描述下面的操作',
+      label: true
+    },{
+      text: 'alert警告消息框',
+      onClick: function () {
+        $$.alert('alert警告消息框!');
+      }
+    },{
+      text: '红色按钮',
+      color: 'CR',
+      onClick: function () {
+        $$.alert('你点击的是红色按钮!');
+      }
+    }],
+    [
+      {
+        text: '取消',
+        bg: 'BBlue'
+      }
+    ]
+  ];
+  $$.actions(actionSheetButtons);
+});
+</code></pre>
+  	<button type="button" class="Btn BtnBig BtnPrimary InkRipple MenuBtn">底部菜单</button>
+   </div>
+
+</div>
+<script type="text/javascript" src="../script/kelat.js"></script>
+<script type="text/javascript">
+$$(document).ready(function(){
+	$$(".MenuBtn").on("click",function(){
+		var actionSheetButtons = [
+			[{
+				text: '这里可以描述下面的操作这里可以描述下面的操作这里可以描述下面的操作这里可以描述下面的操作',
+				label: true
+			},{
+				text: 'alert警告消息框',
+				onClick: function () {
+					$$.alert('alert警告消息框!');
+				}
+			},{
+				text: '红色按钮',
+				color: 'CR',
+				onClick: function () {
+					$$.alert('你点击的是红色按钮!');
+				}
+			}],
+			[
+				{
+					text: '取消',
+					bg: 'BBlue'
+				}
+			]
+		];
+		$$.actions(actionSheetButtons);
+	});
+});
+</script>
+</div>
+</body>
+</html>

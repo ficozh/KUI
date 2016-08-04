@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>index([selector|element])</title>
+<meta name="author" content="KUI 中文手册">
+<meta name="description" content="KUI 中文手册">
+<!-- KUI -->
+<link rel="stylesheet" href="../style/kelat.css" media="all"/>
+<!-- 扩展样式 -->
+<link rel="stylesheet" href="../style/theme.css" media="all"/>
+<style>
+.ColorPalette{height:35px;
+line-height:35px;
+text-align:center;}
+.GridShow .Row{margin-bottom:10px;}
+.GridShow [class^=Col]{line-height:20px;padding:5px;margin-bottom:5px}
+</style>
+</head>
+<body >
+<div>
+   <div class="HelpBox" id="WrapperArea">
+   
+	<h2>$$.imagesLazyLoad()</h2>
+		<h3>概述</h3>
+		<div class="desc">
+		<p>用户滚动到图片位置时加载图片。</p>
+		<p>它使页面加载速度更快，提高滚动性能，也节省流量。</p>
+		<p>在页面元素加载完毕后，添加初始化方法：$$.imagesLazyLoad()。</p>
+		
+		</div>
+	<div class="example">
+		<h4>图片结构</h4>
+		<pre><code>&lt;img data-src="../images/01.jpg" class="Lazy LazyFadeIn"/></code></pre>
+		<ul class="List">
+			<li>指定图像的 data-src 属性而不是 src 属性</li>
+			<li>将“ Lazy ”类添加到图像</li>
+			<li>LazyFadeIn - 图片加载时的淡入过渡动画，可选。</li>
+		</ul>
+		<h4>图片作为背景结构</h4>
+		<pre><code>&lt;div data-background="../images/02.jpg" class="Lazy LazyFadeIn">&lt;/div></code></pre>
+		<ul class="List">
+			<li>指定元素的 data-background 属性</li>
+			<li>将“ Lazy ”类添加到元素上</li>
+			<li>LazyFadeIn - 图片加载时的淡入过渡动画，可选。</li>
+		</ul>
+		<h4>手动触发加载</h4>
+		<pre><code>$$('img.lazy').trigger('lazy'); 
+$$('div.lazy').trigger('lazy');</code></pre>
+
+		
+	</div>
+
+</div>
+<script type="text/javascript" src="../script/kelat.js"></script>
+<script type="text/javascript">
+$$(document).ready(function(){
+});
+</script>
+</div>
+</body>
+</html>

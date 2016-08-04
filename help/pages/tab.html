@@ -1,0 +1,148 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>index([selector|element])</title>
+<meta name="author" content="KUI 中文手册">
+<meta name="description" content="KUI 中文手册">
+<!-- KUI -->
+<link rel="stylesheet" href="../style/kelat.css" media="all"/>
+<!-- 扩展样式 -->
+<link rel="stylesheet" href="../style/theme.css" media="all"/>
+<style>
+.ColorPalette{height:35px;
+line-height:35px;
+text-align:center;}
+.GridShow .Row{margin-bottom:10px;}
+.GridShow [class^=Col]{line-height:20px;padding:5px;margin-bottom:5px}
+</style>
+</head>
+<body >
+<div>
+   <div class="HelpBox" id="WrapperArea">
+   
+	<h2>$$.tab()</h2>
+		<h3>概述</h3>
+		<div class="desc">
+		<p>选项卡用于控制不同内容区的切换显示。</p>
+		
+		</div>
+	<div class="example">
+	<h4>Tabs 选项卡布局:</h4>
+	<pre><code>&lt;!-- Tabs容器, 需要带有"Tabs"类。必需元素 -->
+&lt;div class="Tabs">
+  &lt;!-- 第一个Tab, 需要带有"Tab"类和唯一的id -->
+  &lt;!-- 第一个Tab默认是激活显示状态，通过添加"active"类实现 -->
+  &lt;div class="Tab active" id="tab1">
+    ... Tab 1 内容 ...
+  &lt;/div>
+  &lt;!-- 第二个Tab, 需要带有"Tab"类和唯一的id -->
+  &lt;div class="Tab" id="tab2">
+    ... Tab 2 内容
+  &lt;/div>
+  &lt;!-- 第三个Tab, 需要带有"Tab"类和唯一的id -->
+  &lt;div class="Tab" id="tab3">
+    ... Tab 3 内容 ...
+  &lt;/div>
+&lt;/div></code></pre>
+		<ul class="List">
+			<li>class="Tabs" - 所有选项卡页的容器，没有它选项卡组件将无法工作。</li>
+			<li>class="Tab" - 单独的选项卡页，需要有唯一的id。</li>
+			<li>class="Tab active" - 激活的选项卡页，即默认显示的 Tab，需要"active"类。</li>
+		</ul>
+	<h4>各选项卡间切换:</h4>
+	<p>完成选项卡组件HTML布局后，我们需要控件，以便用户可以在各选项卡间切换。</p>
+	<p>我们需要创建链接（&lt;a>标签），它拥有名为 " TabLink " 的类，并且href属性值和目标选项卡的id相同</p>
+	<pre><code>&lt;!-- 关联到第一个选项卡, 需要设置和第一个选项卡id名相同的href属性(tab1) -->
+&lt;a href="#tab1" class="TabLink active">Tab 1&lt;/a>
+&lt;!-- 关联到第二个选项卡, 需要设置和第二个选项卡id名相同的href属性(tab2) -->
+&lt;a href="#tab2" class="TabLink">Tab 2&lt;/a>
+&lt;!-- 关联到第三个选项卡, 需要设置和第三个选项卡id名相同的href属性(tab3) -->
+&lt;a href="#tab3" class="TabLink">Tab 3&lt;/a></code></pre>
+		<p>第一个标签也有"active"类。它不是必需的，这个是激活状态。</p>
+		
+	<h4>切换多选项卡:</h4>
+	<p>上文描述的表示方法通过ID指定我们要切换到的选项卡。但有时我们想要用一个标签链接来切换多个选项卡页，这时我们可以用class代替id。标签面板里的a元素使用“data-tab”属性指向需要切换显示内容区的类（一般对应多块div）。比如：</p>
+	<pre><code>&lt;!-- 顶部 Tabs -->
+&lt;div class="Tabs">
+  &lt;div class="Tab tab1 active">...&lt;/div>
+  &lt;div class="Tab tab2">...&lt;/div>
+  &lt;div class="Tab tab3">...&lt;/div>
+&lt;/div>
+&lt;!-- 底部 Tabs -->
+&lt;div class="Tabs">
+  &lt;div class="Tab tab1 active">...&lt;/div>
+  &lt;div class="Tab tab2">...&lt;/div>
+  &lt;div class="Tab tab3">...&lt;/div>
+&lt;/div>
+&lt;!-- Tabs 控制面板 -->
+&lt;div class="TabBar">
+  &lt;!-- 将同时切换选项卡内容区到 .tab1 区块-->
+  &lt;a href="javascript:;" class="TabLink" data-tab=".tab1">Tab 1&lt;/a>
+  &lt;!-- 将同时切换选项卡内容区到 .tab2 区块-->
+  &lt;a href="javascript:;" class="TabLink" data-tab=".tab2">Tab 2&lt;/a>
+  &lt;!-- 将同时切换选项卡内容区到 .tab3 区块-->
+  &lt;a href="javascript:;" class="TabLink" data-tab=".tab3">Tab 3&lt;/a>
+&lt;/div></code></pre>
+		<p>其中，data-tab属性是包括Tab/Tabs的CSS选择器的字符串。</p>
+		<h4>动画过渡的选项卡</h4>
+		<p>我们也可以对选项卡页切换加上简单的动画过渡，只需要在 class="Tabs" 外面加上额外的 class="TabsAnimatedWrap" 容器：</p>
+	<pre><code>&lt;div class="TabsAnimatedWrap">
+  &lt;div class="Tabs">
+    &lt;div class="Tab tab1 active">...&lt;/div>
+    &lt;div class="Tab tab2">...&lt;/div>
+    &lt;div class="Tab tab3">...&lt;/div>
+  &lt;/div>
+&lt;/div></code></pre>
+		<p class="CO">注意，最外层容器 .TabsAnimatedWrap 需要一个固定的高度，默认是其父亲节点100%的高度</p>
+		
+		
+	<h4>选项卡事件</h4>
+	<p>当你需要在选项卡切换到激活状态后做一些事情时，选项卡页事件是很有用的：</p>
+	<table class="Table TableBor TableHover">
+
+			<thead>
+				<tr>
+					<th>事件名称</th>
+					<th>Target</th>
+					<th>描述</th>
+				</tr>
+			</thead>
+
+			<tbody>
+				<tr>
+					<td>show</td>
+					<td>标签元素
+&lt;div class="Tab"></td>
+					<td>在目标选项卡页被切换到可见状态时，事件触发</td>
+				</tr>
+			</tbody>
+		</table>
+	<pre><code>$$('#tab1').on('show', function () {
+    $$.alert('Tab 1 显示');
+});</code></pre>
+
+		<h4>使用JS切换选项卡页</h4>
+		<p>也可以通过JS切换选项卡页，我们需要调用以下的方法:</p>
+		<p>$$.showTab(tab)</p>
+		<ul class="List">
+			<li>tab - 要打开的选项卡页的HTML元素或CSS选择器。必选参数。当选项卡页切换成功后方法会返回true,否则会返回false</li>
+		</ul>
+	<pre><code>&lt;a href="javascript:;" class="show-tab-1">Show Tab 1&lt;/a></code></pre>
+	<pre><code>$$('.show-tab-1').on('click', function () {
+    $$.showTab('#tab1');
+});</code></pre>
+		
+		
+	</div>
+
+</div>
+<script type="text/javascript" src="../script/kelat.js"></script>
+<script type="text/javascript">
+$$(document).ready(function(){
+
+});
+</script>
+</div>
+</body>
+</html>

@@ -1,9 +1,9 @@
 ﻿@charset "utf-8";
 /*!
- * kelat Css Library v1.2.0-beta1
+ * kelat Css Library v1.2.2-beta1
  * http://git.oschina.net/ficozhe/K-UI
  *
- * Date: 2016-04-27
+ * Date: 2016-07-20
  */
 *{
 -webkit-text-size-adjust:none;/*禁止自动调整字体大小*/
@@ -1320,7 +1320,7 @@ display:flex;
 -webkit-transform:translate3d(0,0,0);
 		transform:translate3d(0,0,0);
 }
-
+.NavBarFixed .PageContent{padding-top:44px;}
 
 .TabBar{z-index:5001;overflow:hidden;bottom:auto;top:0}
 .TabBar .ToolBarInner{padding-left:0;padding-right:0}
@@ -1455,7 +1455,7 @@ flex-shrink:0;
 .ModalBox .ModalInner{padding:15px 15px 0;max-height:90%;border-radius:6px 6px 0 0;position:relative}
 
 .ModalBox .ModalHeader{text-align:center;font-size:16px;margin-bottom:5px}
-.ModalBox .ModalContent{font-size:14px;line-height:30px;max-height:300px;word-wrap:break-word;word-break:break-all;overflow:hidden}
+.ModalBox .ModalContent{font-size:14px;line-height:30px;min-height:30px;max-height:300px;word-wrap:break-word;word-break:break-all;overflow:hidden}
 .ModalBox .ModalFooter{height:44px;padding:4px 8px;overflow:hidden;
 box-sizing:border-box;
 display:-webkit-box;
@@ -1582,9 +1582,7 @@ text-transform:uppercase;
 .ModalPopover .PickerModal{width:auto}
 .ModalPopover .PickerModal .ToolBar{background:none}
 
-
-
-
+/**/
 .PopupBox{position:fixed;left:0;bottom:0;width:100%;height:100%;z-index:11000;background:#fff;display:none;
 box-sizing:border-box;
 -webkit-overflow-scrolling:touch;
@@ -2022,9 +2020,10 @@ display:flex;
 	<div class="BoxFooter">...</div>
 </div>
 */
+
 .Box{background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.3);margin:0 10px 10px;position:relative;border-radius:4px;font-size:12px;overflow:hidden}
 .Box .BoxHeader,
-.Box .BoxFooter{min-height:44px;position:relative;padding:10px 12px;
+.Box .BoxFooter{min-height:44px;position:relative;padding:4px 12px;
 box-sizing:border-box;
 display:-webkit-box;
 display:-ms-flexbox;
@@ -2036,8 +2035,8 @@ display:flex;
 		justify-content:space-between;
 -webkit-box-align:center;
    -ms-flex-align:center;
--webkit-align-items:inherit;
-		align-items:inherit
+-webkit-align-items:center;
+		align-items:center
 }
 
 .Box .BoxHeader{border-radius:4px 4px 0 0;font-size:14px}
@@ -2059,7 +2058,7 @@ display:flex;
 .Box .BoxContent .BoxContentInner>p:last-child{margin-bottom:0}
 .Box .BoxContent .Img{display:block}
 
-.Box .BoxFooter a.Link, .Box .BoxHeader a.Link{position:relative;line-height:44px;height:44px;text-decoration:none;text-align:center;display:block;margin-top:-10px;margin-bottom:-10px;white-space:nowrap;text-overflow:ellipsis;overflow:hidden;
+.Box .BoxFooter a.Link, .Box .BoxHeader a.Link{position:relative;line-height:36px;height:36px;text-decoration:none;text-align:center;display:block;margin:0;white-space:nowrap;text-overflow:ellipsis;overflow:hidden;color:#2196f3;background:none;padding:0 8px;font-size:14px;cursor:pointer;min-width:64px;
 border-radius:2px;border:none;outline:0;
 box-sizing:border-box;
 -webkit-appearance:none;
@@ -2069,8 +2068,8 @@ box-sizing:border-box;
 text-transform:uppercase;
 -webkit-transition-duration:300ms;
 		transition-duration:300ms;
--webkit-transform:translate3d(0, 0, 0);
-		transform:translate3d(0, 0, 0);
+-webkit-transform:translate3d(0,0,0);
+		transform:translate3d(0,0,0);
 -webkit-user-select:none;
 		user-select:none;
 }
@@ -2131,6 +2130,10 @@ html.android-4 .Box .BoxHeader a.Link{float:left;padding:0 8px}
 .Box .ListBlock .ListItem:last-child:after,
 .Box .ListBlock:before,
 .Box .ListBlock:after{display:none}
+
+.BoxList.ListBlock{background:none}
+.BoxList.ListBlock:before,
+.BoxList.ListBlock:after{display:none}
 
 /* ===== 按钮 ===== <e class="Btn BtnPrimary"></e>*/
 .Btn{position:relative;display:inline-block;cursor:pointer;outline:0;padding:2px 12px;font-size:14px;font-weight:400;line-height:30px;color:currentColor;border:1px solid #CCC;border-radius:4px;background-color:#FFF;margin-bottom:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-align:center;text-decoration:none;vertical-align:top;
@@ -2434,6 +2437,20 @@ text-transform:uppercase;
 /*主体*/
 .Wrapper{margin:0 auto;min-width:320px;position:relative;width:100%}
 .WrapBox{position:relative;z-index:9;}
+
+.PageOnLeft{opacity:1;
+-webkit-transform:translate3d(0,0,0);
+		transform:translate3d(0,0,0);
+}
+.PageOnRight{opacity: 0;
+pointer-events:none;
+-webkit-transform:translate3d(0,56px,0);
+		transform:translate3d(0,56px,0);
+}
+.PageContent{position:relative;overflow:auto;height:100%;z-index:1;
+-webkit-overflow-scrolling:touch;
+box-sizing:border-box;}
+
 
 /*页眉*/
 .WrapHeader{position:fixed;top:0;left:0;width:100%;height:45px;text-align:center;background-color:#fff;z-index:99;border-bottom:1px solid #ddd}
