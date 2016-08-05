@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,height=device-height,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<title>bind(type,[data],fn)</title>
+
+<!-- KUI -->
+<link rel="stylesheet" href="../../../style/kelat.css" media="all"/>
+<!-- 扩展样式 -->
+<link rel="stylesheet" href="../../../style/theme.css" media="all"/>
+
+</head>
+<body >
+<div>
+   <div class="HelpBox">
+   
+    <h2><span>返回值:kelat</span>bind(type,[data],fn)</h2>
+    <h3>概述</h3>
+    <div class="desc">
+      <p>为每个匹配元素的特定事件绑定事件处理函数。</p>
+      <div class="longdesc"> </div>
+    </div>
+    <h3>参数</h3>
+    <div class="parameter">
+      <h4><strong>type,[data],function(eventObject)</strong><span>String,Object,Function</span></h4>
+      <p><strong>type:</strong> 含有一个或多个事件类型的字符串，由空格分隔多个事件。比如"click"或"submit"，还可以是自定义事件名。</p>
+      <p><strong>data:</strong>作为event.data属性值传递给事件对象的额外数据对象</p>
+      <p><strong>fn:</strong>绑定到每个匹配元素的事件上面的处理函数</p>
+      <h4><strong>type,[data],false </strong><span>String,Object,bool</span></h4>
+      <p><strong>type:</strong>含有一个或多个事件类型的字符串，由空格分隔多个事件。比如"click"或"submit"，还可以是自定义事件名。</p>
+      <p><strong>data:</strong>作为event.data属性值传递给事件对象的额外数据对象</p>
+      <p><strong>false:</strong> 将第三个参数设置为false会使默认的动作失效。 </p>
+      <h4><strong>events</strong><span>String</span></h4>
+      <p>一个或多个事件类型的字符串和函数的数据映射来执行他们。</p>
+    </div>
+    <div class="example">
+      <h3>示例</h3>
+      <span id="f_ad2"></span>
+      <h4>描述:</h4>
+      <p>当每个段落被点击的时候，弹出其文本。</p>
+      <h5>js 代码:</h5>
+      <pre><code>$$("p").bind("click", function(){
+  alert( $$(this).text() );
+});</code></pre>
+      <h4>描述:</h4>
+      <p>同时绑定多个事件类型</p>
+      <h5>js 代码:</h5>
+      <pre><code>$$('#foo').bind('mouseenter mouseleave', function() {
+  $$(this).toggleClass('entered');
+});</code></pre>
+      <h4>描述:</h4>
+      <p>同时绑定多个事件类型/处理程序</p>
+      <h5>js 代码:</h5>
+      <pre><code>$$("button").bind({
+  click:function(){$$("p").slideToggle();},
+  mouseover:function(){$$("body").css("background-color","red");},  
+  mouseout:function(){$$("body").css("background-color","#FFFFFF");}  
+});</code></pre>
+      <h5>js 代码:</h5>
+      <pre><code>$$("form").bind("submit", function() { return false; })</code></pre>
+      <h4>描述:</h4>
+      <p>通过使用 preventDefault() 方法只取消默认的行为。</p>
+      <h5>js 代码:</h5>
+      <pre><code>$$("form").bind("submit", function(event){
+  event.preventDefault();
+});</code></pre>
+      <h4>描述:</h4>
+      <p>通过使用 stopPropagation() 方法只阻止一个事件起泡。</p>
+      <h5>js 代码:</h5>
+      <pre><code>$$("form").bind("submit", function(event){
+  event.stopPropagation();
+});</code></pre>
+    </div>
+
+</div>
+
+</div>
+</body>
+</html>

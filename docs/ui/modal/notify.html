@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,height=device-height,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<title>notify(通知)</title>
+<!-- KUI -->
+<link rel="stylesheet" href="../../../style/kelat.css" media="all"/>
+<!-- 扩展样式 -->
+<link rel="stylesheet" href="../../../style/theme.css" media="all"/>
+<style>
+.ColorPalette{height:35px;
+line-height:35px;
+text-align:center;}
+.GridShow .Row{margin-bottom:10px;}
+.GridShow [class^=Col]{line-height:20px;padding:5px;margin-bottom:5px}
+</style>
+</head>
+<body >
+<div>
+   <div class="HelpBox" id="WrapperArea">
+   
+	<h2>$$.addNotify(parameters)</h2>
+		<h3>概述</h3>
+		<div class="desc">
+		<p>使用通知组件，你可以让消息看起来像推送通知一样。</p>
+		
+		</div>
+	<div class="example">
+		<h4>通知API</h4>
+		<p>$$.addNotify(parameters) - 通过指定的参数来创建/显示通知</p>
+		<ul class="List">
+			<li>parameters - 包含通知相关的参数的对象。必选。方法返回一个动态创建的通知体的HTML元素</li>
+		</ul>
+		<p>$$.closeNotify(Element) - 关闭指定的通知</p>
+		<ul class="List">
+			<li>Element - 通知元素的HTML元素或CSS选择器。必选。</li>
+		</ul>
+		<h4>创建一个通知所需要的参数</h4>
+		<table class="Table TableBor TableHover">
+
+			<thead>
+				<tr>
+					<th>事件名称</th>
+					<th>类型</th>
+					<th>默认值</th>
+					<th>描述</th>
+				</tr>
+			</thead>
+
+			<tbody>
+				<tr>
+					<td>title</td>
+					<td>string</td>
+					<td></td>
+					<td>标题。</td>
+				</tr>
+				<tr>
+					<td>subtitle</td>
+					<td>string</td>
+					<td></td>
+					<td>副标题。</td>
+				</tr>
+				<tr>
+					<td>media</td>
+					<td>string</td>
+					<td></td>
+					<td>媒体元素（图标或图片） - 包含icon或图片的HTML片段。</td>
+				</tr>
+				<tr>
+					<td>message</td>
+					<td>string</td>
+					<td></td>
+					<td>消息内容。</td>
+				</tr>
+				<tr>
+					<td>additionalClass</td>
+					<td>string</td>
+					<td></td>
+					<td>添加给通知HTML元素的类，一般用于自定义样式。</td>
+				</tr>
+				<tr>
+					<td>closeOnClick</td>
+					<td>boolean</td>
+					<td>false</td>
+					<td>点击通知的HTML元素时，是否关闭通知。</td>
+				</tr>
+				<tr>
+					<td>onClose</td>
+					<td>function</td>
+					<td></td>
+					<td>通知关闭的回调函数（无论是手动关闭还是通过调用 $$.closeNotify 方法，都会执行）</td>
+				</tr>
+			</tbody>
+		</table>
+		<div style="width:50%">
+		<button type="button" class="Btn BtnBig BtnBlock InkRipple simpleBtn">默认通知</button>
+		<button type="button" class="Btn BtnBig BtnBlock InkRipple fullBtn">全局通知</button>
+		<button type="button" class="Btn BtnBig BtnBlock InkRipple customBtn">自定义图像</button>
+		<button type="button" class="Btn BtnBig BtnBlock InkRipple callbackBtn">关闭回调</button>
+		</div>
+		
+	</div>
+
+</div>
+<script type="text/javascript" src="../../../script/kelat.js"></script>
+<script type="text/javascript">
+$$(document).ready(function(){
+				$$('.simpleBtn').on('click', function () {
+					$$.addNotify({
+						closeOnClick:true,
+						title: 'KMUI',
+						message: '这是一个带有标题和消息的简单通知消息'
+					});
+				});
+				$$('.fullBtn').on('click', function () {
+					$$.addNotify({
+						title: 'KMUI',
+						subtitle: '通知副标题',
+						message: '这是一个带有自定义图标和字幕的简单通知消息',
+						media: '<img class="Icon" src="../../../images/svg/iconfont-user.svg" alt="用户"/>'
+					});
+				});
+				$$('.customBtn').on('click', function () {
+					$$.addNotify({
+						title: '我的应用标题',
+						subtitle: '来自KMUI的新消息',
+						message: '你好！欢迎使用KMUI，KMUI给你带来意想不到的展示效果。',
+						media: '<img src="../../../images/02.jpg" width="44"/>'
+					});
+				});
+				$$('.callbackBtn').on('click', function () {
+					$$.addNotify({
+						title: '我的应用标题',
+						subtitle: '来自KMUI的新消息',
+						message: '你好！欢迎使用KMUI，KMUI给你带来意想不到的展示效果。',
+						media: '<img src="../../../images/02.jpg" width="44"/>',
+						onClose: function () {
+							$$.alert('通知关闭');
+						}
+					});
+				});
+
+});
+</script>
+</div>
+</body>
+</html>

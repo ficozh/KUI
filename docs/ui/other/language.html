@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,height=device-height,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<title>设置语言</title>
+<!-- KUI -->
+<link rel="stylesheet" href="../../../style/kelat.css" media="all"/>
+<!-- 扩展样式 -->
+<link rel="stylesheet" href="../../../style/theme.css" media="all"/>
+<style>
+.ColorPalette{height:35px;
+line-height:35px;
+text-align:center;}
+.GridShow .Row{margin-bottom:10px;}
+.GridShow [class^=Col]{line-height:20px;padding:5px;margin-bottom:5px}
+</style>
+</head>
+<body >
+<div>
+   <div class="HelpBox" id="WrapperArea">
+   
+	<h2>设置语言</h2>
+		<h3>概述</h3>
+		<div class="desc">
+		<p>增加修改默认语言包方法。</p>
+	</div>	
+	<div class="example">
+		<p>加载库之前需要注入 kelatlocale 对象到 window 对象中，例如：</p>
+        <h5>js 代码:</h5>
+		<pre><code>&lt;script type="text/javascript">
+  window.kelatlocale={
+      "SYSTEM_LANGUAGE": {
+      "MODAL": {//弹出框
+        TIPS:"提示",
+        OK:"确定",
+        CANCEL:"取消"
+      },
+      "IMG":{//图片信息
+        IMGTIPS:"图片格式不正确或者跨域请求！",
+        IMGPlaceholder :'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7'
+      },
+      //加载
+      "LOADING": [
+        '正在加载...'
+      ]
+      },
+      //全局作用域id
+      "WrapperArea": 'WrapperArea'
+  };
+&lt;/script>
+&lt;script type="text/javascript" src="../script/kelat.js">&lt;/script></code></pre>
+   </div>
+
+</div>
+</div>
+</body>
+</html>

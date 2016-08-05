@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,height=device-height,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<title>$$.get(url,[data],[callback])</title>
+
+<!-- KUI -->
+<link rel="stylesheet" href="../../../style/kelat.css" media="all"/>
+<!-- 扩展样式 -->
+<link rel="stylesheet" href="../../../style/theme.css" media="all"/>
+
+</head>
+<body >
+<div>
+   <div class="HelpBox">
+   
+    <h2><span>返回值:XMLHttpRequest</span>$$.get(url,[data],[callback])</h2>
+    <h3>概述</h3>
+    <div class="desc">
+      <p>通过远程 HTTP GET 请求载入信息。</p>
+      <div class="longdesc">
+        <p>这是一个简单的 GET 请求功能以取代复杂 $.ajax 。请求成功时可调用回调函数。如果需要在出错时执行函数，请使用 $.ajax。</p>
+      </div>
+    </div>
+    <h3>参数</h3>
+    <div class="parameter">
+      <h4><strong>url,[data],[callback]</strong><span>String,Map,Function,String</span></h4>
+      <p><strong>url</strong>:待载入页面的URL地址</p>
+      <p><strong>data</strong>:待发送 Key/value 参数。</p>
+      <p><strong>callback</strong>:载入成功时回调函数。</p>
+    </div>
+    <div class="example">
+      <h3>示例</h3>
+      <h4>描述:</h4>
+      <p>请求 test.php 网页，忽略返回值。</p>
+      <h5>js 代码:</h5>
+      <pre><code>$$.get("test.php");</code></pre>
+      <h4>描述:</h4>
+      <p>请求 test.php 网页，传送2个参数，忽略返回值。</p>
+      <h5>js 代码:</h5>
+      <pre><code>$$.get("test.php", { name: "John", time: "2pm" } );</code></pre>
+      <h4>描述:</h4>
+      <p>显示 test.php 返回值(HTML 或 XML，取决于返回值)。</p>
+      <h5>js 代码:</h5>
+      <pre><code>$$.get("test.php", function(data){
+  alert("Data Loaded: " + data);
+});</code></pre>
+      <h4>描述:</h4>
+      <p>显示 test.cgi 返回值(HTML 或 XML，取决于返回值)，添加一组请求参数。</p>
+      <h5>js 代码:</h5>
+      <pre><code>$$.get("test.cgi", { name: "John", time: "2pm" },
+  function(data){
+    alert("Data Loaded: " + data);
+  });</code></pre>
+    </div>
+
+</div>
+
+</div>
+</body>
+</html>

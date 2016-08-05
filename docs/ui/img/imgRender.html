@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,height=device-height,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<title>imgRender(图片渲染)</title>
+<!-- KUI -->
+<link rel="stylesheet" href="../../../style/kelat.css" media="all"/>
+<!-- 扩展样式 -->
+<link rel="stylesheet" href="../../../style/theme.css" media="all"/>
+<style>
+.ColorPalette{height:35px;
+line-height:35px;
+text-align:center;}
+.GridShow .Row{margin-bottom:10px;}
+.GridShow [class^=Col]{line-height:20px;padding:5px;margin-bottom:5px}
+</style>
+</head>
+<body >
+<div>
+   <div class="HelpBox" id="WrapperArea">
+   
+	<h2>$$.imgRender(options, callback)</h2>
+		<h3>概述</h3>
+		<div class="desc">
+		<p>对图片进行大小调整，输出 base64 格式图片。</p>
+		<p>它可以在本地对图片进行处理后上传，提升上传速度，节省流量。</p>
+		<ul class="List">
+			<li>options - <span class="CG">Array</span> path 图片路径，width，图片生成后的宽度 </li>
+			<li>callback - <span class="CG">function</span> 返回新的图片 base64 信息。</li>
+		</ul>
+		<p class="CO">注意：图片渲染需要浏览器支持 canvas 。</p>
+		</div>
+	<div class="example">
+		<h4>js 方法</h4>
+		<pre><code>$$.imgRender({
+    path:'../images/01.jpg',
+    width:600,
+},function(newImg){ 
+    
+})</code></pre>
+
+		
+	</div>
+
+</div>
+</div>
+</body>
+</html>

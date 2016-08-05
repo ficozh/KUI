@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,height=device-height,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<title>dataset([name|list])</title>
+
+
+<!-- KUI -->
+<link rel="stylesheet" href="../../../style/kelat.css" media="all"/>
+<!-- 扩展样式 -->
+<link rel="stylesheet" href="../../../style/theme.css" media="all"/>
+
+</head>
+<body >
+<div>
+   <div class="HelpBox">
+    <h2><span>返回值:kelat</span>dataset([name|list])</h2>
+    <h3>概述</h3>
+    <div class="desc">
+      <p>获取元素的数据集（data- 属性）为普通对象</p>
+      <p>具有数据属性的元素，以获取从返回一个新的普通对象与数据集的数据集</p>
+    </div>
+    <h3>参数</h3>
+    <div class="parameter">
+      <p>无参数</p>
+    </div>
+    <div class="example">
+      <h3>示例</h3>
+      <h4>描述:</h4>
+      <p>从元素获取元素的数据属性转换为对象：</p>
+	  <h5>HTML 代码:</h5>
+      <pre><code>&lt;div data-url="http://***.com"&gt;colors&lt;/div&gt;</code></pre>
+      <h5>js 代码:</h5>
+      <pre><code>var data = $$(this).dataset()
+data.url // 返回值 http://***.com</code></pre>
+    </div>
+   </div>
+
+</div>
+</body>
+</html>

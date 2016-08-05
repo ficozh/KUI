@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,height=device-height,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<title>numberbox(数字输入框)</title>
+<!-- KUI -->
+<link rel="stylesheet" href="../../../style/kelat.css" media="all"/>
+<!-- 扩展样式 -->
+<link rel="stylesheet" href="../../../style/theme.css" media="all"/>
+<style>
+.ColorPalette{height:35px;
+line-height:35px;
+text-align:center;}
+.GridShow .Row{margin-bottom:10px;}
+.GridShow [class^=Col]{line-height:20px;padding:5px;margin-bottom:5px}
+</style>
+</head>
+<body >
+<div>
+   <div class="HelpBox" id="WrapperArea">
+   
+	<h2>$$.numberBox()</h2>
+		<h3>概述</h3>
+		<div class="desc">
+		<p>KUI提供数字输入框函数。</p>
+		
+		</div>
+	<div class="example">
+		<h3>实例</h3>
+		<h4>默认</h4>
+	<div class="NumBox">
+		<button class="Btn NumBoxMinus" type="button">-</button>
+		<input class="NumBoxInput" type="number" value="0">
+		<button class="Btn NumBoxPlus" type="button">+</button>
+	</div>
+		<pre><code>&lt;div class="NumBox">
+    &lt;utton class="Btn NumBoxMinus" type="button">-&lt;/button>
+    &lt;input class="NumBoxInput" type="number" value="0"/>
+    &lt;button class="Btn NumBoxPlus" type="button">+&lt;/button>
+&lt;/div></code></pre>
+		<ul class="List">
+			<li>NumBox - 输入框容器，必须。</li>
+			<li>NumBoxMinus - 减少按钮，必须。</li>
+			<li>NumBoxPlus - 增加按钮，必须。</li>
+			<li>NumBoxInput - 数值显示框，必须。</li>
+		</ul>
+		<h4>限定最小值和最大值</h4>
+		<div class="NumBox" data-min="1" data-max="9">
+			<button class="Btn NumBoxMinus" type="button">-</button>
+			<input class="NumBoxInput" type="number" value="5">
+			<button class="Btn NumBoxPlus" type="button">+</button>
+		</div>
+		<pre><code>&lt;div class="NumBox" data-min="1" data-max="9"></code></pre>
+		<p>需要在 NumBox 容器上设置最小值和最大值属性。</p>
+		<ul class="List">
+			<li>data-min - 最小值，可选。</li>
+			<li>data-max - 最大值，可选。</li>
+		</ul>
+		<h4>设定步长值</h4>
+	<div class="NumBox" data-step="10" data-min="10" data-max="90">
+		<button class="Btn NumBoxMinus" type="button">-</button>
+		<input class="NumBoxInput" type="number" value="10">
+		<button class="Btn NumBoxPlus" type="button">+</button>
+	</div>
+	<pre><code>&lt;div class="NumBox" data-step="10" data-min="10" data-max="90"></code></pre>
+		<p>需要在 NumBox 容器上设置步长值属性。</p>
+		<ul class="List">
+			<li>data-step - 步长值，可选。</li>
+		</ul>
+		
+	</div>
+
+</div>
+<script type="text/javascript" src="../../../script/kelat.js"></script>
+<script type="text/javascript">
+$$(document).ready(function(){
+	$$.numberBox()
+});
+</script>
+</div>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,height=device-height,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<title>$$.fn.extend(object)</title>
+
+<!-- KUI -->
+<link rel="stylesheet" href="../../../style/kelat.css" media="all"/>
+<!-- 扩展样式 -->
+<link rel="stylesheet" href="../../../style/theme.css" media="all"/>
+
+</head>
+<body >
+<div>
+   <div class="HelpBox">
+    <h2><span>返回值:kelat</span>$$.fn.extend(object)</h2>
+    <h3>概述</h3>
+    <div class="desc">
+      <p>扩展 kelat 元素集来提供新的方法（通常用来制作插件）。</p>
+    </div>
+    <h3>参数</h3>
+    <div class="parameter">
+      <h4><strong>object</strong><span>Object</span></h4>
+      <p>用来扩充 kelat 对象。</p>
+    </div>
+    <div class="example">
+      <h3>示例</h3>
+      <h4>描述:</h4>
+      <p>增加两个插件方法。</p>
+      <h5>js 代码:</h5>
+      <pre><code>$$.kelatDom.fn.extend({
+  check: function() {
+    return this.each(function() { this.checked = true; });
+  },
+  uncheck: function() {
+    return this.each(function() { this.checked = false; });
+  }
+});</code></pre>
+      <h5>结果:</h5>
+      <pre><code>$$("input[type=checkbox]").check();
+$$("input[type=radio]").uncheck();</code></pre>
+    </div>
+   </div>
+
+</div>
+</body>
+</html>

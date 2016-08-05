@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,height=device-height,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<title>$$.popover(obj|html,target)</title>
+<!-- KUI -->
+<link rel="stylesheet" href="../../../style/kelat.css" media="all"/>
+<!-- 扩展样式 -->
+<link rel="stylesheet" href="../../../style/theme.css" media="all"/>
+<style>
+.ColorPalette{height:35px;
+line-height:35px;
+text-align:center;}
+.GridShow .Row{margin-bottom:10px;}
+.GridShow [class^=Col]{line-height:20px;padding:5px;margin-bottom:5px}
+</style>
+</head>
+<body >
+<div>
+   <div class="HelpBox" id="WrapperArea">
+   
+	<h2>$$.popover(obj|html,target)</h2>
+		<h3>概述</h3>
+		<div class="desc">
+		<p>Popover 组件是用来管理popover里的内容展示。你可以用 popovers 临时显示一些信息. popover 保持可见直到用户点击popover窗口外面或者你明确地移除它。</p>
+		<p>我们需要调用以下方法来打开弹层:</p>
+		<p>$$.popover(obj|html,target)</p>
+		<p class="CO">注意，不推荐在小屏幕(iPhone)上使用 Popover 。 在小屏幕上你应该使用 <a href="actions.html">操作表</a> 来代替。或者使用 操作表转换为Popover。</p>
+		</div>
+		<ul class="List">
+			<li>obj|html - <span class="CG">Object|string</span> 显示的 HTMLElement 或者 Object。</li>
+			<li>target - <span class="CG">Object|string</span> 点击的元素，类型是对象或者 class|id。</li>
+		</ul>
+	<div class="example">
+        <h3>实例</h3>
+        <h4>弹层:</h4>
+		<h5>HTML 代码:</h5>
+        <pre><code>&lt;button type="button" class="Btn BtnPrimary InkRipple PopoverBtn">弹出菜单&lt;/button></code></pre>
+		<h5>弹层 HTML 代码:</h5>
+        <pre><code>&lt;div class="ModalPopover SettingModeMenu">
+  &lt;div class="ModalPopoverInner">
+    &lt;div class="ListBlock">
+      &lt;ul>
+        &lt;li class="ListItem">&lt;a href="javascript:;" class="ListButton ItemLink ItemCon">菜单1&lt;/a>&lt;/li>
+        &lt;li class="ListItem">&lt;a href="javascript:;" class="ListButton ItemLink ItemCon">菜单2&lt;/a>&lt;/li>
+        &lt;li class="ListItem">&lt;a href="javascript:;" class="ListButton ItemLink ItemCon">菜单3&lt;/a>&lt;/li>
+        &lt;li class="ListItem">&lt;a href="javascript:;" class="ListButton ItemLink ItemCon">菜单4&lt;/a>&lt;/li>
+        &lt;li class="ListItem">&lt;a href="javascript:;" class="ListButton ItemLink ItemCon">菜单5&lt;/a>&lt;/li>
+        &lt;li class="ListItem">&lt;a href="javascript:;" class="ListButton ItemLink ItemCon">菜单6&lt;/a>&lt;/li>
+      &lt;/ul>
+    &lt;/div>
+  &lt;/div>
+&lt;/div>
+</code></pre>
+        <h5>js 代码:</h5>
+		<pre><code>$$(".PopoverBtn").on("click",function(){
+    $$.popover($$('.SettingModeMenu'),$$(this))
+});
+</code></pre>
+		<button type="button" class="Btn BtnBig BtnBlock BtnPrimary InkRipple PopoverBtn">弹出菜单</button>
+   </div>
+<div class="ModalPopover SettingModeMenu">
+  <div class="ModalPopoverInner">
+	<div class="ListBlock">
+	  <ul>
+		<li class="ListItem"><a href="javascript:;" class="ListButton ItemLink ItemCon">菜单1</a></li>
+		<li class="ListItem"><a href="javascript:;" class="ListButton ItemLink ItemCon">菜单2</a></li>
+		<li class="ListItem"><a href="javascript:;" class="ListButton ItemLink ItemCon">菜单3</a></li>
+		<li class="ListItem"><a href="javascript:;" class="ListButton ItemLink ItemCon">菜单4</a></li>
+		<li class="ListItem"><a href="javascript:;" class="ListButton ItemLink ItemCon">菜单5</a></li>
+		<li class="ListItem"><a href="javascript:;" class="ListButton ItemLink ItemCon">菜单6</a></li>
+	  </ul>
+	</div>
+  </div>
+</div>
+
+
+</div>
+<script type="text/javascript" src="../../../script/kelat.js"></script>
+<script type="text/javascript">
+$$(document).ready(function(){
+	$$(".PopoverBtn").on("click",function(){
+		$$.popover($$('.SettingModeMenu'),$$(this))
+	});
+});
+</script>
+</div>
+</body>
+</html>

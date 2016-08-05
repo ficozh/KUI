@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,height=device-height,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<title>imgReady(图片加载就绪事件)</title>
+<!-- KUI -->
+<link rel="stylesheet" href="../../../style/kelat.css" media="all"/>
+<!-- 扩展样式 -->
+<link rel="stylesheet" href="../../../style/theme.css" media="all"/>
+<style>
+.ColorPalette{height:35px;
+line-height:35px;
+text-align:center;}
+.GridShow .Row{margin-bottom:10px;}
+.GridShow [class^=Col]{line-height:20px;padding:5px;margin-bottom:5px}
+</style>
+</head>
+<body >
+<div>
+   <div class="HelpBox" id="WrapperArea">
+   
+	<h2>$$.imgReady(url, ready, load, error)</h2>
+		<h3>概述</h3>
+		<div class="desc">
+		<p>加载图片时，我们需要获得图片是否已经加载完毕，进行后续的事件处理。</p>
+		<p>它可以更快的获取图片的宽和高尺寸。</p>
+		<ul class="List">
+			<li>url - <span class="CG">string</span> 需要处理的图片地址</li>
+			<li>ready - <span class="CG">function</span> 图片 ready 后执行的回调函数，图片 ready 时，图片还没有在页面上渲染。</li>
+			<li>load - <span class="CG">function</span> 图片 load 后执行的回调函数，图片 load 时，图片已经在页面上渲染。</li>
+			<li>error - <span class="CG">function</span> 图片加载出错时的回调函数。</li>
+		</ul>
+		
+		</div>
+	<div class="example">
+		<h4>js 方法</h4>
+		<pre><code>$$.imgReady('../images/02.jpg',function(){ 
+    //ready
+},
+function(){ 
+    //load
+},
+function(){ 
+    //error
+})</code></pre>
+
+		
+	</div>
+
+</div>
+</div>
+</body>
+</html>

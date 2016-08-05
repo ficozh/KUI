@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,height=device-height,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<title>$$.popup(obj|html)</title>
+<!-- KUI -->
+<link rel="stylesheet" href="../../../style/kelat.css" media="all"/>
+<!-- 扩展样式 -->
+<link rel="stylesheet" href="../../../style/theme.css" media="all"/>
+<style>
+.ColorPalette{height:35px;
+line-height:35px;
+text-align:center;}
+.GridShow .Row{margin-bottom:10px;}
+.GridShow [class^=Col]{line-height:20px;padding:5px;margin-bottom:5px}
+</style>
+</head>
+<body >
+<div>
+   <div class="HelpBox" id="WrapperArea">
+   
+	<h2>$$.popup(obj|html)</h2>
+		<h3>概述</h3>
+		<div class="desc">
+		<p>Popup 是一种可以包含任何Html内容的弹出窗口，从App的主内容区域上弹出。 Popup 和其他所有的遮罩图层一样，是所谓的“临时视图”的一部分。</p>
+		<p>我们需要调用以下方法来打开弹层:</p>
+		<p>$$.popup(obj|html)</p>
+		</div>
+		<ul class="List">
+			<li>obj|html - <span class="CG">Object|string</span> 显示的 HTMLElement 或者 Object。</li>
+		</ul>
+	<div class="example">
+        <h3>实例</h3>
+        <h4>弹层:</h4>
+		<h5>HTML 代码:</h5>
+        <pre><code>&lt;button type="button" class="Btn BtnPrimary InkRipple PopupBtn">弹出层&lt;/button></code></pre>
+		<h5>弹层 HTML 代码:</h5>
+        <pre><code>&lt;div class="PopupBox NavBarFixed demo-popup">
+        &lt;div class="NavBar ">
+          &lt;div class="NavBarInner">
+            &lt;div class="Center sliding">Popup Title&lt;/div>
+            &lt;div class="Right">&lt;a href="javascript:;" class="Link ClosePopup">Done&lt;/a>&lt;/div>
+          &lt;/div>
+        &lt;/div>
+        &lt;div class="PageContent">
+          &lt;div class="ContentBlock">
+            &lt;p>Here comes popup...&lt;/p>
+            &lt;p>Lorem ipsum dolor sit amet, ...&lt;/p>
+            &lt;p>Duis ut mauris sollicitudin,...&lt;/p>
+            &lt;p>Morbi posuere ipsum nisl, ...&lt;/p>
+            &lt;p>Duis non erat vel lacus consectetur ultricies...&lt;/p>
+          &lt;/div>
+        &lt;/div>
+&lt;/div>
+    	</code></pre>
+		<h5>js 代码:</h5>
+		<pre><code>$$(".PopupBtn").on("click",function(){
+    $$.popup($$('.demo-popup'))
+});</code></pre>
+		<button type="button" class="Btn BtnBig BtnPrimary InkRipple PopupBtn">弹出层</button>
+		<ul class="List">
+			<li>.ClosePopup  - 绑定的是关闭事件</li>
+		</ul>
+   </div>
+    <div class="PopupBox NavBarFixed demo-popup">
+            <div class="NavBar ">
+              <div class="NavBarInner">
+                <div class="Center sliding">Popup Title</div>
+                <div class="Right"><a href="javascript:;" class="Link ClosePopup">Done</a></div>
+              </div>
+            </div>
+            <div class="PageContent">
+              <div class="ContentBlock">
+                <p>Here comes popup. You can put here anything, even independent view with its own navigation. Also not, that by default popup looks a bit different on iPhone/iPod and iPad, on iPhone it is fullscreen.</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse faucibus mauris leo, eu bibendum neque congue non. Ut leo mauris, eleifend eu commodo a, egestas ac urna. Maecenas in lacus faucibus, viverra ipsum pulvinar, molestie arcu. Etiam lacinia venenatis dignissim. Suspendisse non nisl semper tellus malesuada suscipit eu et eros. Nulla eu enim quis quam elementum vulputate. Mauris ornare consequat nunc viverra pellentesque. Aenean semper eu massa sit amet aliquam. Integer et neque sed libero mollis elementum at vitae ligula. Vestibulum pharetra sed libero sed porttitor. Suspendisse a faucibus lectus.</p>
+                <p>Duis ut mauris sollicitudin, venenatis nisi sed, luctus ligula. Phasellus blandit nisl ut lorem semper pharetra. Nullam tortor nibh, suscipit in consequat vel, feugiat sed quam. Nam risus libero, auctor vel tristique ac, malesuada ut ante. Sed molestie, est in eleifend sagittis, leo tortor ullamcorper erat, at vulputate eros sapien nec libero. Mauris dapibus laoreet nibh quis bibendum. Fusce dolor sem, suscipit in iaculis id, pharetra at urna. Pellentesque tempor congue massa quis faucibus. Vestibulum nunc eros, convallis blandit dui sit amet, gravida adipiscing libero.</p>
+                <p>Morbi posuere ipsum nisl, accumsan tincidunt nibh lobortis sit amet. Proin felis lorem, dictum vel nulla quis, lobortis dignissim nunc. Pellentesque dapibus urna ut imperdiet mattis. Proin purus diam, accumsan ut mollis ac, vulputate nec metus. Etiam at risus neque. Fusce tincidunt, risus in faucibus lobortis, diam mi blandit nunc, quis molestie dolor tellus ac enim. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse interdum turpis a velit vestibulum pharetra. Vivamus blandit dapibus cursus. Aenean lorem augue, vehicula in eleifend ut, imperdiet quis felis.</p>
+                <p>Duis non erat vel lacus consectetur ultricies. Sed non velit dolor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Proin vel varius mi, a tristique ante. Vivamus eget nibh ac elit tempor bibendum sit amet vitae velit. Proin sit amet dapibus nunc, non porta tellus. Fusce interdum vulputate imperdiet. Sed faucibus metus at pharetra fringilla. Fusce mattis orci et massa congue, eget dapibus ante rhoncus. Morbi semper sed tellus vel dignissim. Cras vestibulum, sapien in suscipit tincidunt, lectus mi sodales purus, at egestas ligula dui vel erat. Etiam cursus neque eu lectus eleifend accumsan vitae non leo. Aliquam scelerisque nisl sed lacus suscipit, ac consectetur sapien volutpat. Etiam nulla diam, accumsan ut enim vel, hendrerit venenatis sem. Vestibulum convallis justo vitae pharetra consequat. Mauris sollicitudin ac quam non congue.</p>
+              </div>
+            </div>
+    </div>
+
+</div>
+<script type="text/javascript" src="../../../script/kelat.js"></script>
+<script type="text/javascript">
+$$(document).ready(function(){
+	$$(".PopupBtn").on("click",function(){
+		$$.popup($$('.demo-popup'))
+	});
+});
+</script>
+</div>
+</body>
+</html>

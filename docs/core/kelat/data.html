@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,height=device-height,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<title>data([key],[value])</title>
+
+
+<!-- KUI -->
+<link rel="stylesheet" href="../../../style/kelat.css" media="all"/>
+<!-- 扩展样式 -->
+<link rel="stylesheet" href="../../../style/theme.css" media="all"/>
+
+</head>
+<body >
+<div>
+   <div class="HelpBox">
+    <h2><span class="FR">返回值:kelat</span>data([key],[value])</h2>
+    <h3>概述</h3>
+    <div class="desc">
+      <p>在元素上存放数据,返回kelat对象。</p>
+      <div class="longdesc">
+        <p>如果kelat集合指向多个元素，那将在所有元素上设置对应数据。
+
+这个函数不用建立一个新的expando，就能在一个元素上存放任何格式的数据，而不仅仅是字符串，可传入key-value形式的数据。</p>
+      </div>
+    </div>
+    <h3>参数</h3>
+    <div class="parameter">
+          <h4><strong>key</strong><span>String</span></h4>
+      <p>存储的数据名.</p>
+      <h4><strong>key,value</strong><span>String,Any</span></h4>
+      <p><strong>key</strong>:存储的数据名</p>
+      <p><strong>value</strong>:将要存储的任意数据</p>
+      <h4><strong>obj</strong><span>object</span></h4>
+      <p>一个用于设置数据的键/值对</p>
+            <h4><strong>data()</strong></h4>
+    </div>
+    <div class="example">
+      <h3>示例</h3>
+      <span id="f_ad2"></span>
+      <h4>描述:</h4>
+      <p>在一个div上存取数据</p>
+      <h5>HTML 代码:</h5>
+      <pre><code>&lt;div&gt;&lt;/div&gt;</code></pre>
+      <h5>ks 代码:</h5>
+      <pre><code>$$("div").data("blah");  // undefined
+$$("div").data("blah", "hello");  // blah设置为hello
+$$("div").data("blah");  // hello
+$$("div").data("blah", 86);  // 设置为86
+$$("div").data("blah");  //  86
+$$("div").removeData("blah");  //移除blah
+$$("div").data("blah");  // undefined</code></pre>
+      <h4>描述:</h4>
+      <p>在一个div上存取名/值对数据</p>
+      <h5>HTML 代码:</h5>
+      <pre><code>&lt;div&gt;&lt;/div&gt;</code></pre>
+      <h5>js 代码:</h5>
+      <pre><code>$$("div").data("test", { first: 16, last: "pizza!" });
+$$("div").data("test").first  //16;
+$$("div").data("test").last  //pizza!;</code></pre>
+    </div>
+   </div>
+
+</div>
+</body>
+</html>

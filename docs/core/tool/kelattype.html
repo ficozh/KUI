@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,height=device-height,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<title>$$.type(obj)</title>
+
+<!-- KUI -->
+<link rel="stylesheet" href="../../../style/kelat.css" media="all"/>
+<!-- 扩展样式 -->
+<link rel="stylesheet" href="../../../style/theme.css" media="all"/>
+
+</head>
+<body >
+<div>
+   <div class="HelpBox">
+   
+    <h2><span>返回值:String</span>$$.type(obj)</h2>
+    <h3>概述</h3>
+    <div class="desc">
+      <p> 检测obj的数据类型。</p>
+    </div>
+    <h3>参数</h3>
+    <div class="parameter">
+      <h4><strong>obj</strong><span>Object</span></h4>
+      <p>用于测试类型的对象</p>
+    </div>
+    <div class="example">
+      <h3>示例</h3>
+      <span id="f_ad2"></span>
+      <h4>描述:</h4>
+      <p>以下obj的类型如下：</p>
+      <p>&nbsp;</p>
+      <PRE><CODE class="example demo-code"><UL>
+      <LI>$$.type(true) === "boolean"</LI>
+      <LI>$$.type(3) === "number"
+        <LI>$$.type("test") === "string"</LI>
+      <LI>$$.type(function(){}) === "function"
+        <LI>$$.type([]) === "array"</LI>
+      <LI>$$.type(new Date()) === "date"
+        <LI>$$.type(/test/) === "regexp"</LI>
+      </UL></CODE></PRE>
+    </div>
+
+</div>
+
+</div>
+</body>
+</html>

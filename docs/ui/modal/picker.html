@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,height=device-height,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<title>picker(选择器)</title>
+<!-- KUI -->
+<link rel="stylesheet" href="../../../style/kelat.css" media="all"/>
+<!-- 扩展样式 -->
+<link rel="stylesheet" href="../../../style/theme.css" media="all"/>
+<style>
+.ColorPalette{height:35px;
+line-height:35px;
+text-align:center;}
+.GridShow .Row{margin-bottom:10px;}
+.GridShow [class^=Col]{line-height:20px;padding:5px;margin-bottom:5px}
+</style>
+</head>
+<body >
+<div>
+   <div class="HelpBox" id="WrapperArea">
+   
+	<h2>$$.picker(obj)</h2>
+		<h3>概述</h3>
+		<div class="desc">
+		<p>选择器是一个功能强大的组件，允许您创建自定义选择控件，看起来像iOS原生选择器。</p>
+		<p>选择器可以作为内联组件或覆盖。叠加器将自动转换为Popover平板电脑（iPad）。</p>
+		
+		</div>
+	<div class="example">
+	<h4>运行选择器</h4>
+	<pre><code>var newPicker = $$.picker({
+    input: '#picker-input'
+    cols: [
+       {
+         values: ['Apple', 'Orange', 'Bananna']
+       }
+     ]
+});   
+newPicker.open(); // open Picker</code></pre>
+		
+		<p>选择器可以使用JavaScript创建和初始化。相关的使用方法：</p>
+		<p>$$.picker(parameters) - 初始化与参数选取</p>
+		<ul class="List">
+			<li>parameters - <span class="CG">object</span> 选择器参数对象，必须。</li>
+		</ul>
+		<p>方法返回的实例初始化选择器</p>
+		<h4>选择器参数</h4>
+		
+		<table class="Table TableBor TableHover">
+
+			<thead>
+				<tr>
+					<th>参数</th>
+					<th>类型</th>
+					<th>默认值</th>
+					<th>描述</th>
+				</tr>
+			</thead>
+			
+			<tbody>
+				<tr>
+                  <th colspan="4">通用选择器参数</th>
+                </tr>
+				<tr>
+					<td>container</td>
+					<td>string 或 HTMLElement</td>
+					<td></td>
+					<td>HtmlElement元素或CSS选择器。</td>
+				</tr>
+				<tr>
+					<td>input</td>
+					<td>string 或 HTMLElement</td>
+					<td></td>
+					<td>输入元素 - HtmlElement元素或CSS选择器。</td>
+				</tr>
+				<tr>
+					<td>scrollToInput</td>
+					<td>boolean</td>
+					<td>true</td>
+					<td>滚动视图（页面内容）到输入选择器。</td>
+				</tr>
+				<tr>
+					<td>inputReadOnly</td>
+					<td>boolean</td>
+					<td>true</td>
+					<td>给 input 设置“readonly”属性</td>
+				</tr>
+				<tr>
+					<td>convertToPopover</td>
+					<td>boolean</td>
+					<td>true</td>
+					<td>选择器在大屏幕上（iPad）时，使用Popover</td>
+				</tr>
+				<tr>
+					<td>onlyOnPopover</td>
+					<td>boolean</td>
+					<td>false</td>
+					<td>只显示Popover</td>
+				</tr>
+				<tr>
+					<td>cssClass</td>
+					<td>string</td>
+					<td>false</td>
+					<td>添加额外的 class 到选择器上。</td>
+				</tr>
+				<tr>
+					<td>toolbar</td>
+					<td>boolean</td>
+					<td>true</td>
+					<td>是否显示选择器上工具栏。</td>
+				</tr>
+				<tr>
+					<td>toolbarOkText</td>
+					<td>string</td>
+					<td>'确定'</td>
+					<td>工具栏上“确定”按钮的文本。</td>
+				</tr>
+				<tr>
+					<td>toolbarCloseText</td>
+					<td>string</td>
+					<td>'取消'</td>
+					<td>工具栏上“取消”按钮的文本。</td>
+				</tr>
+				<tr>
+					<td>toolbarTemplate</td>
+					<td>string</td>
+					<td></td>
+					<td>工具栏的HTML模板。默认情况下它是以下HTML字符串模板：<br/>
+						<pre><code>&lt;div class="ToolBar">
+  &lt;div class="ToolBarInner">
+    &lt;div class="Left">
+      &lt;a href="javascript:;" class="Link ClosePicker">{{closeText}}&lt;/a>&lt;/div>
+    &lt;div class="Right">
+      &lt;a href="javascript:;" class="Link OkPicker">{{okText}}&lt;/a>&lt;/div>
+  &lt;/div>
+&lt;/div></code></pre>
+					</td>
+				</tr>
+				<tr>
+                  <th colspan="4">具体的选择参数</th>
+                </tr>
+				<tr>
+					<td>rotateEffect</td>
+					<td>boolean</td>
+					<td>false</td>
+					<td>使用三维旋转效果</td>
+				</tr>
+				<tr>
+					<td>isEfficient</td>
+					<td>boolean</td>
+					<td>false</td>
+					<td>选择器是否以高性能运行，false - 关闭选择器时，从DOM元素中删除，true - 关闭选择器时，隐藏</td>
+				</tr>
+				<tr>
+					<td>momentumRatio</td>
+					<td>number</td>
+					<td>7</td>
+					<td>动量比 - 滑动时的惯性比例</td>
+				</tr>
+				<tr>
+					<td>calculateHeight</td>
+					<td>boolean</td>
+					<td>true</td>
+					<td>计算选择器位置和 body 滚动距离</td>
+				</tr>
+				<tr>
+					<td>updateValuesOnMomentum</td>
+					<td>boolean</td>
+					<td>false</td>
+					<td>滑动时更新选择器的 input 值</td>
+				</tr>
+				<tr>
+					<td>updateValuesOnTouchmove</td>
+					<td>boolean</td>
+					<td>true</td>
+					<td>触摸移动时更新选择器 input 值</td>
+				</tr>
+				<tr>
+					<td>value</td>
+					<td>array</td>
+					<td></td>
+					<td>初始值的数组。每个数组项表示相关列的值</td>
+				</tr>
+				<tr>
+					<td>formatValue</td>
+					<td>function(p, values, displayValues)</td>
+					<td></td>
+					<td>函数用来格式化输入值，返回新的/格式化字符串值。values 和 displayvalues 数组，每个元素代表
+相关列的值</td>
+				</tr>
+				<tr>
+					<td>onOpen</td>
+					<td>function(p)</td>
+					<td></td>
+					<td>选择器打开时，执行的回调函数。</td>
+				</tr>
+				<tr>
+					<td>onClose</td>
+					<td>function(p)</td>
+					<td></td>
+					<td>选择器关闭时，执行的回调函数。</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<h4>选择器 列 参数</h4>
+		<p>每列需要根据下面 配置 列参数。它是一个数组，每个项目都是带有参数的对象：</p>
+		<table class="Table TableBor TableHover">
+
+			<thead>
+				<tr>
+					<th>参数</th>
+					<th>类型</th>
+					<th>默认值</th>
+					<th>描述</th>
+				</tr>
+			</thead>
+			
+			<tbody>
+				<tr>
+					<td>values</td>
+					<td>array</td>
+					<td></td>
+					<td>字符串形式的数组，以空格分隔，如：'奥迪 宝马 奔驰'</td>
+				</tr>
+				<tr>
+					<td>displayValues</td>
+					<td>array</td>
+					<td></td>
+					<td>字符串形式的数组将显示在选择器上，如果没有指定，它将显示 values 的值</td>
+				</tr>
+				<tr>
+					<td>cssClass</td>
+					<td>string</td>
+					<td></td>
+					<td>添加额外的 class 到 列 上。</td>
+				</tr>
+				<tr>
+					<td>textAlign</td>
+					<td>string</td>
+					<td></td>
+					<td>文本对齐的值，可以是 "left", "center" 或 "right"</td>
+				</tr>
+				<tr>
+					<td>width</td>
+					<td>number</td>
+					<td></td>
+					<td>设置列的宽度（px），可以根据需要设置宽度值，默认是自动计算宽度值</td>
+				</tr>
+				<tr>
+					<td>divider</td>
+					<td>boolean</td>
+					<td>false</td>
+					<td>分隔栏，没有值</td>
+				</tr>
+				<tr>
+					<td>content</td>
+					<td>string</td>
+					<td></td>
+					<td>指定为分隔栏（divider:true）列的内容</td>
+				</tr>
+				<tr>
+                  <th colspan="4">回调</th>
+                </tr>
+				<tr>
+					<td>onChange</td>
+					<td>function(p, value, displayValue)</td>
+					<td></td>
+					<td>当列值更改时将执行的回调函数， value 和 displayValue 代表当前 value 和 displayValue</td>
+				</tr>
+			</tbody>
+		</table>
+		
+		<h4>选择器的方法和属性</h4>
+		<p>在我们初始化选择器时初始化的实例变量（以上面的例子 newPicker 变量为例）提供有用的方法和属性：</p>
+		<table class="Table TableBor TableHover">
+			
+			<tbody>
+				<tr>
+                  <th colspan="2">属性</th>
+                </tr>
+				<tr>
+					<td>newPicker.params</td>
+					<td>传递初始化参数的对象</td>
+				</tr>
+				<tr>
+					<td>newPicker.value</td>
+					<td>数组每一项表示当前每列选定值</td>
+				</tr>
+				<tr>
+					<td>newPicker.displayValue</td>
+					<td>数组每一项表示当前每列显示值</td>
+				</tr>
+				<tr>
+					<td>newPicker.opened</td>
+					<td>true,设置选择器是打开状态</td>
+				</tr>
+				<tr>
+					<td>newPicker.inline</td>
+					<td>true,设置选择器是内联状态</td>
+				</tr>
+				<tr>
+					<td>newPicker.cols</td>
+					<td>指定选择器列。每一列也有自己的方法和属性（参照下面 列 的方法和属性）</td>
+				</tr>
+				<tr>
+					<td>newPicker.container</td>
+					<td>KDOM 选择器HTML实例对象</td>
+				</tr>
+				<tr>
+                  <th colspan="2">方法</th>
+                </tr>
+				<tr>
+					<td>newPicker.setValue(values, duration)</td>
+					<td>设置新的选择器值。values - 每一项表示每一列的值。duration - transition 持续时间，单位 ms</td>
+				</tr>
+				<tr>
+					<td>newPicker.open()</td>
+					<td>打开选择器</td>
+				</tr>
+				<tr>
+					<td>newPicker.close()</td>
+					<td>关闭选择器</td>
+				</tr>
+				<tr>
+					<td>newPicker.destroy()</td>
+					<td>摧毁选择器实例并删除所有事件</td>
+				</tr>
+			</tbody>
+		</table>
+		
+		<h4>列的方法和属性</h4>
+		<p>在 newPicker.cols 阵列的每一列也有自己的有用的方法和属性：</p>
+		<pre><code>var newCol = newPicker.cols[0];</code></pre>
+		<table class="Table TableBor TableHover">
+			
+			<tbody>
+				<tr>
+                  <th colspan="2">属性</th>
+                </tr>
+				<tr>
+					<td>newCol.container</td>
+					<td>KDOM 选择器 列 的HTML实例对象</td>
+				</tr>
+				<tr>
+					<td>newCol.items</td>
+					<td>KDOM 选择器 列 的每项HTML实例对象</td>
+				</tr>
+				<tr>
+					<td>newCol.value</td>
+					<td>当前选定的列值</td>
+				</tr>
+				<tr>
+					<td>newCol.displayValue</td>
+					<td>当前选定的列显示值</td>
+				</tr>
+				<tr>
+					<td>newCol.activeIndex</td>
+					<td>当前选定的/活动项目的索引号</td>
+				</tr>
+				<tr>
+                  <th colspan="2">方法</th>
+                </tr>
+				<tr>
+					<td>newCol.setValue(value, duration)</td>
+					<td>设置新的选择器列的值。values - 是一个新的值。duration - transition 持续时间，单位 ms</td>
+				</tr>
+				<tr>
+					<td>newCol.replaceValues(values, displayValues)</td>
+					<td>更换新的 values 和 displayvalues</td>
+				</tr>
+			</tbody>
+		</table>
+		<h4>存取选择器实例</h4>
+		<p>如果选择器为内联选择器时，可以从HTML容器访问选择器实例。</p>
+		<pre><code>var newPicker = $$('.PickerModalInline')[0].KLTPicker;</code></pre>
+		<h4>实例</h4>
+		<div id="ks-picker-date-container" style="width:50%"></div>
+	</div>
+
+</div>
+<script type="text/javascript" src="../../../script/kelat.js"></script>
+<script type="text/javascript">
+$$(document).ready(function(){
+var today = new Date();
+				var pickerInline = $$.picker({
+					input: '#ks-picker-date',
+					container: '#ks-picker-date-container',
+					toolbar: false,
+					rotateEffect: true,
+					value: [today.getMonth(), today.getDate(), today.getFullYear(), today.getHours(), (today.getMinutes() < 10 ? '0' + today.getMinutes() : today.getMinutes())],
+					onChange: function (picker, values, displayValues) {
+						var daysInMonth = new Date(picker.value[2], picker.value[0]*1 + 1, 0).getDate();
+						if (values[1] > daysInMonth) {
+							picker.cols[1].setValue(daysInMonth);
+						}
+					},
+					formatValue: function (p, values, displayValues) {
+						return displayValues[0] + ' ' + values[1] + ', ' + values[2] + ' ' + values[3] + ':' + values[4];
+					},
+					cols: [
+						// Months
+						{
+							values: ('0 1 2 3 4 5 6 7 8 9 10 11').split(' '),
+							displayValues: ('一月 二月 三月 四月 五月 六月 七月 八月 九月 十月 十一月 十二月').split(' '),
+							textAlign: 'left'
+						},
+						// Days
+						{
+							values: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31],
+						},
+						// Years
+						{
+							values: (function () {
+								var arr = [];
+								for (var i = 1950; i <= 2030; i++) { arr.push(i); }
+								return arr;
+							})(),
+						},
+						// Space divider
+						{
+							divider: true,
+							content: '&nbsp;&nbsp;'
+						},
+						// Hours
+						{
+							values: (function () {
+								var arr = [];
+								for (var i = 0; i <= 23; i++) { arr.push(i); }
+								return arr;
+							})(),
+						},
+						// Divider
+						{
+							divider: true,
+							content: ':'
+						},
+						// Minutes
+						{
+							values: (function () {
+								var arr = [];
+								for (var i = 0; i <= 59; i++) { arr.push(i < 10 ? '0' + i : i); }
+								return arr;
+							})(),
+						}
+					]
+				});
+});
+</script>
+</div>
+</body>
+</html>

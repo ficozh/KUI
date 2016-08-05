@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,height=device-height,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<title>badge(数字角标)</title>
+<!-- KUI -->
+<link rel="stylesheet" href="../../../style/kelat.css" media="all"/>
+<!-- 扩展样式 -->
+<link rel="stylesheet" href="../../../style/theme.css" media="all"/>
+<link rel="stylesheet" href="../../../style/icon.css" media="all"/>
+
+<style>
+        .GridShow .Row{margin-bottom:10px;}
+        .GridShow [class^=Col]{border:1px solid #ccc;background-color:#fff;line-height:20px;padding:5px;margin-bottom:5px}
+    </style>
+</head>
+<body >
+<div>
+   <div class="HelpBox">
+   
+        <h2>badge(数字角标)</h2>
+        <h3>概述</h3>
+        <div class="desc">
+        <p>角标用途很广泛，经常用到的小红点就是数字角标实现的。</p>
+        </div>
+        <div class="example GridShow">
+        <h3>实例</h3>
+        <h4>角标:</h4>
+        <pre><code>&lt;span class="Badge">1&lt;/span>
+&lt;span class="Badge BadgePrimary">123&lt;/span>
+&lt;span class="Badge BadgeSuccess">3&lt;/span>
+&lt;span class="Badge BadgeWarning">41&lt;/span>
+&lt;span class="Badge BadgeDanger">99+&lt;/span>
+</code></pre>      
+		<div class="MTB MR">
+			<span class="Badge">1</span>
+			<span class="Badge BadgePrimary">123</span>
+			<span class="Badge BadgeSuccess">3</span>
+			<span class="Badge BadgeWarning">41</span>
+			<span class="Badge BadgeDanger">99+</span>
+		</div>
+        <ul class="List">
+        <li>Badge - 默认角标。</li>
+        <li>BadgePrimary - 蓝色角标。</li>
+        <li>BadgeSuccess - 绿色角标。</li>
+        <li>BadgeWarning - 黄色角标。</li>
+        <li>BadgeDanger - 红色角标。</li>
+        </ul>
+		
+        <h4>图标角标:</h4>
+		<div style="width:24px;height:24px;" class="PosR">
+			<span class="Badge BadgeDanger" style="position:absolute;top:-3px;right:-3px;">1</span>
+			<img class="Icon" src="../../../images/svg/iconfont-notice.svg" alt="通知">
+		</div>
+		
+		
+		
+   </div>
+
+</div>
+
+</div>
+</body>
+</html>

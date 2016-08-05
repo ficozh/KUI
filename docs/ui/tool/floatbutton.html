@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,height=device-height,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<title>floatbutton(浮动按钮)</title>
+<!-- KUI -->
+<link rel="stylesheet" href="../../../style/kelat.css" media="all"/>
+<!-- 扩展样式 -->
+<link rel="stylesheet" href="../../../style/theme.css" media="all"/>
+<link rel="stylesheet" href="../../../style/icon.css" media="all"/>
+<style>
+.ColorPalette{height:35px;
+line-height:35px;
+text-align:center;}
+.GridShow .Row{margin-bottom:10px;}
+.GridShow [class^=Col]{line-height:20px;padding:5px;margin-bottom:5px}
+</style>
+</head>
+<body >
+<div>
+   <div class="HelpBox" id="WrapperArea">
+   
+	<h2>$$.floatButton(item);</h2>
+		<h3>概述</h3>
+		<div class="desc">
+		<p>在特殊情况下，我们需要增加隐藏的菜单来展示更多的信息时，使用此函数。</p>
+		
+		</div>
+	<div class="example">
+		<h3>实例</h3>
+		<pre><code>$$.floatButton(item);</code></pre>
+		<ul class="List">
+			<li>item - 显示HTML元素或CSS选择器。</li>
+		</ul>
+	<div class="SpeedDial">
+		<a href="javascript:;" class="FloatingButton FloaButton">
+			<i class="Icon IconPlus"></i>
+			<i class="Icon IconClose"></i>
+		</a>
+		<div class="SpeedDialButtons">
+			<a href="javascript:;"><i class="Icon IconEmail"></i></a>
+			<a href="javascript:;"><i class="Icon IconCalendar"></i></a>
+			<a href="javascript:;"><i class="Icon IconShare"></i></a>
+		</div>
+	</div>
+</div>
+<script type="text/javascript" src="../../../script/kelat.js"></script>
+<script type="text/javascript">
+$$(document).ready(function(){
+	$$.floatButton('.FloaButton');
+});
+</script>
+</div>
+</body>
+</html>

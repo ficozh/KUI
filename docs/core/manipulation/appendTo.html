@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,height=device-height,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<title>appendTo(content)</title>
+<!-- KUI -->
+<link rel="stylesheet" href="../../../style/kelat.css" media="all"/>
+<!-- 扩展样式 -->
+<link rel="stylesheet" href="../../../style/theme.css" media="all"/>
+
+</head>
+<body >
+<div>
+   <div class="HelpBox">
+   
+    <h2><span>返回值:kelat</span>appendTo(content)</h2>
+    <h3>概述</h3>
+    <div class="desc">
+      <p>把所有匹配的元素追加到另一个指定的元素元素集合中。</p>
+      <div class="longdesc">
+        <p>实际上，使用这个方法是颠倒了常规的$$(A).append(B)的操作，即不是把B追加到A中，而是把A追加到B中。</p>
+      </div>
+    </div>
+    <h3>参数</h3>
+    <div class="parameter">
+      <h4><strong>content</strong><span>String</span></h4>
+      <p>用于被追加的内容</p>
+    </div>
+    <div class="example">
+      <h3>示例</h3>
+      <span id="f_ad2"></span>
+      <h4>描述:</h4>
+      <p>把所有段落追加到div的元素中。</p>
+      <h5>HTML 代码:</h5>
+      <pre><code>&lt;p&gt;I would like to say: &lt;/p&gt;
+&lt;div&gt;&lt;/div&gt;&lt;div&gt;&lt;/div&gt;</code></pre>
+      <h5>js 代码:</h5>
+      <pre><code>$("p").appendTo("div");</code></pre>
+      <h5>结果:</h5>
+      <pre><code>&lt;div&gt;&lt;p&gt;I would like to say: &lt;/p&gt;&lt;/div&gt;
+&lt;div&gt;&lt;p&gt;I would like to say: &lt;/p&gt;&lt;/div&gt;</code></pre>
+    </div>
+
+</div>
+
+</div>
+</body>
+</html>

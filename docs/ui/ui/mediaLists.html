@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,height=device-height,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<title>mediaLists(媒体列表)</title>
+<!-- KUI -->
+<link rel="stylesheet" href="../../../style/kelat.css" media="all"/>
+<!-- 扩展样式 -->
+<link rel="stylesheet" href="../../../style/theme.css" media="all"/>
+
+</head>
+<body >
+<div>
+   <div class="HelpBox">
+   
+    <h2>mediaLists(媒体列表)</h2>
+    <h3>概述</h3>
+    <div class="desc">
+      <p>多媒体列表是列表的扩展，它是为了展示更复杂的数据比如产品，服务，用户等等。多媒体列表有额外的“MediaList”类</p>
+      <p>当然，它的布局更为复杂</p>
+    </div>
+    <div class="example GridShow">
+      <h3>实例</h3>
+      <h4>媒体列表:</h4>
+      <pre><code>&lt;div class="ListBlock MediaList">
+    &lt;ul>
+        &lt;li class="ListItem">
+            &lt;div class="ItemCon">
+                &lt;div class="ItemMedia">&lt;img src="path/to/img.jpg" width="80"/>&lt;/div>
+                &lt;div class="ItemInner">
+                    &lt;div class="ItemTitleRow">
+                        &lt;div class="ItemTitle">Element title&lt;/div>
+                        &lt;div class="ItemAfter">Element label&lt;/div>
+                    &lt;/div>
+                    &lt;div class="ItemSubtitle">Subtitle&lt;/div>
+                    &lt;div class="ItemText">Additional description text&lt;/div>
+                &lt;/div>
+            &lt;/div>
+        &lt;/li>
+    &lt;/ul>
+&lt;/div>
+</code></pre>
+<p>其中：</p>
+<ul class="List">
+	<li>ItemCon - ItemMedia 和 ItemInner 的主要弹性(flex)容器。必选元素。</li>
+	<li>ItemMedia - 媒体元素（如图标，图片等）的容器。可选元素。</li>
+	<li>ItemInner - ItemTitle和 ItemAfter 的主要弹性(flex)容器。必选元素。</li>
+	<li>ItemTitle - 单行列表项目标题。必选元素。</li>
+	<li>ItemAfter - 列表项目标签。可以包含任意额外的html元素（例如标签文本、徽章、switch/toggle、按钮等等）。可选元素。</li>
+	<li>ItemSubtitle - 额外的单行标题。可选元素。</li>
+	<li>ItemText - 额外的两行布局的容器，用来放置细节描述。可选元素。</li>
+</ul>
+
+      <h4>展示效果:</h4>
+<ul class="ListBlock MediaList"  style="width:50%">
+		<li class="ListItem">
+			<a href="javascript:;" class="ItemLink ItemCon InkRipple">
+				<div class="ItemMedia"><img src="../../../images/01.jpg" width="80"/></div>
+				<div class="ItemInner">
+					<div class="ItemTitleRow">
+						<div class="ItemTitle">黄色潜艇</div>
+						<div class="ItemAfter">$15</div>
+					</div>
+					<div class="ItemSubtitle">披头士乐队</div>
+					<div class="ItemText">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla sagittis tellus ut turpis condimentum, ut dignissim lacus tincidunt. Cras dolor metus, ultrices condimentum sodales sit amet, pharetra sodales eros. Phasellus vel felis tellus. Mauris rutrum ligula nec dapibus feugiat. In vel dui laoreet, commodo augue id, pulvinar lacus.</div>
+				</div>
+			</a>
+		</li>
+		<li class="ListItem">
+			<a href="javascript:;" class="ItemLink ItemCon InkRipple">
+				<div class="ItemMedia"><img src="../../../images/02.jpg" width="80"></div>
+				<div class="ItemInner">
+					<div class="ItemTitleRow">
+						<div class="ItemTitle">不要阻止我</div>
+						<div class="ItemAfter">$22</div>
+					</div>
+					<div class="ItemSubtitle">女王</div>
+					<div class="ItemText">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla sagittis tellus ut turpis condimentum, ut dignissim lacus tincidunt. Cras dolor metus, ultrices condimentum sodales sit amet, pharetra sodales eros. Phasellus vel felis tellus. Mauris rutrum ligula nec dapibus feugiat. In vel dui laoreet, commodo augue id, pulvinar lacus.</div>
+				</div>
+			</a>
+		</li>
+	</ul>
+	
+	<h4>简化的列表</h4>
+      <pre><code>&lt;div class="ListBlock MediaList">
+    &lt;ul>
+        &lt;li class="ListItem">
+            &lt;div class="ItemCon">
+                &lt;div class="ItemMedia">&lt;img src="path/to/img.jpg" width="44"/>&lt;/div>
+                &lt;div class="ItemInner">
+                    &lt;div class="ItemTitleRow">
+                        &lt;div class="ItemTitle">Element title&lt;/div>
+                        &lt;div class="ItemAfter">Element label&lt;/div>
+                    &lt;/div>
+                    &lt;div class="ItemSubtitle">Subtitle&lt;/div>
+                &lt;/div>
+            &lt;/div>
+        &lt;/li>
+    &lt;/ul>
+&lt;/div>
+</code></pre>
+	<ul class="ListBlock MediaList"  style="width:50%">
+		<li class="ListItem">
+			<a href="javascript:;" class="ItemCon InkRipple">
+				<div class="ItemMedia"><img src="../../../images/01.jpg" width="44"/></div>
+				<div class="ItemInner">
+					<div class="ItemTitleRow">
+						<div class="ItemTitle">黄色潜艇</div>
+						<div class="ItemAfter">$15</div>
+					</div>
+					<div class="ItemSubtitle">披头士乐队</div>
+				</div>
+			</a>
+		</li>
+		<li class="ListItem">
+			<a href="javascript:;" class="ItemCon InkRipple">
+				<div class="ItemMedia"><img src="../../../images/02.jpg" width="44"></div>
+				<div class="ItemInner">
+					<div class="ItemTitleRow">
+						<div class="ItemTitle">不要阻止我</div>
+						<div class="ItemAfter">$22</div>
+					</div>
+					<div class="ItemSubtitle">女王</div>
+				</div>
+			</a>
+		</li>
+	</ul>
+
+	<h4>内嵌列表区域:</h4>
+	<p>列表区还有内嵌（非全屏）样式，只需要给列表区域元素加上“Inset”类</p>
+	<pre><code>&lt;div class="ListBlock MediaList Inset"></code></pre> 
+	<h4>圆角块级列表区域:</h4>
+	<p>增加“ListCard”可以使列表以圆角块级展示</p>
+	<pre><code>&lt;div class="ListBlock MediaList ListCard"></code></pre> 
+	<h4>自适应列表区域:</h4>
+	<p>平板电脑适用</p>
+	<pre><code>&lt;div class="ListBlock MediaList ListTabletInset"></code></pre> 
+	
+	
+	
+	
+	
+   </div>
+
+</div>
+</div>
+</body>
+</html>

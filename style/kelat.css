@@ -2510,11 +2510,43 @@ box-sizing:border-box;}
 .BackToTop{position:fixed;bottom:1em;right:1em;z-index:490;cursor:pointer;width:45px;height:45px;}
 .BackToTop .IGoTop{display:block;width:100%;height:100%;background:url(../images/backToTop.png) no-repeat center;background-size:cover;opacity:0.8;}
 
-.Sidebar{position:absolute;top:0;left:0;padding-top:50px;min-height:100%;width:230px;z-index:810;
+/**/
+.MainHeader{position:relative;max-height:100px;z-index:100?border-bottom:1px solid #eee;}
+.MainHeader .Logo{display:block;float:left;height:50px;line-height:50px;text-align:center;font-size:20px;width:230px;padding:0 15px;overflow:hidden;
+-webkit-transition: width .3s ease-in-out;
+-o-transition: width .3s ease-in-out;
+transition: width .3s ease-in-out;
+}
+.MainHeader .HeaderNavBar{margin-bottom:0;margin-left:230px;border:none;min-height:50px;border-radius:0;
+-webkit-transition: margin-left .3s ease-in-out;
+-o-transition: margin-left .3s ease-in-out;
+transition: margin-left .3s ease-in-out;
+}
+.MainHeader .HeaderNavBar .SidebarToggle{float:left;
+background-color:transparent;
+background-image:none;
+padding:15px 15px;
+}
+.MainHeader .HeaderNavBar .HeaderNavBarMenu{float:right;display:block;height:100%;}
+.MainHeader .HeaderNavBar .NavBarNav{height:100%;line-height:20px;padding:15px;float: left;display:block}
+.MainHeader .HeaderNavBar .NavBarNav .NavItem{float:left;text-align:center;padding:0 12px;display:block;}
+.MainHeader .HeaderNavBar .NavBarNav .NavItem a{display:block;}
+.MainWrapper{position:relative}
+.MainWrapper .MainSidebar{position:absolute;top:0;left:0;min-height:100%;width:230px;z-index:60;
 -webkit-transition:-webkit-transform .3s ease-in-out,width .3s ease-in-out;
    -moz-transition:-moz-transform .3s ease-in-out,width .3s ease-in-out;
 	 -o-transition:-o-transform .3s ease-in-out,width .3s ease-in-out;
 		transition:transform .3s ease-in-out,width .3s ease-in-out;}
+		
+.MainWrapper .ContentWrapper{position:relative;margin-left:230px;z-index:70;min-height:100%;
+-webkit-transition:-webkit-transform .3s ease-in-out,margin .3s ease-in-out;
+   -moz-transition:-moz-transform .3s ease-in-out,margin .3s ease-in-out;
+	 -o-transition:-o-transform .3s ease-in-out,margin .3s ease-in-out;
+		transition:transform .3s ease-in-out,margin .3s ease-in-out;
+}
+
+
+
 
 /*下拉刷新*/
 .PullToRefresh .PullToRefreshList{margin:10px 0}
@@ -2582,11 +2614,45 @@ height:		   calc(100% + 44px);
 }
 
 /* 小屏幕 平板，最大 768px */
+@media (min-width: 768px){
+.SidebarCollapse .MainWrapper .ContentWrapper{margin-left:50px!important;z-index:840;}
+.SidebarCollapse .MainWrapper .MainSidebar{width:50px!important;z-index:850;
+-webkit-transform: translate(0, 0);
+-ms-transform: translate(0, 0);
+-o-transform: translate(0, 0);
+transform: translate(0, 0);}
+.SidebarCollapse .MainHeader .HeaderNavBar{margin-left:50px}
+.SidebarCollapse .MainHeader .Logo{width:50px;padding:0 5px;}
+}
+
+
+
+@media screen and (max-width: 768px) {
+	
+.MainWrapper .MainSidebar{-webkit-transform: translate(-230px, 0);
+-ms-transform: translate(-230px, 0);
+-o-transform: translate(-230px, 0);
+transform: translate(-230px, 0);}
+.MainWrapper .ContentWrapper,
+.MainHeader .HeaderNavBar{margin-left:0;}
+.SidebarOpen .MainSidebar{
+-webkit-transform: translate(0, 0);
+-ms-transform: translate(0, 0);
+-o-transform: translate(0, 0);
+transform: translate(0, 0);
+}
+.SidebarOpen .ContentWrapper{
+-webkit-transform:translate(230px, 0);
+-ms-transform:translate(230px, 0);
+-o-transform:translate(230px, 0);
+transform:translate(230px, 0);}
+
+.MainHeader .Logo,
+.MainHeader .HeaderNavBar{width:100%;float:none;}
+	
+}
+/* 小屏幕 平板，最大 768px */
 @media screen and (min-width: 641px) and (max-width: 768px) {
-	.Sidebar{-webkit-transform: translate(-230px, 0);
-    -ms-transform: translate(-230px, 0);
-    -o-transform: translate(-230px, 0);
-    transform: translate(-230px, 0);}
     .ListBlock.ListTabletInset{overflow:hidden;margin-left:12px;margin-right:12px;border-radius:6px}
     .ListBlock.ListTabletInset:before,
     .ListBlock.ListTabletInset:after{display:none}

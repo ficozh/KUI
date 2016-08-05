@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,height=device-height,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<title>button(按钮)</title>
+<!-- KUI -->
+<link rel="stylesheet" href="../../../style/kelat.css" media="all"/>
+<!-- 扩展样式 -->
+<link rel="stylesheet" href="../../../style/theme.css" media="all"/>
+<style>
+		.GridShow .Row{margin-bottom:10px;}
+		.GridShow [class^=Col]{border:1px solid #ccc;background-color:#fff;line-height:20px;padding:5px;margin-bottom:5px}
+	</style>
+</head>
+<body >
+<div>
+   <div class="HelpBox">
+   
+    <h2>button(按钮)</h2>
+    <h3>概述</h3>
+    <div class="desc">
+      <p>使用下面列出的类可以快速创建一个带有预定义样式的按钮</p>
+    </div>
+    <h3></h3>
+    <div class="parameter">
+      <h4><strong>class</strong></h4>
+      <p>Btn 默认按钮</p>
+      <p>BtnPrimary 首选按钮</p>
+      <p>BtnSuccess 成功按钮</p>
+      <p>BtnWarning 警告按钮</p>
+      <p>BtnDanger 危险按钮</p>
+      <p>BtnGray 灰色按钮</p>
+      <h4><strong>尺寸</strong></h4>
+      <p>BtnBig 大尺寸按钮</p>
+      <p>BtnSmall 小尺寸按钮</p>
+    </div>
+    <div class="example GridShow">
+      <h3>实例</h3>
+      <h4>按钮:</h4>
+	  <pre><code>&lt;a href="javascript:;" class="Btn">默认按钮&lt;/a>
+&lt;a href="javascript:;" class="Btn BtnPrimary">首选按钮&lt;/a>
+&lt;a href="javascript:;" class="Btn BtnSuccess">成功按钮&lt;/a>
+&lt;a href="javascript:;" class="Btn BtnWarning">警告按钮&lt;/a>
+&lt;a href="javascript:;" class="Btn BtnDanger">危险按钮&lt;/a>
+&lt;a href="javascript:;" class="Btn BtnGray">灰色按钮&lt;/a>
+</code></pre>
+		<h4>展示效果:</h4>
+		<div>
+		  <a href="javascript:;" class="Btn">默认按钮</a>
+		  <a href="javascript:;" class="Btn BtnPrimary">首选按钮</a>
+		  <a href="javascript:;" class="Btn BtnSuccess">成功按钮</a>
+		  <a href="javascript:;" class="Btn BtnWarning">警告按钮</a>
+		  <a href="javascript:;" class="Btn BtnDanger">危险按钮</a>
+		  <a href="javascript:;" class="Btn BtnGray">灰色按钮</a>
+		</div>
+      <h4>无底色按钮（使用父元素的背景色）:</h4>
+<pre><code>&lt;a href="javascript:;" class="Btn BtnLine">默认按钮&lt;/a>
+&lt;a href="javascript:;" class="Btn BtnLine BtnPrimary">首选按钮&lt;/a>
+&lt;a href="javascript:;" class="Btn BtnLine BtnSuccess">成功按钮&lt;/a>
+&lt;a href="javascript:;" class="Btn BtnLine BtnWarning">警告按钮&lt;/a>
+&lt;a href="javascript:;" class="Btn BtnLine BtnDanger">危险按钮&lt;/a>
+&lt;a href="javascript:;" class="Btn BtnLine BtnGray">灰色按钮&lt;/a>
+</code></pre>
+		<h4>展示效果:</h4>
+		<div>
+		  <a href="javascript:;" class="Btn BtnLine">默认按钮</a>
+		  <a href="javascript:;" class="Btn BtnLine BtnPrimary">首选按钮</a>
+		  <a href="javascript:;" class="Btn BtnLine BtnSuccess">成功按钮</a>
+		  <a href="javascript:;" class="Btn BtnLine BtnWarning">警告按钮</a>
+		  <a href="javascript:;" class="Btn BtnLine BtnDanger">危险按钮</a>
+		  <a href="javascript:;" class="Btn BtnLine BtnGray">灰色按钮</a>
+		</div>
+      <h4>按钮大小:</h4>
+	  <pre><code>&lt;a href="javascript:;" class="Btn BtnBig BtnPrimary">大尺寸按钮&lt;/a>
+&lt;a href="javascript:;" class="Btn BtnSmall BtnPrimary">小尺寸按钮&lt;/a>
+</code></pre>
+		<h4>展示效果:</h4>
+		<div>
+		  <a href="javascript:;" class="Btn BtnBig BtnPrimary">大尺寸按钮</a>
+		  <a href="javascript:;" class="Btn BtnSmall BtnPrimary">小尺寸按钮</a>
+		</div>
+		<h4>块级按钮:</h4>
+		<pre><code>&lt;a href="javascript:;" class="Btn BtnBig BtnPrimary BtnBlock">大尺寸块级按钮&lt;/a></code></pre>
+		<h4>展示效果:</h4>
+		<div>
+		<a href="javascript:;" class="Btn BtnBig BtnPrimary BtnBlock">大尺寸块级按钮</a>
+		</div>
+		<h4>带图标按钮，分左右两种显示方式:</h4>
+		<pre><code>&lt;a href="javascript:;" class="Btn">&lt;img class="BtnIconL" src="../../../images/svg/iconfont-dianhua.svg" alt="电话" width="16">默认按钮&lt;/a>
+&lt;a href="javascript:;" class="Btn">默认按钮&lt;img class="BtnIconR" src="../../../images/svg/iconfont-dianhua.svg" alt="电话" width="16">&lt;/a></code></pre>
+		<h4>展示效果:</h4>
+		<div>
+		<a href="javascript:;" class="Btn"><img class="BtnIconL" src="../../../images/svg/iconfont-dianhua.svg" alt="电话" width="16">默认按钮</a>
+		<a href="javascript:;" class="Btn">默认按钮<img class="BtnIconR" src="../../../images/svg/iconfont-dianhua.svg" alt="电话" width="16"></a>
+		<h4>带数字的按钮，分左右两种显示方式:</h4>
+		<pre><code>&lt;a href="javascript:;" class="Btn BtnSuccess">&lt;span class="Badge BadgeL">9&lt;/span>成功按钮&lt;/a>
+&lt;a href="javascript:;" class="Btn BtnPrimary">首选按钮&lt;span class="Badge BadgeR">9&lt;/span>&lt;/a></code></pre>
+		<h4>展示效果:</h4>
+		<div>
+		<a href="javascript:;" class="Btn BtnSuccess"><span class="Badge BadgeL">9</span>成功按钮</a>
+		<a href="javascript:;" class="Btn BtnPrimary">首选按钮<span class="Badge BadgeR">9</span></a>
+		</div>
+		<h4>禁用状态:</h4>
+		<pre><code>&lt;button type="button" class="Btn" disabled="disabled">默认按钮&lt;/button></code></pre>
+		<h4>展示效果:</h4>
+		<div>
+		<button type="button" class="Btn" disabled="disabled">默认按钮</button>
+		</div>
+    </div>
+
+</div>
+
+</div>
+</body>
+</html>

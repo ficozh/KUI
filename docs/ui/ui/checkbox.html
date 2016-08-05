@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,height=device-height,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<title>checkbox radio(多选和单选)</title>
+<!-- KUI -->
+<link rel="stylesheet" href="../../../style/kelat.css" media="all"/>
+<!-- 扩展样式 -->
+<link rel="stylesheet" href="../../../style/theme.css" media="all"/>
+
+<style>
+        .GridShow .Row{margin-bottom:10px;}
+        .GridShow [class^=Col]{border:1px solid #ccc;background-color:#fff;line-height:20px;padding:5px;margin-bottom:5px}
+    </style>
+</head>
+<body >
+<div>
+   <div class="HelpBox">
+   
+        <h2>checkbox radio(多选和单选)</h2>
+        <h3>概述</h3>
+        <div class="desc">
+        <p>这是一个 列表 拓展，可以用来创建单选和复选按钮组。</p>
+        </div>
+        <div class="example GridShow">
+        <h3>实例</h3>
+        <h4>复选框组:</h4>
+        <pre><code>&lt;ul class="ListBlock">
+    ...
+    &lt;li class="ListItem">
+        &lt;label class="ItemCon InkRipple LabelCheckbox">
+            &lt;input type="checkbox" name="mycheckbox" value="Books">
+            &lt;div class="ItemMedia">
+                &lt;i class="Icon IconCheckbox">&lt;/i>
+            &lt;/div>
+            &lt;div class="ItemInner">
+                &lt;div class="ItemTitle">Movies&lt;/div>
+            &lt;/div>
+        &lt;/label>
+    &lt;/li>
+    ...
+&lt;/ul></code></pre>      
+        <ul class="ListBlock" style="width:50%">
+        <li class="ListItem">
+            <label class="ItemCon InkRipple LabelCheckbox">
+                <input type="checkbox" name="mycheckbox" value="Books">
+                <div class="ItemMedia">
+                    <i class="Icon IconCheckbox"></i>
+                </div>
+                <div class="ItemInner">
+                    <div class="ItemTitle">Books</div>
+                </div>
+            </label>
+        </li>
+        <li class="ListItem">
+            <label class="ItemCon InkRipple LabelCheckbox">
+                <input type="checkbox" name="mycheckbox" value="Books">
+                <div class="ItemMedia">
+                    <i class="Icon IconCheckbox"></i>
+                </div>
+                <div class="ItemInner">
+                    <div class="ItemTitle">Movies</div>
+                </div>
+            </label>
+        </li>
+        <li class="ListItem">
+            <label class="ItemCon InkRipple LabelCheckbox disabled">
+                <input type="checkbox" name="mycheckbox" value="Books">
+                <div class="ItemMedia">
+                    <i class="Icon IconCheckbox"></i>
+                </div>
+                <div class="ItemInner">
+                    <div class="ItemTitle">disabled</div>
+                </div>
+            </label>
+        </li>
+    </ul>
+        <ul class="List">
+        <li>ItemCon 应该是一个label 标签，并且有一个 "LabelCheckbox" class</li>
+        <li>Checkbox (&lt;input type="checkbox">) 必须是 "ItemCon" 的第一个子元素</li>
+        <li>Checkbox 图标必须在  ItemMedia 中 </li>
+        </ul>
+		
+        <h4>单选框组:</h4>
+		<pre><code>&lt;ul class="ListBlock" style="width:50%">
+    ...
+    &lt;li class="ListItem">
+        &lt;label class="ItemCon InkRipple LabelRadio">
+            &lt;input type="radio" name="myradio" value="Books">
+            &lt;div class="ItemInner">
+                &lt;div class="ItemTitle">Movies&lt;/div>
+            &lt;/div>
+        &lt;/label>
+    &lt;/li>
+   ...
+&lt;/ul></code></pre>
+		<ul class="ListBlock" style="width:50%">
+		<li class="ListItem">
+			<label class="ItemCon InkRipple LabelRadio">
+				<input type="radio" name="myradio" value="Books">
+				<div class="ItemInner">
+					<div class="ItemTitle">Books</div>
+				</div>
+			</label>
+		</li>
+		<li class="ListItem">
+			<label class="ItemCon InkRipple LabelRadio">
+				<input type="radio" name="myradio" value="Books">
+				<div class="ItemInner">
+					<div class="ItemTitle">Movies</div>
+				</div>
+			</label>
+		</li>
+		<li class="ListItem">
+			<label class="ItemCon InkRipple LabelRadio disabled">
+				<input type="radio" name="myradio" value="Books">
+				<div class="ItemInner">
+					<div class="ItemTitle">disabled</div>
+				</div>
+			</label>
+		</li>
+	</ul>
+        <ul class="List">
+        <li>ItemCon 应该是一个label 标签，并且有一个 "LabelRadio" class</li>
+        <li>Radio (&lt;input type="radio">) 必须是 "ItemCon" 的第一个子元素</li>
+        </ul>
+        <h4>媒体列表选框:</h4>
+        <pre><code>&lt;ul class="ListBlock MediaList">
+    ...
+    &lt;li class="ListItem">
+        &lt;label class="ItemCon InkRipple LabelCheckbox">
+            &lt;input type="checkbox" name="mycheckbox" value="Books">
+            &lt;div class="ItemMedia">
+                &lt;i class="Icon IconCheckbox">&lt;/i>
+            &lt;/div>
+            &lt;div class="ItemInner">
+                &lt;div class="ItemTitleRow">
+                    &lt;div class="ItemTitle">Movies&lt;/div>
+                    &lt;div class="ItemAfter">&lt;/div>
+                &lt;/div>
+                &lt;div class="ItemSubtitle">&lt;/div>
+                &lt;div class="ItemText">&lt;/div>
+            &lt;/div>
+        &lt;/label>
+    &lt;/li>
+    ...
+&lt;/ul></code></pre>      
+		
+<ul class="ListBlock MediaList" style="width:50%">
+		<li class="ListItem">
+			<label class="ItemCon InkRipple LabelCheckbox">
+				<input type="checkbox" name="mycheckbox" value="Books">
+				<div class="ItemMedia"><i class="Icon IconCheckbox"></i></div>
+				<div class="ItemInner">
+					<div class="ItemTitleRow">
+						<div class="ItemTitle">黄色潜艇</div>
+						<div class="ItemAfter">$15</div>
+					</div>
+					<div class="ItemSubtitle">披头士乐队</div>
+					<div class="ItemText">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla sagittis tellus ut turpis condimentum, ut dignissim lacus tincidunt. Cras dolor metus, ultrices condimentum sodales sit amet, pharetra sodales eros. Phasellus vel felis tellus. Mauris rutrum ligula nec dapibus feugiat. In vel dui laoreet, commodo augue id, pulvinar lacus.</div>
+				</div>
+			</label>
+		</li>
+		<li class="ListItem">
+			<label class="ItemCon InkRipple LabelCheckbox">
+				<input type="checkbox" name="mycheckbox" value="Books">
+				<div class="ItemMedia"><i class="Icon IconCheckbox"></i></div>
+				<div class="ItemInner">
+					<div class="ItemTitleRow">
+						<div class="ItemTitle">不要阻止我</div>
+						<div class="ItemAfter">$22</div>
+					</div>
+					<div class="ItemSubtitle">女王</div>
+					<div class="ItemText">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla sagittis tellus ut turpis condimentum, ut dignissim lacus tincidunt. Cras dolor metus, ultrices condimentum sodales sit amet, pharetra sodales eros. Phasellus vel felis tellus. Mauris rutrum ligula nec dapibus feugiat. In vel dui laoreet, commodo augue id, pulvinar lacus.</div>
+				</div>
+			</label>
+		</li>
+	</ul>		
+        <ul class="List">
+        <li>媒体列表分单选和复选两种方式，具体可参照单选框组和复选框组</li>
+        </ul>
+    
+    
+   </div>
+
+</div>
+
+</div>
+</body>
+</html>

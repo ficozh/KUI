@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,height=device-height,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<title>infinite scroll(无限滚动)</title>
+<!-- KUI -->
+<link rel="stylesheet" href="../../../style/kelat.css" media="all"/>
+<!-- 扩展样式 -->
+<link rel="stylesheet" href="../../../style/theme.css" media="all"/>
+<style>
+.ColorPalette{height:35px;
+line-height:35px;
+text-align:center;}
+.GridShow .Row{margin-bottom:10px;}
+.GridShow [class^=Col]{line-height:20px;padding:5px;margin-bottom:5px}
+</style>
+</head>
+<body >
+<div>
+   <div class="HelpBox" id="WrapperArea">
+   
+	<h2>$$.infiniteScroll(Boolean,fn)</h2>
+		<h3>概述</h3>
+		<div class="desc">
+		<p>无限滚动用来在页面滚动到接近底部时加载新内容或进行其他操作</p>
+	</div>
+	<div class="example">
+        <h4>你只需在可滚动的容器上添加“InfiniteScroll”类</h4>
+		<pre><code>&lt;div class="InfiniteScroll" data-distance="100">
+    ... 
+&lt;/div></code></pre>
+		<h4>如果你需要使用无限滚动页面顶部的（当它滚动到顶部），你需要添加额外的“InfiniteScrollTop”类</h4>
+		<pre><code>&lt;div class="InfiniteScroll InfiniteScrollTop" data-distance="100">
+    ... 
+&lt;/div></code></pre>
+
+	<h4>无限滚动API</h4>
+	<p>$$.attachInfiniteScroll() - 添加无限滚动事件监听器</p>
+
+	<p>$$.detachInfiniteScroll() - 删除无限滚动事件监听器</p>
+
+	<h4>无限滚动事件</h4>
+	<table class="Table TableBor TableHover">
+
+			<thead>
+				<tr>
+					<th>事件名称</th>
+					<th>Target</th>
+					<th>描述</th>
+				</tr>
+			</thead>
+
+			<tbody>
+				<tr>
+					<td>infinite</td>
+					<td>可无限滚动的容器
+&lt;div class="InfiniteScroll"></td>
+					<td>事件会在页面滚动至距底部还有特定距离（可在data-distance中配置）时触发</td>
+				</tr>
+			</tbody>
+		</table>
+		<p class="CO">注意，仅在你使用$$.detachInfiniteScroll方法删除过事件监听器后，才可能需要使用$$.attachInfiniteScroll方法。</p>
+	
+		<div class="InfiniteScroll " data-distance='50' style="width:50%">
+		<ul class="ListBlock MediaList PullToRefreshList">
+			<li class="ListItem">
+				<div href="javascript:;" class="ItemCon InkRipple">
+					<div class="ItemMedia"><img src="../../../images/02.jpg" width="44"/></div>
+					<div class="ItemInner">
+						<div class="ItemTitleRow">
+							<div class="ItemTitle">不要阻止我</div>
+						</div>
+						<div class="ItemSubtitle">女王</div>
+					</div>
+				</div>
+			</li>
+			<li class="ListItem">
+				<div href="javascript:;" class="ItemCon InkRipple">
+					<div class="ItemMedia"><img src="../../../images/02.jpg" width="44"/></div>
+					<div class="ItemInner">
+						<div class="ItemTitleRow">
+							<div class="ItemTitle">不要阻止我</div>
+						</div>
+						<div class="ItemSubtitle">女王</div>
+					</div>
+				</div>
+			</li>
+			<li class="ListItem">
+				<div href="javascript:;" class="ItemCon InkRipple">
+					<div class="ItemMedia"><img src="../../../images/02.jpg" width="44"/></div>
+					<div class="ItemInner">
+						<div class="ItemTitleRow">
+							<div class="ItemTitle">不要阻止我</div>
+						</div>
+						<div class="ItemSubtitle">女王</div>
+					</div>
+				</div>
+			</li>
+			<li class="ListItem">
+				<div href="javascript:;" class="ItemCon InkRipple">
+					<div class="ItemMedia"><img src="../../../images/02.jpg" width="44"/></div>
+					<div class="ItemInner">
+						<div class="ItemTitleRow">
+							<div class="ItemTitle">不要阻止我</div>
+						</div>
+						<div class="ItemSubtitle">女王</div>
+					</div>
+				</div>
+			</li>
+			<li class="ListItem">
+				<div href="javascript:;" class="ItemCon InkRipple">
+					<div class="ItemMedia"><img src="../../../images/02.jpg" width="44"/></div>
+					<div class="ItemInner">
+						<div class="ItemTitleRow">
+							<div class="ItemTitle">不要阻止我</div>
+						</div>
+						<div class="ItemSubtitle">女王</div>
+					</div>
+				</div>
+			</li>
+			<li class="ListItem">
+				<div href="javascript:;" class="ItemCon InkRipple">
+					<div class="ItemMedia"><img src="../../../images/02.jpg" width="44"/></div>
+					<div class="ItemInner">
+						<div class="ItemTitleRow">
+							<div class="ItemTitle">不要阻止我</div>
+						</div>
+						<div class="ItemSubtitle">女王</div>
+					</div>
+				</div>
+			</li>
+			<li class="ListItem">
+				<div href="javascript:;" class="ItemCon InkRipple">
+					<div class="ItemMedia"><img src="../../../images/02.jpg" width="44"/></div>
+					<div class="ItemInner">
+						<div class="ItemTitleRow">
+							<div class="ItemTitle">不要阻止我</div>
+						</div>
+						<div class="ItemSubtitle">女王</div>
+					</div>
+				</div>
+			</li>
+			<li class="ListItem">
+				<div href="javascript:;" class="ItemCon InkRipple">
+					<div class="ItemMedia"><img src="../../../images/02.jpg" width="44"/></div>
+					<div class="ItemInner">
+						<div class="ItemTitleRow">
+							<div class="ItemTitle">不要阻止我</div>
+						</div>
+						<div class="ItemSubtitle">女王</div>
+					</div>
+				</div>
+			</li>
+			<li class="ListItem">
+				<div href="javascript:;" class="ItemCon InkRipple">
+					<div class="ItemMedia"><img src="../../../images/02.jpg" width="44"/></div>
+					<div class="ItemInner">
+						<div class="ItemTitleRow">
+							<div class="ItemTitle">不要阻止我</div>
+						</div>
+						<div class="ItemSubtitle">女王</div>
+					</div>
+				</div>
+			</li>
+		</ul>
+	</div>
+
+	
+	
+	
+	
+   </div>
+
+</div>
+<script type="text/javascript" src="../../../script/kelat.js"></script>
+<script type="text/javascript">
+$$(document).ready(function(){
+	$$.infiniteScroll(true,function(){
+		var loading = false;
+		 $$('.InfiniteScroll').on('infinite', function () {
+			//如果加载正在进行中，退出
+			if(loading){
+				return;
+			};
+			$$.indicator()
+			//设置加载触发器
+			loading = true;
+			//请求文件数据
+			$$.get('../Infinite.json', function (data) {
+				setTimeout(function(){
+					
+					loading = false;
+					if (data === '') {
+						//没有更多的负载，停止滚动事件，以防止不必要的负荷
+						$$.detachInfiniteScroll();
+					}else {
+						var html = '<li class="ListItem">\
+								<div href="javascript:;" class="ItemCon InkRipple">\
+									<div class="ItemMedia"><img src="../../../images/02.jpg" width="44"></div>\
+									<div class="ItemInner">\
+										<div class="ItemTitleRow">\
+											<div class="ItemTitle">不要阻222止我</div>\
+										</div>\
+										<div class="ItemSubtitle">111女王</div>\
+									</div>\
+								</div>\
+							</li>'
+						//将加载的元素添加到列表块
+						$$('.InfiniteScroll .ListBlock').append(html);
+					}
+					
+					$$.unIndicator()
+				},0)
+			});
+		});
+	})
+});
+</script>
+</div>
+</body>
+</html>

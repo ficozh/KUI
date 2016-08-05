@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,height=device-height,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<title>$$.extend(object)</title>
+
+<!-- KUI -->
+<link rel="stylesheet" href="../../../style/kelat.css" media="all"/>
+<!-- 扩展样式 -->
+<link rel="stylesheet" href="../../../style/theme.css" media="all"/>
+
+</head>
+<body >
+<div>
+   <div class="HelpBox">
+    <h2><span>返回值:kelat</span>$$.extend(object)</h2>
+    <h3>概述</h3>
+    <div class="desc">
+      <p>扩展kelat对象本身。</p>
+      <div class="longdesc">
+        <p>用来在kelat命名空间上增加新函数。 </p>
+      </div>
+    </div>
+    <h3>参数</h3>
+    <div class="parameter">
+      <h4><strong>object</strong><span>Object</span></h4>
+      <p>用以扩展 kelat 对象</p>
+    </div>
+    <div class="example">
+      <h3>示例</h3>
+      <span id="f_ad2"></span>
+      <h4>描述:</h4>
+      <p>在kelat命名空间上增加两个函数。</p>
+      <h5>js 代码:</h5>
+      <pre><code>$$.extend({
+  min: function(a, b) { return a &lt; b ? a : b; },
+  max: function(a, b) { return a &gt; b ? a : b; }
+});</code></pre>
+      <h5>结果:</h5>
+      <pre><code>$$.min(2,3); // =&gt; 2
+$$.max(4,5); // =&gt; 5</code></pre>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

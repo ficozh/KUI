@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,height=device-height,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<title>once(type,[sel],fn)</title>
+
+<!-- KUI -->
+<link rel="stylesheet" href="../../../style/kelat.css" media="all"/>
+<!-- 扩展样式 -->
+<link rel="stylesheet" href="../../../style/theme.css" media="all"/>
+
+</head>
+<body >
+<div>
+   <div class="HelpBox">
+   
+    <h2><span>返回值:kelat</span>once(type,[sel],fn)</h2>
+    <h3>概述</h3>
+    <div class="desc">
+      <p>为每一个匹配元素的特定事件（像click）绑定一个一次性的事件处理函数。</p>
+      <div class="longdesc">
+        <p>在每个对象上，这个事件处理函数只会被执行一次。其他规则与bind()函数相同。这个事件处理函数会接收到一个事件对象，可以通过它来阻止（浏览器）默认的行为。如果既想取消默认的行为，又想阻止事件起泡，这个事件处理函数必须返回false。</p>
+      </div>
+    </div>
+    <h3>参数</h3>
+    <div class="parameter">
+      <h4><strong>type,[sel],fn</strong><span>String,Object,Function</span></h4>
+      <p><strong>type:</strong>添加到元素的一个或多个事件。由空格分隔多个事件。必须是有效的事件。</p>
+      <p><strong>sel:</strong>一个选择器字符串用于过滤器的触发事件的选择器元素的后代。如果选择的 null或省略，当它到达选定的元素，事件总是触发。</p>
+      <p><strong>fn:</strong>每当事件触发时执行的函数。</p>
+    </div>
+    <div class="example">
+      <h3>示例</h3>
+      <span id="f_ad2"></span>
+      <h4>描述:</h4>
+      <p>当所有段落被第一次点击的时候，显示所有其文本。</p>
+      <h5>js 代码:</h5>
+      <pre><code>$$("p").one("click", function(){
+  alert( $$(this).text() );
+});</code></pre>
+    </div>
+
+</div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,height=device-height,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<title>$$.post(url,[data],[callback])</title>
+
+<!-- KUI -->
+<link rel="stylesheet" href="../../../style/kelat.css" media="all"/>
+<!-- 扩展样式 -->
+<link rel="stylesheet" href="../../../style/theme.css" media="all"/>
+
+</head>
+<body >
+<div>
+   <div class="HelpBox">
+   
+   <h2><span>返回值:XMLHttpRequest</span>$$.post(url,[data],[callback])</h2>
+    <h3>概述</h3>
+    <div class="desc">
+      <p>通过远程 HTTP POST 请求载入信息。</p>
+      <div class="longdesc">
+        <p>这是一个简单的 POST 请求功能以取代复杂 $.ajax 。请求成功时可调用回调函数。如果需要在出错时执行函数，请使用 $.ajax。</p>
+      </div>
+    </div>
+    <h3>参数</h3>
+    <div class="parameter">
+      <h4><strong>url,[data],[callback]</strong><span>String,Map,Function,String</span></h4>
+      <p><strong>url</strong>:发送请求地址。</p>
+      <p><strong>data</strong>:待发送 Key/value 参数。</p>
+      <p><strong>callback</strong>:发送成功时回调函数。</p>
+    </div>
+    <div class="example">
+      <h3>示例</h3>
+      <span id="f_ad2"></span>
+      <h4>1描述:</h4>
+      <p>请求 test.php 网页，忽略返回值：</p>
+      <h5>js 代码:</h5>
+      <pre><code>$$.post("test.php");</code></pre>
+      <h4>2描述:</h4>
+      <p>请求 test.php 页面，并一起发送一些额外的数据（同时仍然忽略返回值）：</p>
+      <h5>js 代码:</h5>
+      <pre><code>$$.post("test.php", { name: "John", time: "2pm" } );</code></pre>
+      <h4>3描述:</h4>
+      <p>向服务器传递数据数组（同时仍然忽略返回值）：</p>
+      <h5>js 代码:</h5>
+      <pre><code>$$.post("test.php", { 'choices[]': ["Jon", "Susan"] });</code></pre>
+      <h4>4描述:</h4>
+      <p>使用 ajax 请求发送表单数据：</p>
+      <h5>js 代码:</h5>
+      <pre><code>$$.post("test.php", $("#testform").serialize());</code></pre>
+      <h4>5描述:</h4>
+      <p>输出来自请求页面 test.php 的结果（HTML 或 XML，取决于所返回的内容）：</p>
+      <h5>js 代码:</h5>
+      <pre><code>$$.post("test.php", function(data){
+   alert("Data Loaded: " + data);
+ });</code></pre>
+      <h4>6描述:</h4>
+      <p>向页面 test.php 发送数据，并输出结果（HTML 或 XML，取决于所返回的内容）：</p>
+      <h5>js 代码:</h5>
+      <pre><code>$$.post("test.php", { name: "John", time: "2pm" },
+   function(data){
+     alert("Data Loaded: " + data);
+   });</code></pre>
+    </div>
+
+</div>
+
+</div>
+</body>
+</html>

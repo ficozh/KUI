@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,height=device-height,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<title>index([selector|element])</title>
+
+<!-- KUI -->
+<link rel="stylesheet" href="../../../style/kelat.css" media="all"/>
+<!-- 扩展样式 -->
+<link rel="stylesheet" href="../../../style/theme.css" media="all"/>
+
+</head>
+<body >
+<div>
+   <div class="HelpBox">
+    <h2><span class="FR">返回值:Number</span>index([selector|element])</h2>
+    <h3>概述</h3>
+    <div class="desc">
+      <p>搜索匹配的元素，并返回相应元素的索引值，从0开始计数。</p>
+      <div class="longdesc">
+        <p>如果不给 .index() 方法传递参数，那么返回值就是这个kelat对象集合中第一个元素相对于其同辈元素的位置。<br />
+          &nbsp;	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;如果参数是一组DOM元素或者kelat对象，那么返回值就是传递的元素相对于原先集合的位置。<br />
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;如果参数是一个选择器，那么返回值就是原先元素相对于选择器匹配元素中的位置。如果找不到匹配的元素，则返回-1。
+          
+          具体请参考示例。 </p>
+      </div>
+    </div>
+    <h3>参数</h3>
+    <div class="parameter">
+      <h4><strong>index()</strong></h4>
+      <h4><strong>selector</strong><span>Selector</span></h4>
+      <p>一个选择器，代表一个kelat对象，将会从这个对象中查找元素。</p>
+      <h4><strong>element</strong><span>Element</span></h4>
+      <p>获得 index 位置的元素。可以是 DOM 元素或 kelat 选择器。</p>
+    </div>
+    <div class="example">
+      <h3>示例</h3>
+      <span id="f_ad2"></span>
+      <h4>描述:</h4>
+      <p>查找元素的索引值</p>
+      <h5>HTML 代码:</h5>
+      <pre><code>&lt;ul&gt;
+  &lt;li id="foo"&gt;foo&lt;/li&gt;
+  &lt;li id="bar"&gt;bar&lt;/li&gt;
+  &lt;li id="baz"&gt;baz&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+      <h5>js 代码:</h5>
+      <pre><code>$$('li').index(document.getElementById('bar')); //1，传递一个DOM对象，返回这个对象在原先集合中的索引位置
+$$('li').index($$('#bar')); //1，传递一个kelat对象
+$$('li').index($$('li:gt(0)')); //1，传递一组kelat对象，返回这个对象中第一个元素在原先集合中的索引位置
+$$('#bar').index('li'); //1，传递一个选择器，返回#bar在所有li中的做引位置
+$$('#bar').index(); //1，不传递参数，返回这个元素在同辈中的索引位置。  </code></pre>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,height=device-height,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<title>$$.getJSON(url,[data],[callback])</title>
+
+<!-- KUI -->
+<link rel="stylesheet" href="../../../style/kelat.css" media="all"/>
+<!-- 扩展样式 -->
+<link rel="stylesheet" href="../../../style/theme.css" media="all"/>
+
+</head>
+<body >
+<div>
+   <div class="HelpBox">
+   
+    <h2><span>返回值:XMLHttpRequest</span>$$.getJSON(url,[data],[callback])</h2>
+    <h3>概述</h3>
+    <div class="desc">
+      <p>通过 HTTP GET 请求载入 JSON 数据。</p>
+    </div>
+    <h3>参数</h3>
+    <div class="parameter">
+      <h4><strong>url,[data],[callback]</strong><span>String,Map,Function</span><em>V1.0</em></h4>
+      <p><strong>url</strong>:发送请求地址。</p>
+      <p><strong>data</strong>:待发送 Key/value 参数。</p>
+      <p><strong>callback</strong>:载入成功时回调函数。</p>
+    </div>
+    <div class="example">
+      <h3>示例</h3>
+      <span id="f_ad2"></span>
+      <h4>描述:</h4>
+      <p>从 Flickr JSONP API 载入 4 张最新的关于猫的图片。</p>
+      <h5>HTML 代码:</h5>
+      <pre><code>&lt;div id="images"&gt;&lt;/div&gt;</code></pre>
+      <h5>js 代码:</h5>
+      <pre><code>$$.getJSON("http://api.flickr.com/services/feeds/photos_public.gne?tags=cat&amp;tagmode=any&amp;format
+=json&amp;jsoncallback=?", function(data){
+  $$.each(data.items, function(i,item){
+    $$("&lt;img/&gt;").attr("src", item.media.m).appendTo("#images");
+    if ( i == 3 ) return false;
+  });
+});</code></pre>
+      <h4>描述:</h4>
+      <p>从 test.js 载入 JSON 数据并显示 JSON 数据中一个 name 字段数据。</p>
+      <h5>js 代码:</h5>
+      <pre><code>$$.getJSON("test.js", function(json){
+  alert("JSON Data: " + json.users[3].name);
+});</code></pre>
+      <h4>描述:</h4>
+      <p>从 test.js 载入 JSON 数据，附加参数，显示 JSON 数据中一个 name 字段数据。</p>
+      <h5>js 代码:</h5>
+      <pre><code>$$.getJSON("test.js", { name: "John", time: "2pm" }, function(json){
+  alert("JSON Data: " + json.users[3].name);
+});</code></pre>
+    </div>
+
+</div>
+
+</div>
+</body>
+</html>

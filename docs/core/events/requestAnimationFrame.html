@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,height=device-height,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<title>requestAnimationFrame(fn)</title>
+
+
+<!-- KUI -->
+<link rel="stylesheet" href="../../../style/kelat.css" media="all"/>
+<!-- 扩展样式 -->
+<link rel="stylesheet" href="../../../style/theme.css" media="all"/>
+
+</head>
+<body >
+<div>
+   <div class="HelpBox">
+   
+    <h2><span>返回值:kelat</span>requestAnimationFrame(fn)</h2>
+    <h3>概述</h3>
+    <div class="desc">
+      <p>这个方法是用来在页面重绘之前，通知浏览器调用一个指定的函数，以满足开发者操作动画的需求。这个方法接受一个函数为参，该函数会在重绘前调用。</p>
+	  <p>注意: 如果想得到连贯的逐帧动画，函数中必须重新调用 requestAnimationFrame()</p>
+    </div>
+    <h3>参数</h3>
+    <div class="parameter">
+      <h4><strong>fn</strong><span>Function</span></h4>
+      <p>在每次需要重新绘制动画时,会调用这个参数所指定的函数。这个回调函数会收到一个参数，这个 DOMHighResTimeStamp 类型的参数指示当前时间距离开始触发 requestAnimationFrame 的回调的时间。</p>
+    </div>
+    <div class="example">
+      <h3>示例</h3>
+      <h5>js 代码:</h5>
+      <pre><code>function render(time){
+	  alert(time)
+}
+$$.requestAnimationFrame(render);
+</code></pre>
+    </div>
+
+</div>
+
+</div>
+</body>
+</html>
