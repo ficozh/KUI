@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>index([selector|element])</title>
+<title>infinite scroll(无限滚动)</title>
 <meta name="author" content="KUI 中文手册">
 <meta name="description" content="KUI 中文手册">
 <!-- KUI -->
@@ -63,109 +63,7 @@ text-align:center;}
 		</table>
 		<p class="CO">注意，仅在你使用$$.detachInfiniteScroll方法删除过事件监听器后，才可能需要使用$$.attachInfiniteScroll方法。</p>
 	
-		<div class="InfiniteScroll " data-distance='50' style="width:50%">
-		<ul class="ListBlock MediaList PullToRefreshList">
-			<li class="ListItem">
-				<div href="javascript:;" class="ItemCon InkRipple">
-					<div class="ItemMedia"><img src="../images/02.jpg" width="44"/></div>
-					<div class="ItemInner">
-						<div class="ItemTitleRow">
-							<div class="ItemTitle">不要阻止我</div>
-						</div>
-						<div class="ItemSubtitle">女王</div>
-					</div>
-				</div>
-			</li>
-			<li class="ListItem">
-				<div href="javascript:;" class="ItemCon InkRipple">
-					<div class="ItemMedia"><img src="../images/02.jpg" width="44"/></div>
-					<div class="ItemInner">
-						<div class="ItemTitleRow">
-							<div class="ItemTitle">不要阻止我</div>
-						</div>
-						<div class="ItemSubtitle">女王</div>
-					</div>
-				</div>
-			</li>
-			<li class="ListItem">
-				<div href="javascript:;" class="ItemCon InkRipple">
-					<div class="ItemMedia"><img src="../images/02.jpg" width="44"/></div>
-					<div class="ItemInner">
-						<div class="ItemTitleRow">
-							<div class="ItemTitle">不要阻止我</div>
-						</div>
-						<div class="ItemSubtitle">女王</div>
-					</div>
-				</div>
-			</li>
-			<li class="ListItem">
-				<div href="javascript:;" class="ItemCon InkRipple">
-					<div class="ItemMedia"><img src="../images/02.jpg" width="44"/></div>
-					<div class="ItemInner">
-						<div class="ItemTitleRow">
-							<div class="ItemTitle">不要阻止我</div>
-						</div>
-						<div class="ItemSubtitle">女王</div>
-					</div>
-				</div>
-			</li>
-			<li class="ListItem">
-				<div href="javascript:;" class="ItemCon InkRipple">
-					<div class="ItemMedia"><img src="../images/02.jpg" width="44"/></div>
-					<div class="ItemInner">
-						<div class="ItemTitleRow">
-							<div class="ItemTitle">不要阻止我</div>
-						</div>
-						<div class="ItemSubtitle">女王</div>
-					</div>
-				</div>
-			</li>
-			<li class="ListItem">
-				<div href="javascript:;" class="ItemCon InkRipple">
-					<div class="ItemMedia"><img src="../images/02.jpg" width="44"/></div>
-					<div class="ItemInner">
-						<div class="ItemTitleRow">
-							<div class="ItemTitle">不要阻止我</div>
-						</div>
-						<div class="ItemSubtitle">女王</div>
-					</div>
-				</div>
-			</li>
-			<li class="ListItem">
-				<div href="javascript:;" class="ItemCon InkRipple">
-					<div class="ItemMedia"><img src="../images/02.jpg" width="44"/></div>
-					<div class="ItemInner">
-						<div class="ItemTitleRow">
-							<div class="ItemTitle">不要阻止我</div>
-						</div>
-						<div class="ItemSubtitle">女王</div>
-					</div>
-				</div>
-			</li>
-			<li class="ListItem">
-				<div href="javascript:;" class="ItemCon InkRipple">
-					<div class="ItemMedia"><img src="../images/02.jpg" width="44"/></div>
-					<div class="ItemInner">
-						<div class="ItemTitleRow">
-							<div class="ItemTitle">不要阻止我</div>
-						</div>
-						<div class="ItemSubtitle">女王</div>
-					</div>
-				</div>
-			</li>
-			<li class="ListItem">
-				<div href="javascript:;" class="ItemCon InkRipple">
-					<div class="ItemMedia"><img src="../images/02.jpg" width="44"/></div>
-					<div class="ItemInner">
-						<div class="ItemTitleRow">
-							<div class="ItemTitle">不要阻止我</div>
-						</div>
-						<div class="ItemSubtitle">女王</div>
-					</div>
-				</div>
-			</li>
-		</ul>
-	</div>
+
 
 	
 	
@@ -174,50 +72,7 @@ text-align:center;}
    </div>
 
 </div>
-<script type="text/javascript" src="../script/kelat.js"></script>
-<script type="text/javascript">
-$$(document).ready(function(){
-	$$.infiniteScroll(true,function(){
-		var loading = false;
-		 $$('.InfiniteScroll').on('infinite', function () {
-			//如果加载正在进行中，退出
-			if(loading){
-				return;
-			};
-			$$.indicator()
-			//设置加载触发器
-			loading = true;
-			//请求文件数据
-			$$.get('../Infinite.json', function (data) {
-				setTimeout(function(){
-					
-					loading = false;
-					if (data === '') {
-						//没有更多的负载，停止滚动事件，以防止不必要的负荷
-						$$.detachInfiniteScroll();
-					}else {
-						var html = '<li class="ListItem">\
-								<div href="javascript:;" class="ItemCon InkRipple">\
-									<div class="ItemMedia"><img src="../images/02.jpg" width="44"></div>\
-									<div class="ItemInner">\
-										<div class="ItemTitleRow">\
-											<div class="ItemTitle">不要阻222止我</div>\
-										</div>\
-										<div class="ItemSubtitle">111女王</div>\
-									</div>\
-								</div>\
-							</li>'
-						//将加载的元素添加到列表块
-						$$('.InfiniteScroll .ListBlock').append(html);
-					}
-					
-					$$.unIndicator()
-				},0)
-			});
-		});
-	})
-});
-</script>
+
 </div>
 </body>
 </html>

@@ -2510,7 +2510,11 @@ box-sizing:border-box;}
 .BackToTop{position:fixed;bottom:1em;right:1em;z-index:490;cursor:pointer;width:45px;height:45px;}
 .BackToTop .IGoTop{display:block;width:100%;height:100%;background:url(../images/backToTop.png) no-repeat center;background-size:cover;opacity:0.8;}
 
-
+.Sidebar{position:absolute;top:0;left:0;padding-top:50px;min-height:100%;width:230px;z-index:810;
+-webkit-transition:-webkit-transform .3s ease-in-out,width .3s ease-in-out;
+   -moz-transition:-moz-transform .3s ease-in-out,width .3s ease-in-out;
+	 -o-transition:-o-transform .3s ease-in-out,width .3s ease-in-out;
+		transition:transform .3s ease-in-out,width .3s ease-in-out;}
 
 /*下拉刷新*/
 .PullToRefresh .PullToRefreshList{margin:10px 0}
@@ -2579,6 +2583,10 @@ height:		   calc(100% + 44px);
 
 /* 小屏幕 平板，最大 768px */
 @media screen and (min-width: 641px) and (max-width: 768px) {
+	.Sidebar{-webkit-transform: translate(-230px, 0);
+    -ms-transform: translate(-230px, 0);
+    -o-transform: translate(-230px, 0);
+    transform: translate(-230px, 0);}
     .ListBlock.ListTabletInset{overflow:hidden;margin-left:12px;margin-right:12px;border-radius:6px}
     .ListBlock.ListTabletInset:before,
     .ListBlock.ListTabletInset:after{display:none}

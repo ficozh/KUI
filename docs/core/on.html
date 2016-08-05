@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>index([selector|element])</title>
+<meta name="author" content="KUI 中文手册">
+<meta name="description" content="KUI 中文手册">
+<!-- KUI -->
+<link rel="stylesheet" href="../style/kelat.css" media="all"/>
+<!-- 扩展样式 -->
+<link rel="stylesheet" href="../style/theme.css" media="all"/>
+
+</head>
+<body >
+<div>
+   <div class="HelpBox">
+   
+    <h2><span>返回值:kelat</span>on(events,[selector],fn)</h2>
+    <h3>概述</h3>
+    <div class="desc">
+      <p>在选择元素上绑定一个或多个事件的事件处理函数。</p>
+    </div>
+    <h3>参数</h3>
+    <div class="parameter">
+      <h4><strong>events,[selector],[data],fn</strong></h4>
+      <p><strong>events</strong>:一个或多个用空格分隔的事件类型和可选的命名空间，如"click"或"keydown.myPlugin" 。</p>
+      <p><strong>selector</strong>:一个选择器字符串用于过滤器的触发事件的选择器元素的后代。如果选择的 null或省略，当它到达选定的元素，事件总是触发。</p>
+      <p><strong>selector</strong>:一个选择器字符串过滤选定的元素，该选择器的后裔元素将调用处理程序。如果选择是空或被忽略，当它到达选定的元素，事件总是触发。</p>
+    </div>
+    <div class="example">
+      <h3>示例</h3>
+      <span id="f_ad2"></span>
+      <h4>描述:</h4>
+      <p>点击“click”时显示一个段落的文本: </p>
+      <pre><code>$$("p").on("click", function(){
+alert( $$(this).text() );
+});</code></pre>
+      <p>仅取消默认操作 .preventDefault(). </p>
+      <pre><code>$$("form").on("submit", function(event) {
+  event.preventDefault();
+});</code></pre>
+      <p>停止提交事件从起泡没有防止形式提交，使用 .stopPropagation(). </p>
+      <pre><code>$$("form").on("submit", function(event) {
+  event.stopPropagation();
+});</code></pre>
+    </div>
+
+</div>
+
+</div>
+</body>
+</html>

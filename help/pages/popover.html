@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>index([selector|element])</title>
+<title>$$.popover()</title>
 <meta name="author" content="KUI 中文手册">
 <meta name="description" content="KUI 中文手册">
 <!-- KUI -->
@@ -59,33 +59,11 @@ text-align:center;}
     $$.popover($$('.SettingModeMenu'),$$(this))
 });
 </code></pre>
-		<button type="button" class="Btn BtnBig BtnBlock BtnPrimary InkRipple PopoverBtn">弹出菜单</button>
    </div>
-<div class="ModalPopover SettingModeMenu">
-  <div class="ModalPopoverInner">
-	<div class="ListBlock">
-	  <ul>
-		<li class="ListItem"><a href="javascript:;" class="ListButton ItemLink ItemCon">菜单1</a></li>
-		<li class="ListItem"><a href="javascript:;" class="ListButton ItemLink ItemCon">菜单2</a></li>
-		<li class="ListItem"><a href="javascript:;" class="ListButton ItemLink ItemCon">菜单3</a></li>
-		<li class="ListItem"><a href="javascript:;" class="ListButton ItemLink ItemCon">菜单4</a></li>
-		<li class="ListItem"><a href="javascript:;" class="ListButton ItemLink ItemCon">菜单5</a></li>
-		<li class="ListItem"><a href="javascript:;" class="ListButton ItemLink ItemCon">菜单6</a></li>
-	  </ul>
-	</div>
-  </div>
-</div>
+
 
 
 </div>
-<script type="text/javascript" src="../script/kelat.js"></script>
-<script type="text/javascript">
-$$(document).ready(function(){
-	$$(".PopoverBtn").on("click",function(){
-		$$.popover($$('.SettingModeMenu'),$$(this))
-	});
-});
-</script>
 </div>
 </body>
 </html>

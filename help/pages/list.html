@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>index([selector|element])</title>
+<title>list(列表)</title>
 <meta name="author" content="KUI 中文手册">
 <meta name="description" content="KUI 中文手册">
 <!-- KUI -->
@@ -53,51 +53,6 @@
 	<li>ItemAfter - 列表项目标签。可以包含任意额外的html元素（例如标签文本、徽章、switch/toggle、按钮等等）。可选元素。</li>
 </ul>
 
-      <h4>展示效果:</h4>
-      <ul class="ListBlock" style="width:50%">
-		<li class="ListItem">
-			<div class="ItemCon InkRipple">
-				<div class="ItemMedia">
-					<img class="Icon" src="../images/svg/iconfont-user.svg" alt="用户">
-				</div>
-				<div class="ItemInner">
-					<div class="ItemTitle">
-					Ivan Petrov
-					</div>
-					<div class="ItemAfter">
-					CEO
-					</div>
-				</div>
-			</div>
-		</li>
-		<li class="ListItem">
-			<div class="ItemCon InkRipple">
-				<div class="ItemMedia">
-					<img class="Icon" src="../images/svg/iconfont-user.svg" alt="用户">
-				</div>
-				<div class="ItemInner">
-					<div class="ItemTitle">
-					John Doe
-					</div>
-					<div class="ItemAfter">
-					<span class="Badge BadgePrimary">13</span>
-					</div>
-				</div>
-			</div>
-		</li>
-		<li class="ListItem">
-			<div class="ItemCon InkRipple">
-				<div class="ItemMedia">
-					<img class="Icon" src="../images/svg/iconfont-user.svg" alt="用户">
-				</div>
-				<div class="ItemInner">
-					<div class="ItemTitle">
-					Jenna Smith
-					</div>
-				</div>
-			</div>
-		</li>
-	</ul>
 		<h4>链接元素</h4>
 <pre><code>&lt;ul class="ListBlock">
     &lt;li class="ListItem">
@@ -116,70 +71,9 @@
 &lt;/ul>
 </code></pre>
 <p>当然，多数情况下我们需要将列表中的元素当作链接使用(a)，来指向其他页面或者其他数据。在这种情况下，我们需要将“ItemCon”包裹在&lt;a class="ItemLink">元素中：</p>
- <h4>展示效果:</h4>
-      <ul class="ListBlock" style="width:50%">
-		<li class="ListItem">
-			<div class="ItemCon ItemLink InkRipple">
-				<div class="ItemMedia">
-					<img class="Icon" src="../images/svg/iconfont-user.svg" alt="用户">
-				</div>
-				<div class="ItemInner">
-					<div class="ItemTitle">
-					John Doe
-					</div>
-					<div class="ItemAfter">
-					<span class="Badge BadgePrimary">13</span>
-					</div>
-				</div>
-			</div>
-		</li>
-		<li class="ListItem">
-			<div class="ItemCon ItemLink InkRipple">
-				<div class="ItemMedia">
-					<img class="Icon" src="../images/svg/iconfont-user.svg" alt="用户">
-				</div>
-				<div class="ItemInner">
-					<div class="ItemTitle">
-					Jenna Smith
-					</div>
-				</div>
-			</div>
-		</li>
-	</ul>
 	<h4>列表分割元素</h4>
 	<p>列表分隔元素是一个简单的列表元素并包含标题，它在视觉上分隔两个列表元素：</p>
 <pre><code>&lt;li class="ItemDivider">列表分割&lt;/li></code></pre>    
- <h4>展示效果:</h4>
-      <ul class="ListBlock" style="width:50%">
-		<li class="ListItem">
-			<div class="ItemCon ItemLink InkRipple">
-				<div class="ItemMedia">
-					<img class="Icon" src="../images/svg/iconfont-user.svg" alt="用户">
-				</div>
-				<div class="ItemInner">
-					<div class="ItemTitle">
-					John Doe
-					</div>
-					<div class="ItemAfter">
-					<span class="Badge BadgePrimary">13</span>
-					</div>
-				</div>
-			</div>
-		</li>
-		<li class="ItemDivider">列表分割</li>
-		<li class="ListItem">
-			<div class="ItemCon ItemLink InkRipple">
-				<div class="ItemMedia">
-					<img class="Icon" src="../images/svg/iconfont-user.svg" alt="用户">
-				</div>
-				<div class="ItemInner">
-					<div class="ItemTitle">
-					Jenna Smith
-					</div>
-				</div>
-			</div>
-		</li>
-	</ul>
 	<h4>分组列表</h4>
 	<p>有时我们需要将列表区里的元素分组，在这种情况下，我们需要用额外的分组元素：</p>
 	<pre><code>&lt;div class="ListBlock">
@@ -204,93 +98,6 @@
     &lt;/div>
 &lt;/div>
 </code></pre>
-	<h4>展示效果:</h4>
-	<div class="ListBlock" style="width:50%">
-		<div class="ListGroup">
-			<ul>
-				<li class="ListItem GroupTitle">
-					标题A
-				</li>
-				<li class="ListItem">
-					<div class="ItemCon InkRipple">
-						<div class="ItemInner">
-							<div class="ItemTitle">
-							Aaron 
-							</div>
-						</div>
-					</div>
-				</li>
-				<li class="ListItem">
-					<div class="ItemCon InkRipple">
-						<div class="ItemInner">
-							<div class="ItemTitle">
-							Abbie
-							</div>
-						</div>
-					</div>
-				</li>
-				<li class="ListItem">
-					<div class="ItemCon InkRipple">
-						<div class="ItemInner">
-							<div class="ItemTitle">
-							Adam
-							</div>
-						</div>
-					</div>
-				</li>
-			</ul>
-		</div>
-		<div class="ListGroup">
-			<ul>
-				<li class="ListItem GroupTitle">
-					标题B
-				</li>
-				<li class="ListItem">
-					<div class="ItemCon InkRipple">
-						<div class="ItemInner">
-							<div class="ItemTitle">
-							Bailey 
-							</div>
-						</div>
-					</div>
-				</li>
-				<li class="ListItem">
-					<div class="ItemCon InkRipple">
-						<div class="ItemInner">
-							<div class="ItemTitle">
-							Barclay
-							</div>
-						</div>
-					</div>
-				</li>
-			</ul>
-		</div>
-		<div class="ListGroup">
-			<ul>
-				<li class="ListItem GroupTitle">
-					标题C
-				</li>
-				<li class="ListItem">
-					<div class="ItemCon InkRipple">
-						<div class="ItemInner">
-							<div class="ItemTitle">
-							Caiden 
-							</div>
-						</div>
-					</div>
-				</li>
-				<li class="ListItem">
-					<div class="ItemCon InkRipple">
-						<div class="ItemInner">
-							<div class="ItemTitle">
-							Candy
-							</div>
-						</div>
-					</div>
-				</li>
-			</ul>
-		</div>
-	</div>
 	<h4>内嵌列表区域:</h4>
 	<p>列表区还有内嵌（非全屏）样式，只需要给列表区域元素加上“Inset”类</p>
 	<pre><code>&lt;div class="ListBlock Inset"></code></pre> 
@@ -308,7 +115,6 @@
    </div>
 
 </div>
-<script type="text/javascript" src="../script/kelat.js"></script>
 </div>
 </body>
 </html>

@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,height=device-height,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<title>事件速查表</title>
+<!-- KUI -->
+<link rel="stylesheet" href="style/kelat.css" media="all"/>
+<!-- 扩展样式 -->
+<link rel="stylesheet" href="style/theme.css" media="all"/>
+</head>
+<body>
+<div class="MainHeader">
+	<div class="Logo BBlue active">KUI</div>
+	<div class="HeaderNavBar BInfo active">
+		<div class="SidebarToggle"><a href="javascript:;" class="CW">菜单</a></div>
+		<div class="HeaderNavBarMenu">
+			<ul class="NavBarNav">
+			  <li class="NavItem CW TabLink Cur" data-tab="#event">事件速查表</li>
+			  <li class="NavItem CW TabLink Cur" data-tab="#ui">UI/控件速查表</li>
+			</ul>
+		</div>
+	</div>
+</div>
+<div class="MainWrapper  DocsRow">
+	<div class="MainSidebar Tabs">
+	
+		<div id="event" class="ListBlock AccordionList ListMenu Tab active">
+		  <ul>
+			<li class="AccordionItem ListItem">
+				<a href="javascript:;" class="ItemLink ItemCon">
+					<div class="ItemInner "> 
+					  <div class="ItemTitle">核心</div>
+					</div>
+				</a>
+			  <div class="AccordionItemCon">
+			  
+				  <ul class="ListGroup">
+					<li class="ListItem GroupTitle">核心函数</li>
+					<li><a href="core/kelat.html" target="iframename" class="ItemLink ItemCon InkRipple">kelat([sel,[context]])</a></li>
+					<li class="ListItem GroupTitle">kelat 对象访问</li>
+					<li><a href="core/each.html" target="iframename" class="ItemLink ItemCon InkRipple">each(callback)</a></li>
+					<li><a href="core/kelatindex.html" target="iframename" class="ItemLink ItemCon InkRipple">index([selector|element])</a></li>
+					<li class="ListItem GroupTitle">数据缓存</li>
+					<li><a href="core/data.html" target="iframename" class="ItemLink ItemCon InkRipple">data([key],[value])</a></li>
+					<li><a href="core/removeData.html" target="iframename" class="ItemLink ItemCon InkRipple">removeData([name|list])</a></li>
+					<li><a href="core/kelatdata.html" target="iframename" class="ItemLink ItemCon InkRipple">dataset()</a></li>
+					<li class="ListItem GroupTitle">插件机制</li>
+					<li><a href="core/kelat.fn.extend.html" target="iframename" class="ItemLink ItemCon InkRipple">kelat.fn.extend(object)</a></li>
+					<li><a href="core/kelat.extend.html" target="iframename" class="ItemLink ItemCon InkRipple">kelat.extend(object)</a></li>
+				  </ul>
+				  
+			  </div>
+			</li>
+			<li class="AccordionItem ListItem">
+				<a href="javascript:;" class="ItemLink ItemCon">
+					<div class="ItemInner "> 
+					  <div class="ItemTitle">属性</div>
+					</div>
+				</a>
+			  <div class="AccordionItemCon">
+			  
+				  <ul class="ListGroup">
+					<li class="ListItem GroupTitle">属性</li>
+					<li><a href="core/attr.html" target="iframename" class="ItemLink ItemCon InkRipple">attr(name|pro|key,val|fn)</a></li>
+					<li><a href="core/removeAttr.html" target="iframename" class="ItemLink ItemCon InkRipple">removeAttr(name)</a></li>
+					<li><a href="core/prop.html" target="iframename" class="ItemLink ItemCon InkRipple">prop(n|p|k,v|f)</a></li>
+					<li class="ListItem GroupTitle">CSS 类</li>
+					<li><a href="core/addClass.html" target="iframename" class="ItemLink ItemCon InkRipple">addClass(class|fn)</a></li>
+					<li><a href="core/removeClass.html" target="iframename" class="ItemLink ItemCon InkRipple">removeClass([class|fn])</a></li>
+					<li><a href="core/toggleClass.html" target="iframename" class="ItemLink ItemCon InkRipple">toggleClass(class|fn[,sw])</a></li>
+					<li><a href="core/hasClass.html" target="iframename" class="ItemLink ItemCon InkRipple">hasClass(class)</a></li>
+					<li class="ListItem GroupTitle">HTML代码/文本/值</li>
+					<li><a href="core/html.html" target="iframename" class="ItemLink ItemCon InkRipple">html([val|fn])</a></li>
+					<li><a href="core/text.html" target="iframename" class="ItemLink ItemCon InkRipple">text([val|fn])</a></li>
+					<li><a href="core/val.html" target="iframename" class="ItemLink ItemCon InkRipple">val([val|fn|arr])</a></li>
+				  </ul>
+				  
+			  </div>
+			</li>
+			<li class="AccordionItem ListItem">
+				<a href="javascript:;" class="ItemLink ItemCon">
+					<div class="ItemInner "> 
+					  <div class="ItemTitle">CSS</div>
+					</div>
+				</a>
+			  <div class="AccordionItemCon">
+			  
+				  <ul class="ListGroup">
+					<li class="ListItem GroupTitle">CSS</li>
+					<li><a href="core/css.html" target="iframename" class="ItemLink ItemCon InkRipple">css(name|pro|[,val|fn])</a></li>
+					<li class="ListItem GroupTitle">位置</li>
+					<li><a href="core/offset.html" target="iframename" class="ItemLink ItemCon InkRipple">offset([coordinates])</a></li>
+					<li><a href="core/position.html" target="iframename" class="ItemLink ItemCon InkRipple">position()</a></li>
+					<li><a href="core/scrollTo.html" target="iframename" class="ItemLink ItemCon InkRipple">scrollTo(left, top, duration,fn)</a></li>
+					<li><a href="core/scrollTop.html" target="iframename" class="ItemLink ItemCon InkRipple">scrollTop(position, duration,fn)</a></li>
+					<li><a href="core/scrollLeft.html" target="iframename" class="ItemLink ItemCon InkRipple">scrollLeft(position, duration,fn)</a></li>
+					<li class="ListItem GroupTitle">尺寸</li>
+					<li><a href="core/height.html" target="iframename" class="ItemLink ItemCon InkRipple">height()</a></li>
+					<li><a href="core/width.html" target="iframename" class="ItemLink ItemCon InkRipple">width()</a></li>
+					<li><a href="core/outerHeight.html" target="iframename" class="ItemLink ItemCon InkRipple">outerHeight(options)</a></li>
+					<li><a href="core/outerWidth.html" target="iframename" class="ItemLink ItemCon InkRipple">outerWidth(options)</a></li>
+				  </ul>
+				  
+			  </div>
+			</li>
+			<li class="AccordionItem ListItem">
+				<a href="javascript:;" class="ItemLink ItemCon">
+					<div class="ItemInner "> 
+					  <div class="ItemTitle">选择器</div>
+					</div>
+				</a>
+			  <div class="AccordionItemCon">
+			  
+				  <ul class="ListGroup">
+					<li class="ListItem GroupTitle">基本</li>
+					<li><a href="core/id.html" target="iframename" class="ItemLink ItemCon InkRipple">#id</a></li>
+					<li><a href="core/element.html" target="iframename" class="ItemLink ItemCon InkRipple">element</a></li>
+					<li><a href="core/class.html" target="iframename" class="ItemLink ItemCon InkRipple">.class</a></li>
+					<li><a href="core/all.html" target="iframename" class="ItemLink ItemCon InkRipple">*</a></li>
+					<li><a href="core/multiple.html" target="iframename" class="ItemLink ItemCon InkRipple">selector1,selector2,selectorN</a></li>
+			
+			
+					<li class="ListItem GroupTitle">层级</li>
+					<li><a href="core/descendant.html" target="iframename" class="ItemLink ItemCon InkRipple">ancestor descendant</a></li>
+					<li><a href="core/child.html" target="iframename" class="ItemLink ItemCon InkRipple">parent &gt;  child</a></li>
+					<li><a href="core/next_1.html" target="iframename" class="ItemLink ItemCon InkRipple">prev + next</a></li>
+					<li><a href="core/siblings_1.html" target="iframename" class="ItemLink ItemCon InkRipple">prev ~ siblings</a></li>
+					
+					<li class="ListItem GroupTitle">属性</li>
+					<li><a href="core/attributeHas.html" target="iframename" class="ItemLink ItemCon InkRipple">[attribute]</a></li>
+					<li><a href="core/attributeEquals.html" target="iframename" class="ItemLink ItemCon InkRipple">[attribute=value]</a></li>
+					<li><a href="core/attributeNotEqual.html" target="iframename" class="ItemLink ItemCon InkRipple">[attribute!=value]</a></li>
+					<li><a href="core/attributeStartsWith.html" target="iframename" class="ItemLink ItemCon InkRipple">[attribute^=value]</a></li>
+					<li><a href="core/attributeEndsWith.html" target="iframename" class="ItemLink ItemCon InkRipple">[attribute$=value]</a></li>
+					<li><a href="core/attributeContains.html" target="iframename" class="ItemLink ItemCon InkRipple">[attribute*=value]</a></li>
+					<li><a href="core/attributeMultiple.html" target="iframename" class="ItemLink ItemCon InkRipple">[attrSel1][attrSel2][attrSelN]</a></li>
+				  </ul>
+				  
+			  </div>
+			</li>
+			<li class="AccordionItem ListItem">
+				<a href="javascript:;" class="ItemLink ItemCon">
+					<div class="ItemInner "> 
+					  <div class="ItemTitle">效果</div>
+					</div>
+				</a>
+			  <div class="AccordionItemCon">
+			  
+				  <ul class="ListGroup">
+					<li><a href="core/show.html" target="iframename" class="ItemLink ItemCon InkRipple">show()</a></li>
+					<li><a href="core/hide.html" target="iframename" class="ItemLink ItemCon InkRipple">hide()</a></li>
+				  </ul>
+				  
+			  </div>
+			</li>
+			<li class="AccordionItem ListItem">
+				<a href="javascript:;" class="ItemLink ItemCon">
+					<div class="ItemInner "> 
+					  <div class="ItemTitle">文档处理</div>
+					</div>
+				</a>
+			  <div class="AccordionItemCon">
+			  
+				  <ul class="ListGroup">
+				    <li class="ListItem GroupTitle">内部插入</li>
+					<li><a href="core/append.html" target="iframename" class="ItemLink ItemCon InkRipple">append(content)</a></li>
+					<li><a href="core/appendTo.html" target="iframename" class="ItemLink ItemCon InkRipple">appendTo(content)</a></li>
+					<li><a href="core/prepend.html" target="iframename" class="ItemLink ItemCon InkRipple">prepend(content)</a></li>
+					<li><a href="core/prependTo.html" target="iframename" class="ItemLink ItemCon InkRipple">prependTo(content)</a></li>
+					
+				    <li class="ListItem GroupTitle">外部插入</li>
+					<li><a href="core/insertAfter.html" target="iframename" class="ItemLink ItemCon InkRipple">insertAfter(content)</a></li>
+					<li><a href="core/insertBefore.html" target="iframename" class="ItemLink ItemCon InkRipple">insertBefore(content)</a></li>
+					
+				    <li class="ListItem GroupTitle">删除</li>
+					<li><a href="core/remove.html" target="iframename" class="ItemLink ItemCon InkRipple">remove()</a></li>
+					<li><a href="core/detach.html" target="iframename" class="ItemLink ItemCon InkRipple">detach()</a></li>
+					
+				  </ul>
+				  
+			  </div>
+			</li>
+			<li class="AccordionItem ListItem">
+				<a href="javascript:;" class="ItemLink ItemCon">
+					<div class="ItemInner "> 
+					  <div class="ItemTitle">筛选</div>
+					</div>
+				</a>
+			  <div class="AccordionItemCon">
+			  
+				  <ul class="ListGroup">
+				    <li class="ListItem GroupTitle">过滤</li>
+					<li><a href="core/eq.html" target="iframename" class="ItemLink ItemCon InkRipple">eq(index|-index)</a></li>
+					<li><a href="core/filter.html" target="iframename" class="ItemLink ItemCon InkRipple">filter(fn)</a></li>
+					<li><a href="core/is.html" target="iframename" class="ItemLink ItemCon InkRipple">is(selector)</a></li>
+					
+				    <li class="ListItem GroupTitle">查找</li>
+					<li><a href="core/children.html" target="iframename" class="ItemLink ItemCon InkRipple">children([expr])</a></li>
+					<li><a href="core/closest.html" target="iframename" class="ItemLink ItemCon InkRipple">closest(selector)</a></li>
+					<li><a href="core/find.html" target="iframename" class="ItemLink ItemCon InkRipple">find(e|o|e)</a></li>
+					<li><a href="core/next.html" target="iframename" class="ItemLink ItemCon InkRipple">next([expr])</a></li>
+					<li><a href="core/nextAll.html" target="iframename" class="ItemLink ItemCon InkRipple">nextall([expr])</a></li>
+					<li><a href="core/parent.html" target="iframename" class="ItemLink ItemCon InkRipple">parent([expr])</a></li>
+					<li><a href="core/parents.html" target="iframename" class="ItemLink ItemCon InkRipple">parents([expr])</a></li>
+					<li><a href="core/prev.html" target="iframename" class="ItemLink ItemCon InkRipple">prev([expr])</a></li>
+					<li><a href="core/prevAll.html" target="iframename" class="ItemLink ItemCon InkRipple">prevall([expr])</a></li>
+					
+				  </ul>
+				  
+			  </div>
+			</li>
+			<li class="AccordionItem ListItem">
+				<a href="javascript:;" class="ItemLink ItemCon">
+					<div class="ItemInner "> 
+					  <div class="ItemTitle">ajax</div>
+					</div>
+				</a>
+			  <div class="AccordionItemCon">
+			  
+				  <ul class="ListGroup">
+				    <li class="ListItem GroupTitle">ajax 请求</li>
+					<li><a href="core/kelat.ajax.html" target="iframename" class="ItemLink ItemCon InkRipple">$$.ajax(url,[settings])</a></li>
+					<li><a href="core/kelat.get.html" target="iframename" class="ItemLink ItemCon InkRipple">$$.get(url,[data],[fn],[type])</a></li>
+					<li><a href="core/kelat.getJSON.html" target="iframename" class="ItemLink ItemCon InkRipple">$$.getJSON(url,[data],[fn])</a></li>
+					<li><a href="core/kelat.post.html" target="iframename" class="ItemLink ItemCon InkRipple">$$.post(url,[data],[fn],[type])</a></li>
+					
+				    <li class="ListItem GroupTitle">ajax 事件</li>
+					<li><a href="core/ajaxComplete.html" target="iframename" class="ItemLink ItemCon InkRipple">ajaxComplete(callback)</a></li>
+					<li><a href="core/ajaxError.html" target="iframename" class="ItemLink ItemCon InkRipple">ajaxError(callback)</a></li>
+					<li><a href="core/ajaxStart.html" target="iframename" class="ItemLink ItemCon InkRipple">ajaxStart(callback)</a></li>
+					<li><a href="core/ajaxSuccess.html" target="iframename" class="ItemLink ItemCon InkRipple">ajaxSuccess(callback)</a></li>
+					
+				  </ul>
+				  
+			  </div>
+			</li>
+			<li class="AccordionItem ListItem">
+				<a href="javascript:;" class="ItemLink ItemCon">
+					<div class="ItemInner "> 
+					  <div class="ItemTitle">工具</div>
+					</div>
+				</a>
+			  <div class="AccordionItemCon">
+			  
+				  <ul class="ListGroup">
+				    <li class="ListItem GroupTitle">设备/操作系统及特性探测</li>
+					<li><a href="core/kelatdevice.html" target="iframename" class="ItemLink ItemCon InkRipple">$$.fn.device</a></li>
+					
+				    <li class="ListItem GroupTitle">函数操作</li>
+					<li><a href="core/kelatnoop.html" target="iframename" class="ItemLink ItemCon InkRipple">$$.noop</a></li>
+			
+				    <li class="ListItem GroupTitle">测试操作</li>
+					<li><a href="core/kelattype.html" target="iframename" class="ItemLink ItemCon InkRipple">$$.type(obj)</a></li>
+					<li><a href="core/kelatisArray.html" target="iframename" class="ItemLink ItemCon InkRipple">$$.isArray(obj)</a></li>
+					<li><a href="core/kelatisNumber.html" target="iframename" class="ItemLink ItemCon InkRipple">$$.isNumber(value)</a></li>
+					<li><a href="core/kelatisFunction.html" target="iframename" class="ItemLink ItemCon InkRipple">$$.isFunction(obj)</a></li>
+					<li><a href="core/kelatisPlainObject.html" target="iframename" class="ItemLink ItemCon InkRipple">$$.isPlainObject(obj)</a></li>
+					<li><a href="core/kelatisWindow.html" target="iframename" class="ItemLink ItemCon InkRipple">$$.isWindow(obj)</a></li>
+			
+				    <li class="ListItem GroupTitle">字符串操作</li>
+					<li><a href="core/kelattrim.html" target="iframename" class="ItemLink ItemCon InkRipple">$$.trim(str)</a></li>
+			
+				    <li class="ListItem GroupTitle">URL</li>
+					<li><a href="core/kelatparam.html" target="iframename" class="ItemLink ItemCon InkRipple">$$.getUrlParams([url,type])</a></li>
+					
+				  </ul>
+				  
+			  </div>
+			</li>
+			<li class="AccordionItem ListItem">
+				<a href="javascript:;" class="ItemLink ItemCon">
+					<div class="ItemInner "> 
+					  <div class="ItemTitle">事件</div>
+					</div>
+				</a>
+			  <div class="AccordionItemCon">
+			  
+				  <ul class="ListGroup">
+				    <li class="ListItem GroupTitle">页面载入</li>
+					<li><a href="core/ready.html" target="iframename" class="ItemLink ItemCon InkRipple">ready(fn)</a></li>
+					
+				    <li class="ListItem GroupTitle">事件处理</li>
+					<li><a href="core/on.html" target="iframename" class="ItemLink ItemCon InkRipple">on(eve,[sel],fn)</a></li>
+					<li><a href="core/off.html" target="iframename" class="ItemLink ItemCon InkRipple">off(eve,[sel],[fn])</a></li>
+					<li><a href="core/bind.html" target="iframename" class="ItemLink ItemCon InkRipple">bind(type,[data],fn)</a></li>
+					<li><a href="core/unbind.html" target="iframename" class="ItemLink ItemCon InkRipple">unbind(t,[d|f])</a></li>
+					<li><a href="core/once.html" target="iframename" class="ItemLink ItemCon InkRipple">once(type,[sel],fn)</a></li>
+					<li><a href="core/trigger.html" target="iframename" class="ItemLink ItemCon InkRipple">trigger(type,[data])</a></li>
+					<li><a href="core/triggerHandler.html" target="iframename" class="ItemLink ItemCon InkRipple">triggerHandler(type, [data])</a></li>
+			
+				    <li class="ListItem GroupTitle">css3 特殊事件</li>
+					<li><a href="core/transitionEnd.html" target="iframename" class="ItemLink ItemCon InkRipple">transitionEnd(fn)</a></li>
+					<li><a href="core/animationEnd.html" target="iframename" class="ItemLink ItemCon InkRipple">animationEnd(fn)</a></li>
+					<li><a href="core/requestAnimationFrame.html" target="iframename" class="ItemLink ItemCon InkRipple">requestAnimationFrame(fn)</a></li>
+					<li><a href="core/cancelAnimationFrame.html" target="iframename" class="ItemLink ItemCon InkRipple">cancelAnimationFrame(fn)</a></li>
+			
+				    <li class="ListItem GroupTitle">事件集</li>
+					<li><a href="core/event.html" target="iframename" class="ItemLink ItemCon InkRipple">Event</a></li>
+			
+				    <li class="ListItem GroupTitle">tap 事件</li>
+					<li><a href="core/tap.html" target="iframename" class="ItemLink ItemCon InkRipple">tap(fn)</a></li>
+					<li><a href="core/singleTap.html" target="iframename" class="ItemLink ItemCon InkRipple">singleTap(fn)</a></li>
+					<li><a href="core/longTap.html" target="iframename" class="ItemLink ItemCon InkRipple">longTap(fn)</a></li>
+					<li><a href="core/doubleTap.html" target="iframename" class="ItemLink ItemCon InkRipple">doubleTap(fn)</a></li>
+			
+				    <li class="ListItem GroupTitle">swipe 事件</li>
+					<li><a href="core/swipe.html" target="iframename" class="ItemLink ItemCon InkRipple">swipe(fn)</a></li>
+					<li><a href="core/swipeLeft.html" target="iframename" class="ItemLink ItemCon InkRipple">swipeLeft(fn)</a></li>
+					<li><a href="core/swipeRight.html" target="iframename" class="ItemLink ItemCon InkRipple">swipeRight(fn)</a></li>
+					<li><a href="core/swipeUp.html" target="iframename" class="ItemLink ItemCon InkRipple">swipeUp(fn)</a></li>
+					<li><a href="core/swipeDown.html" target="iframename" class="ItemLink ItemCon InkRipple">swipeDown(fn)</a></li>
+					
+				  </ul>
+				  
+			  </div>
+			</li>
+		  </ul>
+		</div>
+		<div id="ui" class="ListBlock AccordionList ListMenu Tab">
+		  <ul>
+			<li class="AccordionItem ListItem">
+				<a href="javascript:;" class="ItemLink ItemCon">
+					<div class="ItemInner "> 
+					  <div class="ItemTitle">UI展示</div>
+					</div>
+				</a>
+			  <div class="AccordionItemCon">
+			  
+				  <ul class="ListGroup">
+					<li class="ListItem GroupTitle">布局</li>
+					<li><a href="pages/grid.html" target="iframename" class="ItemLink ItemCon InkRipple">grid(网格布局)</a></li>
+					<li><a href="pages/stylebox.html" target="iframename" class="ItemLink ItemCon InkRipple">stylebox(九宫格)</a></li>
+			
+					<li class="ListItem GroupTitle">按钮</li>
+					<li><a href="pages/button.html" target="iframename" class="ItemLink ItemCon InkRipple">button(按钮)</a></li>
+			
+					<li class="ListItem GroupTitle">列表</li>
+					<li><a href="pages/list.html" target="iframename" class="ItemLink ItemCon InkRipple">list(列表)</a></li>
+					<li><a href="pages/mediaLists.html" target="iframename" class="ItemLink ItemCon InkRipple">mediaLists(媒体列表)</a></li>
+					<li><a href="pages/timeline.html" target="iframename" class="ItemLink ItemCon InkRipple">timeline(时间轴)</a></li>
+					
+					<li class="ListItem GroupTitle">表单</li>
+					<li><a href="pages/form.html" target="iframename" class="ItemLink ItemCon InkRipple">表单布局</a></li>
+					<li><a href="pages/checkbox.html" target="iframename" class="ItemLink ItemCon InkRipple">checkbox  radio(多选和单选)</a></li>
+					<li><a href="pages/short.html" target="iframename" class="ItemLink ItemCon InkRipple">short(短标)</a></li>
+					<li><a href="pages/badge.html" target="iframename" class="ItemLink ItemCon InkRipple">badge(数字角标)</a></li>
+					<li><a href="pages/switch.html" target="iframename" class="ItemLink ItemCon InkRipple">switch(开关)</a></li>
+					
+					<li class="ListItem GroupTitle">文本/背景</li>
+					<li><a href="pages/background.html" target="iframename" class="ItemLink ItemCon InkRipple">background(背景颜色)</a></li>
+					<li><a href="pages/text.html" target="iframename" class="ItemLink ItemCon InkRipple">text(文本)</a></li>
+					
+					<li class="ListItem GroupTitle">图标</li>
+					<li><a href="pages/icon.html" target="iframename" class="ItemLink ItemCon InkRipple">图标库</a></li>
+					
+					<li class="ListItem GroupTitle">盒</li>
+					<li><a href="pages/box.html" target="iframename" class="ItemLink ItemCon InkRipple">box(盒)</a></li>
+			
+			
+				  </ul>
+				  
+			  </div>
+			</li>
+			
+			<li class="AccordionItem ListItem">
+				<a href="javascript:;" class="ItemLink ItemCon">
+					<div class="ItemInner "> 
+					  <div class="ItemTitle">UI组件</div>
+					</div>
+				</a>
+			  <div class="AccordionItemCon">
+			  
+				  <ul class="ListGroup">
+					<li class="ListItem GroupTitle">弹出框</li>
+					<li><a href="pages/alert.html" target="iframename" class="ItemLink ItemCon InkRipple">$$.alert(text,[title, callbackOk],[buttonText])</a></li>
+					<li><a href="pages/confirm.html" target="iframename" class="ItemLink ItemCon InkRipple">$$.confirm(text,[title, callbackOk, callbackCancel],[buttonText])</a></li>
+					<li><a href="pages/prompt.html" target="iframename" class="ItemLink ItemCon InkRipple">$$.prompt(text,time)</a></li>
+					<li><a href="pages/popup.html" target="iframename" class="ItemLink ItemCon InkRipple">$$.popup(obj|html)</a></li>
+					<li><a href="pages/popover.html" target="iframename" class="ItemLink ItemCon InkRipple">$$.popover(obj|html,target)</a></li>
+					<li><a href="pages/confirmModal.html" target="iframename" class="ItemLink ItemCon InkRipple">$$.confirmModal(text,[title, callbackOk, callbackCancel],[buttonText])</a></li>
+
+					<li class="ListItem GroupTitle">操作表单</li>
+					<li><a href="pages/actions.html" target="iframename" class="ItemLink ItemCon InkRipple">$$.actions(options)</a></li>
+
+					<li class="ListItem GroupTitle">列表操作</li>
+					<li><a href="pages/accordion.html" target="iframename" class="ItemLink ItemCon InkRipple">Accordion(折叠面板)</a></li>
+					<li><a href="pages/infiniteScroll.html" target="iframename" class="ItemLink ItemCon InkRipple">infinite scroll(无限滚动)</a></li>
+					<li><a href="pages/pullRefresh.html" target="iframename" class="ItemLink ItemCon InkRipple">pull to refresh(下拉刷新)</a></li>
+					<li><a href="pages/sortable.html" target="iframename" class="ItemLink ItemCon InkRipple">Sortable List(可排序列表)</a></li>
+					<li><a href="pages/swipeout.html" target="iframename" class="ItemLink ItemCon InkRipple">Swipeout Actions(滑动操作)</a></li>
+
+					<li class="ListItem GroupTitle">picker(选择器)</li>
+					<li><a href="pages/picker.html" target="iframename" class="ItemLink ItemCon InkRipple">picker(选择器)</a></li>
+
+					<li class="ListItem GroupTitle">tab(选项卡)</li>
+					<li><a href="pages/tab.html" target="iframename" class="ItemLink ItemCon InkRipple">tab(选项卡)</a></li>
+
+					<li class="ListItem GroupTitle">notify(通知)</li>
+					<li><a href="pages/notify.html" target="iframename" class="ItemLink ItemCon InkRipple">notify(通知)</a></li>
+
+					<li class="ListItem GroupTitle">loading(加载)</li>
+					<li><a href="pages/loading.html" target="iframename" class="ItemLink ItemCon InkRipple">loading(加载)</a></li>
+
+					<li class="ListItem GroupTitle">图片处理</li>
+					<li><a href="pages/imageLazyLoading.html" target="iframename" class="ItemLink ItemCon InkRipple">imageLazyLoading(图片延迟加载)</a></li>
+					<li><a href="pages/imgReady.html" target="iframename" class="ItemLink ItemCon InkRipple">imgReady(图片加载就绪事件)</a></li>
+					<li><a href="pages/imgRender.html" target="iframename" class="ItemLink ItemCon InkRipple">imgRender(图片渲染)</a></li>
+
+					<li class="ListItem GroupTitle">返回顶部</li>
+					<li><a href="pages/backToTop.html" target="iframename" class="ItemLink ItemCon InkRipple">backToTop(返回顶部)</a></li>
+
+					<li class="ListItem GroupTitle">数字输入框</li>
+					<li><a href="pages/numberbox.html" target="iframename" class="ItemLink ItemCon InkRipple">numberbox(数字输入框)</a></li>
+
+					<li class="ListItem GroupTitle">浮动按钮</li>
+					<li><a href="pages/floatbutton.html" target="iframename" class="ItemLink ItemCon InkRipple">floatbutton(浮动按钮)</a></li>
+			
+			
+				  </ul>
+				  
+			  </div>
+			</li>
+			<li class="AccordionItem ListItem">
+				<a href="javascript:;" class="ItemLink ItemCon">
+					<div class="ItemInner "> 
+					  <div class="ItemTitle">其他</div>
+					</div>
+				</a>
+			  <div class="AccordionItemCon">
+			  
+				  <ul class="ListGroup">
+					<li class="ListItem GroupTitle">作用域</li>
+					<li><a href="pages/scope.html" target="iframename" class="ItemLink ItemCon InkRipple">作用域</a></li>
+
+					<li class="ListItem GroupTitle">设置语言</li>
+					<li><a href="pages/language.html" target="iframename" class="ItemLink ItemCon InkRipple">设置语言</a></li>
+
+					<li class="ListItem GroupTitle">层边界</li>
+					<li><a href="pages/layerBorder.html" target="iframename" class="ItemLink ItemCon InkRipple">层边界</a></li>
+
+					<li class="ListItem GroupTitle">函数节流</li>
+					<li><a href="pages/throttle.html" target="iframename" class="ItemLink ItemCon InkRipple">函数节流 </a></li>
+
+					<li class="ListItem GroupTitle">html转义</li>
+					<li><a href="pages/escape.html" target="iframename" class="ItemLink ItemCon InkRipple">html转义</a></li>
+
+					<li class="ListItem GroupTitle">范围取值</li>
+					<li><a href="pages/range.html" target="iframename" class="ItemLink ItemCon InkRipple">指定范围取随机数</a></li>
+			
+				  </ul>
+				  
+			  </div>
+			</li>
+		  </ul>
+		
+		</div>
+	</div>
+	<div class="ContentWrapper">
+		<iframe src="core/kelat.html" frameBorder="0" width="100%" height="100%" name="iframename"></iframe>
+	</div>
+</div>
+
+
+<script type="text/javascript" src="../script/IE8-add-eventListener.js"></script>
+<script type="text/javascript" src="../script/kelat.js"></script>
+<script type="text/javascript">
+$$(document).ready(function(){
+	$$.initAccordion();
+	$$.tabs();
+	$$(".DocsRow").css("height",parseInt($$.fn.support.GetPageSize().WinH - $$(".MainHeader").outerHeight()-5)+'px')
+});
+</script>
+
+</body>
+</html>

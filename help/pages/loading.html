@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>index([selector|element])</title>
+<title>loading(加载)</title>
 <meta name="author" content="KUI 中文手册">
 <meta name="description" content="KUI 中文手册">
 <!-- KUI -->
@@ -47,25 +47,6 @@ text-align:center;}
     &lt;span class="Loading LoadingWhite LoadingBig">&lt;/span>
   &lt;/div>
 &lt;/div></code></pre>
-		<div class="Row">
-			<div class="Col25 TC">
-				<div>默认</div>
-				<span class="Loading"></span>
-			</div>
-			<div class="Col25 TC" style="background-color: #222; color:#fff;">
-				<div>白色</div>
-				<span class="Loading LoadingWhite"></span>
-			</div>
-			<div class="Col25 TC">
-				<div>大号</div>
-				<span class="Loading LoadingBig"></span>
-			</div>
-			<div class="Col25 TC" style="background-color: #222; color:#fff;">
-				<div>白色</div>
-				<span class="Loading LoadingWhite LoadingBig"></span>
-			</div>
-			
-		</div>
 		<ul class="List">
 			<li>Loading - 加载指示符</li>
 			<li>LoadingWhite - 白色的加载指示符</li>
@@ -79,44 +60,16 @@ text-align:center;}
 			<li>title - 预加载 Modal 的标题，可选。</li>
 		</ul>
 		<p>$$.unLoading() - 隐藏/关闭 预加载 modal. 因为 预加载 modal 没有任何按钮, 它应该用 JavaScript 来关闭</p>
-		<a href="javascript:;" class="Btn BtnPrimary LoadingOnClick">正在加载</a>
-		<a href="javascript:;" class="Btn BtnPrimary LoadingOnClickTi">自定义标题</a>
 		
 		<h4>指示器(indicator)</h4>
 		<p>如果你不需要用像预加载Modal这样如此大的modal 窗口去指示活动, 你可以使用简单并且小的指示器:</p>
 		<p>$$.indicator() - 显示指示器 Modal</p>
 		<p>$$.unIndicator() -  隐藏/关闭指示器 modal. 因为指示器modal没有任何按钮, 它需要用JavaScript来关闭</p>
-		<a href="javascript:;" class="Btn BtnPrimary Indicator">指示器</a>
 		
 		
 	</div>
 
 </div>
-<script type="text/javascript" src="../script/kelat.js"></script>
-<script type="text/javascript">
-$$(document).ready(function(){
-
-$$('.LoadingOnClick').click(function(){
-	$$.loading()
-	setTimeout(function () {
-		$$.unLoading();
-	}, 2000);
-})
-
-$$('.LoadingOnClickTi').click(function(){
-	$$.loading('自定义标题')
-	setTimeout(function () {
-		$$.unLoading();
-	}, 2000);
-})
-
-$$('.Indicator').click(function(){
-	$$.indicator()
-	setTimeout(function () {
-		$$.unIndicator();
-	}, 2000);})
-});
-</script>
 </div>
 </body>
 </html>

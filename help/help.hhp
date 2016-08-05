@@ -1,0 +1,21 @@
+[OPTIONS]
+Title=无标题
+Compiled file=无标题.chm
+Error log file=
+Default topic=index.html
+Language=0x0804 中文(简体，中国)
+Full text search stop list file=
+Contents file=Contents.hhc
+Index file=Index.hhk
+Binary TOC=No
+Auto index=No
+Binary Index=Yes
+Create CHI file=No
+Full-text search=Yes
+Display compile progress=Yes
+Display compile notes=Yes
+Default window=
+Enhanced decompilation=No
+Flat=No
+Compatibility=1.1 or later
+

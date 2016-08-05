@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>index([selector|element])</title>
+<meta name="author" content="KUI 中文手册">
+<meta name="description" content="KUI 中文手册">
+<!-- KUI -->
+<link rel="stylesheet" href="../style/kelat.css" media="all"/>
+<!-- 扩展样式 -->
+<link rel="stylesheet" href="../style/theme.css" media="all"/>
+<style>
+.ColorPalette{height:35px;
+line-height:35px;
+text-align:center;}
+.GridShow .Row{margin-bottom:10px;}
+.GridShow [class^=Col]{line-height:20px;padding:5px;margin-bottom:5px}
+</style>
+</head>
+<body >
+<div>
+   <div class="HelpBox" id="WrapperArea">
+   
+	<h2>$$.fn.throttle(callBack, delay, mustRunDelay)</h2>
+		<h3>概述</h3>
+		<div class="desc">
+		<p>浏览器中某些计算和处理要比其他的昂贵的多。例如，DOM操作比起非DOM交互需要更多的内存和CPU时间。连续尝试进行过多的DOM相关操作可能会导致 浏览器挂起，有时候甚至会崩溃。尤其在IE中使用onresize事件处理程序的时候容易发生，当调整浏览器大小的时候，该事件连续触发。在 onresize事件处理程序内部如果尝试进行DOM操作，其高频率的更改可能会让浏览器崩溃。</p>
+		<p>函数节流背后的基本思想是，某些代码不可以在没有间断的情况连续重复执行。第一次调用函数，创建一个定时器，在指定的时间间隔之后运行代码。当第二次调用 该函数时，它会清除前一次的定时器并设置另一个。如果前一个定时器已经执行过了，这个操作就没有任何意义。然而，如果前一个定时器尚未执行，其实就是将其 替换为一个新的定时器。目的是只有在执行函数的请求停止了一段时间之后才执行。</p>
+	</div>	
+	<div class="example">
+        <h4>js 代码:</h4>
+		<pre><code>$$.fn.throttle(callBack, delay, mustRunDelay)</code></pre>
+		<ul class="List">
+			<li>callBack - <span class="CG">Function</span> - 执行方法</li>
+			<li>delay - <span class="CG">Number</span> - 间隔时间</li>
+			<li>mustRunDelay - <span class="CG">Number</span> - 必须运行时间</li>
+		</ul>
+   </div>
+
+</div>
+<script type="text/javascript" src="../script/kelat.js"></script>
+<script type="text/javascript">
+$$(document).ready(function(){
+});
+</script>
+</div>
+</body>
+</html>

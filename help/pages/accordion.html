@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>index([selector|element])</title>
+<title>Accordion(折叠面板)</title>
 <meta name="author" content="KUI 中文手册">
 <meta name="description" content="KUI 中文手册">
 <!-- KUI -->
@@ -87,74 +87,6 @@ text-align:center;}
     &lt;/ul>
 &lt;/div>
 </code></pre>
-  	    <div class="ListBlock AccordionList" style="width:50%">
-      <ul>
-        <li class="AccordionItem ListItem AccordionItemExpanded">
-		<a href="javascript:;" class="ItemLink ItemCon">
-            <div class="ItemInner "> 
-              <div class="ItemTitle">Lorem Ipsum</div>
-            </div></a>
-          <div class="AccordionItemCon">
-            <div class="ContentBlock">
-              <p>列表视图折叠面板内容区域，显示文本。</p>
-            </div>
-          </div>
-        </li>
-        <li class="AccordionItem ListItem"><a href="javascript:;" class="ItemLink ItemCon">
-            <div class="ItemInner "> 
-              <div class="ItemTitle">Nested List</div>
-            </div></a>
-			  <div class="AccordionItemCon">
-				<div class="ListBlock">
-				  <ul>
-					<li class="ListItem">
-					  <div class="ItemCon">
-						<div class="ItemMedia"><img class="Icon" src="../images/svg/iconfont-shoucang.svg" alt="收藏"></div>
-						<div class="ItemInner"> 
-						  <div class="ItemTitle">Item 1</div>
-						</div>
-					  </div>
-					</li>
-					<li class="ListItem">
-					  <div class="ItemCon">
-						<div class="ItemMedia"><img class="Icon" src="../images/svg/iconfont-shoucang.svg" alt="收藏"></div>
-						<div class="ItemInner"> 
-						  <div class="ItemTitle">Item 2</div>
-						</div>
-					  </div>
-					</li>
-					<li class="ListItem">
-					  <div class="ItemCon">
-						<div class="ItemMedia"><img class="Icon" src="../images/svg/iconfont-shoucang.svg" alt="收藏"></div>
-						<div class="ItemInner"> 
-						  <div class="ItemTitle">Item 3</div>
-						</div>
-					  </div>
-					</li>
-					<li class="ListItem">
-					  <div class="ItemCon">
-						<div class="ItemMedia"><img class="Icon" src="../images/svg/iconfont-shoucang.svg" alt="收藏"></div>
-						<div class="ItemInner"> 
-						  <div class="ItemTitle">Item 4</div>
-						</div>
-					  </div>
-					</li>
-				  </ul>
-				</div>
-			  </div>
-        </li>
-        <li class="AccordionItem ListItem"><a href="javascript:;" class="ItemLink ItemCon">
-            <div class="ItemInner"> 
-              <div class="ItemTitle">Integer semper</div>
-            </div></a>
-          <div class="AccordionItemCon">
-            <div class="ContentBlock">
-              <p>列表视图折叠面板内容区域，显示文本。</p>
-            </div>
-          </div>
-        </li>
-      </ul>
-    </div>
 
 	<h4>手风琴组件有JavaScript API，你可以在JS中控制打开和关闭。方法说明如下</h4>
 	<p>$$.accordionOpen(item) - 打开指定的条目</p>
@@ -221,12 +153,7 @@ $$('.AccordionItem').on('closed', function (e) {
    </div>
 
 </div>
-<script type="text/javascript" src="../script/kelat.js"></script>
-<script type="text/javascript">
-$$(document).ready(function(){
-	$$.initAccordion()
-});
-</script>
+
 </div>
 </body>
 </html>

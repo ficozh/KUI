@@ -174,7 +174,13 @@ var Local = {
     swipeout: true,
     swipeoutActionsNoFold: false,
     swipeoutNoFollow: false,
-
+    //屏幕大小标准
+    screenSizes: {
+        xs: 480,
+        sm: 768,
+        md: 992,
+        lg: 1200
+    },
     // 正则
     RegExpr : {
         rnotwhite : ( /\S+/g ),
@@ -2490,7 +2496,7 @@ KUIAPP.InitPullToRefresh = function(Container) {
         eventsTarget.off(_KLT_.touchEvents.move, handleTouchMove);
         eventsTarget.off(_KLT_.touchEvents.end, handleTouchEnd);
     };
-	eventsTarget[0].KLTDestroyPullToRefresh = destroyPullToRefresh;
+    eventsTarget[0].KLTDestroyPullToRefresh = destroyPullToRefresh;
 };
 /** 刷新结束
  * @param {object} Container:容器对象
@@ -2507,25 +2513,25 @@ KUIAPP.PullToRefreshDone = function(Container) {
     });
 };
 KUIAPP.PullToRefreshTrigger = function (Container) {
-	Container = $(Container);
-	if(Container.length === 0){
-		container = $('.PullToRefreshContent');
-	};
-	if(Container.hasClass('Refresh')) return;
-	Container.addClass('transitioning Refresh');
-	Container.trigger('refresh', {
-		done: function () {
-			KUIAPP.PullToRefreshDone(Container);
-		}
-	});
+    Container = $(Container);
+    if(Container.length === 0){
+        container = $('.PullToRefreshContent');
+    };
+    if(Container.hasClass('Refresh')) return;
+    Container.addClass('transitioning Refresh');
+    Container.trigger('refresh', {
+        done: function () {
+            KUIAPP.PullToRefreshDone(Container);
+        }
+    });
 };
 KUIAPP.DestroyPullToRefresh = function (pageContainer) {
-	pageContainer = $(pageContainer);
-	var pullToRefreshContent = pageContainer.hasClass('PullToRefreshContent') ? pageContainer : pageContainer.find('.PullToRefreshContent');
-	if(pullToRefreshContent.length === 0) return;
-	if(pullToRefreshContent[0].KLTDestroyPullToRefresh){
-		pullToRefreshContent[0].KLTDestroyPullToRefresh();
-	}
+    pageContainer = $(pageContainer);
+    var pullToRefreshContent = pageContainer.hasClass('PullToRefreshContent') ? pageContainer : pageContainer.find('.PullToRefreshContent');
+    if(pullToRefreshContent.length === 0) return;
+    if(pullToRefreshContent[0].KLTDestroyPullToRefresh){
+        pullToRefreshContent[0].KLTDestroyPullToRefresh();
+    }
 };
 
 window['kelat']['pullToRefreshDone'] = KUIAPP.PullToRefreshDone;
@@ -2542,13 +2548,13 @@ KUIAPP.scrollCurrent = 0;
 KUIAPP.HandleInfiniteScroll = function(){
     var $InfiniteScroll = $$('.InfiniteScroll');
     if(KUIAPP.isInfiniteScroll &&  $InfiniteScroll.length > 0){
-		var height = $InfiniteScroll[0].offsetHeight;
+        var height = $InfiniteScroll[0].offsetHeight;
         var distance = parseInt($InfiniteScroll.attr('data-distance'));
-		var onTop = $InfiniteScroll.hasClass('InfiniteScrollTop');
+        var onTop = $InfiniteScroll.hasClass('InfiniteScrollTop');
         if(!distance){distance = 50;};
-		if(typeof distance === 'string' && distance.indexOf('%') >= 0){
-			distance = parseInt(distance, 10) / 100 * height;
-		};
+        if(typeof distance === 'string' && distance.indexOf('%') >= 0){
+            distance = parseInt(distance, 10) / 100 * height;
+        };
         if(distance > height){distance = height;};
         
         //滚动条位置
@@ -2561,16 +2567,16 @@ KUIAPP.HandleInfiniteScroll = function(){
         if(KUIAPP.scrollCurrent>scrollTop){
             return
         };
-		if(onTop){
-			if(scrollTop < distance){
-				$InfiniteScroll.trigger('infinite');
-			}
-		}else{
-			if((scrollTop+distance+winHeight - InfiniteOffsetTop) > height ){
-				KUIAPP.scrollCurrent = scrollTop
-				$InfiniteScroll.trigger('infinite');
-			};
-		}
+        if(onTop){
+            if(scrollTop < distance){
+                $InfiniteScroll.trigger('infinite');
+            }
+        }else{
+            if((scrollTop+distance+winHeight - InfiniteOffsetTop) > height ){
+                KUIAPP.scrollCurrent = scrollTop
+                $InfiniteScroll.trigger('infinite');
+            };
+        }
     }else{
         KUIAPP.isInfiniteScroll = false;
         KUIAPP.DetachInfiniteScroll();
@@ -3373,16 +3379,16 @@ KUIAPP.AddNotify = function(options){
             if (target.is('.CloseNotify') || $$(events.target).parents('.CloseNotify').length > 0) {
                 close = true;
                 if(options.onClose){
-					options.onClose($ItemHTML[0],events);
-				};
+                    options.onClose($ItemHTML[0],events);
+                };
             }else{
-				if(options.closeOnClick){
-					close = true;
-				}
-			}
+                if(options.closeOnClick){
+                    close = true;
+                }
+            }
             if(close){
-				KUIAPP.CloseNotify($ItemHTML[0]);
-			};
+                KUIAPP.CloseNotify($ItemHTML[0]);
+            };
         });
         $Notify['prepend']($ItemHTML[0]);
         var _ItemHeight = $ItemHTML.outerHeight();
@@ -4711,7 +4717,7 @@ KUIAPP.accordionOpen = function (item) {
             content.css('height', '');
             item.trigger('closed');
         };
-		KUIAPP.isAccordion = true;
+        KUIAPP.isAccordion = true;
     });
     item.trigger('open');
     item.addClass('AccordionItemExpanded');
@@ -4743,7 +4749,7 @@ KUIAPP.accordionClose = function (item) {
             content.css('height', '');
             item.trigger('closed');
         }
-		KUIAPP.isAccordion = true;
+        KUIAPP.isAccordion = true;
     });
     item.trigger('close');
 };
@@ -4752,9 +4758,9 @@ KUIAPP.accordionClose = function (item) {
  */
 KUIAPP.initAccordion = function(){
     $$(document).on('click','.AccordionItemToggle,.ItemLink,.AccordionItem',function(){
-		if(!KUIAPP.isAccordion){
-			return
-		};
+        if(!KUIAPP.isAccordion){
+            return
+        };
         var clicked = $$(this);
         var accordionItem = clicked.parent('.AccordionItem');
         if(accordionItem.length === 0){
@@ -4763,10 +4769,10 @@ KUIAPP.initAccordion = function(){
         if(accordionItem.length === 0){
             accordionItem = clicked.parents('li');
         };
-		if(clicked.hasClass('ItemLink') && clicked.parent().hasClass('AccordionItem')){
-			KUIAPP.accordionToggle(accordionItem);
-			KUIAPP.isAccordion = false;
-		};
+        if(clicked.hasClass('ItemLink') && clicked.parent().hasClass('AccordionItem')){
+            KUIAPP.accordionToggle(accordionItem);
+            KUIAPP.isAccordion = false;
+        };
         
     })
 };
@@ -4779,158 +4785,158 @@ window['kelat']['accordionToggle'] = KUIAPP.accordionToggle;
 ************   Tabbar   ************
 ======================================================*/
 KUIAPP.materialTabbarSetHighlight = function (tabbar, activeLink) {
-	tabbar = $$(tabbar);
-	activeLink = activeLink || tabbar.find('.TabLink.active');
+    tabbar = $$(tabbar);
+    activeLink = activeLink || tabbar.find('.TabLink.active');
 
-	var tabLinkWidth, highlightTranslate;
-	if(tabbar.hasClass('TabBarScrollable')) {
-		tabLinkWidth = activeLink[0].offsetWidth + 'px';
-		highlightTranslate = (_KLT_.rtl ? - activeLink[0].offsetLeft: activeLink[0].offsetLeft) + 'px';
-	}else{
-		tabLinkWidth = 1 / tabbar.find('.TabLink').length * 100 + '%';
-		highlightTranslate = (_KLT_.rtl ? - activeLink.index(): activeLink.index()) * 100 + '%';
-	};
+    var tabLinkWidth, highlightTranslate;
+    if(tabbar.hasClass('TabBarScrollable')) {
+        tabLinkWidth = activeLink[0].offsetWidth + 'px';
+        highlightTranslate = (_KLT_.rtl ? - activeLink[0].offsetLeft: activeLink[0].offsetLeft) + 'px';
+    }else{
+        tabLinkWidth = 1 / tabbar.find('.TabLink').length * 100 + '%';
+        highlightTranslate = (_KLT_.rtl ? - activeLink.index(): activeLink.index()) * 100 + '%';
+    };
 
-	tabbar.find('.TabLinkHighlight')
-		.css({width: tabLinkWidth})
-		.transform('translate3d(' + highlightTranslate + ',0,0)');
+    tabbar.find('.TabLinkHighlight')
+        .css({width: tabLinkWidth})
+        .transform('translate3d(' + highlightTranslate + ',0,0)');
 };
 KUIAPP.initPageMaterialTabbar = function (pageContainer) {
-	pageContainer = $$(pageContainer);
-	var tabbar = $$(pageContainer).find('.TabBar');
+    pageContainer = $$(pageContainer);
+    var tabbar = $$(pageContainer).find('.TabBar');
 
-	function tabbarSetHighlight() {
-		KUIAPP.materialTabbarSetHighlight(tabbar);
-	}
-	if(tabbar.length > 0){
-		if(tabbar.find('.TabLinkHighlight').length === 0){
-			tabbar.find('.ToolBarInner').append('<span class="TabLinkHighlight"></span>');
-		}
+    function tabbarSetHighlight() {
+        KUIAPP.materialTabbarSetHighlight(tabbar);
+    }
+    if(tabbar.length > 0){
+        if(tabbar.find('.TabLinkHighlight').length === 0){
+            tabbar.find('.ToolBarInner').append('<span class="TabLinkHighlight"></span>');
+        }
 
-		tabbarSetHighlight();
-		$$(window).on('resize', tabbarSetHighlight);
-		pageContainer.once('pageBeforeRemove', function () {
-			$(window).off('resize', tabbarSetHighlight);
-		});
-	}
+        tabbarSetHighlight();
+        $$(window).on('resize', tabbarSetHighlight);
+        pageContainer.once('pageBeforeRemove', function () {
+            $(window).off('resize', tabbarSetHighlight);
+        });
+    }
 };
 
 /* ====================================================
 ************   Tabs   ************
 =====================================================*/
 KUIAPP.showTab = function(tab, tabLink, force){
-	var newTab = $$(tab);
-	if(arguments.length === 2){
-		if(typeof tabLink === 'boolean'){
-			force = tabLink;
-		}
-	};
-	if(newTab.length === 0){
-		return false;
-	};
-	if(newTab.hasClass('active')) {
-		if(force){
-			newTab.trigger('show');
-		};
-		return false;
-	}
-	var tabs = newTab.parent('.Tabs');
-	if(tabs.length === 0){
-		return false;
-	};
+    var newTab = $$(tab);
+    if(arguments.length === 2){
+        if(typeof tabLink === 'boolean'){
+            force = tabLink;
+        }
+    };
+    if(newTab.length === 0){
+        return false;
+    };
+    if(newTab.hasClass('active')) {
+        if(force){
+            newTab.trigger('show');
+        };
+        return false;
+    }
+    var tabs = newTab.parent('.Tabs');
+    if(tabs.length === 0){
+        return false;
+    };
 
-	//在隐藏的选项卡中隐藏滑动操作
-	KUIAPP.allowSwipeout = true;
+    //在隐藏的选项卡中隐藏滑动操作
+    KUIAPP.allowSwipeout = true;
 
-	//动画 tabs
-	var isAnimatedTabs = tabs.parent().hasClass('TabsAnimatedWrap');
-	if(isAnimatedTabs){
-		var tabTranslate = (_KLT_.rtl ? newTab.index() : -newTab.index()) * 100;
-		tabs.transform('translate3d(' + tabTranslate + '%,0,0)');
-	}
+    //动画 tabs
+    var isAnimatedTabs = tabs.parent().hasClass('TabsAnimatedWrap');
+    if(isAnimatedTabs){
+        var tabTranslate = (_KLT_.rtl ? newTab.index() : -newTab.index()) * 100;
+        tabs.transform('translate3d(' + tabTranslate + '%,0,0)');
+    }
 
-	//取下其他选项卡active类
-	var oldTab = tabs.children('.Tab.active').removeClass('active');
-	//添加active类到当前 tab
-	newTab.addClass('active');
-	// 触发 'show' 事件到当前 tab
-	newTab.trigger('show');
+    //取下其他选项卡active类
+    var oldTab = tabs.children('.Tab.active').removeClass('active');
+    //添加active类到当前 tab
+    newTab.addClass('active');
+    // 触发 'show' 事件到当前 tab
+    newTab.trigger('show');
 
-	//更新 navbars 内 tab
-	if(!isAnimatedTabs && newTab.find('.NavBar').length > 0){
-		// Find tab's view
-		var viewContainer;
-		if(newTab.hasClass(app.params.viewClass)){
-			viewContainer = newTab[0];
-		}else{
-			viewContainer = newTab.parents('.' + app.params.viewClass)[0];
-		};
-		KUIAPP.SizeNavbars(viewContainer);
-	};
+    //更新 navbars 内 tab
+    if(!isAnimatedTabs && newTab.find('.NavBar').length > 0){
+        // Find tab's view
+        var viewContainer;
+        if(newTab.hasClass(app.params.viewClass)){
+            viewContainer = newTab[0];
+        }else{
+            viewContainer = newTab.parents('.' + app.params.viewClass)[0];
+        };
+        KUIAPP.SizeNavbars(viewContainer);
+    };
 
-	// Find related link for new tab
-	if(tabLink){
-		tabLink = $$(tabLink);
-	}else{
-		// Search by id
-		if(typeof tab === 'string'){
-			tabLink = $$('.tab-link[href="' + tab + '"]');
-		}else{
-			tabLink = $$('.tab-link[href="#' + newTab.attr('id') + '"]');
-		};
-		// Search by data-tab
-		if (!tabLink || tabLink && tabLink.length === 0) {
-			$$('[data-tab]').each(function () {
-				if(newTab.is($$(this).attr('data-tab'))){
-					tabLink = $$(this);
-				};
-			});
-		}
-	}
-	if(tabLink.length === 0){
-		return;
-	};
+    // Find related link for new tab
+    if(tabLink){
+        tabLink = $$(tabLink);
+    }else{
+        // Search by id
+        if(typeof tab === 'string'){
+            tabLink = $$('.tab-link[href="' + tab + '"]');
+        }else{
+            tabLink = $$('.tab-link[href="#' + newTab.attr('id') + '"]');
+        };
+        // Search by data-tab
+        if (!tabLink || tabLink && tabLink.length === 0) {
+            $$('[data-tab]').each(function () {
+                if(newTab.is($$(this).attr('data-tab'))){
+                    tabLink = $$(this);
+                };
+            });
+        }
+    }
+    if(tabLink.length === 0){
+        return;
+    };
 
-	// Find related link for old tab
-	var oldTabLink;
-	if(oldTab && oldTab.length > 0){
-		// Search by id
-		var oldTabId = oldTab.attr('id');
-		if(oldTabId){
-			oldTabLink = $$('.TabLink[href="#' + oldTabId + '"]');
-		};
-		// Search by data-tab
-		if(!oldTabLink || oldTabLink && oldTabLink.length === 0){
-			$$('[data-tab]').each(function () {
-				if(oldTab.is($$(this).attr('data-tab'))){
-					oldTabLink = $$(this);
-				}
-			});
-		}
-	}
+    // Find related link for old tab
+    var oldTabLink;
+    if(oldTab && oldTab.length > 0){
+        // Search by id
+        var oldTabId = oldTab.attr('id');
+        if(oldTabId){
+            oldTabLink = $$('.TabLink[href="#' + oldTabId + '"]');
+        };
+        // Search by data-tab
+        if(!oldTabLink || oldTabLink && oldTabLink.length === 0){
+            $$('[data-tab]').each(function () {
+                if(oldTab.is($$(this).attr('data-tab'))){
+                    oldTabLink = $$(this);
+                }
+            });
+        }
+    }
 
-	//更新链接 classes
-	if(tabLink && tabLink.length > 0){
-		tabLink.addClass('active');
-		var tabbar = tabLink.parents('.TabBar');
-		if(tabbar.length > 0){
-			if(tabbar.find('.TabLinkHighlight').length === 0) {
-				tabbar.find('.ToolBarInner').append('<span class="TabLinkHighlight"></span>');
-			}
-			KUIAPP.materialTabbarSetHighlight(tabbar, tabLink);
-		}
-	}
-	if (oldTabLink && oldTabLink.length > 0) oldTabLink.removeClass('active');
+    //更新链接 classes
+    if(tabLink && tabLink.length > 0){
+        tabLink.addClass('active');
+        var tabbar = tabLink.parents('.TabBar');
+        if(tabbar.length > 0){
+            if(tabbar.find('.TabLinkHighlight').length === 0) {
+                tabbar.find('.ToolBarInner').append('<span class="TabLinkHighlight"></span>');
+            }
+            KUIAPP.materialTabbarSetHighlight(tabbar, tabLink);
+        }
+    }
+    if (oldTabLink && oldTabLink.length > 0) oldTabLink.removeClass('active');
 
-	return true;
+    return true;
 };
 KUIAPP.initTab = function(tab, tabLink, force){
-	$$(document).on('click','.TabLink',function(){
-		var clicked = $$(this);
-		var clickedData = clicked.dataset();
-		KUIAPP.showTab(clickedData.tab || clicked.attr('href'), clicked)
-	});
-	KUIAPP.initPageMaterialTabbar($$(document.getElementById(Local.WrapperArea)))
+    $$(document).on('click','.TabLink',function(){
+        var clicked = $$(this);
+        var clickedData = clicked.dataset();
+        KUIAPP.showTab(clickedData.tab || clicked.attr('href'), clicked)
+    });
+    KUIAPP.initPageMaterialTabbar($$(document.getElementById(Local.WrapperArea)))
 };
 window['kelat']['tabs'] = KUIAPP.initTab;
 window['kelat']['showTab'] = KUIAPP.showTab;
@@ -5050,6 +5056,37 @@ KUIAPP.FloatButton = function(item) {
     return this
 };
 window['kelat']['floatButton'] = KUIAPP.FloatButton;
+
+/*======================================================
+************   响应菜单   ************
+======================================================*/
+KUIAPP.PushMenu = function(){
+    //获取屏幕尺寸
+    var screenSizes = Local.screenSizes;
+    //侧边栏切换
+    $$(document).on('click', '.SidebarToggle',function(e){
+        e.preventDefault();
+        if($$(window).width() > (screenSizes.sm - 1)){
+            if($$("body").hasClass('SidebarCollapse')){
+                $$("body").removeClass('SidebarCollapse');
+            }else{
+                $$("body").addClass('SidebarCollapse');
+            }
+        }else{
+            if($$("body").hasClass('SidebarOpen')) {
+              $$("body").removeClass('SidebarOpen').removeClass('SidebarCollapse');
+            }else{
+              $$("body").addClass('SidebarOpen');
+            }
+        }
+    });
+    //在小屏幕上单击内容包装时启用“隐藏”菜单
+    $$(".ContentWrapper").click(function () {
+        if($$(window).width() <= (screenSizes.sm - 1) && $$("body").hasClass("SidebarOpen")) {
+            $$("body").removeClass('SidebarOpen');
+        };
+    });
+};
 
 /*======================================================
 ************   图片处理   ************
@@ -5285,6 +5322,10 @@ window['kelat']['init'] = (function(){
     //初始化返回顶部 
     if(KUIAPP.BackToTop){
         KUIAPP.BackToTop()
+    };
+    //初始化返回顶部 
+    if(KUIAPP.PushMenu){
+        KUIAPP.PushMenu()
     };
 })();
 

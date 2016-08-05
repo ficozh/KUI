@@ -6,9 +6,9 @@
 /* ////////////////////////////////////// */
 
 /* ===== 全局颜色 ===== */
-body{color:#222;background-color:#fff}
+body{color:#222;background-color:#fff;}
 .Mobile body{background-color:#fff}
-
+html, body{height:auto;overflow:auto}
 /*区域范围*/
 .Mobile .WAll{height:inherit}
 .PC .WAll{width:1200px;height:inherit}
@@ -80,7 +80,7 @@ a{-webkit-transition-duration:300ms;
 #content.a1 h3 {color: #666;padding-top: 2px;}
 #content.a1 ul {margin:0 0 5px 10px;}
 #content.a1 ul ul {margin:0 0 0 10px;}
-#content.a1 > div{float:left;width:25%;overflow:hidden;padding:0 1px;}
+#content.a1 > div{float:left;width:24%;overflow:hidden;padding:0 1px;}
 #content.a1 a,#content.a1 a:link,#content.a1 a:visited {color:rgb(64,112,170);text-decoration: none;}
 #content.a1 a:hover {color:white;background: rgb(79,129,189);}
 #content.a1 > div > div:hover{background:rgb(232,238,247);}

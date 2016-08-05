@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>index([selector|element])</title>
+<title>$$.post(url,[data],[callback])</title>
 <meta name="author" content="KUI 中文手册">
 <meta name="description" content="KUI 中文手册">
 <!-- KUI -->
@@ -15,7 +15,7 @@
 <div>
    <div class="HelpBox">
    
-   <h2><span>返回值:XMLHttpRequest</span>$$.post(url, <em class="optional">[data]</em>, <em class="optional">[callback]</em>, <em class="optional">[type]</em>)</h2>
+   <h2><span>返回值:XMLHttpRequest</span>$$.post(url, <em class="optional">[data]</em>, <em class="optional">[callback]</em>)</h2>
     <h3>概述</h3>
     <div class="desc">
       <p>通过远程 HTTP POST 请求载入信息。</p>
@@ -25,11 +25,10 @@
     </div>
     <h3>参数</h3>
     <div class="parameter">
-      <h4><strong>url,[data],[callback],[type]</strong><span>String,Map,Function,String</span><em>V1.0</em></h4>
+      <h4><strong>url,[data],[callback]</strong><span>String,Map,Function,String</span></h4>
       <p><strong>url</strong>:发送请求地址。</p>
       <p><strong>data</strong>:待发送 Key/value 参数。</p>
       <p><strong>callback</strong>:发送成功时回调函数。</p>
-      <p><strong>type</strong>:返回内容格式，xml, html, script, json, text, _default。</p>
     </div>
     <div class="example">
       <h3>示例</h3>
@@ -63,21 +62,8 @@
    function(data){
      alert("Data Loaded: " + data);
    });</code></pre>
-      <h4>7描述:</h4>
-      <p>获得 test.php 页面的内容，并存储为 XMLHttpResponse 对象，并通过 process() 这个 JavaScript 函数进行处理：</p>
-      <h5>js 代码:</h5>
-      <pre><code>$$.post("test.php", { name: "John", time: "2pm" },
-   function(data){
-     process(data);
-   }, "xml");</code></pre>
-      <h4>8描述:</h4>
-      <p>获得 test.php 页面返回的 json 格式的内容：：</p>
-      <h5>js 代码:</h5>
-      <pre><code>$.post("test.php", { "func": "getNameAndTime" },
-   function(data){
-     alert(data.name); // John
-     console.log(data.time); //  2pm
-   }, "json");</code></pre>
+
+
     </div>
 
 </div>

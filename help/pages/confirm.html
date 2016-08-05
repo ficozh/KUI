@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>index([selector|element])</title>
+<title>$$.confirm()</title>
 <meta name="author" content="KUI 中文手册">
 <meta name="description" content="KUI 中文手册">
 <!-- KUI -->
@@ -50,23 +50,11 @@ text-align:center;}
     });
   });
 });</code></pre>
-		<button type="button" class="Btn BtnBig BtnPrimary InkRipple ConfirmBtn">确认消息框</button>
 		
    </div>
 
 </div>
-<script type="text/javascript" src="../script/kelat.js"></script>
-<script type="text/javascript">
-$$(document).ready(function(){
-	$$(".ConfirmBtn").on("click",function(){
-					$$.confirm("确认消息框",function(){
-						$$.alert("alert警告消息框",function(){
-							$$.prompt("欢迎体验KMUI")
-						});
-					});
-				});
-});
-</script>
+
 </div>
 </body>
 </html>

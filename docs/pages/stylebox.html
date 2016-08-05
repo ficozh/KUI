@@ -1,0 +1,156 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>index([selector|element])</title>
+<meta name="author" content="KUI 中文手册">
+<meta name="description" content="KUI 中文手册">
+<!-- KUI -->
+<link rel="stylesheet" href="../style/kelat.css" media="all"/>
+<!-- 扩展样式 -->
+<link rel="stylesheet" href="../style/theme.css" media="all"/>
+<style>
+		.GridShow .Row{margin-bottom:10px;}
+		.GridShow [class^=Col]{border:1px solid #ccc;background-color:#fff;line-height:20px;padding:5px;margin-bottom:5px}
+	</style>
+</head>
+<body >
+<div>
+   <div class="HelpBox">
+   
+    <h2>stylebox(九宫格)</h2>
+    <h3>概述</h3>
+    <div class="desc">
+      <p>九宫格 - 是网格布局的一种应用，能提供常见的多种展示方式。</p>
+    </div>
+
+    <div class="example GridShow">
+       <h4>九宫格布局结构</h4>
+	  <pre><code>&lt;ul class="Row NoGutter StyleBox">
+    &lt;li class="Col33">
+      &lt;a href="JavaScript:;">
+        &lt;span class="Pic">&lt;img class="Icon" src="../images/svg/iconfont-home.svg">&lt;/span>
+        &lt;div class="Title">首页&lt;/div>
+      &lt;/a>
+    &lt;/li>
+    &lt;li class="Col33">
+      &lt;a href="JavaScript:;">
+        &lt;span class="Pic">&lt;img class="Icon" src="../images/svg/iconfont-noread.svg">
+          &lt;span class="Badge BadgeDanger">5&lt;/span>&lt;/span>
+        &lt;div class="Title">邮件&lt;/div>
+      &lt;/a>
+    &lt;/li>
+    &lt;li class="Col33">
+      &lt;a href="JavaScript:;">
+        &lt;span class="Pic">&lt;img class="Icon" src="../images/svg/iconfont-message.svg">
+          &lt;span class="Badge BadgeDanger">5&lt;/span>&lt;/span>
+        &lt;div class="Title">消息&lt;/div>
+      &lt;/a>
+    &lt;/li>
+    &lt;li class="Col33">
+      &lt;a href="JavaScript:;">
+        &lt;span class="Pic">&lt;img class="Icon" src="../images/svg/iconfont-position-o.svg">&lt;/span>
+        &lt;div class="Title">位置&lt;/div>
+      &lt;/a>
+    &lt;/li>
+    &lt;li class="Col33">
+      &lt;a href="JavaScript:;">
+        &lt;span class="Pic">&lt;img class="Icon" src="../images/svg/iconfont-search.svg">&lt;/span>
+        &lt;div class="Title">搜索&lt;/div>
+      &lt;/a>
+    &lt;/li>
+    &lt;li class="Col33">
+      &lt;a href="JavaScript:;">
+        &lt;span class="Pic">&lt;img class="Icon" src="../images/svg/iconfont-call.svg">&lt;/span>
+        &lt;div class="Title">电话&lt;/div>
+      &lt;/a>
+    &lt;/li>
+    &lt;li class="Col33">
+      &lt;a href="JavaScript:;">
+        &lt;span class="Pic">&lt;img class="Icon" src="../images/svg/iconfont-dianhuaben.svg">&lt;/span>
+        &lt;div class="Title">通讯录&lt;/div>
+      &lt;/a>
+    &lt;/li>
+    &lt;li class="Col33">
+      &lt;a href="JavaScript:;">
+        &lt;span class="Pic">&lt;img class="Icon" src="../images/svg/iconfont-setup.svg">&lt;/span>
+        &lt;div class="Title">设置&lt;/div>
+      &lt;/a>
+    &lt;/li>
+    &lt;li class="Col33">
+      &lt;a href="JavaScript:;">
+        &lt;span class="Pic">&lt;img class="Icon" src="../images/svg/iconfont-gengduo.svg">&lt;/span>
+        &lt;div class="Title">更多&lt;/div>
+      &lt;/a>
+    &lt;/li>
+  &lt;/ul>
+</code></pre>
+		<ul class="List">
+			<li>StyleBox - 九宫格的容器。</li>
+		</ul>
+		<h4>展示效果:</h4>
+		<ul class="Row NoGutter StyleBox" style="width:50%">
+		<li class="Col33">
+			<a href="JavaScript:;">
+				<span class="Pic"><img class="Icon" src="../images/svg/iconfont-home.svg"></span>
+				<div class="Title">首页</div>
+			</a>
+		</li>
+		<li class="Col33">
+			<a href="JavaScript:;">
+				<span class="Pic"><img class="Icon" src="../images/svg/iconfont-noread.svg"><span class="Badge BadgeDanger">5</span></span>
+				<div class="Title">邮件</div>
+			</a>
+		</li>
+		<li class="Col33">
+			<a href="JavaScript:;">
+				<span class="Pic"><img class="Icon" src="../images/svg/iconfont-message.svg"><span class="Badge BadgeDanger">5</span></span>
+				<div class="Title">消息</div>
+			</a>
+		</li>
+		<li class="Col33">
+			<a href="JavaScript:;">
+				<span class="Pic"><img class="Icon" src="../images/svg/iconfont-position-o.svg"></span>
+				<div class="Title">位置</div>
+			</a>
+		</li>
+		<li class="Col33">
+			<a href="JavaScript:;">
+				<span class="Pic"><img class="Icon" src="../images/svg/iconfont-search.svg"></span>
+				<div class="Title">搜索</div>
+			</a>
+		</li>
+		<li class="Col33">
+			<a href="JavaScript:;">
+				<span class="Pic"><img class="Icon" src="../images/svg/iconfont-call.svg"></span>
+				<div class="Title">电话</div>
+			</a>
+		</li>
+		<li class="Col33">
+			<a href="JavaScript:;">
+				<span class="Pic"><img class="Icon" src="../images/svg/iconfont-dianhuaben.svg"></span>
+				<div class="Title">通讯录</div>
+			</a>
+		</li>
+		<li class="Col33">
+			<a href="JavaScript:;">
+				<span class="Pic"><img class="Icon" src="../images/svg/iconfont-setup.svg"></span>
+				<div class="Title">设置</div>
+			</a>
+		</li>
+		<li class="Col33">
+			<a href="JavaScript:;">
+				<span class="Pic"><img class="Icon" src="../images/svg/iconfont-gengduo.svg"></span>
+				<div class="Title">更多</div>
+			</a>
+		</li>
+	</ul>
+		
+		
+    </div>
+
+</div>
+
+</div>
+</body>
+</html>

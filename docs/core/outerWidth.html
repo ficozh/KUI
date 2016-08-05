@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>index([selector|element])</title>
+<meta name="author" content="KUI 中文手册">
+<meta name="description" content="KUI 中文手册">
+<!-- KUI -->
+<link rel="stylesheet" href="../style/kelat.css" media="all"/>
+<!-- 扩展样式 -->
+<link rel="stylesheet" href="../style/theme.css" media="all"/>
+
+</head>
+<body >
+<div>
+   <div class="HelpBox">
+   
+    <h2><span>返回值:Integer</span>outerWidth(options)</h2>
+    <h3>概述</h3>
+    <div class="desc">
+      <p>获取第一个匹配元素外部宽度（默认包括补白和边框）。</p>
+    </div>
+    <h3>参数</h3>
+    <div class="parameter">
+      <h4><strong>options</strong><span>Boolean<em>默认值:'false'</em></span></h4>
+      <p>设置为 true 时，计算边距在内。</p>
+    </div>
+    <div class="example">
+      <h3>示例</h3>
+      <span id="f_ad2"></span>
+      <h4>描述:</h4>
+      <p>获取第一段落外部高度。</p>
+      <h5>HTML 代码:</h5>
+      <pre><code>&lt;p&gt;Hello&lt;/p&gt;&lt;p&gt;2nd Paragraph&lt;/p&gt;</code></pre>
+      <h5>js 代码:</h5>
+      <pre><code>var p = $$("p:first");
+$$("p:last").text( "outerWidth:" + p.outerWidth() + " , outerWidth(true):" + p.outerWidth(true) );</code></pre>
+      <h5>结果:</h5>
+      <pre><code>&lt;p&gt;Hello&lt;/p&gt;&lt;p&gt;outerWidth: 35 , outerWidth(true):55&lt;/p&gt;</code></pre>
+    </div>
+
+</div>
+
+</div>
+</body>
+</html>

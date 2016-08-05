@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>index([selector|element])</title>
+<meta name="author" content="KUI 中文手册">
+<meta name="description" content="KUI 中文手册">
+<!-- KUI -->
+<link rel="stylesheet" href="../style/kelat.css" media="all"/>
+<!-- 扩展样式 -->
+<link rel="stylesheet" href="../style/theme.css" media="all"/>
+<style>
+/* ===== 时间轴 ===== */
+.TimeLine{position:relative;background-color:#fff;padding-left:44px;border-top:1px solid #ddd;border-bottom:1px solid #ddd;overflow:hidden;margin-bottom:12px}
+.TimeLine:before{position:absolute;left:24px;top:21px;bottom:21px;width:1px;background:#ddd;content:"";z-index:1}
+.TimeLine .TimeLineItem{position:relative;padding:10px 0;border-bottom:1px solid #ddd;margin-bottom:-1px;color:#999}
+.TimeLine .TimeLineItem.active{color:#10A9DC}
+.TimeLine .TimeLineItem:before{position:absolute;left:-24px;top:20px;width:9px;height:9px;border-radius:30px;background:#ddd;content:"";z-index:1}
+.TimeLine .TimeLineItem.active:before{left:-27px;background-color:#10A9DC;width:15px;height:15px;border:3px solid rgba(255,255,255,0.75)}
+.TimeLine .TimeLineItem:last-child:before{top:auto;bottom:20px}
+.TimeLine .TimeLineItem .Info{font-size:14px}
+.TimeLine .TimeLineItem .Info{font-size:14px}
+
+
+
+.TimeLine .ListBlock{margin:-1px 0;}
+.TimeLine .ListBlock .ItemCon{padding-left:0}
+.TimeLine .ListBlock .ListItem:before{position:absolute;left:-24px;top:20px;width:9px;height:9px;border-radius:30px;background:#ddd;content:"";z-index:1}
+.TimeLine .ListBlock .ListItem.active:before{left:-27px;background-color:#01bffd;width:15px;height:15px;border:3px solid rgba(255,255,255,0.75)}
+.TimeLine .ListBlock .ListItem:last-child:before{top:auto;bottom:20px}
+
+</style>
+</head>
+<body >
+<div>
+   <div class="HelpBox">
+   
+    <h2>timeline(时间轴)</h2>
+    <h3>概述</h3>
+    <div class="desc">
+      <p>时间轴是种以时间线为主的列表展示方式。</p>
+    </div>
+    <div class="example GridShow">
+      <h3>实例</h3>
+      <h4>列表:</h4>
+      <pre><code>&lt;ul class="TimeLine">
+    &lt;li class="TimeLineItem active">
+      &lt;div class="Info">您的包裹已签收，签收人：小白兔&lt;/div>
+      &lt;div class="Time">2015-11-28 18:32:34&lt;/div>
+    &lt;/li>
+    &lt;li class="TimeLineItem">
+      &lt;div class="Info">您的包裹已发送&lt;/div>
+      &lt;div class="Time">2015-11-28 18:32:34&lt;/div>
+    &lt;/li>
+&lt;/ul>
+</code></pre>
+<p>其中：</p>
+<ul class="List">
+	<li>TimeLine - 时间轴的主要容器。必选元素。</li>
+	<li>TimeLineItem - 单行列表项目容器。可选元素。</li>
+	<li>Info - 单行列表项目信息。可选元素。</li>
+	<li>Time - 单行列表项目时间。可选元素。</li>
+	<li>active - 当前的时间位置。必选。</li>
+</ul>
+
+      <h4>展示效果:</h4>
+	  
+	  <ul class="TimeLine" style="width:50%">
+		<li class="TimeLineItem active">
+			<div class="Info">您的包裹已签收，签收人：小白兔</div>
+			<div class="Time">2015-11-30 18:32:34</div>
+		</li>
+		<li class="TimeLineItem">
+			<div class="Info">快递员已揽件</div>
+			<div class="Time">2015-11-29 18:32:34</div>
+		</li>
+		<li class="TimeLineItem">
+			<div class="Info">您的包裹已发送</div>
+			<div class="Time">2015-11-28 18:32:34</div>
+		</li>
+	</ul>
+	
+	
+	
+	
+	
+	
+   </div>
+
+</div>
+<script type="text/javascript" src="../script/kelat.js"></script>
+</div>
+</body>
+</html>

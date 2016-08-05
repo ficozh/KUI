@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>index([selector|element])</title>
+<title>actions(操作表单)</title>
 <meta name="author" content="KUI 中文手册">
 <meta name="description" content="KUI 中文手册">
 <!-- KUI -->
@@ -129,41 +129,10 @@ text-align:center;}
   $$.actions(actionSheetButtons);
 });
 </code></pre>
-  	<button type="button" class="Btn BtnBig BtnPrimary InkRipple MenuBtn">底部菜单</button>
    </div>
 
 </div>
-<script type="text/javascript" src="../script/kelat.js"></script>
-<script type="text/javascript">
-$$(document).ready(function(){
-	$$(".MenuBtn").on("click",function(){
-		var actionSheetButtons = [
-			[{
-				text: '这里可以描述下面的操作这里可以描述下面的操作这里可以描述下面的操作这里可以描述下面的操作',
-				label: true
-			},{
-				text: 'alert警告消息框',
-				onClick: function () {
-					$$.alert('alert警告消息框!');
-				}
-			},{
-				text: '红色按钮',
-				color: 'CR',
-				onClick: function () {
-					$$.alert('你点击的是红色按钮!');
-				}
-			}],
-			[
-				{
-					text: '取消',
-					bg: 'BBlue'
-				}
-			]
-		];
-		$$.actions(actionSheetButtons);
-	});
-});
-</script>
+
 </div>
 </body>
 </html>
