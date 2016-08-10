@@ -1,8 +1,8 @@
 ﻿/*!
- * kelat JavaScript Library v1.2.2-beta1
+ * kelat JavaScript Library v1.2.3-beta
  * http://git.oschina.net/ficozhe/K-UI
  *
- * Date: 2016-07-20
+ * Date: 2016-08-08
  */
 (function(Global, factory){
     if(typeof module === "object" && typeof module.exports === "object"){
@@ -20,7 +20,7 @@
 }(typeof window !== "undefined" ? window : this,function(window,noGlobal){
 'use strict';
 // 版本
-var version = "1.2.2";
+var version = "1.2.3";
 var classType = {};
 var toString = classType.toString;
 var hasOwn = classType.hasOwnProperty;
@@ -1689,13 +1689,22 @@ window['kelat']['fn'] = window['kelat'].prototype = {
         return running ? JSON.stringify(obj) : '';
     },
     //html转义
-    escapeHTML : function(string) {  
+    escapeHTML : function(string) {
         var replacements= {'<': '&lt;', '>': '&gt;', '&': '&amp;', '"': '&quot;'};
-        return string.replace(/[<>&"]/g, function(character) {  
-            return replacements[character];  
+        return string.replace(/[<>&"]/g, function(character){
+            return replacements[character];
         }); 
     },
-    /** Javascript函数节流 
+    //删除 html 标签
+    removeHTML : function(string) {
+        return string.replace(/<.*?>/ig,"");
+    },
+    //删除 指定 元素
+    removeString : function(string, value) {
+        var RE = new RegExp(value, "ig");
+        return string.replace(RE,"");
+    },
+    /** Javascript函数节流
      * @param {function} fn:执行方法
      * @param {Number} delay:间隔时间
      * @param {Number} mustRunDelay:必须运行时间
@@ -4123,8 +4132,8 @@ KUIAPP.initSwipeout = function(swipeoutEl){
             actionsRight = swipeOutEl.find('.SwipeoutActionsRight');
             actionsLeft = swipeOutEl.find('.SwipeoutActionsLeft');
             actionsLeftWidth = actionsRightWidth = buttonsLeft = buttonsRight = overswipeRightButton = overswipeLeftButton = null;
-            noFoldLeft = actionsLeft.hasClass('swipeout-actions-no-fold') || Local.swipeoutActionsNoFold;
-            noFoldRight = actionsRight.hasClass('swipeout-actions-no-fold') || Local.swipeoutActionsNoFold;
+            noFoldLeft = actionsLeft.hasClass('SwipeoutActionsNoFold') || Local.swipeoutActionsNoFold;
+            noFoldRight = actionsRight.hasClass('SwipeoutActionsNoFold') || Local.swipeoutActionsNoFold;
             if(actionsLeft.length > 0){
                 actionsLeftWidth = actionsLeft.outerWidth();
                 buttonsLeft = actionsLeft.children('.SwipeoutItem');
@@ -4366,13 +4375,19 @@ KUIAPP.initSwipeout = function(swipeoutEl){
     };
     //绑定事件
     if(swipeoutEl){
-        $$(swipeoutEl).on(_KLT_.touchEvents.start, handleTouchStart);
-        $$(swipeoutEl).on(_KLT_.touchEvents.move, handleTouchMove);
-        $$(swipeoutEl).on(_KLT_.touchEvents.end, handleTouchEnd);
+		if(!window.isSwipeoutEL){
+			$$(swipeoutEl).on(_KLT_.touchEvents.start, handleTouchStart);
+			$$(swipeoutEl).on(_KLT_.touchEvents.move, handleTouchMove);
+			$$(swipeoutEl).on(_KLT_.touchEvents.end, handleTouchEnd);
+			window.isSwipeoutEL = true;
+		}
     }else{
-        $$(document).on(_KLT_.touchEvents.start, '.ListBlock li.Swipeout', handleTouchStart);
-        $$(document).on(_KLT_.touchEvents.move, '.ListBlock li.Swipeout', handleTouchMove);
-        $$(document).on(_KLT_.touchEvents.end, '.ListBlock li.Swipeout', handleTouchEnd);
+		if(!window.isSwipeout){
+			$$(document).on(_KLT_.touchEvents.start, '.ListBlock li.Swipeout', handleTouchStart);
+			$$(document).on(_KLT_.touchEvents.move, '.ListBlock li.Swipeout', handleTouchMove);
+			$$(document).on(_KLT_.touchEvents.end, '.ListBlock li.Swipeout', handleTouchEnd);
+			window.isSwipeout = true;
+		}
     };
 };
 /** 打开滑动操作
@@ -4404,7 +4419,7 @@ KUIAPP.swipeoutOpen = function(el, dir, callback){
     if(swipeOutActions.length === 0){
         return;
     };
-    var noFold = swipeOutActions.hasClass('swipeout-actions-no-fold') || Local.swipeoutActionsNoFold;
+    var noFold = swipeOutActions.hasClass('SwipeoutActionsNoFold') || Local.swipeoutActionsNoFold;
     el.trigger('open').addClass('SwipeoutOpened').removeClass('transitioning');
     swipeOutActions.addClass('SwipeoutActionsOpened');
     var buttons = swipeOutActions.children('.SwipeoutItem');
@@ -4441,7 +4456,7 @@ KUIAPP.swipeoutClose = function(el, callback){
     if(!el.hasClass('SwipeoutOpened')) return;
     var dir = el.find('.SwipeoutActionsOpened').hasClass('SwipeoutActionsRight') ? 'right' : 'left';
     var swipeOutActions = el.find('.SwipeoutActionsOpened').removeClass('SwipeoutActionsOpened');
-    var noFold = swipeOutActions.hasClass('swipeout-actions-no-fold') || Local.swipeoutActionsNoFold;
+    var noFold = swipeOutActions.hasClass('SwipeoutActionsNoFold') || Local.swipeoutActionsNoFold;
     var buttons = swipeOutActions.children('.SwipeoutItem');
     var swipeOutActionsWidth = swipeOutActions.outerWidth();
     KUIAPP.allowSwipeout = false;

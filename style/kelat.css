@@ -1,9 +1,9 @@
 ﻿@charset "utf-8";
 /*!
- * kelat Css Library v1.2.2-beta1
+ * kelat Css Library v1.2.3-beta
  * http://git.oschina.net/ficozhe/K-UI
  *
- * Date: 2016-07-20
+ * Date: 2016-08-08
  */
 *{
 -webkit-text-size-adjust:none;/*禁止自动调整字体大小*/
@@ -637,7 +637,7 @@ select[multiple].InputSm{height:auto}
 .LabelSwitch .checkbox,
 .LabelSwitch .checkbox:before,
 .LabelSwitch .checkbox:after{-webkit-transition-duration:.3s;transition-duration:.3s}
-.LabelSwitch .checkbox{position:relative;width:52px;height:32px;display:inline-block;background:#e5e5e5;border:none;cursor:pointer;z-index:0;border-radius:16px;-webkit-appearance:none;appearance:none}
+.LabelSwitch .checkbox{position:relative;width:52px;height:32px;display:inline-block;overflow:hidden;background:#e5e5e5;border:none;cursor:pointer;z-index:0;border-radius:16px;-webkit-appearance:none;appearance:none}
 .LabelSwitch .checkbox:before{position:absolute;left:2px;top:2px;width:48px;height:28px;background:#fff;
 content:"";z-index:1;border-radius:16px;
 -webkit-transform:scale(1);
@@ -1407,11 +1407,12 @@ display:flex;
 -ms-flex:0 0 auto;
 flex-shrink:0;
 }
-.WrapHeader + .WrapContent > .WAll .TabsFixed{top:45px}
-.WrapFooter + .WrapContent > .WAll .TabsFixed{top:45px}
 .TabsFixed{position:fixed;left:0;top:0;width:100%;z-index:6000}
-.TabsFixed + .TabsCon{padding-top:55px}
+.TabsFixed + .TabsCon{margin-top:55px}
 .TabsFixed.TabBarLabels + .TabsCon{padding-top:75px}
+
+.WrapHeader + .WrapContent > .WAll .TabsFixed{top:45px}
+.WrapHeader + .WrapFooter + .WrapContent > .WAll .TabsFixed{top:45px}
 
 .WrapFooter .TabsFixed{top:auto;bottom:0}
 
@@ -2653,10 +2654,12 @@ transform:translate(230px, 0);}
 }
 /* 小屏幕 平板，最大 768px */
 @media screen and (min-width: 641px) and (max-width: 768px) {
+    .WAll{width:640px}
+}
+@media screen and (min-width: 641px){
     .ListBlock.ListTabletInset{overflow:hidden;margin-left:12px;margin-right:12px;border-radius:6px}
     .ListBlock.ListTabletInset:before,
     .ListBlock.ListTabletInset:after{display:none}
-    .WAll{width:640px}
 }
 
 /* 超小屏幕 手机，最大 640px */

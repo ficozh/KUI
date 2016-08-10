@@ -4,6 +4,11 @@ define(['APP'],function(APP){
 	APP.controller('MYWalletController',
 		["title",'$scope','$state','$window',
 function( title , $scope , $state , $window) {
+	var uu = "赞了\"<a href=\"/forum/food/1868109.shtml\" target=\"_blank\">【洗护有道】真正的暖男只暖专属的她</a>\"的帖子";
+		uu=$$.fn.removeHTML(uu);
+		uu=$$.fn.removeString(uu,'"');
+		//alert(uu)
+		uu=uu.replace(/\"/ig,'');
 		/*function time(endTime){
 				var mydate=new Date();
 				var myweekday=mydate.getDay();
