@@ -24,9 +24,8 @@ var version = "1.2.3";
 var classType = {};
 var toString = classType.toString;
 var hasOwn = classType.hasOwnProperty;
-var _KLTTEST_ = /ktest=true/.test(window.location.hash);
 //运行授权
-var running = ++[[]][+[]]+[]+[] >>> 0 ? !0 : !1 ;
+var running = ++[[]][+[]]+[]+[] >>> 1 ? !0 : !1 ;
 var KUIAPP = {
     //类型
     type : function( obj ) {
@@ -152,6 +151,9 @@ if(window['kelatlocale']){
 };
 /***** 定义局部参数 *****/
 var Local = {
+    //网址
+    website:'http://git.oschina.net/ficozhe/K-UI',
+    //提示信息
     message:'\u60a8\u4f7f\u7528\u671f\u5df2\u5230\uff01',
     //图片
     ImgPlaceholder:kelatlocale.SYSTEM_LANGUAGE.IMG.IMGPlaceholder,
@@ -269,6 +271,26 @@ var Local = {
         return support;
     })()
 };
+
+//提示信息
+(function(){
+    if(!window.isHello){
+        var KUI ="kelat.js " + version + " - ✰ KUI ✰ ";
+        var KUIMail ="\n\n如有任何意见和建议可发送邮件至 ficozh@163.com\n\n";
+        var Padding = 'padding:5px 0'
+        var Padding0CF = 'background:#0CF;'+Padding;
+        var Padding111 = 'background:#111;color:#FFF;'+Padding;
+        var PaddingCFF = 'background:#CFF;'+Padding;
+        var Color000 = 'color:#000';
+        if(navigator.userAgent.toLowerCase().indexOf("chrome") > -1){
+            var Copyright = ["%c %c "+KUI+" %c %c " + Local.website + " %c %c " + KUIMail,Padding0CF,Padding111,Padding0CF,PaddingCFF,Padding0CF,Color000];
+            window.console.log.apply(console, Copyright)
+        }else{
+            window.console && window.console.log(KUI + Local.website + KUIMail);
+        }
+        window.isHello = running = !0;
+    }
+})();
 
 /***** 创建对象 *****/
 if(!window['kelat']){
@@ -3954,7 +3976,7 @@ window['kelat']['confirmModal'] = KUIAPP.ConfirmModal;
  * @param {String} content:内容
  * @param {function} callBack:回调
  */
-function BlankTips(title, content, callBack){
+KUIAPP.BlankTips = function(title, content, callBack){
     if(typeof content === 'function'){
         callBack = arguments[1];
         content = undefined;
@@ -3970,7 +3992,7 @@ function BlankTips(title, content, callBack){
     $$(document.getElementById(Local.WrapperArea)).append($BlankTipsHTML)
     return this;
 };
-window['kelat']['blankTips'] = BlankTips;
+window['kelat']['blankTips'] = KUIAPP.BlankTips;
 
 /*======================================================
 ************   操作表单   ************
@@ -4375,19 +4397,19 @@ KUIAPP.initSwipeout = function(swipeoutEl){
     };
     //绑定事件
     if(swipeoutEl){
-		if(!window.isSwipeoutEL){
-			$$(swipeoutEl).on(_KLT_.touchEvents.start, handleTouchStart);
-			$$(swipeoutEl).on(_KLT_.touchEvents.move, handleTouchMove);
-			$$(swipeoutEl).on(_KLT_.touchEvents.end, handleTouchEnd);
-			window.isSwipeoutEL = true;
-		}
+        if(!window.isSwipeoutEL){
+            $$(swipeoutEl).on(_KLT_.touchEvents.start, handleTouchStart);
+            $$(swipeoutEl).on(_KLT_.touchEvents.move, handleTouchMove);
+            $$(swipeoutEl).on(_KLT_.touchEvents.end, handleTouchEnd);
+            window.isSwipeoutEL = true;
+        }
     }else{
-		if(!window.isSwipeout){
-			$$(document).on(_KLT_.touchEvents.start, '.ListBlock li.Swipeout', handleTouchStart);
-			$$(document).on(_KLT_.touchEvents.move, '.ListBlock li.Swipeout', handleTouchMove);
-			$$(document).on(_KLT_.touchEvents.end, '.ListBlock li.Swipeout', handleTouchEnd);
-			window.isSwipeout = true;
-		}
+        if(!window.isSwipeout){
+            $$(document).on(_KLT_.touchEvents.start, '.ListBlock li.Swipeout', handleTouchStart);
+            $$(document).on(_KLT_.touchEvents.move, '.ListBlock li.Swipeout', handleTouchMove);
+            $$(document).on(_KLT_.touchEvents.end, '.ListBlock li.Swipeout', handleTouchEnd);
+            window.isSwipeout = true;
+        }
     };
 };
 /** 打开滑动操作

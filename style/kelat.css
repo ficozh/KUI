@@ -34,7 +34,7 @@ body{margin:0;overflow-x:hidden}
 /* ===== 设置高度 ===== */
 /*修正 scrolltop 无效*/
 html,
-body{font-family:sans-serif;position:relative;/*影响滚动 overflow-x:hidden; */width:100%;height:99.99%}
+body{font-family:sans-serif;position:relative;/*影响滚动 overflow-x:hidden; */width:100%;min-height:99.99%;height:99.99%}
 
 /* ===== 定义块元素 ===== */
 article,aside,details,figcaption,figure,footer,header,hgroup,main,menu,nav,section,summary{display:block}
@@ -2059,7 +2059,7 @@ display:flex;
 .Box .BoxContent .BoxContentInner>p:last-child{margin-bottom:0}
 .Box .BoxContent .Img{display:block}
 
-.Box .BoxFooter a.Link, .Box .BoxHeader a.Link{position:relative;line-height:36px;height:36px;text-decoration:none;text-align:center;display:block;margin:0;white-space:nowrap;text-overflow:ellipsis;overflow:hidden;color:#2196f3;background:none;padding:0 8px;font-size:14px;cursor:pointer;min-width:64px;
+.Box .BoxFooter .Link, .Box .BoxHeader .Link{position:relative;line-height:36px;height:36px;text-decoration:none;text-align:center;display:block;margin:0;white-space:nowrap;text-overflow:ellipsis;overflow:hidden;color:#2196f3;background:none;padding:0 8px;font-size:14px;cursor:pointer;min-width:64px;
 border-radius:2px;border:none;outline:0;
 box-sizing:border-box;
 -webkit-appearance:none;
@@ -2309,7 +2309,7 @@ text-transform:uppercase;
 }
 /* ===== 定义宽度 ===== */
 .WAll,
-.WAllFluid{width:auto;margin:0 auto;position:relative;z-index:1}
+.WAllFluid{width:auto;margin:0 auto;position:relative;padding:1px 0;z-index:1}
 .WAllFluid{width:100%}
 .WAll::after,
 .WAllFluid::after{display:block;clear:both;content:"";visibility:hidden;height:0}
@@ -2436,8 +2436,8 @@ text-transform:uppercase;
 
 
 /*主体*/
-.Wrapper{margin:0 auto;min-width:320px;position:relative;width:100%}
-.WrapBox{position:relative;z-index:9;}
+.Wrapper{margin:0 auto;min-width:320px;position:relative;width:100%;min-height:inherit}
+.WrapBox{position:relative;z-index:9;min-height:inherit}
 
 .PageOnLeft{opacity:1;
 -webkit-transform:translate3d(0,0,0);
@@ -2501,7 +2501,7 @@ box-sizing:border-box;}
 .WrapHeader + .WrapContent{padding-top:45px}
 .WrapFooter + .WrapContent{padding-bottom:45px}
 .WrapHeader + .WrapFooter + .WrapContent{padding-top:45px;padding-bottom:45px}
-.WrapContent{position:relative;padding:0;z-index:80;box-sizing:border-box;
+.WrapContent{position:relative;padding:0;z-index:80;box-sizing:border-box;min-height:inherit;
 -webkit-overflow-scrolling:touch;    
 }
 .WrapContent a{text-shadow:none}

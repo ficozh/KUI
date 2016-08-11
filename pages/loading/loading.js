@@ -22,7 +22,7 @@ function( title , $scope , $state ) {
 				$scope.Loading=function(){
 					$$.loading()
 					setTimeout(function () {
-						//$$.unLoading();
+						$$.unLoading();
 					}, 2000);
 				};
 				
