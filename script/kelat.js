@@ -4088,18 +4088,18 @@ KUIAPP.initSwipeout = function(swipeoutEl){
             var text = clickedData.confirm;
             var title = clickedData.confirmtitle;
             if(title){
-                kelat.confirm(text, title, function () {
+                kelat.confirm(text, title, function(){
                     KUIAPP.swipeoutDelete(clicked.parents('.Swipeout'));
                 },function(){
-                    if(clickedData.closeOnCancel){
+                    if(clickedData.closeoncancel){
                         KUIAPP.swipeoutClose(clicked.parents('.Swipeout'));
                     };
                 });
             }else{
-                kelat.confirm(text, function () {
+                kelat.confirm(text, function(){
                     KUIAPP.swipeoutDelete(clicked.parents('.Swipeout'));
-                }, function () {
-                    if(clickedData.closeOnCancel){
+                },function(){
+                    if(clickedData.closeoncancel){
                         KUIAPP.swipeoutClose(clicked.parents('.Swipeout'));
                     };
                 });
@@ -4544,6 +4544,7 @@ KUIAPP.swipeoutDelete = function(el, callback){
 window['kelat']['initSwipeout'] = KUIAPP.initSwipeout;
 window['kelat']['swipeoutOpen'] = KUIAPP.swipeoutOpen;
 window['kelat']['swipeoutClose'] = KUIAPP.swipeoutClose;
+window['kelat']['swipeoutDelete'] = KUIAPP.swipeoutDelete;
 
 
 /*=====================================================

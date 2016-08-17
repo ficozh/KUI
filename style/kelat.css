@@ -2600,6 +2600,9 @@ height:		   calc(100% + 44px);
 
 /* ===== 响应设计 ===== */
 /* 大屏幕 大桌面显示器，最大 1200px */
+@media screen and (min-width: 1201px){
+    .WAll{width:1200px}
+}/* 大屏幕 大桌面显示器，最大 1200px */
 @media screen and (min-width: 1025px) and (max-width:1200px) {
     .WAll{width:1000px}
 }
@@ -2629,7 +2632,6 @@ transform: translate(0, 0);}
 
 
 @media screen and (max-width: 768px) {
-	
 .MainWrapper .MainSidebar{-webkit-transform: translate(-230px, 0);
 -ms-transform: translate(-230px, 0);
 -o-transform: translate(-230px, 0);
