@@ -1,13 +1,18 @@
 @charset "utf-8";
-/* ////////////////////////////////////// */
-/* theme                                  */
-/* by：fico                               */
-/* email : ficozh@163.com                 */
-/* ////////////////////////////////////// */
+/*!
+ * kelat Css Library v1.2.3-beta
+ * http://git.oschina.net/ficozhe/K-UI
+ *
+ * Date: 2016-08-08
+ */
 
 /* ===== 全局颜色 ===== */
-body{color:#222;background-color:#eee}
-.Mobile body{background-color:#eee}
+body{color:#222;background-color:#f6f6f6}
+.Mobile body{background-color:#f6f6f6;
+-webkit-user-select:none;
+   -moz-user-select:none;
+        user-select:none;
+}
 
 /*区域范围*/
 .Mobile .WAll{height:inherit}
@@ -25,7 +30,7 @@ select,
 button{font-size:14px;line-height:1.42857143;font-family:"\5FAE\8F6F\96C5\9ED1","\9ED1\4F53",Tahoma,"STHeiti","Microsoft YaHei",sans-serif}
 
 /* ===== 连接颜色 ===== */
-a{-webkit-transition-duration:300ms;
+a{color:#333;-webkit-transition-duration:300ms;
 		transition-duration:300ms;}
 
 /* ===== 动画时间 ===== */

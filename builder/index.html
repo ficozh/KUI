@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html lang="zh-CN" class="Mobile">
+<html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
 <!-- AngularJS中的友好URL：移除URL中的# -->
@@ -14,39 +14,332 @@
 <link rel="stylesheet" href="../style/kelat.css" media="all"/>
 <!-- 扩展样式 -->
 <link rel="stylesheet" href="../style/theme.css" media="all"/>
+<!-- 页面样式 -->
+<link rel="stylesheet" href="style/builder.css" media="all"/>
+<!-- 字体 -->
+<link rel="stylesheet" href="fonts/iconfont.css" media="all"/>
 <!--[if lt IE 10]>
 <link rel="stylesheet" type="text/css" href="style/IE.css" />
 <![endif]--> 
-
-
-
-<link class="codestyle" rel="stylesheet" href="styles/default.css" disabled="">
-<link class="codestyle" rel="stylesheet" href="styles/solarized-dark.css" disabled="">
-<link class="codestyle" rel="stylesheet" href="styles/solarized-light.css" disabled="">
-<link class="codestyle" rel="stylesheet" href="styles/github.css" disabled="">
-<link class="codestyle" rel="stylesheet" href="styles/railscasts.css" disabled="">
-<link class="codestyle" rel="stylesheet" href="styles/monokai-sublime.css" disabled="">
-<link class="codestyle" rel="stylesheet" href="styles/mono-blue.css" disabled="">
-<link class="codestyle" rel="stylesheet" href="styles/tomorrow.css" disabled="">
-<link class="codestyle" rel="stylesheet" href="styles/color-brewer.css" disabled="">
-<link class="codestyle" rel="stylesheet" href="styles/zenburn.css" disabled="">
-<link class="codestyle" rel="stylesheet" href="styles/agate.css" disabled="">
-<link class="codestyle" rel="stylesheet" href="styles/androidstudio.css" disabled="">
-<link class="codestyle" rel="stylesheet" href="styles/dracula.css" disabled="">
-<link class="codestyle" rel="stylesheet" href="styles/rainbow.css" disabled="">
-<link class="codestyle" rel="stylesheet" href="styles/vs.css" disabled="">
-<link class="codestyle" rel="stylesheet" href="styles/atom-one-dark.css" disabled="">
-<link class="codestyle" rel="stylesheet" href="styles/atom-one-light.css">
-
-
-
 </head>
 <body>
-<div class="WAll">
+<div class="BuilderHeader">
+	<div class="WAll">
+		<div class="Logo"></div>
+	</div>
+</div>
+<div class="WAll BuilderWrap">
 	<div class="Row">
-		<div class="Col20">
+		<div class="Col25 Bor Menu">
+			<div class="AccordionItem AccordionItemExpanded">
+				<div class="ContentBlockTitle ItemLink Cur">页面布局</div>
+				<div class="Row NoGutter AccordionItemCon">
+					<div class="Col50 First">
+						<ul class="ListBlock">
+							<li class="ListItem Draggable" title="grid(网格布局)">
+								<div class="ItemCon">
+									<div class="ItemMedia">
+										<i class="icon iconfont">&#xe60a;</i>
+										
+									</div>
+									<div class="ItemInner">
+										<div class="ItemTitle">网格布局</div>
+									</div>
+								</div>
+							</li>
+							<li class="ListItem Draggable" title="box(盒)">
+								<div class="ItemCon">
+									<div class="ItemMedia">
+										<i class="icon iconfont">&#xe617;</i>
+										
+									</div>
+									<div class="ItemInner">
+										<div class="ItemTitle">盒</div>
+									</div>
+								</div>
+							</li>
+						</ul>
+					</div>
+					<div class="Col50 Last">
+						<ul class="ListBlock">
+							<li class="ListItem Draggable" title="stylebox(九宫格)">
+								<div class="ItemCon">
+									<div class="ItemMedia">
+										<i class="icon iconfont">&#xe604;</i>
+									</div>
+									<div class="ItemInner">
+										<div class="ItemTitle">九宫格</div>
+									</div>
+								</div>
+							</li>
+							<li class="ListItem Draggable" title="tab(选项卡)">
+								<div class="ItemCon">
+									<div class="ItemMedia">
+										<i class="icon iconfont">&#xe601;</i>
+									</div>
+									<div class="ItemInner">
+										<div class="ItemTitle">选项卡</div>
+									</div>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="AccordionItem AccordionItemExpanded">
+				<div class="ContentBlockTitle ItemLink Cur">表单</div>
+				<div class="Row NoGutter AccordionItemCon">
+					<div class="Col50 First">
+						<ul class="ListBlock">
+							<li class="ListItem Draggable" title="button(按钮)">
+								<div class="ItemCon">
+									<div class="ItemMedia">
+										<i class="icon iconfont">&#xe610;</i>
+									</div>
+									<div class="ItemInner">
+										<div class="ItemTitle">按钮</div>
+									</div>
+								</div>
+							</li>
+							<li class="ListItem Draggable" title="checkbox(多选)">
+								<div class="ItemCon">
+									<div class="ItemMedia">
+										<i class="icon iconfont">&#xe614;</i>
+									</div>
+									<div class="ItemInner">
+										<div class="ItemTitle">多选</div>
+									</div>
+								</div>
+							</li>
+							<li class="ListItem Draggable" title="switch(开关)">
+								<div class="ItemCon">
+									<div class="ItemMedia">
+										<i class="icon iconfont">&#xe60d;</i>
+									</div>
+									<div class="ItemInner">
+										<div class="ItemTitle">开关</div>
+									</div>
+								</div>
+							</li>
+							<li class="ListItem Draggable" title="floatbutton(浮动按钮)">
+								<div class="ItemCon">
+									<div class="ItemMedia">
+										<i class="icon iconfont">&#xe605;</i>
+									</div>
+									<div class="ItemInner">
+										<div class="ItemTitle">浮动按钮</div>
+									</div>
+								</div>
+							</li>
+						</ul>
+					</div>
+					<div class="Col50 Last">
+						<ul class="ListBlock">
+							<li class="ListItem Draggable" title="numberbox(数字输入框)">
+								<div class="ItemCon">
+									<div class="ItemMedia">
+										<i class="icon iconfont">&#xe61c;</i>
+									</div>
+									<div class="ItemInner">
+										<div class="ItemTitle">数字输入框</div>
+									</div>
+								</div>
+							</li>
+							<li class="ListItem Draggable" title="radio(单选)">
+								<div class="ItemCon">
+									<div class="ItemMedia">
+										<i class="icon iconfont">&#xe615;</i>
+									</div>
+									<div class="ItemInner">
+										<div class="ItemTitle">单选</div>
+									</div>
+								</div>
+							</li>
+							<li class="ListItem Draggable" title="short(短标)">
+								<div class="ItemCon">
+									<div class="ItemMedia">
+										<i class="icon iconfont">&#xe606;</i>
+									</div>
+									<div class="ItemInner">
+										<div class="ItemTitle">短标</div>
+									</div>
+								</div>
+							</li>
+							<li class="ListItem Draggable" title="badge(数字角标)">
+								<div class="ItemCon">
+									<div class="ItemMedia">
+										<i class="icon iconfont">&#xe61b;</i>
+									</div>
+									<div class="ItemInner">
+										<div class="ItemTitle">数字角标</div>
+									</div>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="AccordionItem AccordionItemExpanded">
+				<div class="ContentBlockTitle ItemLink Cur">列表</div>
+				<div class="Row NoGutter AccordionItemCon">
+					<div class="Col50 First">
+						<ul class="ListBlock">
+							<li class="ListItem Draggable" title="list(列表)">
+								<div class="ItemCon">
+									<div class="ItemMedia">
+										<i class="icon iconfont">&#xe612;</i>
+									</div>
+									<div class="ItemInner">
+										<div class="ItemTitle">列表</div>
+									</div>
+								</div>
+							</li>
+							<li class="ListItem Draggable" title="Accordion(折叠面板)">
+								<div class="ItemCon">
+									<div class="ItemMedia">
+										<i class="icon iconfont">&#xe619;</i>
+									</div>
+									<div class="ItemInner">
+										<div class="ItemTitle">折叠面板</div>
+									</div>
+								</div>
+							</li>
+							<li class="ListItem Draggable" title="Swipeout Actions(滑动操作)">
+								<div class="ItemCon">
+									<div class="ItemMedia">
+										<i class="icon iconfont">&#xe609;</i>
+									</div>
+									<div class="ItemInner">
+										<div class="ItemTitle">滑动操作</div>
+									</div>
+								</div>
+							</li>
+						</ul>
+					</div>
+					<div class="Col50 Last">
+						<ul class="ListBlock">
+							<li class="ListItem Draggable" title="mediaLists(媒体列表)">
+								<div class="ItemCon">
+									<div class="ItemMedia">
+										<i class="icon iconfont">&#xe603;</i>
+									</div>
+									<div class="ItemInner">
+										<div class="ItemTitle">媒体列表</div>
+									</div>
+								</div>
+							</li>
+							<li class="ListItem Draggable" title="Sortable List(可排序列表)">
+								<div class="ItemCon">
+									<div class="ItemMedia">
+										<i class="icon iconfont">&#xe60f;</i>
+									</div>
+									<div class="ItemInner">
+										<div class="ItemTitle">可排序列表</div>
+									</div>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="AccordionItem AccordionItemExpanded">
+				<div class="ContentBlockTitle ItemLink Cur">模态框</div>
+				<div class="Row NoGutter AccordionItemCon">
+					<div class="Col50 First">
+						<ul class="ListBlock">
+							<li class="ListItem Draggable" title="dialog(消息框)">
+								<div class="ItemCon">
+									<div class="ItemMedia">
+										<i class="icon iconfont">&#xe613;</i>
+									</div>
+									<div class="ItemInner">
+										<div class="ItemTitle">dialog</div>
+									</div>
+								</div>
+							</li>
+							<li class="ListItem Draggable" title="Toast(显示信息)">
+								<div class="ItemCon">
+									<div class="ItemMedia">
+										<i class="icon iconfont">&#xe607;</i>
+									</div>
+									<div class="ItemInner">
+										<div class="ItemTitle">toast</div>
+									</div>
+								</div>
+							</li>
+							<li class="ListItem Draggable" title="notify(通知)">
+								<div class="ItemCon">
+									<div class="ItemMedia">
+										<i class="icon iconfont">&#xe60e;</i>
+									</div>
+									<div class="ItemInner">
+										<div class="ItemTitle">通知</div>
+									</div>
+								</div>
+							</li>
+						</ul>
+					</div>
+					<div class="Col50 Last">
+						<ul class="ListBlock">
+							<li class="ListItem Draggable" title="picker(选择器)">
+								<div class="ItemCon">
+									<div class="ItemMedia">
+										<i class="icon iconfont">&#xe60b;</i>
+									</div>
+									<div class="ItemInner">
+										<div class="ItemTitle">选择器</div>
+									</div>
+								</div>
+							</li>
+							<li class="ListItem Draggable" title="loading(加载)">
+								<div class="ItemCon">
+									<div class="ItemMedia">
+										<i class="icon iconfont">&#xe611;</i>
+									</div>
+									<div class="ItemInner">
+										<div class="ItemTitle">加载</div>
+									</div>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="AccordionItem AccordionItemExpanded">
+				<div class="ContentBlockTitle ItemLink Cur">其他</div>
+				<div class="Row NoGutter AccordionItemCon">
+					<div class="Col50 First">
+						<ul class="ListBlock">
+							<li class="ListItem Draggable" title="HTML">
+								<div class="ItemCon">
+									<div class="ItemMedia">
+										<i class="icon iconfont">&#xe61a;</i>
+									</div>
+									<div class="ItemInner">
+										<div class="ItemTitle">HTML</div>
+									</div>
+								</div>
+							</li>
+						</ul>
+					</div>
+					<div class="Col50 Last">
+						<ul class="ListBlock">
+							<li class="ListItem Draggable" title="返回顶部">
+								<div class="ItemCon">
+									<div class="ItemMedia">
+										<i class="icon iconfont">&#xe600;</i>
+									</div>
+									<div class="ItemInner">
+										<div class="ItemTitle">返回顶部</div>
+									</div>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
 		</div>
-		<div class="Col60">
+		<div class="Col50 Bor">
 			<div class="ToolBar TabBar">
 				<ul class="ToolBarInner">
 					<li data-tab="#tab1" class="TabLink Cur active">查看</li>
@@ -65,23 +358,75 @@
     &lt;utton class="Btn NumBoxMinus" type="button">-&lt;/button>
     &lt;input class="NumBoxInput" type="number" value="0"/>
     &lt;button class="Btn NumBoxPlus" type="button">+&lt;/button>
-&lt;/div></code></pre></div></div>
+&lt;/div></code></pre></div>
 			</div>
 		</div>
-		<div class="Col20">
+		<div class="Col25 Bor">
 			3
 		</div>
 	</div>
 </div>
 <script type="text/javascript" src="../script/kelat.js"></script>
 <script type="text/javascript" src="../script/kuiBuilder.js"></script>
-<script type="text/javascript" src="highlight.pack.js"></script>
 <script type="text/javascript">
 $$(document).ready(function(){
-    hljs.highlightBlock($$('pre code'));
 	$$.initAccordion();
 	$$.tabs();
 });
 </script>
+	<style>
+		/* Tomorrow Theme */
+		/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+		/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+		/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+		.tomorrow-comment, pre .comment, pre .title {
+		  color: #8e908c;
+		}
+
+		.tomorrow-red, pre .variable, pre .attribute, pre .tag, pre .regexp, pre .ruby .constant, pre .xml .tag .title, pre .xml .pi, pre .xml .doctype, pre .html .doctype, pre .css .id, pre .css .class, pre .css .pseudo {
+		  color: #c82829;
+		}
+
+		.tomorrow-orange, pre .number, pre .preprocessor, pre .built_in, pre .literal, pre .params, pre .constant {
+		  color: #f5871f;
+		}
+
+		.tomorrow-yellow, pre .class, pre .ruby .class .title, pre .css .rules .attribute {
+		  color: #eab700;
+		}
+
+		.tomorrow-green, pre .string, pre .value, pre .inheritance, pre .header, pre .ruby .symbol, pre .xml .cdata {
+		  color: #718c00;
+		}
+
+		.tomorrow-aqua, pre .css .hexcolor {
+		  color: #3e999f;
+		}
+
+		.tomorrow-blue, pre .function, pre .python .decorator, pre .python .title, pre .ruby .function .title, pre .ruby .title .keyword, pre .perl .sub, pre .javascript .title, pre .coffeescript .title {
+		  color: #4271ae;
+		}
+
+		.tomorrow-purple, pre .keyword, pre .javascript .function {
+		  color: #8959a8;
+		}
+
+		pre {
+			border: 0;
+			background-color: #fff;
+		}
+
+		pre code {
+		  display: block;
+		  color: #4d4d4c;
+		  font-size: 15px;
+		  font-family: Menlo, Monaco, Consolas, monospace;
+		  line-height: 1.5;
+		  padding: 30px;
+		}
+	</style>
+
+	<script src="http://libs.useso.com/js/highlight.js/7.5/highlight.min.js"></script>
+	<script>hljs.initHighlightingOnLoad();</script>
 </body>
 </html>

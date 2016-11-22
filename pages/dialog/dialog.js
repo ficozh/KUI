@@ -10,6 +10,7 @@ function( title , $scope , $state ) {
 			bussiness: function() {
 				//执行函数 
 				console.log($$(".AlertBtn"))
+				
 				$$(".AlertBtn").tap(function(){
 					$$.alert("alert警告消息框",function(){
 						$$.alert("第二个alert警告消息框","alert标题");
@@ -20,13 +21,20 @@ function( title , $scope , $state ) {
 						$$.alert("alert警告消息框",function(){
 							$$.prompt("欢迎体验KMUI")
 						});
-					},function(){
-						$$.alert("1");
 					});
 				});
 				
 				$$(".PromptBtn").on("click",function(){
-					$$.prompt("欢迎体验KMUI")
+					$$.prompt('你叫什么名字?', function (data) {
+						$$.confirm('你确定你的名字是 ' + data + '?', function () {
+							$$.alert('好吧，你的名字是 ' + data + ' ;)');
+						});
+					})
+					//$$.prompt("欢迎体验KMUI",'warning')
+				});
+				
+				$$(".WarnBtn").on("click",function(){
+					$$.warn("欢迎体验KMUI",'warning')
 				});
 				
 				

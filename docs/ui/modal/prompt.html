@@ -23,16 +23,19 @@ text-align:center;}
 <div>
    <div class="HelpBox" id="WrapperArea">
    
-	<h2>$$.prompt(text,time)</h2>
+	<h2>$$.prompt(text,time,className)</h2>
 		<h3>概述</h3>
 		<div class="desc">
 		<p>我们需要调用以下任一一种方法来打开弹层:</p>
 		<p>$$.prompt(text)</p>
 		<p>$$.prompt(text,time)</p>
+		<p>$$.prompt(text,className)</p>
+		<p>$$.prompt(text,time,className)</p>
 		</div>
 		<ul class="List">
 			<li>text - <span class="CG">string</span> 文本</li>
 			<li>time - <span class="CG">number</span> 显示的时间，单位毫秒 ，默认2000毫秒，<span class="CR">可选</span>。</li>
+			<li>className - <span class="CG">string</span> 增加样式 class 名称 ，<span class="CR">可选</span>。</li>
 		</ul>
 	<div class="example">
         <h3>实例</h3>
@@ -41,10 +44,11 @@ text-align:center;}
         <pre><code>&lt;button type="button" class="Btn BtnPrimary InkRipple PromptBtn">自动消失提示框&lt;/button></code></pre>
 		<h5>js 代码:</h5>
 		<pre><code>$$(".PromptBtn").on("click",function(){
-  $$.prompt("欢迎体验KMUI")
+  $$.prompt("欢迎体验KUI")
 });</code></pre>
 		<button type="button" class="Btn BtnBig BtnPrimary InkRipple PromptBtn">自动消失提示框</button>
 		<button type="button" class="Btn BtnBig BtnPrimary InkRipple PromptBtn1">1000毫秒后消失</button>
+		<button type="button" class="Btn BtnBig BtnPrimary InkRipple PromptBtn2">改变显示样式</button>
 		
    </div>
 
@@ -53,10 +57,13 @@ text-align:center;}
 <script type="text/javascript">
 $$(document).ready(function(){
 	$$(".PromptBtn").on("click",function(){
-		$$.prompt("欢迎体验KMUI")
+		$$.prompt("欢迎体验KUI")
 	});
 	$$(".PromptBtn1").on("click",function(){
-		$$.prompt("欢迎体验KMUI",1000)
+		$$.prompt("欢迎体验KUI",1000)
+	});
+	$$(".PromptBtn2").on("click",function(){
+		$$.prompt("欢迎体验KUI",'warning')
 	});
 });
 </script>

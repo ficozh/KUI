@@ -1,0 +1,21 @@
+﻿@charset "utf-8";
+/*!
+ * kelat JavaScript Library v1.0.0-beta
+ * http://git.oschina.net/ficozhe/K-UI
+ *
+ * Date: 2016-08-08
+ */
+body{background:url(../images/builderbg.png)}
+/*顶部*/
+.BuilderHeader{height:50px;background-color:#1d0f25;margin-bottom:12px}
+.BuilderHeader .Logo{background:url(../images/builderLogo.png) no-repeat center;width:200px;height:50px}
+/*内容*/
+.BuilderWrap .Bor{border:1px solid #ddd;background-color:#fff;}
+.BuilderWrap .Menu .ContentBlockTitle{margin:0;padding:0 15px;line-height:30px;background-color:#F3F3F3;border-bottom:1px solid #ddd;}
+.BuilderWrap .Menu .Last .ListItem{border-left:1px solid #ddd}
+.BuilderWrap .Menu .Draggable{cursor:move}
+.BuilderWrap .Menu .ListBlock{margin-bottom:0}
+.BuilderWrap .Menu .ListBlock .ItemCon,
+.BuilderWrap .Menu .ListBlock .ItemInner{min-height:10px}
+.BuilderWrap .Menu .icon{color:#454545}
+

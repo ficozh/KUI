@@ -9,7 +9,6 @@ function( title , $scope , $state) {
 		$scope.Load = {
 			bussiness: function() {
 				//执行函数 
-				$$.fn.log(window)
 				var today = new Date();
 				
 				$$('.DemoPickerModal').on('click', function () {
@@ -25,6 +24,9 @@ function( title , $scope , $state) {
 					isEfficient:true,
 					autoUpdate:false,
 					value: ['iPad mini 2'],
+					onChange: function (picker, values, displayValues) {
+						console.log(picker)						
+					},
 					cols: [
 						{
 							textAlign: 'center',
@@ -37,6 +39,9 @@ function( title , $scope , $state) {
 				var pickerDescribe = $$.picker({
 					input: '#ks-picker-describe',
 					rotateEffect: true,
+					onChange: function (picker, values, displayValues) {
+						console.log(picker)						
+					},
 					cols: [
 						{
 							textAlign: 'left',

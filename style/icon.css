@@ -1,5 +1,11 @@
 ﻿@charset "utf-8";
-
+/*!
+ * kelat Css Library v1.2.3-beta
+ * http://git.oschina.net/ficozhe/K-UI
+ *
+ * Date: 2016-08-08
+ */
+ 
 /*图标*/
 .Icon{position:relative;display:inline-block;vertical-align:middle;background-size:100% auto;background-position:center;background-repeat:no-repeat;font-style:normal;width:24px;height:24px}
 

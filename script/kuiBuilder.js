@@ -12,7 +12,7 @@
 		});
 	}else{
 		// Browser globals
-		factory( Global.jQuery, Global, doc );
+		factory( Global.kelat, Global, doc );
 	}
 }(this,document,function(kelat, window, document) {
 'use strict';
@@ -24,6 +24,5 @@ var KUIBuilder = KUIBuilder || {};
 KUIBuilder.Template = {
 	//
 };
-
 
 }));

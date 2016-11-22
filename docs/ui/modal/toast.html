@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,height=device-height,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<title>$$.alert()</title>
+<!-- KUI -->
+<link rel="stylesheet" href="../../../style/kelat.css" media="all"/>
+<!-- 扩展样式 -->
+<link rel="stylesheet" href="../../../style/theme.css" media="all"/>
+<style>
+.ColorPalette{height:35px;
+line-height:35px;
+text-align:center;}
+.GridShow .Row{margin-bottom:10px;}
+.GridShow [class^=Col]{line-height:20px;padding:5px;margin-bottom:5px}
+</style>
+</head>
+<body >
+<div>
+   <div class="HelpBox" id="WrapperArea">
+   
+	<h2>$$.toast(options)</h2>
+		<h3>概述</h3>
+		<div class="desc">
+		<p>Toast用于临时显示某些信息，和Dialog不一样的是，Toast是没有焦点的，而且Toast显示的时间有限，会在数秒后自动消失。Toast主要用于向用户显示提示消息，这些信息通常是轻量级操作的成功、失败或等待状态信息。</p>
+		</div>
+		<ul class="List">
+			<li>options.title - <span class="CG">string</span> 信息标题</li>
+			<li>options.content - <span class="CG">string</span> 信息内容，<span class="CR">可选</span>。</li>
+			<li>options.site - <span class="CG">number | string</span> 设置位置，顺序[上 右 下 左] 如：[100,'10%',10,10] 或者 ['10%',,10] <span class="CR">可选</span>。</li>
+			<li>options.time - <span class="CG">number</span> 信息显示时间，<span class="CR">可选</span>。</li>
+			<li>options.className - <span class="CG">string</span> 自定义样式名，<span class="CR">可选</span>。</li>
+		</ul>
+	<div class="example">
+        <h3>实例</h3>
+        <h4>弹层:</h4>
+		<h5>HTML 代码:</h5>
+        <pre><code>&lt;button type="button" class="Btn BtnPrimary InkRipple ToastBtn">默认Toast样式&lt;/button></code></pre>
+		<h5>js 代码:</h5>
+		<pre><code>$$(".ToastBtn").on('click',function(){
+    $$.toast({
+        text:'默认Toast样式'
+    });
+});</code></pre>
+		<button type="button" class="Btn BtnBig BtnPrimary InkRipple ToastBtn">默认Toast样式</button>
+		<button type="button" class="Btn BtnBig BtnPrimary InkRipple CustomBtn">自定义显示位置</button>
+		<button type="button" class="Btn BtnBig BtnPrimary InkRipple PicBtn">带图片</button>
+		
+   </div>
+
+</div>
+<script type="text/javascript" src="../../../script/kelat.js"></script>
+<script type="text/javascript">
+$$(document).ready(function(){
+	$$(".ToastBtn").on('click',function(){
+		$$.toast({
+			title:'默认Toast样式'
+		});
+	});
+	$$(".CustomBtn").on('click',function(){
+		$$.toast({
+			title:'自定义显示位置',
+			site:[44]
+		});
+	});
+	$$(".PicBtn").on('click',function(){
+		$$.toast({
+			title:'操作成功',
+			content:'<img src="../../../images/svg/iconfont-check.svg" width="32" />',
+			site:['40%',20],
+			time:5000
+		});
+	});
+});
+</script>
+</div>
+</body>
+</html>

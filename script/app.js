@@ -190,6 +190,25 @@ return angular.module('MyApp', ['ngIOS9UIWebViewPatch'
 			}
 			
 		})
+		.state("toast",{//Toast (显示信息)
+			url:"/toast",
+			views:{
+				'Header': Header,
+				'WrapContent':{
+					templateUrl :"pages/toast/toast.html",
+					controller : "ToastController",
+					resolve : {
+						title:function(){
+							return "Toast (显示信息)";
+						},
+						load : loadDeps([
+							"../pages/toast/toast"
+						])
+					}	
+				}
+			}
+			
+		})
 		.state("dialog",{//dialog(消息框)
 			url:"/dialog",
 			views:{

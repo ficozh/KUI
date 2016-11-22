@@ -29,11 +29,14 @@ function( title , $scope , $state , $window) {
 		//声明
 		$scope.Load = {
 			bussiness: function() {
+				console.log($$.getUrlParams())
 				var UrlSet = $$.getUrlParams({'url':'http://www.kui.com/kui.html?id=1&name=name','type':['name=','name']});
 				function myHandler(event) {
 alert(1);
 }
 $$("#test").bind("click", myHandler)
+
+
 				
 				//执行函数 
 				//$scope.HeaderTitle ="eeeeee";
@@ -87,7 +90,7 @@ $$("#test").bind("click", myHandler)
 				$$.fn.ls.names = $$.fn.jsonArray(names)
 				var storedNames=localStorage['names']?JSON.parse(localStorage['names']):'';
 				$$.fn.log(window)
-				$$.kelatDom.fn.extend({
+				$$.extend({
 					/**箭头左*/
 					AL:function(){alert(1);},
 					/**箭头右*/

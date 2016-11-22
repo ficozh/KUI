@@ -1,5 +1,5 @@
-﻿/*!
- * kelat JavaScript Library v1.2.3-beta
+/**
+ * kelat JavaScript Library v1.2.5-beta
  * http://git.oschina.net/ficozhe/K-UI
  *
  * Date: 2016-08-08
@@ -20,12 +20,12 @@
 }(typeof window !== "undefined" ? window : this,function(window,noGlobal){
 'use strict';
 // 版本
-var version = "1.2.3";
+var version = "1.2.5";
 var classType = {};
 var toString = classType.toString;
 var hasOwn = classType.hasOwnProperty;
 //运行授权
-var running = ++[[]][+[]]+[]+[] >>> 1 ? !0 : !1 ;
+var running = ++[[]][+[]]+[]+[] >>> 0 ? !0 : !1 ;
 var KUIAPP = {
     //类型
     type : function( obj ) {
@@ -166,7 +166,7 @@ var Local = {
     LayerIndex : '2000',
     // 加载
     LoadingTitle : kelatlocale.SYSTEM_LANGUAGE.LOADING,
-    LoadingHtml : '<span class="Loading"></span>',
+    LoadingHtml : '<span class="Loading LoadingWhite"></span>',
     // 模态框
     ModalTitle : kelatlocale.SYSTEM_LANGUAGE.MODAL.TIPS,
     ModalButtonOk : kelatlocale.SYSTEM_LANGUAGE.MODAL.OK,
@@ -288,7 +288,7 @@ var Local = {
         }else{
             window.console && window.console.log(KUI + Local.website + KUIMail);
         }
-        window.isHello = running = !0;
+        window.isHello = !0;
     }
 })();
 
@@ -1727,7 +1727,8 @@ window['kelat']['fn'] = window['kelat'].prototype = {
         return string.replace(RE,"");
     },
     /** Javascript函数节流
-     * @param {function} fn:执行方法
+	 * @alias throttle
+     * @param {function} callBack:执行方法
      * @param {Number} delay:间隔时间
      * @param {Number} mustRunDelay:必须运行时间
      */
@@ -1753,7 +1754,7 @@ window['kelat']['fn'] = window['kelat'].prototype = {
      * @param {String} level:log级别
      */
     log : function(message, level){
-        return running ? console.log(level || 'warning', ': ', message) : '';
+        return running && window.console ? console.log(level || 'warning', ': ', message) : '';
     },
     /** 指定范围取随机数
      * @param {Number} max:最大值
@@ -1765,6 +1766,7 @@ window['kelat']['fn'] = window['kelat'].prototype = {
     //H5本地存储 
     ls : window.localStorage ,
     /** 设备&操作系统探测
+	 * @alias device
      * @return {Object}
      */
     device : (function(){
@@ -1872,6 +1874,7 @@ window['kelat']['fn'] = window['kelat'].prototype = {
         end: Local.support.touch ? 'touchend' : Local.support.desktopEvents[2]
     },
     /** 触摸事件
+	 * @alias touches
      * @param {Object} els:对象
      * @param {function} callBackStart:回调
      * @param {function} callBackMove:回调
@@ -2209,6 +2212,25 @@ var compatible = function(event, source){
     });
 })($$);
 
+//设置默认参数
+window['kelat']['defaults'] = {
+    shift: 0
+};
+//处理显示动画
+function animatedShift(shift){
+    var _Shift = '';
+    if(shift!==0){
+        switch(shift){
+            case 1: _Shift = 'zoomInDown';break;
+            case 2: _Shift = 'fadeInUpBig';break;
+            case 3: _Shift = 'zoomInLeft';break;
+            case 4: _Shift = 'rollIn';break;
+            case 5: _Shift = 'shake';break;
+        };
+    };
+    return _Shift;
+}
+
 //判断是否为数组 && 是否为空数组
 function isArrayLike(obj){
     var length = !!obj && "length" in obj && obj.length,
@@ -2225,6 +2247,7 @@ kelat.each("Boolean Number String Function Array Date RegExp Object Error Symbol
 });
 
 /** 防止事件冒泡
+ * @alias bubbles
  * @param {Object} seifEvent:对象
  * @param {String} els  :子元素
  * @param {function} callback  :回调
@@ -2241,6 +2264,7 @@ KUIAPP.Bubbles = function(seifEvent, els, callback){
 window['kelat']['bubbles'] = KUIAPP.Bubbles;
 
 /** 验证
+ * @alias validate
  * @param {String} string:验证数据
  * @param {String} type  :验证类型
  * @param {RegExp} regExp  :正则
@@ -2253,21 +2277,22 @@ KUIAPP.Validate = function(string, type) {
 window['kelat']['validate'] = KUIAPP.Validate;
 
 /** 分解url参数
+ * @alias getUrlParams
  * @return {Array} options:{'url':'http://www.***.com/',type:['=','id']} 分割符和参数名
  */
 KUIAPP.GetUrlParams = function(options) {
     options = options || {};
     var ArrayData = {},
         LinkURL= options.url ? options.url : window.location.href,
-        angularMark = LinkURL.indexOf("#/")+1 , 
-        angularURLData = LinkURL.substring(angularMark),
-        Mark = angularURLData.indexOf("?")+1,
-        URLData = angularURLData.substring(Mark);
+        Mark = LinkURL.indexOf("?")+1,
+        URLData = LinkURL.substring(Mark);
     if(Mark !== 0){
         if(!!options.type){
             var typeData = URLData.indexOf(options.type[0])+options.type[0].length;
             ArrayData[options.type[1]] = URLData.substring(typeData);
         }else{
+            //angular #/ 多问号 特殊处理
+            URLData = URLData.replace(/\?/g,"&").replace(/[#/]/g,"");
             //获取参数的值
             var _Data = URLData.split("&");
             for(var i=0;i<_Data.length;i++){
@@ -2281,6 +2306,7 @@ KUIAPP.GetUrlParams = function(options) {
 window['kelat']['getUrlParams'] = KUIAPP.GetUrlParams;
 
 /** 动态加载 
+ * @alias loadJC
  * @param {String} path:加载对象路径
  * @param {String} type:加载对象类型 js & css
  * @param {function} callback:js回调
@@ -2314,6 +2340,7 @@ window['kelat']['loadJC'] = KUIAPP.LoadJC;
 
 /************* 页面UI部分 *************/
 /** 闪动 
+ * @alias glint
  * @param {String} id:需要闪动的id
  */
 KUIAPP.Glint = function(id){
@@ -2330,6 +2357,7 @@ window['kelat']['glint'] = KUIAPP.Glint;
 ************   下拉刷新   ************
 ======================================================*/
 /** 初始化
+ * @alias initPullToRefresh
  * @param {object} Container:容器对象
  */
 KUIAPP.InitPullToRefresh = function(Container) {
@@ -2530,6 +2558,7 @@ KUIAPP.InitPullToRefresh = function(Container) {
     eventsTarget[0].KLTDestroyPullToRefresh = destroyPullToRefresh;
 };
 /** 刷新结束
+ * @alias pullToRefreshDone
  * @param {object} Container:容器对象
  */
 KUIAPP.PullToRefreshDone = function(Container) {
@@ -2639,7 +2668,8 @@ window['kelat']['attachInfiniteScroll'] = KUIAPP.AttachInfiniteScroll;
 ************   选择器   ************
 ======================================================*/
 /** 选择器 
- * @param {Array} options:选择器选项数组
+ * @alias picker
+ * @param {Array} params:选择器选项数组
  */
 KUIAPP.Picker = function(params){
     var $Picker = this;
@@ -2762,7 +2792,7 @@ KUIAPP.Picker = function(params){
             var _val = $Picker.params.formatValue ? $Picker.params.formatValue($Picker, $Picker.value, $Picker.displayValue) : $Picker.value.join(' ')
             //赋值并格式化
             $$($Picker.input)[method[0]](_val);
-            $$($Picker.input).trigger(method[1]);
+            $$($Picker.input).on(method[1]);
         }
     };
 
@@ -2829,14 +2859,7 @@ KUIAPP.Picker = function(params){
         col.calcSize();
         //外壳旋转
         function wrapperRotate(Translate,isTransition){
-            if($Picker.params.rotateEffect){
-                //Translate = ((Translate/(2*Math.PI*(110+10)))*360)-18
-                //Translate = Math.round(Math.asin(b) * (180/Math.PI))
-                //col.wrapper.transform('rotateY(0deg) rotateX('+(-Translate)+'deg) translateZ(0)');
-                col.wrapper.transform('translate3d(0,' + Translate + 'px,0)');
-            }else{
-                col.wrapper.transform('translate3d(0,' + Translate + 'px,0)');
-            }
+            col.wrapper.transform('translate3d(0,' + Translate + 'px,0)');
             if(isTransition){
                 col.wrapper.transition(0);
             }
@@ -3232,8 +3255,11 @@ KUIAPP.Picker = function(params){
     };
     //打开
     $Picker.opened = false;
+    $Picker.isClick = 1;
     $Picker.open = function () {
+        var Timestamp = +(new Date());
         var toPopover = isPopover();
+        $Picker.Timestamp = Timestamp * $Picker.isClick;
         if(!$Picker.opened){
             //设置标识
             if($Picker.isCreate){
@@ -3242,7 +3268,7 @@ KUIAPP.Picker = function(params){
                 //插入指定内容
                 if(toPopover){
                     $Picker.pickerHTML = '<div class="ModalPopover ModalPopoverPickerColumns"><div class="ModalPopoverInner">' + $Picker.pickerHTML + '</div></div>';
-                    $Picker.popover = KUIAPP.Popover($Picker.pickerHTML, $Picker.params.input, true);
+                    $Picker.popover = KUIAPP.Popover($Picker.pickerHTML, $Picker.params.input, {removeOnClose:true});
                     $Picker.container = $$($Picker.popover).find('.PickerModal');
                     $$($Picker.popover).on('close', function () {
                         onPickerClose();
@@ -3258,17 +3284,19 @@ KUIAPP.Picker = function(params){
                     });
                 };
 
-                if($Picker.params.isEfficient){
+                if($Picker.params.isEfficient && !toPopover){
                     $Picker.isCreate = false;
                 }
             }
             //绑定确认事件
-            $Picker.container.find(".OkPicker,.ClosePicker").on('click',function(){
+            $Picker.PickerClick = function(){
                 if($$(this).hasClass('OkPicker') && !$Picker.params.autoUpdate){
                     $Picker.updateValue();
                 };
                 $Picker.close();
-            });
+                $$(this).off('click',$Picker.PickerClick);
+            }
+            $Picker.container.find(".OkPicker,.ClosePicker").on('click',$Picker.PickerClick);
             //储存选择器实例
             $Picker.container[0].KLTPicker = $Picker;
 
@@ -3299,7 +3327,10 @@ KUIAPP.Picker = function(params){
         $Picker.opened = true;
         $Picker.initialized = true;
 
-        if($Picker.params.onOpen){
+        if($Picker.params.onOpen && Timestamp == $Picker.Timestamp){
+            if($Picker.params.isEfficient && !toPopover){
+                $Picker.isClick++
+            };
             $Picker.params.onOpen($Picker);
         };
     };
@@ -3314,7 +3345,9 @@ KUIAPP.Picker = function(params){
                 KUIAPP.CloseModal($Picker.popover);
             }else{
                 KUIAPP.HideModal($Picker.popover);
-                $Picker.opened = false;
+                setTimeout(function(){
+                    $Picker.opened = false;
+                },400)
             }
             return;
         }else{
@@ -3322,7 +3355,9 @@ KUIAPP.Picker = function(params){
                 KUIAPP.CloseModal($Picker.container);
             }else{
                 KUIAPP.HideModal($Picker.container);
-                $Picker.opened = false;
+                setTimeout(function(){
+                    $Picker.opened = false;
+                },400)
             }
             return;
         };
@@ -3381,6 +3416,7 @@ KUIAPP.BackToTop = function(){
 ************   通知   ************
 ======================================================*/
 /** 通知 
+ * @alias addNotify
  * @param {Array} options:模态框选项数组
  */
 KUIAPP.AddNotify = function(options){
@@ -3432,6 +3468,7 @@ KUIAPP.AddNotify = function(options){
     return this;
 };
 /** 关闭通知 
+ * @alias closeNotify
  * @param {Object} item:通知对象
  */
 KUIAPP.CloseNotify = function(item){
@@ -3468,14 +3505,72 @@ window['kelat']['indicator'] = KUIAPP.Indicator;
 window['kelat']['unIndicator'] = KUIAPP.unIndicator;
 
 /*======================================================
+************   Toast 显示信息   ************
+======================================================*/
+/** Toast 显示信息 
+ * @alias toast
+ * @param {Object} options: Toast配置
+ */
+KUIAPP.Toast = function(options){
+    options = options || {};
+    var ToastTitle = options.title ? options.title :'';
+    var ToastContent = options.content ? '<div>'+options.content+'</div>' :'';
+    var ToastClassName = options.className ? options.className :'';
+    var $Toast = $$('<div class="ToastBox '+ToastClassName+' '+animatedShift(kelat.defaults.shift)+'" style="z-index:' + Local.LayerIndex + '">'+ ToastContent + ToastTitle +'</div>');
+    $$(document.getElementById(Local.WrapperArea)).append($Toast);
+    //设置位置 上 右 下 左
+    var CSS={'margin-left':-($Toast.outerWidth() / 2) + 'px'};
+    (function(position){
+        if(!position){return};
+        for(var i=0;i<position.length;i++){
+            if(!position[i]){
+                continue;
+            }else{
+                var _Site;
+                if(typeof position[i] === 'string' && position[i].indexOf('%') >= 0){
+                    _Site = position[i];
+                }else{
+                    _Site = position[i] + 'px';
+                };
+                switch(i){
+                    case 0: CSS.top = _Site; CSS.bottom = 'auto'; break;
+                    case 1: CSS.right = _Site; CSS.left = 'auto'; CSS['margin-left'] = 'auto'; break;
+                    case 2: CSS.bottom = _Site; break;
+                    case 3: CSS.left = _Site; CSS['margin-left'] = 'auto'; break;
+                };
+            };
+        };
+    })(options.site);
+    $Toast.css(CSS);
+    //设置时间
+    var Timeout = function(callback, time){
+        setTimeout(function(){
+            running && callback();
+        },time)
+    };
+    //显示
+    Timeout(function(){
+        $Toast.removeClass('ToastOut').css({"z-index": ++Local.LayerIndex}).addClass('ToastIn');
+    },10);
+    //隐藏
+    Timeout(function(){
+        $Toast.removeClass('ToastIn').addClass('ToastOut').transitionEnd(function(){
+            $Toast.remove();
+        });
+    },(options.time ? options.time :2e3));
+};
+window['kelat']['toast'] = KUIAPP.Toast;
+
+/*======================================================
 ************   Loading加载   ************
 ======================================================*/
 /** 加载 
+ * @alias loading
  * @param {String} title:Loading标题
  */
 KUIAPP.Loading = function(title) {
     return running ? KUIAPP.Modal({
-        title: title || Local.LoadingTitle,
+        title: ( title || Local.LoadingTitle ),
         content: '<div class="TC">' + Local.LoadingHtml + '</div>',
         className: "ModalLoading"
     }) : null;
@@ -3530,8 +3625,7 @@ KUIAPP.SizeNavbars = function(modal){
         }else{
             diff = 0;
         };
-
-
+    
         // Center left
         var centerLeft = diff;
         if(_KLT_.rtl && noLeft && noRight && center.length > 0){
@@ -3557,7 +3651,7 @@ KUIAPP.HideModal = function(modal){
         modal.removeClass('ModalOut');
     });
     modal.prev('.ModalBlank').removeClass('ModalBlankVisibleIn').addClass('ModalBlankVisibleOut').transitionEnd(function(){
-        $$(this).removeClass('ModalBlankVisibleOut').removeAttr('style');//.hide();
+        $$(this).removeClass('ModalBlankVisibleOut').removeAttr('style');
     });
 };
 /** 打开 
@@ -3576,7 +3670,7 @@ KUIAPP.OpenModal = function(modal, className, Shift, displayTime) {
     $$(document.getElementById(Local.WrapperArea)).append(modal[0]);
     KUIAPP.SizeNavbars(modal);
     var $ModalBlank = $$('.ModalBlank'+timesTamp)
-    if((!!className?className:'') === 'ModalPromptBox'){
+    if((!!className?className:'').indexOf('ModalWarnBox')!==-1){
         modal.addClass(className);
         window.setTimeout(function(){
             KUIAPP.CloseModal(modal);
@@ -3660,14 +3754,14 @@ KUIAPP.Modal = function(options) {
             }else if(i === (options.buttons.length - 1)){
                 ButtonsNAME = "Last";
             };
-            ButtonsHTML += '<a href="javascript:;" class="ModalButton ' + ButtonsNAME + '">' + options.buttons[i].text + '</a>';
+            ButtonsHTML += '<a href="javascript:;" class="ModalButton ' + ButtonsNAME + ' ' + ( options.buttons[i].className || '') + '">' + options.buttons[i].text + '</a>';
         };
     };
     //创建标题
     var TitleHTML    = options.title    ? '<div class="ModalHeader">' + options.title + '</div>' : '';
     //创建内容
     var ContentHTML  = options.content  ? ContentType ==='object' ? '<div class="ModalContent"></div>' : '<div class="ModalContent">' + options.content + '</div>' : '';
-    var AfterTextHTML= options.afterText? options.afterText : '';
+    var AfterTextHTML= ( options.afterText || '');
     var NoButtons    = !options.buttons || options.buttons.length === 0 ? 'ModalNoButtons' : '';
     var ModalButtonsHTML = options.buttons && options.buttons.length > 0 ? '<div class="ModalFooter ModalFooter' + options.buttons.length + '">' + ButtonsHTML + '</div>' : '';
     ModalHTML = '<div class="ModalBox ' + NoButtons +' '+ (!!options.className ? options.className : '')+'"><div class="ModalInner">' + (TitleHTML + ContentHTML + AfterTextHTML) + '</div>' + ModalButtonsHTML + '</div>';
@@ -3691,6 +3785,7 @@ KUIAPP.Modal = function(options) {
     return $Modal[0];
 };
 /** alert 框 
+ * @alias alert
  * @param {String} content:内容
  * @param {String} title:标题
  * @param {function} callbackOk:确认事件
@@ -3702,7 +3797,7 @@ KUIAPP.Alert = function(content, title, callbackOk, buttonText) {
         title = undefined;
     }
     return running ? KUIAPP.Modal({
-        content: content || '',
+        content: ( content || '' ),
         title: typeof title === 'undefined' ? Local.ModalTitle : title,
         buttons: [{
             text: buttonText && buttonText[0] ? buttonText[0] : Local.ModalButtonOk,
@@ -3711,12 +3806,13 @@ KUIAPP.Alert = function(content, title, callbackOk, buttonText) {
     }) : null;
 };
 /** 确认框 
+ * @alias confirm
  * @param {String} content:内容
  * @param {String} title:标题
  * @param {function} callbackOk:确认事件
  * @param {function} callbackCancel:取消事件
  */
-KUIAPP.Confirm = function(content, title, callbackOk, callbackCancel, buttonText, className) {
+KUIAPP.Confirm = function(content, title, callbackOk, callbackCancel, buttonText, className){
     if(typeof title === 'function'){
         if(typeof callbackOk === 'object'){
             buttonText = arguments[2];
@@ -3728,9 +3824,9 @@ KUIAPP.Confirm = function(content, title, callbackOk, callbackCancel, buttonText
         title = undefined;
     }
     return running ? KUIAPP.Modal({
-        content: content || '',
+        content: ( content || '' ),
         title: typeof title === 'undefined' ? Local.ModalTitle : title,
-        className: !!className ? className : "",
+        className: ( className || '' ),
         buttons: [{
             text: buttonText && buttonText[1] ? buttonText[1] : Local.ModalButtonCancel,
             onClick: callbackCancel
@@ -3741,16 +3837,53 @@ KUIAPP.Confirm = function(content, title, callbackOk, callbackCancel, buttonText
     }) : null;
 };
 /** 自动消失提示框 
+ * @alias warn
  * @param {String} content:内容
  */
-KUIAPP.Prompt = function(content,showTime) {
+KUIAPP.Warn = function(content, showTime, className) {
+    if(!content){return}
+    if(typeof showTime === 'string') {
+      className = arguments[1];
+      showTime = undefined;
+    }
     return running ? KUIAPP.Modal({
         content: content || '',
         displayTime: showTime ? showTime : 2E3,
-        className: "ModalPromptBox"
+        className: "ModalWarnBox " + className
     }) : null;
 };
+/** 提示框 
+ * @alias prompt
+ * @param {String} content:内容
+ */
+KUIAPP.Prompt = function (content, title, callbackOk, callbackCancel, buttonText) {
+	if (typeof title === 'function') {
+		callbackOk = arguments[1];
+		callbackCancel = arguments[2];
+		buttonText = arguments[3];
+		title = undefined;
+	}
+	return KUIAPP.Modal({
+		content: content || '',
+		title: typeof title === 'undefined' ? Local.ModalTitle : title,
+		afterText: '<div class="InputField"><input type="text" class="ModalTextInput"></div>',
+		buttons: [
+			{
+				text: buttonText && buttonText[1] ? buttonText[1] : Local.ModalButtonCancel
+			},
+			{
+				text: buttonText && buttonText[0] ? buttonText[0] : Local.ModalButtonOk,
+				bold: true
+			}
+		],
+		onClick: function (modal, index) {
+			if (index === 0 && callbackCancel) callbackCancel($$(modal).find('.ModalTextInput').val());
+			if (index === 1 && callbackOk) callbackOk($$(modal).find('.ModalTextInput').val());
+		}
+	});
+};
 /** 弹出框 
+ * @alias popup
  * @param {Object} modal:模态框对象
  * @param {boolean} removeOnClose:是否删除
  */
@@ -3776,15 +3909,17 @@ KUIAPP.Popup = function (modal, removeOnClose) {
     return modal[0];
 };
 /** 底部确认框 
+ * @alias confirmModal
  * @param {String} content:内容
  * @param {String} title:标题
  * @param {function} callbackOk:确认事件
  * @param {function} callbackCancel:取消事件
  */
-KUIAPP.ConfirmModal = function(content, title, callbackOk, callbackCancel, buttonText) {
+KUIAPP.ConfirmModal = function(content, title, callbackOk, callbackCancel, buttonText){
     return new KUIAPP.Confirm(content, title, callbackOk, callbackCancel, buttonText, "ModalPickerBox");    
 };
 /** 选择器框 
+ * @alias pickerModal
  * @param {Object} modal:模态框对象
  * @param {boolean} removeOnClose:是否删除
  */
@@ -3836,16 +3971,20 @@ KUIAPP.ModalString = function(modal, removeOnClose, callback){
     return callback(modal);
 };
 /** 弹出菜单 
+ * @alias popover
  * @param {Object & String} modal:模态框对象
  * @param {String} target:模态框目标
- * @param {String} removeOnClose:是否删除
+ * @param {Object} param:参数集
  */
-KUIAPP.Popover = function(modal, target, removeOnClose){
-    if(typeof removeOnClose === 'undefined'){
-        removeOnClose = true;
+KUIAPP.Popover = function(modal, target, param){
+	if(typeof param !== 'object'){
+		param = {};
+	};
+    if(typeof param.removeOnClose === 'undefined'){
+        param.removeOnClose = true;
     };
     if(typeof modal === 'string' && modal.indexOf('<') >= 0){
-        KUIAPP.ModalString(modal, removeOnClose,function(modals){
+        KUIAPP.ModalString(modal, param.removeOnClose,function(modals){
             modal = modals;
         });
     };
@@ -3859,7 +3998,6 @@ KUIAPP.Popover = function(modal, target, removeOnClose){
         modal.append('<div class="ModalPopoverAngle"></div>');
     };
     modal.show();
-
 
     function sizePopover(){
         modal.css({left: '', top: ''});
@@ -3908,6 +4046,7 @@ KUIAPP.Popover = function(modal, target, removeOnClose){
             }
             diff = diff - modalTop;
         };
+
         //水平位置
         if(modalPosition === 'top' || modalPosition === 'bottom'){
             modalLeft = targetWidth / 2 + targetOffset.left - modalWidth / 2;
@@ -3945,10 +4084,17 @@ KUIAPP.Popover = function(modal, target, removeOnClose){
             modalAngleTop = Math.max(Math.min(modalAngleTop, modalHeight - modalAngleSize * 2 - 13), 13);
             modalAngle.css({top: modalAngleTop + 'px'});
         }
+        if(param.angle == 'top'){
+            modalAngle.removeClass('onLeft onRight onTop onBottom').addClass('onTop');
+            modalTop = targetOffset.top + modalAngleSize + targetHeight;
+        };
+        if(param.center){
+            modalLeft = (windowWidth - modalWidth) / 2;
+        };
         //应用样式
         modal.css({top: modalTop + 'px', left: (modalLeft) + 'px'});
     };
-
+    
     sizePopover();
 
     $$(window).on('resize', sizePopover);
@@ -3962,6 +4108,7 @@ KUIAPP.Popover = function(modal, target, removeOnClose){
 };
 window['kelat']['alert'] = KUIAPP.Alert;
 window['kelat']['confirm'] = KUIAPP.Confirm;
+window['kelat']['warn'] = KUIAPP.Warn;
 window['kelat']['prompt'] = KUIAPP.Prompt;
 window['kelat']['pickerModal'] = KUIAPP.PickerModal;
 window['kelat']['popup'] = KUIAPP.Popup;
@@ -3972,6 +4119,7 @@ window['kelat']['confirmModal'] = KUIAPP.ConfirmModal;
 ************   空白提示   ************
 ======================================================*/
 /** 空白提示 
+ * @alias blankTips
  * @param {String} title:标题
  * @param {String} content:内容
  * @param {function} callBack:回调
@@ -4018,6 +4166,7 @@ KUIAPP.OpenActions = function(actions){
     },5);
 };
 /** 操作表单 
+ * @alias actions
  * @param {Array} options:操作表单数组
  */
 KUIAPP.Actions = function(options){
@@ -4070,6 +4219,7 @@ window['kelat']['actions'] = KUIAPP.Actions;
 KUIAPP.swipeoutOpenedEl = undefined;
 KUIAPP.allowSwipeout = true;
 /** 初始化滑动操作
+ * @alias initSwipeout
  * @param {Object & String} swipeoutEl:滑动对象
  */
 KUIAPP.initSwipeout = function(swipeoutEl){
@@ -4413,6 +4563,7 @@ KUIAPP.initSwipeout = function(swipeoutEl){
     };
 };
 /** 打开滑动操作
+ * @alias swipeoutOpen
  * @param {Object} el:滑动对象
  * @param {String} dir:方向
  * @param {function} callback:回调事件
@@ -4469,6 +4620,7 @@ KUIAPP.swipeoutOpen = function(el, dir, callback){
     KUIAPP.swipeoutOpenedEl = el;
 };
 /** 取消滑动操作
+ * @alias swipeoutClose
  * @param {Object} el:滑动对象
  * @param {function} callback:回调事件
  */
@@ -4516,6 +4668,7 @@ KUIAPP.swipeoutClose = function(el, callback){
     };
 };
 /** 删除滑动操作
+ * @alias swipeoutDelete
  * @param {Object} el:滑动对象
  * @param {function} callback:回调事件
  */
@@ -4567,6 +4720,7 @@ KUIAPP.sortableToggle = function(sortableContainer){
     return sortableContainer;
 };
 /** 打开排序列表
+ * @alias sortableOpen
  * @param {Object} sortableContainer:滑动对象
  */
 KUIAPP.sortableOpen = function(sortableContainer){
@@ -4579,6 +4733,7 @@ KUIAPP.sortableOpen = function(sortableContainer){
     return sortableContainer;
 };
 /** 关闭排序列表
+ * @alias sortableClose
  * @param {Object} sortableContainer:滑动对象
  */
 KUIAPP.sortableClose = function(sortableContainer){
@@ -4716,6 +4871,7 @@ window['kelat']['sortableClose'] = KUIAPP.sortableClose;
 ************   折叠面板   ************
 =====================================================*/
 /** 触发折叠面板
+ * @alias accordionToggle
  * @param {Object} item:折叠面板对象
  */
 KUIAPP.isAccordion = true;
@@ -4731,6 +4887,7 @@ KUIAPP.accordionToggle = function (item) {
     };
 };
 /** 打开折叠面板
+ * @alias accordionOpen
  * @param {Object} item:折叠面板对象
  */
 KUIAPP.accordionOpen = function (item) {
@@ -4761,6 +4918,7 @@ KUIAPP.accordionOpen = function (item) {
     item.addClass('AccordionItemExpanded');
 };
 /** 关闭折叠面板
+ * @alias accordionClose
  * @param {Object} item:折叠面板对象
  */
 KUIAPP.accordionClose = function (item) {
@@ -4792,6 +4950,7 @@ KUIAPP.accordionClose = function (item) {
     item.trigger('close');
 };
 /** 初始化折叠面板
+ * @alias initAccordion
  * @param {Object} item:折叠面板对象
  */
 KUIAPP.initAccordion = function(){
