@@ -2452,7 +2452,7 @@ border-bottom-left-radius:0;
 .BOrange,
 .BInfo,
 .BBlack,
-.BNavy{color:#fff!important}
+.BNavy{color:#fff!important;padding:0 5px;display:inline-block;}
 
 .BBlue.active{background-color:#118ab3!important}
 .BPurple.active{background-color:#ca195a!important}

@@ -8,7 +8,7 @@ function( title , $scope , $state) {
 		$scope.Load = {
 			bussiness: function() {
 				//执行函数 
-				$$.initAccordion();
+				$$.initAccordion(true);
 			},
 			init : function(){
 				//更改页面标题

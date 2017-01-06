@@ -17,7 +17,7 @@ require.config({
 		//滑动组件
 		Swipe			: "_lib/swipe",
 		//公共组件
-		kelat			: "kelat.min",		
+		kelat			: "kelat",		
 		Config			: "config",		
 		//angular 依赖 app 模块
 		APP				: "app"

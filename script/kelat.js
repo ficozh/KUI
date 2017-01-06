@@ -1,5 +1,5 @@
 /**
- * kelat JavaScript Library v1.2.5-beta
+ * kelat JavaScript Library v1.2.4-beta
  * http://git.oschina.net/ficozhe/K-UI
  *
  * Date: 2016-08-08
@@ -20,7 +20,7 @@
 }(typeof window !== "undefined" ? window : this,function(window,noGlobal){
 'use strict';
 // 版本
-var version = "1.2.5";
+var version = "1.2.4";
 var classType = {};
 var toString = classType.toString;
 var hasOwn = classType.hasOwnProperty;
@@ -87,7 +87,7 @@ KUIAPP.Extend = function(){
         index++;
     }
     //当目标是一个字符串或深拷贝的情况下
-    if(typeof target !== "object" && !typeof target !=="function"){
+    if(typeof target !== "object" && typeof target !=="function"){
         target = {};
     };
     //扩展 kelat 本身，如果只有一个参数传递
@@ -669,8 +669,7 @@ var kelatDom = (function(){
             return this;
         },
         transitionEnd: function(callback){
-            var events = ['webkitTransitionEnd', 'transitionend', 'oTransitionEnd', 'MSTransitionEnd', 'msTransitionEnd'],
-                i, j, dom = this;
+            var events = ['webkitTransitionEnd', 'transitionend', 'oTransitionEnd', 'MSTransitionEnd', 'msTransitionEnd'], i, dom = this;
             function fireCallBack(e){
                 /*jshint validthis:true */
                 if(e.target !== this){ return; }
@@ -687,8 +686,7 @@ var kelatDom = (function(){
             return this;
         },
         animationEnd: function(callback){
-            var events = ['webkitAnimationEnd', 'OAnimationEnd', 'MSAnimationEnd', 'animationend'],
-                i, j, dom = this;
+            var events = ['webkitAnimationEnd', 'OAnimationEnd', 'MSAnimationEnd', 'animationend'], i, dom = this;
             function fireCallBack(e){
                 callback(e);
                 for(i = 0; i < events.length; i++){
@@ -771,7 +769,6 @@ var kelatDom = (function(){
             return this;
         },
         styles: function(){
-            var i, styles;
             return this[0] ? window.getComputedStyle(this[0], null) : undefined;
         },
         css: function(props, value){
@@ -1628,7 +1625,7 @@ var kelatDom = (function(){
                 if(startTime === null){
                     startTime = time;
                 }
-                var doneLeft, doneTop, done;
+                var done;
                 var progress = Math.max(Math.min((time - startTime) / duration, 1), 0);
                 var easeProgress = easing === 'linear' ? progress : (0.5 - Math.cos( progress * Math.PI ) / 2);
                 if(animateTop) scrollTop = currentTop + (easeProgress * (newTop - currentTop));
@@ -1770,7 +1767,7 @@ window['kelat']['fn'] = window['kelat'].prototype = {
      * @return {Object}
      */
     device : (function(){
-            
+        //定义设备对象    
         var device = {};
         var ua = navigator.userAgent;
     
@@ -1881,7 +1878,7 @@ window['kelat']['fn'] = window['kelat'].prototype = {
      * @param {function} callBackEnd:回调
      */
     touches : function(els, callBackStart,callBackMove,callBackEnd) {
-        var detach = false,touchStartTime,isTouched = false;
+        var detach = false,isTouched = false;
         var Touches = {
             startX:  0, startY:  0,
             currentX:0, currentY:0,
@@ -1903,7 +1900,6 @@ window['kelat']['fn'] = window['kelat'].prototype = {
             };
             switch(event.type){
                 case _KLT_.touchEvents.start:
-                    //touchStartTime = +new Date();
                     isTouched = true;
                     Touches.startX = Number(event.type === 'touchstart'?event.targetTouches[0].pageX:event.pageX);
                     Touches.startY = Number(event.type === 'touchstart'?event.targetTouches[0].pageY:event.pageY);
@@ -2372,7 +2368,7 @@ KUIAPP.InitPullToRefresh = function(Container) {
     var touchId, isTouched, isMoved, isScrolling, 
         touchesStart = {}, touchesDiff, touchStartTime, container, 
         refresh = false, useTranslate = false, startTranslate = 0, 
-        translate, scrollTop, wasScrolled, layer, triggerDistance, 
+        translate, scrollTop, wasScrolled, triggerDistance, 
         dynamicTriggerDistance, pullStarted;
     var Wrapper = eventsTarget.hasClass('Wrapper') ? eventsTarget : eventsTarget.parents('.Wrapper');
     var hasNavbar = false;
@@ -2806,7 +2802,6 @@ KUIAPP.Picker = function(params){
         col.wrapper = col.container.find('.PickerItemsColWrapper');
         col.items = col.wrapper.find('.PickerItem');
         
-        var i, j;
         var wrapperHeight, itemHeight, itemsHeight, minTranslate, maxTranslate;
         //替换 Value
         col.replaceValues = function(values, displayValues){
@@ -2868,7 +2863,6 @@ KUIAPP.Picker = function(params){
         //col.wrapper.transform('translate3d(0,' + maxTranslate + 'px,0)').transition(0);
         wrapperRotate(maxTranslate,true);
 
-        var activeIndex = 0;
         var animationFrameId;
 
         //设置 Value
@@ -2911,7 +2905,7 @@ KUIAPP.Picker = function(params){
             //设置3D旋转效果
             if($Picker.params.rotateEffect){
                 col.items.transition(transition);
-                var percentage = (translate - (Math.floor((translate - maxTranslate)/itemHeight) * itemHeight + maxTranslate)) / itemHeight;
+                //var percentage = (translate - (Math.floor((translate - maxTranslate)/itemHeight) * itemHeight + maxTranslate)) / itemHeight;
                 
                 col.items.each(function(index){
                     var item = $$(this);
@@ -3200,7 +3194,6 @@ KUIAPP.Picker = function(params){
             };
         };
     };
-    var i=0;
     //关闭HTML事件
     function closeOnHTMLClick(e) {
         if(inPopover()){
@@ -3664,7 +3657,7 @@ KUIAPP.OpenModal = function(modal, className, Shift, displayTime) {
     var isPopover = modal.hasClass('ModalPopover');
     var isPickerModal = modal.hasClass('PickerModal');
     var isPopup = modal.hasClass('PopupBox');
-    var removeOnClose = modal.hasClass('RemoveOnClose');
+    //var removeOnClose = modal.hasClass('RemoveOnClose');
     
     $$(document.getElementById(Local.WrapperArea)).append('<div class="ModalBlank ModalBlank'+timesTamp+'" style="z-index:' + Local.LayerIndex + '"/>');
     $$(document.getElementById(Local.WrapperArea)).append(modal[0]);
@@ -3704,7 +3697,7 @@ KUIAPP.CloseModal = function(modal, Shift) {
     if(typeof modal !== 'undefined' && modal.length === 0){
         return;
     };
-    var isModal = modal.hasClass('Modal');
+    //var isModal = modal.hasClass('Modal');
     var isPopover = modal.hasClass('ModalPopover');
     var isPopup = modal.hasClass('PopupBox');
     var isPickerModal = modal.hasClass('PickerModal');
@@ -4046,7 +4039,11 @@ KUIAPP.Popover = function(modal, target, param){
             }
             diff = diff - modalTop;
         };
-
+        //特殊处理角
+        if(param.angle){
+            modalPosition = param.angle;
+            modalTop = targetOffset.top - modalHeight - modalAngleSize  + scrollTop.Y;
+        };
         //水平位置
         if(modalPosition === 'top' || modalPosition === 'bottom'){
             modalLeft = targetWidth / 2 + targetOffset.left - modalWidth / 2;
@@ -4083,16 +4080,16 @@ KUIAPP.Popover = function(modal, target, param){
             modalAngleTop = (modalHeight / 2 - modalAngleSize + diff);
             modalAngleTop = Math.max(Math.min(modalAngleTop, modalHeight - modalAngleSize * 2 - 13), 13);
             modalAngle.css({top: modalAngleTop + 'px'});
-        }
+        };
         if(param.angle == 'top'){
             modalAngle.removeClass('onLeft onRight onTop onBottom').addClass('onTop');
-            modalTop = targetOffset.top + modalAngleSize + targetHeight;
+            modalTop = targetOffset.top + modalAngleSize + targetHeight + targetParentPage[0].scrollTop;
         };
         if(param.center){
             modalLeft = (windowWidth - modalWidth) / 2;
         };
         //应用样式
-        modal.css({top: modalTop + 'px', left: (modalLeft) + 'px'});
+        modal.css({top: modalTop + 'px', left: parseInt(modalLeft) + 'px'});
     };
     
     sizePopover();
@@ -4592,7 +4589,7 @@ KUIAPP.swipeoutOpen = function(el, dir, callback){
     if(swipeOutActions.length === 0){
         return;
     };
-    var noFold = swipeOutActions.hasClass('SwipeoutActionsNoFold') || Local.swipeoutActionsNoFold;
+    //var noFold = swipeOutActions.hasClass('SwipeoutActionsNoFold') || Local.swipeoutActionsNoFold;
     el.trigger('open').addClass('SwipeoutOpened').removeClass('transitioning');
     swipeOutActions.addClass('SwipeoutActionsOpened');
     var buttons = swipeOutActions.children('.SwipeoutItem');
@@ -4630,7 +4627,7 @@ KUIAPP.swipeoutClose = function(el, callback){
     if(!el.hasClass('SwipeoutOpened')) return;
     var dir = el.find('.SwipeoutActionsOpened').hasClass('SwipeoutActionsRight') ? 'right' : 'left';
     var swipeOutActions = el.find('.SwipeoutActionsOpened').removeClass('SwipeoutActionsOpened');
-    var noFold = swipeOutActions.hasClass('SwipeoutActionsNoFold') || Local.swipeoutActionsNoFold;
+    //var noFold = swipeOutActions.hasClass('SwipeoutActionsNoFold') || Local.swipeoutActionsNoFold;
     var buttons = swipeOutActions.children('.SwipeoutItem');
     var swipeOutActionsWidth = swipeOutActions.outerWidth();
     KUIAPP.allowSwipeout = false;
@@ -4780,7 +4777,7 @@ KUIAPP.initSortable = function () {
         if(!isTouched || !sortingEl){
             return;
         };
-        var pageX = e.type === 'touchmove' ? e.targetTouches[0].pageX : e.pageX;
+        //var pageX = e.type === 'touchmove' ? e.targetTouches[0].pageX : e.pageX;
         var pageY = e.type === 'touchmove' ? e.targetTouches[0].pageY : e.pageY;
         if(!isMoved){
             sortingEl.addClass('sorting');
@@ -4840,7 +4837,6 @@ KUIAPP.initSortable = function () {
         sortingItems.transform('');
         sortingEl.removeClass('sorting');
         sortableContainer.removeClass('sortable-sorting');
-        var virtualList, oldIndex, newIndex;
         if(insertAfter){
             sortingEl.insertAfter(insertAfter);
             sortingEl.trigger('sort');
@@ -4905,7 +4901,8 @@ KUIAPP.accordionOpen = function (item) {
         if(item.hasClass('AccordionItemExpanded')){
             content.transition(0);
             content.css('height', 'auto');
-            var clientLeft = content[0].clientLeft;
+			//Relayout
+			var clientLeft = item[0].clientLeft;
             content.transition('');
             item.trigger('opened');
         }else{
@@ -4930,15 +4927,16 @@ KUIAPP.accordionClose = function (item) {
     item.removeClass('AccordionItemExpanded');
     content.transition(0);
     content.css('height', content[0].scrollHeight + 'px');
-    //重新布局
-    var clientLeft = content[0].clientLeft;
+	//Relayout
+	var clientLeft = content[0].clientLeft;
     //关闭
     content.transition('');
     content.css('height', '').transitionEnd(function(){
         if(item.hasClass('AccordionItemExpanded')){
             content.transition(0);
             content.css('height', 'auto');
-            var clientLeft = content[0].clientLeft;
+			//Relayout
+			var clientLeft = content[0].clientLeft;
             content.transition('');
             item.trigger('opened');
         }else{
@@ -4953,7 +4951,7 @@ KUIAPP.accordionClose = function (item) {
  * @alias initAccordion
  * @param {Object} item:折叠面板对象
  */
-KUIAPP.initAccordion = function(){
+KUIAPP.initAccordion = function(isAccordion){
     $$(document).on('click','.AccordionItemToggle,.ItemLink,.AccordionItem',function(){
         if(!KUIAPP.isAccordion){
             return
@@ -4968,7 +4966,7 @@ KUIAPP.initAccordion = function(){
         };
         if(clicked.hasClass('ItemLink') && clicked.parent().hasClass('AccordionItem')){
             KUIAPP.accordionToggle(accordionItem);
-            KUIAPP.isAccordion = false;
+            KUIAPP.isAccordion = isAccordion ? true : false;
         };
         
     })
@@ -5222,6 +5220,9 @@ window['kelat']['progressbar'] = KUIAPP.Progressbar;
 KUIAPP.Ripple = function(){
     return $$(document).on(Local.support.onClick, ".InkRipple", function(event){
         if(running){
+			if(Local.support.touch && !event.targetTouches){
+				return;
+			};
             var $$Th = $$(this), _Date = +(new Date());
             //使用父元素的最大宽高,创建一个覆盖元素的圆形。
             var _Diameter = Math.max($$Th.outerWidth(), $$Th.outerHeight());
