@@ -11,13 +11,14 @@ require.config({
 		//ngRoute			: "_lib/angular/angular-route.min",
 		//angularSanitize	: "_lib/angular/angular-sanitize.min",
 		//angularTouch	: "_lib/angular/angular-touch.min",
+		//动画
 		//mePageloading	: "me-pageloading.min",
-		//svg				: "_lib/snap.svg-min",
+		svg				: "_lib/snap.svg-min",
 		angularIOS		: "_lib/angular/angular-ios9-uiwebview.patch",
 		//滑动组件
 		Swipe			: "_lib/swipe",
 		//公共组件
-		kelat			: "kelat.min",		
+		kelat			: "kelat",		
 		Config			: "config",		
 		//angular 依赖 app 模块
 		APP				: "app"
@@ -86,6 +87,7 @@ require.config({
 		//"angularSanitize": {deps:["angular"]},
 		//"angularTouch"	: {deps:["angular"]},
 		"angularIOS"	: {deps:["angular"]},
+		//动画
 		//"mePageloading"		: {deps:["angular"]},
 		"kelat"			: {exports:"$$"},
 		"APP"			: {deps:["uiRouter"]}
@@ -96,7 +98,10 @@ require.config({
 			text	: "_lib/requireJS/text"
 		}
 	},
-	deps:["angular","uiRouter","angularIOS",'kelat'],
+	deps:["angular","uiRouter","angularIOS",'kelat'
+	//动画
+	//,'svg','mePageloading'
+	],
 	waitSeconds:0
 	//,urlArgs: "bust=" + (new Date()).getTime()//防止读取缓存，调试用
 });

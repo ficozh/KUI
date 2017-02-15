@@ -11,7 +11,7 @@ function( title , $scope , $state ) {
 				//执行函数 
 				console.log($$(".AlertBtn"))
 				
-				$$(".AlertBtn").tap(function(){
+				$$(".AlertBtn").on("click",function(){
 					$$.alert("alert警告消息框",function(){
 						$$.alert("第二个alert警告消息框","alert标题");
 					});

@@ -216,10 +216,12 @@ var Local = {
         };
         var support = {};
             support['touch'] = !!(('ontouchstart' in window) || window.DocumentTouch && document instanceof DocumentTouch);
+			//选中检查 checked="checked" or checked
+			support['rchecked'] = /checked\s*(?:[^=]|=\s*.checked.)/i,
             //事件检测
             support['desktopEvents'] = desktopEvents;
             //事件类型
-            support['onClick'] = support.touch ? 'tap' : 'click';
+            support['onClick'] = 'click';//support.touch ? 'tap' : 'click';
             /**滚动条位置
              * @return {Array} 滚动条 X,滚动条 Y
              */
@@ -953,16 +955,17 @@ var kelatDom = (function(){
             }
         },
         insertAfter: function(selector){
-            var after = $(selector);
-            for(var i = 0; i < this.length; i++){
-                if(after.length === 1){
-                    after[0].parentNode.insertBefore(this[i], after[0].nextSibling);
-                }else if(after.length > 1){
-                    for(var j = 0; j < after.length; j++){
-                        after[j].parentNode.insertBefore(this[i].cloneNode(true), after[j].nextSibling);
-                    }
-                }
-            }
+			var after = $(selector);
+			for (var i = 0; i < this.length; i++) {
+				if (after.length === 1) {
+					after[0].parentNode.insertBefore(this[i], after[0].nextSibling);
+				}
+				else if (after.length > 1) {
+					for (var j = 0; j < after.length; j++) {
+						after[j].parentNode.insertBefore(this[i].cloneNode(true), after[j].nextSibling);
+					}
+				}
+			}
         },
         next: function(selector){
             if(this.length > 0){
@@ -1022,6 +1025,9 @@ var kelatDom = (function(){
             }
             return new kelatDom(prevEls);
         },
+		siblings: function (selector) {
+			return this.nextAll(selector).add(this.prevAll(selector));
+		},
         parent: function(selector){
             var parents = [];
             for(var i = 0; i < this.length; i++){
@@ -1127,7 +1133,19 @@ var kelatDom = (function(){
         },
         trim: function(text){
             return typeof text === 'string' && running ? text.replace(Local.RegExpr.trim,'') : '';
-        }
+        },
+		empty: function () {
+			for (var i = 0; i < this.length; i++) {
+				var el = this[i];
+				if (el.nodeType === 1) {
+					for (var j = 0; j < el.childNodes.length; j++) {
+						if (el.childNodes[j].parentNode) el.childNodes[j].parentNode.removeChild(el.childNodes[j]);
+					}
+					el.textContent = '';
+				}
+			}
+			return this;
+		}
     };
     
     //事件扩展
@@ -2097,7 +2115,7 @@ var compatible = function(event, source){
         $(document).bind('MSGestureEnd', function(e){
             var swipeDirectionFromVelocity =
                 e.velocityX > 1 ? 'Right' : e.velocityX < -1 ? 'Left' : e.velocityY > 1 ? 'Down' : e.velocityY < -1 ? 'Up' : null;
-            if(swipeDirectionFromVelocity){
+            if(swipeDirectionFromVelocity && typeof touch.el !== "undefined"){
               touch.el.trigger('swipe');
               touch.el.trigger('swipe'+ swipeDirectionFromVelocity);
             };
@@ -2150,9 +2168,11 @@ var compatible = function(event, source){
             //滑动事件
             if((touch.x2 && Math.abs(touch.x1 - touch.x2) > 30) || (touch.y2 && Math.abs(touch.y1 - touch.y2) > 30)){
                 swipeTimeout = setTimeout(function() {
-                    touch.el.trigger('swipe')
-                    touch.el.trigger('swipe' + (swipeDirection(touch.x1, touch.x2, touch.y1, touch.y2)))
-                    touch = {}
+					if(typeof touch.el !== "undefined"){
+						touch.el.trigger('swipe');
+						touch.el.trigger('swipe' + (swipeDirection(touch.x1, touch.x2, touch.y1, touch.y2)))
+						touch = {}
+					}
                 },0)
             }else if('last' in touch){
                 //正常点击事件
@@ -3160,6 +3180,7 @@ KUIAPP.Picker = function(params){
 
     //输入事件
     function openOnInput(e) {
+		$$('body').addClass('OVBody');
         e.preventDefault();
         if(!$Picker.isCreate){
             KUIAPP.ShowModal($Picker.container);
@@ -3640,6 +3661,7 @@ KUIAPP.ShowModal = function(modal){
  * @param {Object} modal:模态框对象
  */
 KUIAPP.HideModal = function(modal){
+	$$('body').removeClass('OVBody');
     modal.removeClass('ModalIn').addClass('ModalOut').transitionEnd(function(e){
         modal.removeClass('ModalOut');
     });
@@ -3653,7 +3675,6 @@ KUIAPP.HideModal = function(modal){
  */
 KUIAPP.OpenModal = function(modal, className, Shift, displayTime) {
     var timesTamp = +(new Date());
-
     var isPopover = modal.hasClass('ModalPopover');
     var isPickerModal = modal.hasClass('PickerModal');
     var isPopup = modal.hasClass('PopupBox');
@@ -3693,6 +3714,7 @@ KUIAPP.OpenModal = function(modal, className, Shift, displayTime) {
  * @param {Object} modal:模态框对象
  */
 KUIAPP.CloseModal = function(modal, Shift) {
+	$$('body').removeClass('OVBody');
     modal = $$(modal || ".ModalBox.ModalBoxIn");
     if(typeof modal !== 'undefined' && modal.length === 0){
         return;

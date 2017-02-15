@@ -1,11 +1,14 @@
 ﻿define(['angular','uiRouter','angularIOS'],function(angular){
 'use strict';
 return angular.module('MyApp', ['ngIOS9UIWebViewPatch'
+	//动画
 	//,'me-pageloading'
 	]).config([
 		'$stateProvider','$locationProvider','$urlRouterProvider','$httpProvider',
+		//动画
 		//"mePageLoadingProvider",
 		function( $stateProvider,$locationProvider,$urlRouterProvider,$httpProvider
+		//动画
 		//,mePageLoadingProvider
 		){
 			
@@ -780,6 +783,7 @@ return angular.module('MyApp', ['ngIOS9UIWebViewPatch'
 					var def = $q.defer();
 						
 						require( deps , function () {
+							//动画
 							//setTimeout(function(){
 							def.resolve();
 							//window.scrollY(0)
