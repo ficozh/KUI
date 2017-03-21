@@ -221,7 +221,7 @@ var Local = {
             //事件检测
             support['desktopEvents'] = desktopEvents;
             //事件类型
-            support['onClick'] = 'click';//support.touch ? 'tap' : 'click';
+            support['onClick'] = support.touch ? 'tap' : 'click';
             /**滚动条位置
              * @return {Array} 滚动条 X,滚动条 Y
              */
@@ -2156,7 +2156,7 @@ var compatible = function(event, source){
             deltaX += Math.abs(touch.x1 - touch.x2);
             deltaY += Math.abs(touch.y1 - touch.y2);
         })
-        .on('touchend MSPointerUp pointerup mouseup',function(e){
+        .on('touchend MSPointerUp pointerup',function(e){
             if((_isPointerType = isPointerEventType(e, 'up')) && !isPrimaryTouch(e)){
                 var touchElement = $(e.target);
                 if(touchElement && !Local.support.touch){
