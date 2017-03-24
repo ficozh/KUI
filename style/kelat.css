@@ -1468,7 +1468,7 @@ display:flex;
 flex-shrink:0;
 }
 .TabsFixed{position:fixed;left:0;top:0;width:100%;z-index:6000}
-.TabsFixed + .TabsCon{margin-top:55px}
+.TabsFixed + .TabsCon{padding-top:45px}
 .TabsFixed.TabBarLabels + .TabsCon{padding-top:75px}
 
 .WrapHeader + .WrapContent > .WAll .TabsFixed{top:45px}
