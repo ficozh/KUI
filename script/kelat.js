@@ -216,8 +216,8 @@ var Local = {
         };
         var support = {};
             support['touch'] = !!(('ontouchstart' in window) || window.DocumentTouch && document instanceof DocumentTouch);
-			//选中检查 checked="checked" or checked
-			support['rchecked'] = /checked\s*(?:[^=]|=\s*.checked.)/i,
+            //选中检查 checked="checked" or checked
+            support['rchecked'] = /checked\s*(?:[^=]|=\s*.checked.)/i,
             //事件检测
             support['desktopEvents'] = desktopEvents;
             //事件类型
@@ -268,7 +268,7 @@ var Local = {
                 //页面小于窗口,设置和窗口相等
                 var _PageW = (_ScrW < _WinW) ? _WinW : _ScrW;
                 var _PageH = (_ScrH < _WinH) ? _WinH : _ScrH;
-                return {PageW:_PageW,PageH:_PageH,WinW:_WinW,WinH:_WinH};
+                return {"PageW":_PageW,"PageH":_PageH,"WinW":_WinW,"WinH":_WinH};
             };
         return support;
     })()
@@ -279,7 +279,7 @@ var Local = {
     if(!window.isHello){
         var KUI ="kelat.js " + version + " - ✰ KUI ✰ ";
         var KUIMail ="\n\n如有任何意见和建议可发送邮件至 ficozh@163.com\n\n";
-        var Padding = 'padding:5px 0'
+        var Padding = 'padding:5px 0';
         var Padding0CF = 'background:#0CF;'+Padding;
         var Padding111 = 'background:#111;color:#FFF;'+Padding;
         var PaddingCFF = 'background:#CFF;'+Padding;
@@ -955,17 +955,17 @@ var kelatDom = (function(){
             }
         },
         insertAfter: function(selector){
-			var after = $(selector);
-			for (var i = 0; i < this.length; i++) {
-				if (after.length === 1) {
-					after[0].parentNode.insertBefore(this[i], after[0].nextSibling);
-				}
-				else if (after.length > 1) {
-					for (var j = 0; j < after.length; j++) {
-						after[j].parentNode.insertBefore(this[i].cloneNode(true), after[j].nextSibling);
-					}
-				}
-			}
+            var after = $(selector);
+            for (var i = 0; i < this.length; i++) {
+                if (after.length === 1) {
+                    after[0].parentNode.insertBefore(this[i], after[0].nextSibling);
+                }
+                else if (after.length > 1) {
+                    for (var j = 0; j < after.length; j++) {
+                        after[j].parentNode.insertBefore(this[i].cloneNode(true), after[j].nextSibling);
+                    }
+                }
+            }
         },
         next: function(selector){
             if(this.length > 0){
@@ -1025,9 +1025,9 @@ var kelatDom = (function(){
             }
             return new kelatDom(prevEls);
         },
-		siblings: function (selector) {
-			return this.nextAll(selector).add(this.prevAll(selector));
-		},
+        siblings: function (selector) {
+            return this.nextAll(selector).add(this.prevAll(selector));
+        },
         parent: function(selector){
             var parents = [];
             for(var i = 0; i < this.length; i++){
@@ -1134,18 +1134,18 @@ var kelatDom = (function(){
         trim: function(text){
             return typeof text === 'string' && running ? text.replace(Local.RegExpr.trim,'') : '';
         },
-		empty: function () {
-			for (var i = 0; i < this.length; i++) {
-				var el = this[i];
-				if (el.nodeType === 1) {
-					for (var j = 0; j < el.childNodes.length; j++) {
-						if (el.childNodes[j].parentNode) el.childNodes[j].parentNode.removeChild(el.childNodes[j]);
-					}
-					el.textContent = '';
-				}
-			}
-			return this;
-		}
+        empty: function () {
+            for (var i = 0; i < this.length; i++) {
+                var el = this[i];
+                if (el.nodeType === 1) {
+                    for (var j = 0; j < el.childNodes.length; j++) {
+                        if (el.childNodes[j].parentNode) el.childNodes[j].parentNode.removeChild(el.childNodes[j]);
+                    }
+                    el.textContent = '';
+                }
+            }
+            return this;
+        }
     };
     
     //事件扩展
@@ -1742,7 +1742,7 @@ window['kelat']['fn'] = window['kelat'].prototype = {
         return string.replace(RE,"");
     },
     /** Javascript函数节流
-	 * @alias throttle
+     * @alias throttle
      * @param {function} callBack:执行方法
      * @param {Number} delay:间隔时间
      * @param {Number} mustRunDelay:必须运行时间
@@ -1781,7 +1781,7 @@ window['kelat']['fn'] = window['kelat'].prototype = {
     //H5本地存储 
     ls : window.localStorage ,
     /** 设备&操作系统探测
-	 * @alias device
+     * @alias device
      * @return {Object}
      */
     device : (function(){
@@ -1889,14 +1889,14 @@ window['kelat']['fn'] = window['kelat'].prototype = {
         end: Local.support.touch ? 'touchend' : Local.support.desktopEvents[2]
     },
     /** 触摸事件
-	 * @alias touches
+     * @alias touches
      * @param {Object} els:对象
      * @param {function} callBackStart:回调
      * @param {function} callBackMove:回调
      * @param {function} callBackEnd:回调
      */
-    touches : function(els, callBackStart,callBackMove,callBackEnd) {
-        var detach = false,isTouched = false;
+    touches : function(els, detach, callBackStart,callBackMove,callBackEnd) {
+        var isTouched = false;
         var Touches = {
             startX:  0, startY:  0,
             currentX:0, currentY:0,
@@ -2168,11 +2168,11 @@ var compatible = function(event, source){
             //滑动事件
             if((touch.x2 && Math.abs(touch.x1 - touch.x2) > 30) || (touch.y2 && Math.abs(touch.y1 - touch.y2) > 30)){
                 swipeTimeout = setTimeout(function() {
-					if(typeof touch.el !== "undefined"){
-						touch.el.trigger('swipe');
-						touch.el.trigger('swipe' + (swipeDirection(touch.x1, touch.x2, touch.y1, touch.y2)))
-						touch = {}
-					}
+                    if(typeof touch.el !== "undefined"){
+                        touch.el.trigger('swipe');
+                        touch.el.trigger('swipe' + (swipeDirection(touch.x1, touch.x2, touch.y1, touch.y2)))
+                        touch = {}
+                    }
                 },0)
             }else if('last' in touch){
                 //正常点击事件
@@ -2308,7 +2308,18 @@ KUIAPP.GetUrlParams = function(options) {
             ArrayData[options.type[1]] = URLData.substring(typeData);
         }else{
             //angular #/ 多问号 特殊处理
-            URLData = URLData.replace(/\?/g,"&").replace(/[#/]/g,"");
+            URLData = URLData.replace(/%26/gi, '&').
+            replace(/%2F/gi, '/').
+            replace(/%3D/gi, '=').
+            replace(/%2B/gi, '+').
+            replace(/%40/gi, '@').
+            replace(/%3A/gi, ':').
+            replace(/%24/g, '$').
+            replace(/%2C/gi, ',').
+            replace(/%3B/gi, ';').
+            replace(/%20/g, '+').
+            replace(/\?/g,"&").
+            replace(/\#\//g,"&");
             //获取参数的值
             var _Data = URLData.split("&");
             for(var i=0;i<_Data.length;i++){
@@ -3180,7 +3191,7 @@ KUIAPP.Picker = function(params){
 
     //输入事件
     function openOnInput(e) {
-		$$('body').addClass('OVBody');
+        $$('body').addClass('OVBody');
         e.preventDefault();
         if(!$Picker.isCreate){
             KUIAPP.ShowModal($Picker.container);
@@ -3661,7 +3672,7 @@ KUIAPP.ShowModal = function(modal){
  * @param {Object} modal:模态框对象
  */
 KUIAPP.HideModal = function(modal){
-	$$('body').removeClass('OVBody');
+    $$('body').removeClass('OVBody');
     modal.removeClass('ModalIn').addClass('ModalOut').transitionEnd(function(e){
         modal.removeClass('ModalOut');
     });
@@ -3714,7 +3725,7 @@ KUIAPP.OpenModal = function(modal, className, Shift, displayTime) {
  * @param {Object} modal:模态框对象
  */
 KUIAPP.CloseModal = function(modal, Shift) {
-	$$('body').removeClass('OVBody');
+    $$('body').removeClass('OVBody');
     modal = $$(modal || ".ModalBox.ModalBoxIn");
     if(typeof modal !== 'undefined' && modal.length === 0){
         return;
@@ -3872,30 +3883,30 @@ KUIAPP.Warn = function(content, showTime, className) {
  * @param {String} content:内容
  */
 KUIAPP.Prompt = function (content, title, callbackOk, callbackCancel, buttonText) {
-	if (typeof title === 'function') {
-		callbackOk = arguments[1];
-		callbackCancel = arguments[2];
-		buttonText = arguments[3];
-		title = undefined;
-	}
-	return KUIAPP.Modal({
-		content: content || '',
-		title: typeof title === 'undefined' ? Local.ModalTitle : title,
-		afterText: '<div class="InputField"><input type="text" class="ModalTextInput"></div>',
-		buttons: [
-			{
-				text: buttonText && buttonText[1] ? buttonText[1] : Local.ModalButtonCancel
-			},
-			{
-				text: buttonText && buttonText[0] ? buttonText[0] : Local.ModalButtonOk,
-				bold: true
-			}
-		],
-		onClick: function (modal, index) {
-			if (index === 0 && callbackCancel) callbackCancel($$(modal).find('.ModalTextInput').val());
-			if (index === 1 && callbackOk) callbackOk($$(modal).find('.ModalTextInput').val());
-		}
-	});
+    if (typeof title === 'function') {
+        callbackOk = arguments[1];
+        callbackCancel = arguments[2];
+        buttonText = arguments[3];
+        title = undefined;
+    }
+    return KUIAPP.Modal({
+        content: content || '',
+        title: typeof title === 'undefined' ? Local.ModalTitle : title,
+        afterText: '<div class="InputField"><input type="text" class="ModalTextInput"></div>',
+        buttons: [
+            {
+                text: buttonText && buttonText[1] ? buttonText[1] : Local.ModalButtonCancel
+            },
+            {
+                text: buttonText && buttonText[0] ? buttonText[0] : Local.ModalButtonOk,
+                bold: true
+            }
+        ],
+        onClick: function (modal, index) {
+            if (index === 0 && callbackCancel) callbackCancel($$(modal).find('.ModalTextInput').val());
+            if (index === 1 && callbackOk) callbackOk($$(modal).find('.ModalTextInput').val());
+        }
+    });
 };
 /** 弹出框 
  * @alias popup
@@ -3992,9 +4003,9 @@ KUIAPP.ModalString = function(modal, removeOnClose, callback){
  * @param {Object} param:参数集
  */
 KUIAPP.Popover = function(modal, target, param){
-	if(typeof param !== 'object'){
-		param = {};
-	};
+    if(typeof param !== 'object'){
+        param = {};
+    };
     if(typeof param.removeOnClose === 'undefined'){
         param.removeOnClose = true;
     };
@@ -4923,8 +4934,8 @@ KUIAPP.accordionOpen = function (item) {
         if(item.hasClass('AccordionItemExpanded')){
             content.transition(0);
             content.css('height', 'auto');
-			//Relayout
-			var clientLeft = item[0].clientLeft;
+            //Relayout
+            var clientLeft = item[0].clientLeft;
             content.transition('');
             item.trigger('opened');
         }else{
@@ -4949,16 +4960,16 @@ KUIAPP.accordionClose = function (item) {
     item.removeClass('AccordionItemExpanded');
     content.transition(0);
     content.css('height', content[0].scrollHeight + 'px');
-	//Relayout
-	var clientLeft = content[0].clientLeft;
+    //Relayout
+    var clientLeft = content[0].clientLeft;
     //关闭
     content.transition('');
     content.css('height', '').transitionEnd(function(){
         if(item.hasClass('AccordionItemExpanded')){
             content.transition(0);
             content.css('height', 'auto');
-			//Relayout
-			var clientLeft = content[0].clientLeft;
+            //Relayout
+            var clientLeft = content[0].clientLeft;
             content.transition('');
             item.trigger('opened');
         }else{
@@ -5242,9 +5253,9 @@ window['kelat']['progressbar'] = KUIAPP.Progressbar;
 KUIAPP.Ripple = function(){
     return $$(document).on(Local.support.onClick, ".InkRipple", function(event){
         if(running){
-			if(Local.support.touch && !event.targetTouches){
-				return;
-			};
+            if(Local.support.touch && !event.targetTouches){
+                return;
+            };
             var $$Th = $$(this), _Date = +(new Date());
             //使用父元素的最大宽高,创建一个覆盖元素的圆形。
             var _Diameter = Math.max($$Th.outerWidth(), $$Th.outerHeight());
