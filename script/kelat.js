@@ -2,7 +2,7 @@
  * kelat JavaScript Library v1.2.4-beta
  * http://git.oschina.net/ficozhe/K-UI
  *
- * Date: 2016-08-08
+ * Date: 2017-01-03
  */
 (function(Global, factory){
     if(typeof module === "object" && typeof module.exports === "object"){
