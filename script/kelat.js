@@ -1863,9 +1863,9 @@ window['kelat']['fn'] = window['kelat'].prototype = {
         };
         //状态栏类
         if(device.statusBar) {
-            classNames.push('StatusbarOverlay');
+            classNames.push('WithStatusbarOverlay');
         }else{
-            $$('html').removeClass('StatusbarOverlay');
+            $$('html').removeClass('WithStatusbarOverlay');
         };
         //HTML添加样式
         if(classNames.length > 0){

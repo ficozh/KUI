@@ -1,9 +1,9 @@
 ﻿@charset "utf-8";
-/*!
- * kelat Css Library v1.2.3-beta
+/**
+ * kelat Css Library v1.2.4-beta
  * http://git.oschina.net/ficozhe/K-UI
  *
- * Date: 2016-08-08
+ * Date: 2017-01-03
  */
 *{
 -webkit-text-size-adjust:none;/*禁止自动调整字体大小*/
@@ -2408,10 +2408,12 @@ border-bottom-left-radius:0;
 }}
 
 /* 状态栏覆盖全屏幕模式 (PhoneGap) */
-.StatusbarOverlay{position:absolute;left:0;top:0;height:20px;width:100%;display:none;background:#2283E2;z-index:10000;
+.StatusbarOverlay{position:fixed;left:0;top:0;height:20px;width:100%;display:none;background:#fff;z-index:10000;
 -webkit-transition-duration:.3s;
         transition-duration:.3s
 }
+html.WithStatusbarOverlay body .StatusbarOverlay{display:block}
+html.WithStatusbarOverlay body .Wrapper{padding-top:20px}
 
 /* === 进度条 === */
 .ProgressBar{position:fixed;left:0;top:0;height:2px;width:100%;overflow:hidden;display:block;background:#C3C3C3;vertical-align:middle;z-index:2300;
@@ -2597,6 +2599,7 @@ box-sizing:border-box;}
 
 /*页眉*/
 .WrapHeader{position:fixed;top:0;left:0;width:100%;height:45px;text-align:center;background-color:#fff;z-index:99;border-bottom:1px solid #ddd}
+html.WithStatusbarOverlay body .WrapHeader{top:auto}
     /*顶部导航*/
     .HeaNav{height:inherit;line-height:44px;margin-top:-3px;
     box-sizing:border-box;
