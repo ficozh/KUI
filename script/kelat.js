@@ -3929,9 +3929,13 @@ KUIAPP.Popup = function (modal, removeOnClose) {
     modal.show();
     //绑定确认事件
     modal.find(".OkPicker,.ClosePicker,.ClosePopup").on('click',function(){
-        KUIAPP.CloseModal(modal);
+        KUIAPP.ClosePopup(modal);
     });
     KUIAPP.OpenModal(modal);
+    return modal[0];
+};
+KUIAPP.unPopup = function (modal) {
+    KUIAPP.CloseModal(modal);
     return modal[0];
 };
 /** 底部确认框 
@@ -4142,6 +4146,7 @@ window['kelat']['warn'] = KUIAPP.Warn;
 window['kelat']['prompt'] = KUIAPP.Prompt;
 window['kelat']['pickerModal'] = KUIAPP.PickerModal;
 window['kelat']['popup'] = KUIAPP.Popup;
+window['kelat']['unPopup'] = KUIAPP.unPopup;
 window['kelat']['popover'] = KUIAPP.Popover;
 window['kelat']['confirmModal'] = KUIAPP.ConfirmModal;
 

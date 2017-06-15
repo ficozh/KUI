@@ -93,7 +93,7 @@ abbr[title]{border-bottom:1px dotted}
 
 /* ===== 连接 ===== */
 a{background-color:transparent;outline:0}
-a:focus{outline:thin dotted}
+a:focus,
 a:active,
 a:hover{outline:0}
 ins,
