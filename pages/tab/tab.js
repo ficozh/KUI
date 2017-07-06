@@ -9,7 +9,8 @@ function( title , $scope , $state) {
 			bussiness: function() {
 				//执行函数 
 				//Tabs
-				$$.tabs();				
+				$$.tabs('.aaaa');				
+				$$.tabs('.bbbb');				
 			},
 			init : function(){
 				//更改页面标题

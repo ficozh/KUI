@@ -737,6 +737,10 @@ content:"";z-index:4;border-radius:28px;box-shadow:0 2px 5px rgba(0,0,0,.4);
 
 .LabelSwitchBlue input[type=checkbox]:checked+.checkbox{background-color:#10A9DC}
 
+.LabelSwitch.disabled .checkbox,
+.LabelSwitch.disabled .checkbox:before{background-color:#f7f7f7}
+.LabelSwitch.disabled .checkbox:after{box-shadow:none;background-color:#ccc}
+
 /*复选框*/
 label.LabelCheckbox{cursor:pointer}
 label.LabelCheckbox input[type="checkbox"],
@@ -2384,7 +2388,7 @@ border-bottom-left-radius:0;
 
 /*======点击波===== <e class="InkRipple"></e>*/
 .InkRipple{position:relative;display:inline-block;overflow:hidden;-webkit-transform:rotate(0deg);transform:rotate(0deg)}
-.InkRipple .ink{position:absolute;display:block;background-color:rgba(0,0,0,.15);border-radius:1000px;
+.InkRipple .ink{position:absolute;display:block;background-color:rgba(0,0,0,.05);border-radius:1000px;
 -webkit-transform:scale(0);
         transform:scale(0)
 }

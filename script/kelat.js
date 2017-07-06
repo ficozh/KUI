@@ -1,6 +1,7 @@
 /**
  * kelat JavaScript Library v1.2.4-beta
  * http://git.oschina.net/ficozhe/K-UI
+ * https://github.com/ficozh/KUI
  *
  * Date: 2017-01-03
  */
@@ -152,7 +153,7 @@ if(window['kelatlocale']){
 /***** 定义局部参数 *****/
 var Local = {
     //网址
-    website:'http://git.oschina.net/ficozhe/K-UI',
+    website:'https://github.com/ficozh/KUI',
     //提示信息
     message:'\u60a8\u4f7f\u7528\u671f\u5df2\u5230\uff01',
     //图片
@@ -221,7 +222,7 @@ var Local = {
             //事件检测
             support['desktopEvents'] = desktopEvents;
             //事件类型
-            support['onClick'] = support.touch ? 'tap' : 'click';
+            support['onClick'] = /*support.touch ? 'tap' : */'click';
             /**滚动条位置
              * @return {Array} 滚动条 X,滚动条 Y
              */
@@ -771,7 +772,7 @@ var kelatDom = (function(){
             return this;
         },
         styles: function(){
-            return this[0] ? window.getComputedStyle(this[0], null) : undefined;
+            if(this[0]){ return window.getComputedStyle(this[0], null); }
         },
         css: function(props, value){
             var i;
@@ -1579,8 +1580,6 @@ var kelatDom = (function(){
             return window.requestAnimationFrame(callback);
         }else if(window.webkitRequestAnimationFrame){
             return window.webkitRequestAnimationFrame(callback);
-        }else if(window.mozRequestAnimationFrame){
-            return window.mozRequestAnimationFrame(callback);
         }else{
             return window.setTimeout(callback, 1000 / 60);
         }
@@ -1590,8 +1589,6 @@ var kelatDom = (function(){
             return window.cancelAnimationFrame(id);
         }else if(window.webkitCancelAnimationFrame){
             return window.webkitCancelAnimationFrame(id);
-        }else if(window.mozCancelAnimationFrame){
-            return window.mozCancelAnimationFrame(id);
         }else{
             return window.clearTimeout(id);
         }  
@@ -2317,7 +2314,7 @@ KUIAPP.GetUrlParams = function(options) {
             replace(/%24/g, '$').
             replace(/%2C/gi, ',').
             replace(/%3B/gi, ';').
-            replace(/%20/g, '+').
+            replace(/%20/g, ' ').
             replace(/\?/g,"&").
             replace(/\#\//g,"&");
             //获取参数的值
@@ -3662,10 +3659,15 @@ KUIAPP.SizeNavbars = function(modal){
 
 /** 显示 Modal
  * @param {Object} modal:模态框对象
+ * @param {function} callback:显示对象后回调
  */
-KUIAPP.ShowModal = function(modal){
+KUIAPP.ShowModal = function(modal, callback){
+	Local.LayerIndex++
     modal.prev('.ModalBlank').css('z-index',Local.LayerIndex).removeClass("ModalBlankVisibleOut").addClass('ModalBlankVisibleIn');
-    modal.removeClass('ModalOut').css({"z-index": ++Local.LayerIndex}).addClass('ModalIn');
+	Local.LayerIndex++
+    modal.removeClass('ModalOut').css({"z-index": ++Local.LayerIndex}).addClass('ModalIn').transitionEnd(function(){
+        callback && callback();
+    });
     return modal;
 };
 /** 隐藏 Modal
@@ -3684,7 +3686,7 @@ KUIAPP.HideModal = function(modal){
  * @param {Object} modal:模态框对象
  * @param {String} className:模态框样式名
  */
-KUIAPP.OpenModal = function(modal, className, Shift, displayTime) {
+KUIAPP.OpenModal = function(modal, className, Shift, displayTime){
     var timesTamp = +(new Date());
     var isPopover = modal.hasClass('ModalPopover');
     var isPickerModal = modal.hasClass('PickerModal');
@@ -3712,19 +3714,24 @@ KUIAPP.OpenModal = function(modal, className, Shift, displayTime) {
     };
     window.setTimeout(function(){
         if(modal && running){
-            KUIAPP.ShowModal(modal);
-        };
-        if(isPopover || isPickerModal || isPopup){
-            $ModalBlank.on(Local.support.onClick,function(){
-                KUIAPP.CloseModal(modal,Shift);
+            KUIAPP.ShowModal(modal,function(){
+                if(isPopover || isPickerModal || isPopup){
+                    $ModalBlank.on(Local.support.onClick,function(){
+                        KUIAPP.CloseModal(modal,Shift);
+                    });
+                };
             });
-        }
+        };
     },5);
 };
 /** 关闭 
  * @param {Object} modal:模态框对象
  */
-KUIAPP.CloseModal = function(modal, Shift) {
+KUIAPP.CloseModal = function(modal, Shift, callback){
+	if(typeof Shift === 'function'){
+		callback = arguments[1];
+		Shift = undefined;
+	}
     $$('body').removeClass('OVBody');
     modal = $$(modal || ".ModalBox.ModalBoxIn");
     if(typeof modal !== 'undefined' && modal.length === 0){
@@ -3758,6 +3765,7 @@ KUIAPP.CloseModal = function(modal, Shift) {
         }else{
             $$(this).remove();
         };
+		callback && callback();
     });
     
     return true;
@@ -3765,7 +3773,7 @@ KUIAPP.CloseModal = function(modal, Shift) {
 /** 元素创建 
  * @param {Array} options:模态框选项数组
  */
-KUIAPP.Modal = function(options) {
+KUIAPP.Modal = function(options){
     options = options || {};
     var ButtonsHTML = '',
         ButtonsNAME = '',
@@ -3816,7 +3824,7 @@ KUIAPP.Modal = function(options) {
  * @param {String} title:标题
  * @param {function} callbackOk:确认事件
  */
-KUIAPP.Alert = function(content, title, callbackOk, buttonText) {
+KUIAPP.Alert = function(content, title, callbackOk, buttonText){
     if(typeof title === 'function'){
         buttonText = arguments[2];
         callbackOk = arguments[1];
@@ -3866,7 +3874,7 @@ KUIAPP.Confirm = function(content, title, callbackOk, callbackCancel, buttonText
  * @alias warn
  * @param {String} content:内容
  */
-KUIAPP.Warn = function(content, showTime, className) {
+KUIAPP.Warn = function(content, showTime, className){
     if(!content){return}
     if(typeof showTime === 'string') {
       className = arguments[1];
@@ -3882,7 +3890,7 @@ KUIAPP.Warn = function(content, showTime, className) {
  * @alias prompt
  * @param {String} content:内容
  */
-KUIAPP.Prompt = function (content, title, callbackOk, callbackCancel, buttonText) {
+KUIAPP.Prompt = function(content, title, callbackOk, callbackCancel, buttonText){
     if (typeof title === 'function') {
         callbackOk = arguments[1];
         callbackCancel = arguments[2];
@@ -3913,7 +3921,11 @@ KUIAPP.Prompt = function (content, title, callbackOk, callbackCancel, buttonText
  * @param {Object} modal:模态框对象
  * @param {boolean} removeOnClose:是否删除
  */
-KUIAPP.Popup = function (modal, removeOnClose) {
+KUIAPP.Popup = function(modal, removeOnClose, callback){
+    if(typeof removeOnClose === 'function'){
+        callback = arguments[1];
+        removeOnClose = undefined;
+    }
     if(typeof removeOnClose === 'undefined'){
         removeOnClose = true;
     };
@@ -3928,15 +3940,21 @@ KUIAPP.Popup = function (modal, removeOnClose) {
     };
     modal.show();
     //绑定确认事件
-    modal.find(".OkPicker,.ClosePicker,.ClosePopup").on('click',function(){
-        KUIAPP.ClosePopup(modal);
+    modal.find(".ClosePopup").once('click',function(){
+       KUIAPP.CloseModal(modal,function(){
+		callback && callback(); 
+	   });
     });
     KUIAPP.OpenModal(modal);
     return modal[0];
 };
-KUIAPP.unPopup = function (modal) {
-    KUIAPP.CloseModal(modal);
-    return modal[0];
+/** 关闭所有弹出框 
+ */
+KUIAPP.unDialog = function(){
+    $$('body').removeClass('OVBody');
+    $$('.ModalBlank.ModalBlankVisibleIn').remove();
+    $$('.PopupBox,.ModalBox').removeClass("ModalIn").removeAttr('style');
+    return this;
 };
 /** 底部确认框 
  * @alias confirmModal
@@ -3953,11 +3971,11 @@ KUIAPP.ConfirmModal = function(content, title, callbackOk, callbackCancel, butto
  * @param {Object} modal:模态框对象
  * @param {boolean} removeOnClose:是否删除
  */
-KUIAPP.PickerModal = function(modal, removeOnClose) {
+KUIAPP.PickerModal = function(modal, removeOnClose){
     if(typeof removeOnClose === 'undefined'){
         removeOnClose = true;
     };
-    if(typeof modal === 'string' && modal.indexOf('<') >= 0) {
+    if(typeof modal === 'string' && modal.indexOf('<') >= 0){
         modal = $$(modal);
         modal.dd='1'
         if (modal.length > 0) {
@@ -3975,7 +3993,7 @@ KUIAPP.PickerModal = function(modal, removeOnClose) {
     if(modal.length === 0){
         return false;
     };
-    if($$('.PickerModal.ModalIn:not(.ModalOut)').length > 0 && !modal.hasClass('ModalIn')) {
+    if($$('.PickerModal.ModalIn:not(.ModalOut)').length > 0 && !modal.hasClass('ModalIn')){
         KUIAPP.CloseModal('.PickerModal.ModalIn:not(.ModalOut)');
     }
     KUIAPP.OpenModal(modal);
@@ -4133,7 +4151,7 @@ KUIAPP.Popover = function(modal, target, param){
 
     $$(window).on('resize', sizePopover);
 
-    modal.on('close', function () {
+    modal.on('close', function(){
         $$(window).off('resize', sizePopover);
     });
 
@@ -4146,7 +4164,7 @@ window['kelat']['warn'] = KUIAPP.Warn;
 window['kelat']['prompt'] = KUIAPP.Prompt;
 window['kelat']['pickerModal'] = KUIAPP.PickerModal;
 window['kelat']['popup'] = KUIAPP.Popup;
-window['kelat']['unPopup'] = KUIAPP.unPopup;
+window['kelat']['unDialog'] = KUIAPP.unDialog;
 window['kelat']['popover'] = KUIAPP.Popover;
 window['kelat']['confirmModal'] = KUIAPP.ConfirmModal;
 
@@ -5164,12 +5182,13 @@ KUIAPP.showTab = function(tab, tabLink, force){
     return true;
 };
 KUIAPP.initTab = function(tab, tabLink, force){
-    $$(document).on('click','.TabLink',function(){
+    $$(".TabLink").on('click', function(){
+    //$$(document).on('click','.TabLink',function(){
         var clicked = $$(this);
         var clickedData = clicked.dataset();
         KUIAPP.showTab(clickedData.tab || clicked.attr('href'), clicked)
     });
-    KUIAPP.initPageMaterialTabbar($$(document.getElementById(Local.WrapperArea)))
+    KUIAPP.initPageMaterialTabbar($$(tab))
 };
 window['kelat']['tabs'] = KUIAPP.initTab;
 window['kelat']['showTab'] = KUIAPP.showTab;
@@ -5256,17 +5275,20 @@ window['kelat']['progressbar'] = KUIAPP.Progressbar;
 ************   点击波   ************
 ======================================================*/
 KUIAPP.Ripple = function(){
-    return $$(document).on(Local.support.onClick, ".InkRipple", function(event){
+    return $$(document).on("click", ".InkRipple", function(event){
+		event.preventDefault();
         if(running){
-            if(Local.support.touch && !event.targetTouches){
+            /*if(Local.support.touch && !event.targetTouches){
                 return;
-            };
+            };*/
             var $$Th = $$(this), _Date = +(new Date());
             //使用父元素的最大宽高,创建一个覆盖元素的圆形。
             var _Diameter = Math.max($$Th.outerWidth(), $$Th.outerHeight());
             //得到点击坐标=点击坐标相对于页面 - 父元素的位置相对于页面 - 半自高度/宽度，使其从中心展示;
-            var _OffsetX = (Local.support.touch ? event.targetTouches[0].pageX : event.pageX) - $$Th.offset().left - _Diameter / 2;
-            var _OffsetY = (Local.support.touch ? event.targetTouches[0].pageY : event.pageY) - $$Th.offset().top - _Diameter / 2;
+            //var _OffsetX = (Local.support.touch ? event.targetTouches[0].pageX : event.pageX) - $$Th.offset().left - _Diameter / 2;
+            //var _OffsetY = (Local.support.touch ? event.targetTouches[0].pageY : event.pageY) - $$Th.offset().top - _Diameter / 2;
+            var _OffsetX = event.pageX - $$Th.offset().left - _Diameter / 2;
+            var _OffsetY = event.pageY - $$Th.offset().top - _Diameter / 2;
             //创建.ink元素，设置大小
             $$Th.prepend('<span class="ink" id="ink' + _Date + '" style="top:'+_OffsetY+'px;left:'+_OffsetX+'px;height:'+_Diameter+'px;width:'+_Diameter+'px"></span>');
             var $$Ink = $$("#ink" + _Date);

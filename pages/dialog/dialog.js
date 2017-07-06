@@ -43,7 +43,14 @@ function( title , $scope , $state ) {
 				});
 				
 				$$(".PopupBtn").on("click",function(){
-					$$.popup($$('.demo-popup'))
+					$$.popup($$('.demo-popup'),function(){
+						alert(1)
+					})
+				});
+				$$(".PopupBtn1").on("click",function(){
+					$$.popup($$('.demo-popup'),function(){
+						alert(11111)
+					})
 				});
 				
 				
