@@ -1387,12 +1387,15 @@ display:flex;
 .NavBarFixed .PageContent{padding-top:44px;}
 
 .TabBar{z-index:5001;overflow:hidden;bottom:auto;top:0}
-.TabBar .ToolBarInner{padding-left:0;padding-right:0}
+.TabBar .ToolBarInner{padding-left:0;padding-right:0;
+-webkit-justify-content:space-around;
+        justify-content:space-around;
+}
 .TabBar .Link{line-height:1.4}
 .TabBar .TabLink.active,
 .TabBar .Link.active{color:#0a6ebd}
 .TabBar .TabLink,
-.TabBar .Link{height:100%;width:100%;font-size:14px;text-transform:uppercase;padding-left:0;padding-right:0;
+.TabBar .Link{height:100%;font-size:14px;text-transform:uppercase;padding-left:0;padding-right:0;
 box-sizing:border-box;
 display:-webkit-box;
 display:-ms-flexbox;

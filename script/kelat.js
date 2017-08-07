@@ -54,7 +54,7 @@ var KUIAPP = {
     }
 };
 //是否普通对象
-KUIAPP.isPlainObject = function( obj ) {
+KUIAPP.isPlainObject = function(obj) {
     // 不是普通的对象:
     // - 任何对象或值，其内部的 [[Class]] 属性不是 "[object Object]"
     // - DOM节点
@@ -222,7 +222,7 @@ var Local = {
             //事件检测
             support['desktopEvents'] = desktopEvents;
             //事件类型
-            support['onClick'] = /*support.touch ? 'tap' : */'click';
+            support['onClick'] = support.touch ? 'tap' : 'click';
             /**滚动条位置
              * @return {Array} 滚动条 X,滚动条 Y
              */
@@ -2329,6 +2329,28 @@ KUIAPP.GetUrlParams = function(options) {
 };
 window['kelat']['getUrlParams'] = KUIAPP.GetUrlParams;
 
+/** 分解url参数
+ * @alias getUrlParams
+ * @return {Array} options:{'url':'http://www.***.com/',type:['=','id']} 分割符和参数名
+ */
+KUIAPP.UrlParamDel = function(name) {
+    var loca = window.location;
+    var baseUrl = loca.origin + loca.pathname + "?";
+    var query = loca.search.substr(1);
+    if(query.indexOf(name)>-1) {
+        var obj = {};
+        var arr = query.split("&");
+        for (var i = 0; i < arr.length; i++) {
+            arr[i] = arr[i].split("=");
+            obj[arr[i][0]] = arr[i][1];
+        };
+        delete obj[name];
+        var url = baseUrl + JSON.stringify(obj).replace(/[\"\{\}]/g,"").replace(/\:/g,"=").replace(/\,/g,"&");
+        return url;
+    };
+};
+window['kelat']['urlParamDel'] = KUIAPP.UrlParamDel;
+
 /** 动态加载 
  * @alias loadJC
  * @param {String} path:加载对象路径
@@ -3662,9 +3684,9 @@ KUIAPP.SizeNavbars = function(modal){
  * @param {function} callback:显示对象后回调
  */
 KUIAPP.ShowModal = function(modal, callback){
-	Local.LayerIndex++
+     Local.LayerIndex++
     modal.prev('.ModalBlank').css('z-index',Local.LayerIndex).removeClass("ModalBlankVisibleOut").addClass('ModalBlankVisibleIn');
-	Local.LayerIndex++
+     Local.LayerIndex++
     modal.removeClass('ModalOut').css({"z-index": ++Local.LayerIndex}).addClass('ModalIn').transitionEnd(function(){
         callback && callback();
     });
@@ -3728,10 +3750,10 @@ KUIAPP.OpenModal = function(modal, className, Shift, displayTime){
  * @param {Object} modal:模态框对象
  */
 KUIAPP.CloseModal = function(modal, Shift, callback){
-	if(typeof Shift === 'function'){
-		callback = arguments[1];
-		Shift = undefined;
-	}
+     if(typeof Shift === 'function'){
+          callback = arguments[1];
+          Shift = undefined;
+     }
     $$('body').removeClass('OVBody');
     modal = $$(modal || ".ModalBox.ModalBoxIn");
     if(typeof modal !== 'undefined' && modal.length === 0){
@@ -3765,7 +3787,7 @@ KUIAPP.CloseModal = function(modal, Shift, callback){
         }else{
             $$(this).remove();
         };
-		callback && callback();
+          callback && callback();
     });
     
     return true;
@@ -3942,8 +3964,8 @@ KUIAPP.Popup = function(modal, removeOnClose, callback){
     //绑定确认事件
     modal.find(".ClosePopup").once('click',function(){
        KUIAPP.CloseModal(modal,function(){
-		callback && callback(); 
-	   });
+          callback && callback(); 
+        });
     });
     KUIAPP.OpenModal(modal);
     return modal[0];
@@ -5276,7 +5298,7 @@ window['kelat']['progressbar'] = KUIAPP.Progressbar;
 ======================================================*/
 KUIAPP.Ripple = function(){
     return $$(document).on("click", ".InkRipple", function(event){
-		event.preventDefault();
+        //event.preventDefault();
         if(running){
             /*if(Local.support.touch && !event.targetTouches){
                 return;

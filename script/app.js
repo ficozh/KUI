@@ -97,10 +97,11 @@ return angular.module('MyApp', ['ngIOS9UIWebViewPatch'
 			}
 			
 		})
-		.state("parent.badge",{//badge(数字角标)
-			parent: 'parent',
-			url:"badge",
+		.state("badge",{//badge(数字角标)
+			//parent: 'parent',
+			url:"/badge",
 			views:{
+				'Header': Header,
 				'WrapContent@':{
 					templateUrl :"pages/badge/badge.html",
 					controller : "BadgeController",
@@ -154,10 +155,11 @@ return angular.module('MyApp', ['ngIOS9UIWebViewPatch'
 			}
 			
 		})
-		.state("parent.button",{//button(按钮)
-			parent: 'parent',
-			url:"button",
+		.state("button",{//button(按钮)
+			//parent: 'parent',
+			url:"/button",
 			views:{
+				'Header': Header,
 				'WrapContent@':{
 					//templateUrl :"http://www.reg007.com/",
 					templateUrl :"pages/button/button.html",
