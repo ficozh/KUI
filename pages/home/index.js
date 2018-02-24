@@ -8,6 +8,9 @@ function( title , $scope , $state , $window) {
 		uu=$$.fn.removeHTML(uu);
 		uu=$$.fn.removeString(uu,'"');
 		//alert(uu)
+		$$.prototype.sssss= function(){
+			return '0';
+		};
 		uu=uu.replace(/\"/ig,'');
 		/*function time(endTime){
 				var mydate=new Date();
@@ -37,7 +40,7 @@ alert(1);
 $$("#test").bind("click", myHandler)
 
 
-				
+		var UrlGet = $$.getUrlParams();		
 				//执行函数 
 				//$scope.HeaderTitle ="eeeeee";
 				//alert($$().trim(' mmm '));

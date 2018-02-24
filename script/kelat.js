@@ -1338,7 +1338,7 @@ var kelatDom = (function(){
                         }
                         postData = '--' + boundary + '\r\n' + _newData.join('--' + boundary + '\r\n') + '--' + boundary + '--\r\n';
                     }else{
-                        postData = options.contentType === 'application/x-www-form-urlencoded' ? _data : _data.replace(/&/g, '\r\n');
+                        postData = options.contentType === 'application/x-www-form-urlencoded' ? _data : _data;
                     }
                 }
             }else{
@@ -2316,7 +2316,8 @@ KUIAPP.GetUrlParams = function(options) {
             replace(/%3B/gi, ';').
             replace(/%20/g, ' ').
             replace(/\?/g,"&").
-            replace(/\#\//g,"&");
+            replace(/\#\//g,"&").
+            replace(/\&&/g,"&");
             //获取参数的值
             var _Data = URLData.split("&");
             for(var i=0;i<_Data.length;i++){
@@ -2745,6 +2746,7 @@ KUIAPP.Picker = function(params){
         convertToPopover: true,
         //只显示Popover
         onlyInPopover: false,
+		openCallback :function(){},
         //工具栏
         toolbar: true,
         toolbarOkText: Local.ModalButtonOk,
@@ -3305,6 +3307,7 @@ KUIAPP.Picker = function(params){
         var toPopover = isPopover();
         $Picker.Timestamp = Timestamp * $Picker.isClick;
         if(!$Picker.opened){
+			$Picker.params.openCallback();
             //设置标识
             if($Picker.isCreate){
                 //布局

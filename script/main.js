@@ -4,8 +4,8 @@ require.config({
 	baseUrl: 'script',
 	paths:{
 		//库文件
-		jquery			: "_lib/jQuery/jquery.min3",
-		jqueryMobile	: "_lib/jquery.mobile/jquery.mobile.custom.min",
+		//jquery			: "_lib/jQuery/jquery.min3",
+		//jqueryMobile	: "_lib/jquery.mobile/jquery.mobile.custom.min",
 		angular			: "_lib/angular/angular.min",
 		uiRouter		: "_lib/angular/angular-ui-router",
 		//ngRoute			: "_lib/angular/angular-route.min",
@@ -18,14 +18,14 @@ require.config({
 		//滑动组件
 		Swipe			: "_lib/swipe",
 		//公共组件
-		kelat			: "kelat",		
+		kelat			: "kelat.min",		
 		Config			: "config",		
 		//angular 依赖 app 模块
 		APP				: "app"
 	},
 	shim:{
-		"jquery"		: {exports:"$"},
-		"jqueryMobile"	: {deps:["jquery"]},
+		//"jquery"		: {exports:"$"},
+		//"jqueryMobile"	: {deps:["jquery"]},
 		"angular"		: {exports:"angular",init: function(){
                 // ---------------------重要代码段！------------------------------
                 // 应用启动后不能直接用 module.controller 等方法，否则会报控制器未定义的错误，
