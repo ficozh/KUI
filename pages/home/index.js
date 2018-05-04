@@ -12,6 +12,8 @@ function( title , $scope , $state , $window) {
 			return '0';
 		};
 		uu=uu.replace(/\"/ig,'');
+		
+
 		/*function time(endTime){
 				var mydate=new Date();
 				var myweekday=mydate.getDay();

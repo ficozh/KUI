@@ -72,7 +72,10 @@ return angular.module('MyApp', ['ngIOS9UIWebViewPatch'
 							return "主页";
 						},
 						load : loadDeps([
-							"../pages/home/index"
+							"../pages/slide/swipe",
+							"../pages/home/index",
+							// .css 后缀需要带上，否则 gulp-rev-all 不会更新引用
+							"css!../pages/slide/swiper.min.css" // 依赖的 css 可以写在这里
 						])
 					}	
 				}
@@ -379,6 +382,27 @@ return angular.module('MyApp', ['ngIOS9UIWebViewPatch'
 						},
 						load : loadDeps([
 							"../pages/text/text"
+						])
+					}	
+				}
+			}
+			
+		})
+		.state("transit",{//transit(过渡页)
+			url:"/transit",
+			views:{
+				'Header': '',
+				'WrapContent':{
+					templateUrl :"pages/transit/transit.html",
+					controller : "TransitController",
+					resolve : {
+						title:function(){
+							return "transit(过渡页)";
+						},
+						load : loadDeps([
+							"../pages/transit/transit",
+							"../pages/transit/ngTransit",
+							"css!../pages/transit/transit.css"
 						])
 					}	
 				}
