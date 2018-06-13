@@ -1,0 +1,97 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+<style>
+@charset "utf-8";
+body{margin:0;overflow-x:hidden}
+/* ===== 过渡页 ===== */
+.Transit{position:fixed;top:0;right:0;bottom:0;left:0;background-color:#fff;z-index:999;}
+
+/* Content */
+.Transit .Content{position:absolute;top:0;left:0;right:0;bottom:0;z-index:10}
+.Transit .Content .Loader,
+.Transit .Content .LoaderFigure {position:absolute;top:50%;left:50%;
+-webkit-transform:translateY(-50%) translateX(-50%);
+	    transform:translateY(-50%) translateX(-50%);
+}
+.Transit .Content .Loader{top:18%;overflow:visible;padding-top:2em;height:0;width:2em;}
+.Transit .Content .LoaderFigure{height:0;width:0;box-sizing:border-box;border:0 solid #FE665C;background-color:#FE665C;
+border-radius:100px;
+-webkit-animation:LoaderFigure 1.15s infinite cubic-bezier(0.215, 0.61, 0.355, 1);
+animation:LoaderFigure 1.15s infinite cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+.Transit .Content .LoaderLabel {float:left;margin:0.5em 0 0 50%;font-size:0.875em;line-height:1.5em;color:#8d3b3e;white-space:nowrap;
+-webkit-transform:translateX(-50%);
+		transform:translateX(-50%);
+-webkit-animation: LoaderLabel 1.15s infinite cubic-bezier(0.215, 0.61, 0.355, 1);
+animation: LoaderLabel 1.15s infinite cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+@-webkit-keyframes LoaderFigure {
+  0% {height:0;width:0;}
+  30% {height:2em;width:2em;background-color:transparent;border-width:1em;opacity:1;}
+  100% {height:2em;width:2em;border-width:0;opacity:0;background-color:transparent;}
+}
+@keyframes LoaderFigure {
+  0% {height:0;width:0;}
+  30% {height:2em;width:2em;background-color:transparent;border-width:1em;opacity:1;}
+  100% {height:2em;width:2em;border-width:0;opacity:0;background-color:transparent;}
+}
+@-webkit-keyframes LoaderLabel {
+  0% {opacity:0.25;}
+  30% {opacity:1;}
+  100% {opacity:0.25;}
+}
+@keyframes LoaderLabel {
+  0% {opacity:0.25;}
+  30% {opacity:1;}
+  100% {opacity:0.25;}
+}
+/* Footer */
+.Transit .Footer{position:fixed;bottom:0;left:0;right:0;color:#ddd;font-size:14px;text-align:center;padding-bottom:0.52em;z-index:20}	
+.Transit .Footer .FooterText{padding:0.34em;font-size:12px}
+</style>
+</head>
+<body>
+<div class="Transit">
+	<section class="Content">
+		<div class="Loader">
+		  <div class="LoaderFigure"></div>
+		  <p class="LoaderLabel">加载中...</p>
+		</div>
+	</section>
+	<footer class="Footer">
+		<div class="FooterText">Copyright © 2015-2018 Haier U+</div>
+	</footer>
+</div>
+</body>
+</html>
+<script type="text/javascript">
+(function(){
+    'use strict';
+	window['transit'] = {
+		load: function(url){
+			url = url || 'default.html';
+			var iframe = document.createElement("iframe");  
+				iframe.src = url;  
+				iframe.style.display = "none";
+			var Jump = function(){
+					window.location.replace(url) 
+				}
+			if (iframe.attachEvent){  
+				iframe.attachEvent("onload", function(){ // IE 
+					Jump();					
+				});  
+			} else {  
+				iframe.onload = function(){ // 非IE  
+				   Jump();
+				};  
+			}  
+			document.body.appendChild(iframe);
+		}
+	};
+}());
+transit.load(); 	
+</script>

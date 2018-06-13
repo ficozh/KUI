@@ -215,7 +215,7 @@ var Local = {
         validate : {
             email   : /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/,
             phone   : /^((\(\d{3}\))|(\d{3}\-))?(\(0\d{2,3}\)|0\d{2,3}-)?[1-9]\d{6,7}$/,
-            mobile  : /^1[34578]\d{9}$/,
+            mobile  : /^1[34578]\d{9}$/ || /^1[3|4|5|7|8|9][0-9]\d{0,8}$/,
             number  : /^\d+$/,
             integer : /^[-\+]?\d+$/,
             english : /^[A-Za-z]+$/,
@@ -3728,7 +3728,7 @@ KUIAPP.HideModal = function(modal){
  * @param {Object} modal:模态框对象
  * @param {String} className:模态框样式名
  */
-KUIAPP.OpenModal = function(modal, className, Shift, displayTime){
+KUIAPP.OpenModal = function(modal, className, Shift, displayTime, callback){
     var timesTamp = +(new Date());
     var isPopover = modal.hasClass('ModalPopover');
     var isPickerModal = modal.hasClass('PickerModal');
@@ -3742,7 +3742,7 @@ KUIAPP.OpenModal = function(modal, className, Shift, displayTime){
     if((!!className?className:'').indexOf('ModalWarnBox')!==-1){
         modal.addClass(className);
         window.setTimeout(function(){
-            KUIAPP.CloseModal(modal);
+            KUIAPP.CloseModal(modal, callback);
         },displayTime);
     }else{
         if(Local.isModalPopover){
@@ -3857,7 +3857,7 @@ KUIAPP.Modal = function(options){
         });
     });
     //打开模态框
-    KUIAPP.OpenModal($Modal, options.className ? options.className : '', Shift, options.displayTime);
+    KUIAPP.OpenModal($Modal, options.className ? options.className : '', Shift, options.displayTime, options.callback);
     return $Modal[0];
 };
 /** alert 框 
@@ -3916,17 +3916,24 @@ KUIAPP.Confirm = function(content, title, callbackOk, callbackCancel, buttonText
  * @alias warn
  * @param {String} content:内容
  */
-KUIAPP.Warn = function(content, showTime, className){
+KUIAPP.Warn = function(content, callback, showTime, className){
     if(!content){return}
-    if(typeof showTime === 'string') {
+    if(typeof callback === 'number') {
+      showTime = arguments[1];
+      className = arguments[2];
+      callback = undefined;
+    }
+    if(typeof callback === 'string') {
       className = arguments[1];
       showTime = undefined;
+      callback = undefined;
     }
-    return running ? KUIAPP.Modal({
+    return KUIAPP.Modal({
         content: content || '',
         displayTime: showTime ? showTime : 2E3,
-        className: "ModalWarnBox " + className
-    }) : null;
+        className: "ModalWarnBox " + className,
+        callback: callback
+    });
 };
 /** 提示框 
  * @alias prompt
