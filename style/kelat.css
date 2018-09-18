@@ -2125,7 +2125,7 @@ display:flex;
 </div>
 */
 
-.Box{background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.3);margin:0 10px 10px;position:relative;border-radius:4px;font-size:12px;overflow:hidden}
+.Box{background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.3);margin:0 10px 10px;position:relative;font-size:12px;overflow:hidden}
 .Box .BoxHeader,
 .Box .BoxFooter{min-height:44px;position:relative;padding:4px 12px;
 box-sizing:border-box;
@@ -2143,8 +2143,8 @@ display:flex;
         align-items:center
 }
 
-.Box .BoxHeader{border-radius:4px 4px 0 0;font-size:14px}
-.Box .BoxFooter{border-radius:0 0 4px 4px;color:#6d6d72}
+.Box .BoxHeader{font-size:14px}
+.Box .BoxFooter{color:#6d6d72}
 
 .Box .BoxContent{position:relative}
 .Box .BoxContent:after,
@@ -2163,7 +2163,7 @@ display:flex;
 .Box .BoxContent .Img{display:block}
 
 .Box .BoxFooter .Link, .Box .BoxHeader .Link{position:relative;line-height:36px;height:36px;text-decoration:none;text-align:center;display:block;margin:0;white-space:nowrap;text-overflow:ellipsis;overflow:hidden;color:#2196f3;background:none;padding:0 8px;font-size:14px;cursor:pointer;min-width:64px;
-border-radius:2px;border:none;outline:0;
+border:none;outline:0;
 box-sizing:border-box;
 -webkit-appearance:none;
    -moz-appearance:none;
@@ -2214,9 +2214,12 @@ html.android-4 .Box .BoxHeader a.Link{float:left;padding:0 8px}
 */
 
 /*块级卡片*/
-.BoxBlock{border-radius:0;margin-left:0;margin-right:0}
+.BoxBlock{margin-left:0;margin-right:0}
 
 .BoxHeaderPic .BoxHeader{height:40vw;background-size:cover;background-position:center}
+.BoxHeaderPic .BoxHeader .BoxMedia{position:absolute;left:0;right:0;bottom:0;padding:16px;background-color:rgba(0,0,0,.54)}
+.BoxHeaderPic .BoxHeader .BoxMedia .BoxMediaTitle{font-size:24px;color:hsla(0,0%,100%,.87);line-height:36px}
+.BoxHeaderPic .BoxHeader .BoxMedia .BoxMediaSub{color:hsla(0,0%,100%,.54);font-size:14px}
 
 .Box .NoBorder{border:0}
 .Box .NoBorder:after,
@@ -2240,7 +2243,7 @@ html.android-4 .Box .BoxHeader a.Link{float:left;padding:0 8px}
 .BoxList.ListBlock:after{display:none}
 
 /* ===== 按钮 ===== <e class="Btn BtnPrimary"></e>*/
-.Btn{position:relative;display:inline-block;cursor:pointer;outline:0;padding:.5em 1em;font-size:1.4rem;font-weight:400;line-height:1.2;color:currentColor;border:1px solid #CCC;border-radius:4px;background-color:#FFF;margin-bottom:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-align:center;text-decoration:none;vertical-align:top;
+.Btn{position:relative;display:inline-block;cursor:pointer;outline:0;padding:.5em 1em;font-size:1.4rem;font-weight:400;line-height:1.2;color:currentColor;border-radius:2px;border:1px solid #ddd;background-color:#FFF;margin-bottom:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-align:center;text-decoration:none;vertical-align:top;
 -webkit-appearance:none;
         appearance:none;
 text-transform:uppercase;
@@ -2259,15 +2262,13 @@ text-transform:uppercase;
         transition-duration:.2s
 }
 .Btn:hover,
-.Btn:focus{color:currentColor}
+.Btn:focus{color:currentColor;box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);}
 .Btn:focus,
 .Btn:active{outline:0}
 .Btn:focus{background-color:#e7e7e7;color:currentColor;text-decoration:none}
 
 /* 首选按钮 */
 .BtnPrimary{color:#FFF;border-color:#10A9DC;background-color:#10A9DC}
-.BtnLine.BtnPrimary:focus,
-.BtnLine.BtnPrimary:active,
 .BtnPrimary:hover,
 .BtnPrimary:focus{color:#fff}
 .BtnPrimary.active,
@@ -2277,8 +2278,6 @@ text-transform:uppercase;
 
 /* 成功按钮 */
 .BtnSuccess{color:#FFF;border-color:#4CD964;background-color:#4CD964}
-.BtnLine.BtnSuccess:focus,
-.BtnLine.BtnSuccess:active,
 .BtnSuccess:hover,
 .BtnSuccess:focus{color:#FFF}
 .BtnSuccess:focus,
@@ -2287,8 +2286,6 @@ text-transform:uppercase;
 
 /* 警告按钮 */
 .BtnWarning{color:#FFF;border-color:#ff851b;background-color:#ff851b}
-.BtnLine.BtnWarning:focus,
-.BtnLine.BtnWarning:active,
 .BtnWarning:hover,
 .BtnWarning:focus{color:#FFF}
 .BtnWarning.active,
@@ -2298,8 +2295,6 @@ text-transform:uppercase;
 
 /* 危险按钮 */
 .BtnDanger{color:#FFF;border-color:#FF3B30;background-color:#FF3B30}
-.BtnLine.BtnDanger:focus,
-.BtnLine.BtnDanger:active,
 .BtnDanger:hover,
 .BtnDanger:focus{color:#FFF}
 .BtnDanger.active,
@@ -2309,8 +2304,6 @@ text-transform:uppercase;
 
 /*灰色按钮*/
 .BtnGray{color:#666;background-color:#ddd;border-color:#ddd;}
-.BtnLine.BtnGray:focus,
-.BtnLine.BtnGray:active,
 .BtnGray:hover,
 .BtnGray:focus{color:#666}
 .BtnGray.active,
@@ -2320,6 +2313,17 @@ text-transform:uppercase;
 
 /*无底色按钮*/
 .BtnLine{background-color:transparent;text-shadow:none}
+.BtnLine:hover:before,
+.BtnLine:focus:before,
+.BtnLine:active:before{content:"";position:absolute;left:0;right:0;top:0;bottom:0;background-color:currentColor;opacity:.12}
+.BtnLine.active,
+.BtnLine:hover,
+.BtnLine:focus,
+.BtnLine:active{background:none;box-shadow:none}
+.BtnLine.active:before,
+.BtnLine:focus:before,
+.BtnLine:active:before{content:"";position:absolute;left:0;right:0;top:0;bottom:0;background-color:currentColor;opacity:.25}
+
 /*无边按钮*/
 .BtnNoBor{border:0}
 
@@ -2328,8 +2332,8 @@ text-transform:uppercase;
 
 /* 按钮尺寸 */
 .BtnXl{font-size:2rem}
-.BtnBig{font-size:1.8rem;border-radius:6px}
-.BtnSmall{font-size:1.2rem;border-radius:3px}
+.BtnBig{font-size:1.8rem}
+.BtnSmall{font-size:1.2rem}
 .BtnXs{font-size:1.2rem;line-height:.85}
 
 /* 圆形按钮 */
@@ -2416,9 +2420,9 @@ border-bottom-left-radius:0;
 }}
 
 /* 状态栏覆盖全屏幕模式 (PhoneGap) */
-.StatusbarOverlay{position:fixed;left:0;top:0;height:20px;width:100%;display:none;background:#fff;z-index:10000;
+.StatusbarOverlay{position:absolute;left:0;top:0;height:20px;width:100%;display:none;background: #f7f7f8;z-index: 10000;
 -webkit-transition-duration:.3s;
-        transition-duration:.3s
+        transition-duration:.3s  
 }
 html.WithStatusbarOverlay body .StatusbarOverlay{display:block}
 html.WithStatusbarOverlay body .Wrapper{padding-top:20px}

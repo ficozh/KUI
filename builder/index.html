@@ -29,13 +29,13 @@
 	</div>
 </div>
 <div class="WAll BuilderWrap">
-	<div class="Row">
+	<div class="Row" id="advanced">
 		<div class="Col25 Bor Menu">
 			<div class="AccordionItem AccordionItemExpanded">
 				<div class="ContentBlockTitle ItemLink Cur">页面布局</div>
 				<div class="Row NoGutter AccordionItemCon">
 					<div class="Col50 First">
-						<ul class="ListBlock">
+						<ul class="ListBlock DraggableWrap">
 							<li class="ListItem Draggable" title="grid(网格布局)">
 								<div class="ItemCon">
 									<div class="ItemMedia">
@@ -60,8 +60,8 @@
 							</li>
 						</ul>
 					</div>
-					<div class="Col50 Last">
-						<ul class="ListBlock">
+					<div class="Col50 Last" id="advanced-3">
+						<ul class="ListBlock DraggableWrap">
 							<li class="ListItem Draggable" title="stylebox(九宫格)">
 								<div class="ItemCon">
 									<div class="ItemMedia">
@@ -71,6 +71,7 @@
 										<div class="ItemTitle">九宫格</div>
 									</div>
 								</div>
+								<i class="js-remove">X</i>
 							</li>
 							<li class="ListItem Draggable" title="tab(选项卡)">
 								<div class="ItemCon">
@@ -90,7 +91,7 @@
 				<div class="ContentBlockTitle ItemLink Cur">表单</div>
 				<div class="Row NoGutter AccordionItemCon">
 					<div class="Col50 First">
-						<ul class="ListBlock">
+						<ul class="ListBlock DraggableWrap">
 							<li class="ListItem Draggable" title="button(按钮)">
 								<div class="ItemCon">
 									<div class="ItemMedia">
@@ -134,7 +135,7 @@
 						</ul>
 					</div>
 					<div class="Col50 Last">
-						<ul class="ListBlock">
+						<ul class="ListBlock DraggableWrap">
 							<li class="ListItem Draggable" title="numberbox(数字输入框)">
 								<div class="ItemCon">
 									<div class="ItemMedia">
@@ -183,7 +184,7 @@
 				<div class="ContentBlockTitle ItemLink Cur">列表</div>
 				<div class="Row NoGutter AccordionItemCon">
 					<div class="Col50 First">
-						<ul class="ListBlock">
+						<ul class="ListBlock DraggableWrap">
 							<li class="ListItem Draggable" title="list(列表)">
 								<div class="ItemCon">
 									<div class="ItemMedia">
@@ -217,7 +218,7 @@
 						</ul>
 					</div>
 					<div class="Col50 Last">
-						<ul class="ListBlock">
+						<ul class="ListBlock DraggableWrap">
 							<li class="ListItem Draggable" title="mediaLists(媒体列表)">
 								<div class="ItemCon">
 									<div class="ItemMedia">
@@ -246,7 +247,7 @@
 				<div class="ContentBlockTitle ItemLink Cur">模态框</div>
 				<div class="Row NoGutter AccordionItemCon">
 					<div class="Col50 First">
-						<ul class="ListBlock">
+						<ul class="ListBlock DraggableWrap">
 							<li class="ListItem Draggable" title="dialog(消息框)">
 								<div class="ItemCon">
 									<div class="ItemMedia">
@@ -280,7 +281,7 @@
 						</ul>
 					</div>
 					<div class="Col50 Last">
-						<ul class="ListBlock">
+						<ul class="ListBlock DraggableWrap">
 							<li class="ListItem Draggable" title="picker(选择器)">
 								<div class="ItemCon">
 									<div class="ItemMedia">
@@ -309,7 +310,7 @@
 				<div class="ContentBlockTitle ItemLink Cur">其他</div>
 				<div class="Row NoGutter AccordionItemCon">
 					<div class="Col50 First">
-						<ul class="ListBlock">
+						<ul class="ListBlock DraggableWrap">
 							<li class="ListItem Draggable" title="HTML">
 								<div class="ItemCon">
 									<div class="ItemMedia">
@@ -323,7 +324,7 @@
 						</ul>
 					</div>
 					<div class="Col50 Last">
-						<ul class="ListBlock">
+						<ul class="ListBlock DraggableWrap">
 							<li class="ListItem Draggable" title="返回顶部">
 								<div class="ItemCon">
 									<div class="ItemMedia">
@@ -348,7 +349,7 @@
 				<span class="TabLinkHighlight" style="width: 33.3333%; transform: translate3d(0%, 0px, 0px);"></span></ul>
 			</div>
 			<div class="Tabs">
-				<div id="tab1" class="Tab PAll active"><div class="BlockLabel">标签1内容</div></div>
+				<div id="tab1" class="Tab PAll active"><div class="BlockLabel" id="advanced-1" style="min-height:200px;"></div></div>
 				<div id="tab2" class="Tab PAll"><pre><code>&lt;div class="NumBox">
     &lt;utton class="Btn NumBoxMinus" type="button">-&lt;/button>
     &lt;input class="NumBoxInput" type="number" value="0"/>
@@ -368,10 +369,61 @@
 </div>
 <script type="text/javascript" src="../script/kelat.js"></script>
 <script type="text/javascript" src="../script/kuiBuilder.js"></script>
+<script type="text/javascript" src="script/Sortable.js"></script>
 <script type="text/javascript">
+
+
+
+
+
+
 $$(document).ready(function(){
 	$$.initAccordion();
 	$$.tabs();
+
+
+for(var i=0;i< $$('.DraggableWrap').length;i++){
+	Sortable.create(document.getElementsByClassName('DraggableWrap')[i], {
+		sort: false,
+		ghostClass: "sortable-ghost",
+		group: {
+			name: 'advanced',
+			pull: 'clone',
+			put: false
+		},
+		onEnd: function (/**Event*/evt) {
+			var itemEl = evt.item;  // dragged HTMLElement
+			evt.to;    // target list
+			evt.from;  // previous list
+			evt.oldIndex;  // element's old index within old parent
+			evt.newIndex;  // element's new index within new parent
+		},
+
+		animation: 100
+	});
+}
+	
+
+	
+	
+	
+Sortable.create(document.getElementById('advanced-1'), {
+	sort: true,
+	group: {
+		name: 'advanced',
+		pull: true,
+		put: true
+	},
+	filter: '.js-remove',
+	onFilter: function (evt) {
+		evt.item.parentNode.removeChild(evt.item);
+	},
+	animation: 100
+});	
+	
+	
+	
+	
 });
 </script>
 	<style>
@@ -426,7 +478,5 @@ $$(document).ready(function(){
 		}
 	</style>
 
-	<script src="http://libs.useso.com/js/highlight.js/7.5/highlight.min.js"></script>
-	<script>hljs.initHighlightingOnLoad();</script>
 </body>
 </html>
