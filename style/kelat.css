@@ -1667,6 +1667,7 @@ input.ModalTextInput + input.ModalTextInput{margin-top:5px;}
 .ModalPopoverAngle.onBottom{left:0;top:100%}
 .ModalPopoverAngle.onBottom:after{left:0;top:-12px}
 .ModalPopoverInner{overflow:auto;
+/* 增加该属性，可以增加弹性 */
 -webkit-overflow-scrolling:touch;
 }
 
@@ -1689,6 +1690,7 @@ input.ModalTextInput + input.ModalTextInput{margin-top:5px;}
 /**/
 .PopupBox{position:fixed;left:0;bottom:0;width:100%;height:100%;z-index:11000;background:#fff;display:none;
 box-sizing:border-box;
+/* 增加该属性，可以增加弹性 */
 -webkit-overflow-scrolling:touch;
 -webkit-transition-property:-webkit-transform;
    -moz-transition-property:-moz-transform;
@@ -1918,6 +1920,7 @@ display:flex;
 }
 /*通知栏*/
 .NotifyBox{position:fixed;left:0;top:0;width:100%;z-index:1900;color:#fff;font-size:14px;margin:0;border:none;display:none;max-height:100%;background:rgba(0,0,0,.85);overflow:auto;box-sizing:border-box;
+/* 增加该属性，可以增加弹性 */
 -webkit-overflow-scrolling:touch
 }
 .NotifyBox.ListBlock{margin:0}
@@ -2605,6 +2608,7 @@ pointer-events:none;
         transform:translate3d(0,56px,0);
 }
 .PageContent{position:relative;overflow:auto;height:100%;z-index:1;
+/* 增加该属性，可以增加弹性 */
 -webkit-overflow-scrolling:touch;
 box-sizing:border-box;}
 
@@ -2674,6 +2678,7 @@ border-left:1px solid #c7c7c7;color:#c7c7c7;
 .WrapFooter + .WrapContent{padding-bottom:45px}
 .WrapHeader + .WrapFooter + .WrapContent{padding-top:45px;padding-bottom:45px}
 .WrapContent{position:relative;padding:0;z-index:80;box-sizing:border-box;min-height:inherit;
+/* 增加该属性，可以增加弹性 */
 -webkit-overflow-scrolling:touch;    
 }
 .WrapContent a{text-shadow:none}

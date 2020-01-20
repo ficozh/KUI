@@ -3757,7 +3757,7 @@ KUIAPP.OpenModal = function(modal, className, Shift, displayTime, callback){
     window.setTimeout(function(){
         if(modal && running){
             KUIAPP.ShowModal(modal,function(){
-                if(isPopover || isPickerModal || isPopup){
+                if(isPopover || isPopup){
                     $ModalBlank.on(Local.support.onClick,function(){
                         KUIAPP.CloseModal(modal,Shift);
                     });
@@ -3867,18 +3867,14 @@ KUIAPP.Modal = function(options){
  * @param {function} callbackOk:确认事件
  */
 KUIAPP.Alert = function(content, title, callbackOk, buttonText){
-    if(typeof title === 'function'){
-        buttonText = arguments[2];
-        callbackOk = arguments[1];
-        title = undefined;
-    }
-    return running ? KUIAPP.Modal({
-        content: ( content || '' ),
-        title: typeof title === 'undefined' ? Local.ModalTitle : title,
+	return running ? KUIAPP.Modal({
+        content: ( options.content || '' ),
+        title: typeof options.title === 'undefined' ? Local.ModalTitle : options.title,
         buttons: [{
-            text: buttonText && buttonText[0] ? buttonText[0] : Local.ModalButtonOk,
-            onClick: callbackOk
-        }]
+            text: options.buttonText && options.buttonText[0] ? options.buttonText[0] : Local.ModalButtonOk,
+            onClick: options.callbackOk
+        }],
+		className: ( options.className || '' ),
     }) : null;
 };
 /** 确认框 

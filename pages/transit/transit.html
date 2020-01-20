@@ -1,35 +1,62 @@
-﻿<div class="Transit TransitDark TransitBlue">
-	<header class="Header">
-		<div class="HeaderInner">
-			<div class="Left"></div>
-			<div class="Center"></div>
-			<div class="Right">
+﻿<div class="TransitWrap  TransitDark TransitBlue">
+	<div class="Transit">
+		<header class="Header NavbarShow">
+			<div class="HeaderInner">
+				<div class="Left">
+					<a href="javascript:;" onclick="transit.goBack()">
+						<i class="Icon IconBack"></i>
+					</a>
+				</div>
+				<div class="Center">121212</div>
+				<div class="Right">
+					<a href="javascript:;" onclick="transit.share()"><i class="Icon IconShare"></i></a>
+				</div>
 			</div>
-		</div>
-	</header>
-	<section class="Content">
-		<div class="Loader">
-		  <div class="LoaderFigure"></div>
-		  <p class="LoaderLabel">加载中...</p>
-		</div>
-	</section>
-	<footer class="Footer">
-		<div class="FooterLinks">
-			<a class="ItemLink" href="javascript:void(0);">底部链接</a>
-			<a class="ItemLink" href="javascript:void(0);">底部链接</a>
-		</div>
-		<div class="FooterText">Copyright © 2015-2018 kelat</div>
-	</footer>
-	<svg class="Wave">
-		<g>
-			<path d="M 0 70 Q 87.5 47, 175 70 T 350 70 T 525 70 T 700 70 T 875 70 T 1050 70 V 100 H 0 V 0"></path>
-			<animateTransform attributeName="transform" attributeType="XML" type="translate" from="0" to="-350" dur="3s" repeatCount="indefinite"></animateTransform>
-		</g>
-		<g transform="translate(-903.868 0)">
-			<path d="M 0 70 Q 135 36, 270 70 T 540 70 T 810 70 T 1080 70 V 100 H 0 V 0" transform="translate(-38.232284367796474, 0)"></path>
-			<animateTransform attributeName="transform" attributeType="XML" type="translate" from="0" to="-540" dur="2s" repeatCount="indefinite"></animateTransform>
-		</g>
-	</svg>
+		</header>
+		<section class="Content">
+			<div class="Loader">
+			  <div class="LoaderFigure"></div>
+			  <p class="LoaderLabel">加载中...</p>
+			</div>
+		</section>
+		<footer class="Footer">
+			<div class="FooterLinks">
+				<a class="ItemLink" href="javascript:void(0);">底部链接</a>
+				<a class="ItemLink" href="javascript:void(0);">底部链接</a>
+			</div>
+			<div class="FooterText">Copyright © 2015-2018 kelat</div>
+		</footer>
+		<svg class="Wave">
+			<g>
+				<path d="M 0 70 Q 87.5 47, 175 70 T 350 70 T 525 70 T 700 70 T 875 70 T 1050 70 V 100 H 0 V 0"></path>
+				<animateTransform attributeName="transform" attributeType="XML" type="translate" from="0" to="-350" dur="3s" repeatCount="indefinite"></animateTransform>
+			</g>
+			<g transform="translate(-903.868 0)">
+				<path d="M 0 70 Q 135 36, 270 70 T 540 70 T 810 70 T 1080 70 V 100 H 0 V 0" transform="translate(-38.232284367796474, 0)"></path>
+				<animateTransform attributeName="transform" attributeType="XML" type="translate" from="0" to="-540" dur="2s" repeatCount="indefinite"></animateTransform>
+			</g>
+		</svg>
+	</div>
+	<div id="Domain" class="Domain">
+		<ul class="Back">
+			<li class="DomainItme"><a href="javascript:;" onclick="transit.goBack()"><i class="Icon IconBack"></i></a>
+		</ul>
+		<ul class="Extend">
+			<li class="DomainItme CloseApp" id="DomainCloseApp" onclick="transit.destroy()"><i class="Icon IconCloseApp"></i></li>
+			<li class="DomainItme" id="DomainfullScreen" onclick="transit.fullScreen()"><i class="Icon IconfullScreen"></i></li>
+			<li class="DomainItme Music" id="DomainMusic" onclick="transit.music()"><i class="Icon IconMusic"></i></li>
+			<li class="DomainItme Sound" id="DomainSound" onclick="transit.muted()"><i class="Icon IconSound"></i></li>
+		</ul>
+		<ul class="Basic">
+			<li class="DomainItme" onclick="transit.switch()"><i class="Icon IconMore"></i></li>
+			<li class="DomainItme" onclick="transit.closePage()"><i class="Icon IconClose"></i></li>
+		</ul>
+	</div>
+	<div id="ActionMenu" class="ActionMenu"><div class="ActionMenuGroup">
+		<div class="ActionLabel Copyright"></div>
+		<ol class="ActionLightApp" id="LightApp"><li id="Games_Air_ID_li"><div id="Games_Air_ID"><img src="module/games/air/logo.png"></div><p>飞行</p></li></ol>
+		<div class="ActionButton" onclick="transit.refresh()">刷新</div>
+	</div></div>
 </div>
 <ul class="Domain">
 	<li class="DomainItme" onclick="toggleClass()"><i class="Icon IconMore"></i></li>
