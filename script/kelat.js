@@ -1316,7 +1316,7 @@ var kelatDom = (function(){
             return;
         };
         //缓存GET / HEAD请求
-        if(_method === 'GET' || _method === 'HEAD' || _method === 'OPTIONS' || _method === 'DELETE'){
+        if(_method === 'GET' || _method === 'HEAD' || _method === 'OPTIONS'){
             if(options.cache === false){
                 options.url += (paramsPrefix + '_nocache=' + Date.now());
             };
@@ -3867,15 +3867,19 @@ KUIAPP.Modal = function(options){
  * @param {function} callbackOk:确认事件
  */
 KUIAPP.Alert = function(content, title, callbackOk, buttonText){
-	return running ? KUIAPP.Modal({
-        content: ( options.content || '' ),
-        title: typeof options.title === 'undefined' ? Local.ModalTitle : options.title,
+    if(typeof title === 'function'){
+        buttonText = arguments[2];
+        callbackOk = arguments[1];
+        title = undefined;
+    }
+    return KUIAPP.Modal({
+        content: ( content || '' ),
+        title: typeof title === 'undefined' ? Local.ModalTitle : title,
         buttons: [{
-            text: options.buttonText && options.buttonText[0] ? options.buttonText[0] : Local.ModalButtonOk,
-            onClick: options.callbackOk
-        }],
-		className: ( options.className || '' ),
-    }) : null;
+            text: buttonText && buttonText[0] ? buttonText[0] : Local.ModalButtonOk,
+            onClick: callbackOk
+        }]
+    });
 };
 /** 确认框 
  * @alias confirm

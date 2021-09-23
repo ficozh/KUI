@@ -49,21 +49,17 @@ display:flex;
 .TransitWrap .Header .Left{width:12vw;height:12vw}
 .TransitWrap .Header .Left{display:none}
 .TransitWrap .Header .Right a,
-.TransitWrap .Header .Left a{height:100%;display:block;}
+.TransitWrap .Header .Left a{width:100%;height:100%;display:block;}
+.TransitWrap .Header .Left a:focus,
+.TransitWrap .Header .Left a:active,
+.TransitWrap .Header .Left a:hover,
+.TransitWrap .Header .Right a:focus,
+.TransitWrap .Header .Right a:active,
+.TransitWrap .Header .Right a:hover{background-color:rgba(0, 0, 0, 0.3)}
 .TransitWrap .Header.NavbarShow{display:block;background-color:#fff;box-shadow: 0 0 1.66666667vw 0 rgba(51,51,51,.45)}
 .TransitWrap .Header.NavbarShow .Left,
 .TransitWrap .Header.NavbarShow .Center{display:block}
-/* 功能域 */
-.Domain{position:absolute;top:1.5vw;right:2vw;overflow:hidden;margin:0;z-index:1100}
-.Domain ul{position: relative;margin:0;padding:0;display:inline-block;height:9vw;list-style-type:none;}
-.Domain ul li{position:relative;top:0;display:inline-block;height:9vw;width:9vw;margin-left:0.6vw}
-.Domain ul a{width:100%;height: 100%;}
-.Domain .Basic{padding:0 1.5vw;border-radius:100vw;z-index:1}
-.Domain .Basic:before{content:" ";position:absolute;left:0;right:0;top:0;bottom:0;border:1px solid #eee;border-radius:100vw;}
-.Domain .Basic li:before{content:" ";position:absolute;width:1px;left:-1vw;top:.46em;bottom:.46em;border-left:1px solid #c7c7c7;-webkit-transform-origin:0 0;transform-origin:0 0;-webkit-transform:scaleX(.5);transform:scaleX(.5)}
-.Domain .Basic li:first-child{margin-left:0}
-.Domain .Basic li:first-child:before{display:none}
-#DomainClose{display:none}
+
 /* 图标 */
 .Icon{position:absolute;display:inline-block;vertical-align:middle;background-size:100% auto;background-position:center;background-repeat:no-repeat;font-style:normal;width:6.4vw;height:6.4vw;top:50%;left:50%;-webkit-transform:translateY(-50%) translateX(-50%);transform:translateY(-50%) translateX(-50%);pointer-events:none}
 .Domain .IconMore{background-image:url('icon/more.svg')}
@@ -76,7 +72,26 @@ display:flex;
 .IconBack{background-image:url('icon/back.svg')}
 .IconShare{background-image:url('icon/share.svg')}
 
-.Domain .Extend{position: relative; z-index: 3;}
+/* 功能域 */
+#DomainClose{display:none}
+.Domain{position:absolute;top:1.5vw;right:2vw;overflow:hidden;margin:0;z-index:1100}
+.Domain ul{position: relative;margin:0;padding:0;display:inline-block;height:9vw;list-style-type:none;}
+.Domain ul li{position:relative;top:0;display:inline-block;height:9vw;width:9vw;margin-left:0.6vw}
+.Domain ul li:focus,
+.Domain ul li:active,
+.Domain ul li:hover{background-color:rgba(0, 0, 0, 0.45)}
+.Domain ul a{width:100%;height: 100%;display:block}
+.Domain .Basic{padding:0;border-radius:100vw;font-size:0;margin-left:0.6vw;z-index:1}
+.Domain .Basic:before{content:" ";position:absolute;left:0;right:0;top:0;bottom:0;border:1px solid #eee;border-radius:100vw;}
+.Domain .Basic li:first-child{padding-left:1.5vw;width:10.5vw;border-radius:100vw 0 0 100vw;}
+.Domain .Basic li:first-child .Icon{margin-left:0.75vw}
+.Domain .Basic li:last-child{padding-right:1.5vw;width:10.5vw;border-radius:0 100vw 100vw 0;}
+.Domain .Basic li:last-child .Icon{margin-left:-0.75vw}
+.Domain .Basic li:before{content:" ";position:absolute;width:1px;left:0;top:1.2vw;bottom:1.2vw;border-left:1px solid #c7c7c7;-webkit-transform-origin:0 0;transform-origin:0 0;-webkit-transform:scaleX(.5);transform:scaleX(.5)}
+.Domain .Basic li:first-child{margin-left:0}
+.Domain .Basic li:first-child:before{display:none}
+
+.Domain .Extend{position: relative;font-size: 0; z-index: 3;}
 .Domain .Extend li{background-color: rgba(0, 0, 0, 0.11);transition: all 220ms;border-radius: 100vw;}
 .Domain .Extend li.Music::after,
 .Domain .Extend li.Music::before,
@@ -172,7 +187,7 @@ display:flex;
 .TransitDark .Domain .FullScreen .IconfullScreen{background-image:url('icon/exitFullscreen_dark.svg')}
 .TransitDark .Domain .IconCloseApp{background-image:url('icon/closeApp_dark.svg')}
 .TransitDark .Domain .IconMusic{background-image:url('icon/music_dark.svg')}
-.TransitDark .IconBack{background-image:url('icon/back_dark.svg');background-size: cover;margin-left:0.5vw}
+.TransitDark .IconBack{background-image:url('icon/back_dark.svg')}
 .TransitDark .IconShare{background-image:url('icon/share_dark.svg')}
 .TransitDark .Domain .Extend li.Music::after,
 .TransitDark .Domain .Extend li.Music::before,
@@ -182,9 +197,11 @@ display:flex;
 .TransitDark .Domain .Extend li.SoundMute.Music::before,
 .TransitDark .Domain .Extend li.SoundMute.Sound::after,
 .TransitDark .Domain .Extend li.SoundMute.Sound::before{background: #f5f5f5;}
-
 .TransitDark .Domain .Back  li {background-color: rgba(0, 0, 0, 0.6);}
 .TransitDark .Header.NavbarShow {background-color: rgb(90, 90, 90);}
+.TransitDark .Domain ul li:focus,
+.TransitDark .Domain ul li:active,
+.TransitDark .Domain ul li:hover{background-color:rgba(0, 0, 0, 0.45)}
 
 /* 蓝色 */
 .TransitBlue .Content {
